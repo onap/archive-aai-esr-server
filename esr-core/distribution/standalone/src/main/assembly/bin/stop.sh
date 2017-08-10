@@ -17,9 +17,9 @@
 
 DIRNAME=`dirname $0`
 HOME=`cd $DIRNAME/; pwd`
-Main_Class="org.openo.commonservice.extsys.ExtsysApp"
+Main_Class="org.onap.aai.esr.ExtsysApp"
 
-echo ================== catalog-service info =============================================
+echo ================== esr-service info =============================================
 echo HOME=$HOME
 echo Main_Class=$Main_Class
 echo ===============================================================================

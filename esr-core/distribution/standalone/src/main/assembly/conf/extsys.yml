@@ -43,7 +43,7 @@ database:
 #    port: 8080
 server:
   type: simple
-  rootPath: '/openoapi/extsys/v1/*'
+  rootPath: '/onapapi/aai/esr/v1/*'
   applicationContextPath: /
   adminContextPath: /admin
   connector:
@@ -60,7 +60,7 @@ logging:
   loggers:
 
     # Sets the level for 'com.example.app' to DEBUG.
-    org.openo.commonservice.extsys.ExtsysApp: INFO
+    org.onap.aai.esr.ExtsysApp: INFO
 
   appenders:
     - type: console

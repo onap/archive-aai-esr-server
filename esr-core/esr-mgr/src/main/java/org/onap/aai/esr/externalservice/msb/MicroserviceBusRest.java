@@ -27,7 +27,7 @@ import org.onap.aai.esr.externalservice.entity.ServiceRegisterEntity;
 
 
 
-@Path("/openoapi/microservices/v1/services")
+@Path("/onapapi/microservices/v1/services")
 // @Path("/api/microservices/v1/services")
 public interface MicroserviceBusRest {
   @Path("")

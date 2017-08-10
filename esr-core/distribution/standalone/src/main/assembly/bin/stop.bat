@@ -15,17 +15,17 @@
 @REM
 
 @echo off
-title stopping extsys-service
+title stopping esr-service
 
 set HOME=%~dp0
-set Main_Class="org.openo.commonservice.extsys.ExtsysApp"
+set Main_Class="org.onap.aai.esr.ExtsysApp"
 
-echo ================== extsys-service info =============================================
+echo ================== esr-service info =============================================
 echo HOME=$HOME
 echo Main_Class=%Main_Class%
 echo ===============================================================================
 
-echo ### Stopping extsys-service
+echo ### Stopping esr-service
 cd /d %HOME%
 
 for /f "delims=" %%i in ('"%JAVA_HOME%\bin\jcmd"') do (

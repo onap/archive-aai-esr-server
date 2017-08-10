@@ -20,15 +20,15 @@ set user=%1
 set password=%2
 set port=%3
 set host=%4
-echo start init extsys db
+echo start init esr db
 echo HOME=%HOME%
 set main_path=%HOME%..\
 cd /d %main_path%
-mysql -u%user% -p%password% -P%port% -h%host% < dbscripts\mysql\openo-common-extsys-createobj.sql
+mysql -u%user% -p%password% -P%port% -h%host% < dbscripts\mysql\onap-aai-esr-createobj.sql
 set "err=%errorlevel%"
 if "%err%"=="0" (
-   echo init extsys db success
+   echo init esr db success
   ) else (
-    echo failed init extsys db
+    echo failed init esr db
     pause
   )

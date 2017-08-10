@@ -69,7 +69,7 @@ public class ServiceRegistrer implements Runnable {
     extsysEntity.setServiceName("extsys");
     extsysEntity.setProtocol("REST");
     extsysEntity.setVersion("v1");
-    extsysEntity.setUrl("/openoapi/extsys/v1");
+    extsysEntity.setUrl("/onapapi/aai/esr/v1");
     extsysEntity.setSingleNode(Config.getConfigration().getServiceIp(), "8100", 0);
     extsysEntity.setVisualRange("1");
   }
