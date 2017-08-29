@@ -16,18 +16,10 @@
 
 package org.onap.aai.esr.externalservice.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@JsonIgnoreProperties(ignoreUnknown = true)
+
 public class ServiceRegisterEntity {
   private String serviceName;
   private String version;
@@ -36,6 +28,7 @@ public class ServiceRegisterEntity {
   private String visualRange;
   private ArrayList<ServiceNode> nodes = new ArrayList<ServiceNode>();
 
+  
   /**
    * set service entity.
    * 
@@ -53,6 +46,66 @@ public class ServiceRegisterEntity {
     node.setPort(port);
     node.setTtl(ttl);
     nodes.add(node);
+  }
+
+
+  public String getServiceName() {
+    return serviceName;
+  }
+
+
+  public void setServiceName(String serviceName) {
+    this.serviceName = serviceName;
+  }
+
+
+  public String getVersion() {
+    return version;
+  }
+
+
+  public void setVersion(String version) {
+    this.version = version;
+  }
+
+
+  public String getUrl() {
+    return url;
+  }
+
+
+  public void setUrl(String url) {
+    this.url = url;
+  }
+
+
+  public String getProtocol() {
+    return protocol;
+  }
+
+
+  public void setProtocol(String protocol) {
+    this.protocol = protocol;
+  }
+
+
+  public String getVisualRange() {
+    return visualRange;
+  }
+
+
+  public void setVisualRange(String visualRange) {
+    this.visualRange = visualRange;
+  }
+
+
+  public ArrayList<ServiceNode> getNodes() {
+    return nodes;
+  }
+
+
+  public void setNodes(ArrayList<ServiceNode> nodes) {
+    this.nodes = nodes;
   }
 
 }

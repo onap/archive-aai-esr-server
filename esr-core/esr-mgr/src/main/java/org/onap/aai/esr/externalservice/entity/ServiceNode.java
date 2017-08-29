@@ -15,18 +15,38 @@
  */
 package org.onap.aai.esr.externalservice.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class ServiceNode {
+  
   private String ip;
+  
   private String port;
+  
   private int ttl;
+
+  public String getIp() {
+    return ip;
+  }
+
+  public void setIp(String ip) {
+    this.ip = ip;
+  }
+
+  public String getPort() {
+    return port;
+  }
+
+  public void setPort(String port) {
+    this.port = port;
+  }
+
+  public int getTtl() {
+    return ttl;
+  }
+
+  public void setTtl(int ttl) {
+    this.ttl = ttl;
+  }
+  
+  
 }
