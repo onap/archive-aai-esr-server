@@ -16,7 +16,7 @@
 package org.onap.aai.esr.dao;
 
 import org.hibernate.SessionFactory;
-import org.onap.aai.esr.entity.db.VimData;
+import org.onap.aai.esr.entity.aai.VimData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

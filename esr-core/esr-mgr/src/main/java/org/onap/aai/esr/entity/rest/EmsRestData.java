@@ -15,48 +15,22 @@
  */
 package org.onap.aai.esr.entity.rest;
 
-import org.onap.aai.esr.entity.db.EmsData;
 
-public class EmsRestData extends BaseRestData {
+public class EmsRestData extends BaseRestData{
 
-  private String productName;
-
-  private String url;
-  private String userName;
-  private String password;
   private String emsId;
-
-  public String getProductName() {
-    return productName;
-  }
-
-  public void setProductName(String productName) {
-    this.productName = productName;
-  }
-
-  public String getUrl() {
-    return url;
-  }
-
-  public void setUrl(String url) {
-    this.url = url;
-  }
-
-  public String getUserName() {
-    return userName;
-  }
-
-  public void setUserName(String userName) {
-    this.userName = userName;
-  }
-
-  public String getPassword() {
-    return password;
-  }
-
-  public void setPassword(String password) {
-    this.password = password;
-  }
+  
+  private String name;
+  
+  private String vendor;
+  
+  private String version;
+  
+  private FtpAddr resourceAddr;
+  
+  private FtpAddr performanceAddr;
+  
+  private AlarmAddr alarmAddr;
 
   public String getEmsId() {
     return emsId;
@@ -66,19 +40,52 @@ public class EmsRestData extends BaseRestData {
     this.emsId = emsId;
   }
 
-  /**
-   * ems rest result.
-   */
-  public EmsRestData(EmsData data) {
-    super(data);
-    this.emsId = data.getId();
-    this.password = data.getPassword();
-    this.productName = data.getProductName();
-    this.url = data.getUrl();
-    this.userName = data.getUserName();
-    this.setInstanceId(null);
-    this.setCategory(null);
+  public String getName() {
+    return name;
   }
 
-  public EmsRestData() {}
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public String getVendor() {
+    return vendor;
+  }
+
+  public void setVendor(String vendor) {
+    this.vendor = vendor;
+  }
+
+  public String getVersion() {
+    return version;
+  }
+
+  public void setVersion(String version) {
+    this.version = version;
+  }
+
+  public FtpAddr getResourceAddr() {
+    return resourceAddr;
+  }
+
+  public void setResourceAddr(FtpAddr resourceAddr) {
+    this.resourceAddr = resourceAddr;
+  }
+
+  public FtpAddr getPerformanceAddr() {
+    return performanceAddr;
+  }
+
+  public void setPerformanceAddr(FtpAddr performanceAddr) {
+    this.performanceAddr = performanceAddr;
+  }
+
+  public AlarmAddr getAlarmAddr() {
+    return alarmAddr;
+  }
+
+  public void setAlarmAddr(AlarmAddr alarmAddr) {
+    this.alarmAddr = alarmAddr;
+  }
+
 }

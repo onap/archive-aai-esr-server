@@ -19,7 +19,7 @@ import com.google.gson.Gson;
 
 import org.onap.aai.esr.dao.BaseDao;
 import org.onap.aai.esr.dao.DaoManager;
-import org.onap.aai.esr.entity.db.BaseData;
+import org.onap.aai.esr.entity.aai.BaseData;
 import org.onap.aai.esr.exception.ExtsysException;
 import org.onap.aai.esr.util.ExtsysDbUtil;
 import org.slf4j.Logger;

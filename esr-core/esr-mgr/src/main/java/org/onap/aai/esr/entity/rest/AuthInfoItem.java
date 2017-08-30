@@ -1,5 +1,5 @@
 /**
- * Copyright 2016-2017 ZTE Corporation.
+ * Copyright 2017 ZTE Corporation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,43 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.onap.aai.esr.entity.db;
+package org.onap.aai.esr.entity.rest;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.Table;
-
-
-
-@Entity
-@Table(name = "extsys_ems_table")
-@PrimaryKeyJoinColumn(name = "EMSID")
-@JsonIgnoreProperties(ignoreUnknown = true)
-public class EmsData extends BaseData {
-
-
-  @Column(name = "PRODUCTNAME")
-  private String productName;
-
-  @Column(name = "URL")
-  private String url;
-
-  @Column(name = "USERNAME")
+public class AuthInfoItem {
+  
+  private String cloudDomain;
+  
   private String userName;
-
-  @Column(name = "PASSWORD")
+  
   private String password;
+  
+  private String authUrl;
+  
+  private String sslCacert;
 
+  private String sslInsecure;
 
-  public String getUrl() {
-    return url;
+  public String getCloudDomain() {
+    return cloudDomain;
   }
 
-  public void setUrl(String url) {
-    this.url = url;
+  public void setCloudDomain(String cloudDomain) {
+    this.cloudDomain = cloudDomain;
   }
 
   public String getUserName() {
@@ -68,14 +53,27 @@ public class EmsData extends BaseData {
     this.password = password;
   }
 
-  public String getProductName() {
-    return productName;
+  public String getAuthUrl() {
+    return authUrl;
   }
 
-  public void setProductName(String productName) {
-    this.productName = productName;
+  public void setAuthUrl(String authUrl) {
+    this.authUrl = authUrl;
   }
 
+  public String getSslCacert() {
+    return sslCacert;
+  }
 
+  public void setSslCacert(String sslCacert) {
+    this.sslCacert = sslCacert;
+  }
 
+  public String getSslInsecure() {
+    return sslInsecure;
+  }
+
+  public void setSslInsecure(String sslInsecure) {
+    this.sslInsecure = sslInsecure;
+  }
 }

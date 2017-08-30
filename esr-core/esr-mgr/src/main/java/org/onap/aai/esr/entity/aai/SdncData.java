@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.onap.aai.esr.entity.db;
+package org.onap.aai.esr.entity.aai;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

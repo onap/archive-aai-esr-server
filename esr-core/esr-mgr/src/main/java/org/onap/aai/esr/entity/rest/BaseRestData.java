@@ -15,25 +15,28 @@
  */
 package org.onap.aai.esr.entity.rest;
 
-import org.onap.aai.esr.entity.db.BaseData;
 
 public class BaseRestData {
 
   private String instanceId;
 
-  private String name;
+  private String systemName;
 
   private String vendor;
 
   private String version;
 
-  private String description;
-
   private String type;
+  
+  private String url;
+  
+  private String username;
+  
+  private String password;
+  
+  private String systemStatus;
 
-  private String createTime;
-
-  private String category;
+  private String systemType;
 
   public String getInstanceId() {
     return instanceId;
@@ -43,12 +46,12 @@ public class BaseRestData {
     this.instanceId = instanceId;
   }
 
-  public String getName() {
-    return name;
+  public String getSystemName() {
+    return systemName;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setSystemName(String systemName) {
+    this.systemName = systemName;
   }
 
   public String getVendor() {
@@ -67,14 +70,6 @@ public class BaseRestData {
     this.version = version;
   }
 
-  public String getDescription() {
-    return description;
-  }
-
-  public void setDescription(String description) {
-    this.description = description;
-  }
-
   public String getType() {
     return type;
   }
@@ -83,38 +78,45 @@ public class BaseRestData {
     this.type = type;
   }
 
-  public String getCreateTime() {
-    return createTime;
+  public String getUrl() {
+    return url;
   }
 
-  public void setCreateTime(String createTime) {
-    this.createTime = createTime;
+  public void setUrl(String url) {
+    this.url = url;
   }
 
-  public String getCategory() {
-    return category;
+  public String getUsername() {
+    return username;
   }
 
-  public void setCategory(String category) {
-    this.category = category;
+  public void setUsername(String username) {
+    this.username = username;
   }
 
-  public BaseRestData() {
-
+  public String getPassword() {
+    return password;
   }
 
-  /**
-   *  base esr entity.
-   */
-  public BaseRestData(BaseData data) {
-    this.createTime = data.getCreateTime();
-    this.description = data.getDescription();
-    this.name = data.getName();
-    this.type = data.getType();
-    this.vendor = data.getVendor();
-    this.version = data.getVersion();
-    this.instanceId = data.getId();
-    this.category = data.getCategory();
-
+  public void setPassword(String password) {
+    this.password = password;
   }
+
+  public String getSystemStatus() {
+    return systemStatus;
+  }
+
+  public void setSystemStatus(String systemStatus) {
+    this.systemStatus = systemStatus;
+  }
+
+  public String getSystemType() {
+    return systemType;
+  }
+
+  public void setSystemType(String systemType) {
+    this.systemType = systemType;
+  }
+
+
 }

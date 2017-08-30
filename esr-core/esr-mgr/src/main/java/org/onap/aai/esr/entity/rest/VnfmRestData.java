@@ -15,17 +15,27 @@
  */
 package org.onap.aai.esr.entity.rest;
 
-import org.onap.aai.esr.entity.db.VnfmData;
-
-public class VnfmRestData extends BaseRestData {
+public class VnfmRestData{
 
   private String vnfmId;
+  
+  private String name;
+  
+  private String type;
+  
+  private String vimId;
+  
+  private String vendor;
+  
+  private String version;
+  
+  private String certificateUrl;
+  
   private String url;
 
   private String userName;
+  
   private String password;
-  private String vimId;
-  private String certificateUrl;
 
   public String getVnfmId() {
     return vnfmId;
@@ -33,6 +43,54 @@ public class VnfmRestData extends BaseRestData {
 
   public void setVnfmId(String vnfmId) {
     this.vnfmId = vnfmId;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public String getType() {
+    return type;
+  }
+
+  public void setType(String type) {
+    this.type = type;
+  }
+
+  public String getVimId() {
+    return vimId;
+  }
+
+  public void setVimId(String vimId) {
+    this.vimId = vimId;
+  }
+
+  public String getVendor() {
+    return vendor;
+  }
+
+  public void setVendor(String vendor) {
+    this.vendor = vendor;
+  }
+
+  public String getVersion() {
+    return version;
+  }
+
+  public void setVersion(String version) {
+    this.version = version;
+  }
+
+  public String getCertificateUrl() {
+    return certificateUrl;
+  }
+
+  public void setCertificateUrl(String certificateUrl) {
+    this.certificateUrl = certificateUrl;
   }
 
   public String getUrl() {
@@ -58,39 +116,5 @@ public class VnfmRestData extends BaseRestData {
   public void setPassword(String password) {
     this.password = password;
   }
-
-  public String getVimId() {
-    return vimId;
-  }
-
-  public void setVimId(String vimId) {
-    this.vimId = vimId;
-  }
-
-  public String getCertificateUrl() {
-    return certificateUrl;
-  }
-
-  public void setCertificateUrl(String certificateUrl) {
-    this.certificateUrl = certificateUrl;
-  }
-
-  /**
-   * vnfm rest result.
-   */
-  public VnfmRestData(VnfmData data) {
-    super(data);
-    this.certificateUrl = data.getCertificateUrl();
-    this.password = data.getPassword();
-    this.url = data.getUrl();
-    this.userName = data.getUserName();
-    this.vimId = data.getVimId();
-    this.vnfmId = data.getId();
-    this.setInstanceId(null);
-    this.setCategory(null);
-  }
-
-  public VnfmRestData() {
-
-  }
+  
 }

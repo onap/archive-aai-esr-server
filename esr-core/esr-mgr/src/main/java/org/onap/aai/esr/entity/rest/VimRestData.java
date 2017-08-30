@@ -15,87 +15,96 @@
  */
 package org.onap.aai.esr.entity.rest;
 
-import org.onap.aai.esr.entity.db.VimData;
-
 public class VimRestData extends BaseRestData {
 
-  private String vimId;
+  private String cloudOwner;
 
-  private String url;
+  private String cloudRegionId;
 
-  private String userName;
+  private String cloudType;
 
-  private String password;
+  private String cloudRegionVersion;
 
-  private String domain;
+  private String ownerDefinedType;
 
-  private String tenant;
+  private String cloudZone;
+  
+  private String complexName;
+  
+  private String cloudExtraInfo;
+  
+  private AuthInfoItem authInfoItem;
 
-  public String getDomain() {
-    return domain;
+  public String getCloudOwner() {
+    return cloudOwner;
   }
 
-  public void setDomain(String domain) {
-    this.domain = domain;
+  public void setCloudOwner(String cloudOwner) {
+    this.cloudOwner = cloudOwner;
   }
 
-  public String getTenant() {
-    return tenant;
+  public String getCloudRegionId() {
+    return cloudRegionId;
   }
 
-  public void setTenant(String tenant) {
-    this.tenant = tenant;
+  public void setCloudRegionId(String cloudRegionId) {
+    this.cloudRegionId = cloudRegionId;
   }
 
-  public String getUrl() {
-    return url;
+  public String getCloudType() {
+    return cloudType;
   }
 
-  public void setUrl(String url) {
-    this.url = url;
+  public void setCloudType(String cloudType) {
+    this.cloudType = cloudType;
   }
 
-  public String getUserName() {
-    return userName;
+  public String getCloudRegionVersion() {
+    return cloudRegionVersion;
   }
 
-  public void setUserName(String userName) {
-    this.userName = userName;
+  public void setCloudRegionVersion(String cloudRegionVersion) {
+    this.cloudRegionVersion = cloudRegionVersion;
   }
 
-  public String getPassword() {
-    return password;
+  public String getOwnerDefinedType() {
+    return ownerDefinedType;
   }
 
-  public void setPassword(String password) {
-    this.password = password;
+  public void setOwnerDefinedType(String ownerDefinedType) {
+    this.ownerDefinedType = ownerDefinedType;
   }
 
-  public String getVimId() {
-    return vimId;
+  public String getCloudZone() {
+    return cloudZone;
   }
 
-  public void setVimId(String vimId) {
-    this.vimId = vimId;
+  public void setCloudZone(String cloudZone) {
+    this.cloudZone = cloudZone;
   }
 
-  /**
-   *  vim rest result.
-   */
-  public VimRestData(VimData data) {
-    super(data);
-    this.domain = data.getDomain();
-    this.password = data.getPassword();
-    this.url = data.getUrl();
-    this.userName = data.getUserName();
-    this.vimId = data.getId();
-    this.tenant = data.getTenant();
-    this.setInstanceId(null);
-    this.setCategory(null);
-
+  public String getComplexName() {
+    return complexName;
   }
 
-  public VimRestData() {
-
+  public void setComplexName(String complexName) {
+    this.complexName = complexName;
   }
+
+  public String getCloudExtraInfo() {
+    return cloudExtraInfo;
+  }
+
+  public void setCloudExtraInfo(String cloudExtraInfo) {
+    this.cloudExtraInfo = cloudExtraInfo;
+  }
+
+  public AuthInfoItem getAuthInfoItem() {
+    return authInfoItem;
+  }
+
+  public void setAuthInfoItem(AuthInfoItem authInfoItem) {
+    this.authInfoItem = authInfoItem;
+  }
+
 }

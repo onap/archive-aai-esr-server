@@ -22,7 +22,7 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.eclipse.jetty.http.HttpStatus;
-import org.onap.aai.esr.entity.db.VimData;
+import org.onap.aai.esr.entity.aai.VimData;
 import org.onap.aai.esr.entity.rest.VimRestData;
 import org.onap.aai.esr.exception.ExtsysException;
 import org.onap.aai.esr.handle.VimHandler;
@@ -52,7 +52,7 @@ public class VimManager {
   private static final Logger LOGGER = LoggerFactory.getLogger(VimManager.class);
 
   /**
-   * query all ems.
+   * query all VIM.
    */
   @Path("")
   @GET
@@ -82,7 +82,8 @@ public class VimManager {
       LOGGER.info("query all vim end.size:" + list.size());
       ArrayList<VimRestData> restList = new ArrayList<VimRestData>();
       for (int i = 0; i < list.size(); i++) {
-        restList.add(new VimRestData(list.get(i)));
+//        restList.add(new VimRestData(list.get(i)));
+        restList.add(new VimRestData());
       }
       return RestResponseUtil.getSuccessResponse(restList);
     }
@@ -118,7 +119,8 @@ public class VimManager {
       return RestResponseUtil.getSuccessResponse(null);
     } else {
       LOGGER.info("query  vim end.info:" + ExtsysDbUtil.objectToString(list));
-      return RestResponseUtil.getSuccessResponse(new VimRestData(list.get(0)));
+//      return RestResponseUtil.getSuccessResponse(new VimRestData(list.get(0)));
+      return RestResponseUtil.getSuccessResponse(new VimRestData());
     }
   }
   
@@ -175,7 +177,8 @@ public class VimManager {
       return RestResponseUtil.getErrorResponse(error);
     }
     LOGGER.info(" update vim end !");
-    return RestResponseUtil.getSuccessResponse(new VimRestData(newData));
+//    return RestResponseUtil.getSuccessResponse(new VimRestData(newData));
+    return RestResponseUtil.getSuccessResponse(new VimRestData());
   }
   
   /**
@@ -204,6 +207,7 @@ public class VimManager {
       return RestResponseUtil.getErrorResponse(error);
     }
     LOGGER.info(" add vim end !");
-    return RestResponseUtil.getCreateSussceeResponse(new VimRestData(vimData));
+//    return RestResponseUtil.getCreateSussceeResponse(new VimRestData(vimData));
+    return RestResponseUtil.getCreateSussceeResponse(new VimRestData());
   }
 }

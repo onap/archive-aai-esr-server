@@ -17,7 +17,7 @@ package org.onap.aai.esr.handle;
 
 import org.onap.aai.esr.common.ExtSysResuorceType;
 import org.onap.aai.esr.common.Parameters;
-import org.onap.aai.esr.entity.db.BaseData;
+import org.onap.aai.esr.entity.aai.BaseData;
 import org.onap.aai.esr.exception.ExtsysException;
 
 import java.util.HashMap;

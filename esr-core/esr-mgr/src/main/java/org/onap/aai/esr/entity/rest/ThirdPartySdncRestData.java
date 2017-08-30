@@ -15,15 +15,28 @@
  */
 package org.onap.aai.esr.entity.rest;
 
-import org.onap.aai.esr.entity.db.SdncData;
+public class ThirdPartySdncRestData {
 
-public class SdncRestData extends BaseRestData {
-
-  private String sdnControllerId;
+  private String thirdpartySdncId;
+  
+  private String name;
+  
+  private String vendor;
+  
+  private String version;
+  
+  private String type;
+  
+  private String location;
+  
   private String url;
+  
   private String userName;
+  
   private String password;
+  
   private String productName;
+  
   private String protocol;
 
 
@@ -51,14 +64,6 @@ public class SdncRestData extends BaseRestData {
     this.password = password;
   }
 
-  public String getSdnControllerId() {
-    return sdnControllerId;
-  }
-
-  public void setSdnControllerId(String sdnControllerId) {
-    this.sdnControllerId = sdnControllerId;
-  }
-
   public String getProductName() {
     return productName;
   }
@@ -75,24 +80,55 @@ public class SdncRestData extends BaseRestData {
     this.protocol = protocol;
   }
   
-  /**
-   * sdnc rest result.
-   */
-  public SdncRestData(SdncData data) {
-    super(data);
-    this.password = data.getPassword();
-    this.productName = data.getProductName();
-    this.protocol = data.getProtocol();
-    this.sdnControllerId = data.getId();
-    this.url = data.getUrl();
-    this.userName = data.getUserName();
-    this.setInstanceId(null);
-    this.setCategory(null);
-
+  public ThirdPartySdncRestData() {
 
   }
 
-  public SdncRestData() {
+  public String getThirdpartySdncId() {
+    return thirdpartySdncId;
+  }
 
+  public void setThirdpartySdncId(String thirdpartySdncId) {
+    this.thirdpartySdncId = thirdpartySdncId;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public String getVendor() {
+    return vendor;
+  }
+
+  public void setVendor(String vendor) {
+    this.vendor = vendor;
+  }
+
+  public String getVersion() {
+    return version;
+  }
+
+  public void setVersion(String version) {
+    this.version = version;
+  }
+
+  public String getType() {
+    return type;
+  }
+
+  public void setType(String type) {
+    this.type = type;
+  }
+
+  public String getLocation() {
+    return location;
+  }
+
+  public void setLocation(String location) {
+    this.location = location;
   }
 }

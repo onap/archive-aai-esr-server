@@ -23,7 +23,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 import org.eclipse.jetty.http.HttpStatus;
-import org.onap.aai.esr.entity.db.EmsData;
+import org.onap.aai.esr.entity.aai.EmsData;
 import org.onap.aai.esr.entity.rest.EmsRestData;
 import org.onap.aai.esr.exception.ExtsysException;
 import org.onap.aai.esr.handle.EmsHandler;
@@ -83,7 +83,8 @@ public class EmsManager {
       LOGGER.info("query all ems end.size:" + list.size());
       ArrayList<EmsRestData> restList = new ArrayList<EmsRestData>();
       for (int i = 0; i < list.size(); i++) {
-        restList.add(new EmsRestData(list.get(i)));
+//        restList.add(new EmsRestData(list.get(i)));
+        //TODO
       }
       return RestResponseUtil.getSuccessResponse(restList);
     }
@@ -119,7 +120,8 @@ public class EmsManager {
       return RestResponseUtil.getSuccessResponse(null);
     } else {
       LOGGER.info("query  ems end.info:" + ExtsysDbUtil.objectToString(list));
-      return RestResponseUtil.getSuccessResponse(new EmsRestData(list.get(0)));
+//      return RestResponseUtil.getSuccessResponse(new EmsRestData(list.get(0)));
+      return RestResponseUtil.getSuccessResponse(new EmsRestData());
     }
   }
   
@@ -176,7 +178,8 @@ public class EmsManager {
       return RestResponseUtil.getErrorResponse(error);
     }
     LOGGER.info(" update ems end !");
-    return RestResponseUtil.getSuccessResponse(new EmsRestData(newData));
+//    return RestResponseUtil.getSuccessResponse(new EmsRestData(newData));
+    return RestResponseUtil.getSuccessResponse(new EmsRestData());
   }
   
   /**
@@ -205,6 +208,7 @@ public class EmsManager {
       return RestResponseUtil.getErrorResponse(error);
     }
     LOGGER.info(" add ems end !");
-    return RestResponseUtil.getCreateSussceeResponse(new EmsRestData(emsData));
+//    return RestResponseUtil.getCreateSussceeResponse(new EmsRestData(emsData));
+    return RestResponseUtil.getCreateSussceeResponse(new EmsRestData());
   }
 }

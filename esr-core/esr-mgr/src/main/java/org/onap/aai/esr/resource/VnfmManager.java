@@ -22,7 +22,7 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.eclipse.jetty.http.HttpStatus;
-import org.onap.aai.esr.entity.db.VnfmData;
+import org.onap.aai.esr.entity.aai.VnfmData;
 import org.onap.aai.esr.entity.rest.VnfmRestData;
 import org.onap.aai.esr.exception.ExtsysException;
 import org.onap.aai.esr.handle.VnfmHandler;
@@ -82,7 +82,8 @@ public class VnfmManager {
       LOGGER.info("query all vnfm end.size:" + list.size());
       ArrayList<VnfmRestData> restList = new ArrayList<VnfmRestData>();
       for (int i = 0; i < list.size(); i++) {
-        restList.add(new VnfmRestData(list.get(i)));
+//        restList.add(new VnfmRestData(list.get(i)));
+        restList.add(new VnfmRestData());
       }
       return RestResponseUtil.getSuccessResponse(restList);
     }
@@ -118,7 +119,8 @@ public class VnfmManager {
       return RestResponseUtil.getSuccessResponse(null);
     } else {
       LOGGER.info("query  vnfm end.info:" + ExtsysDbUtil.objectToString(list));
-      return RestResponseUtil.getSuccessResponse(new VnfmRestData(list.get(0)));
+//      return RestResponseUtil.getSuccessResponse(new VnfmRestData(list.get(0)));
+      return RestResponseUtil.getSuccessResponse(new VnfmRestData());
     }
   }
   
@@ -175,7 +177,8 @@ public class VnfmManager {
       return RestResponseUtil.getErrorResponse(error);
     }
     LOGGER.info(" update vnfm end !");
-    return RestResponseUtil.getSuccessResponse(new VnfmRestData(newData));
+//    return RestResponseUtil.getSuccessResponse(new VnfmRestData(newData));
+    return RestResponseUtil.getSuccessResponse(new VnfmRestData());
   }
   
   /**
@@ -204,6 +207,7 @@ public class VnfmManager {
       return RestResponseUtil.getErrorResponse(error);
     }
     LOGGER.info(" add vnfm end !");
-    return RestResponseUtil.getCreateSussceeResponse(new VnfmRestData(vnfmData));
+//    return RestResponseUtil.getCreateSussceeResponse(new VnfmRestData(vnfmData));
+    return RestResponseUtil.getCreateSussceeResponse(new VnfmRestData());
   }
 }

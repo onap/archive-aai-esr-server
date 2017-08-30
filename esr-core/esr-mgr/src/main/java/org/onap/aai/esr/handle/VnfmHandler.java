@@ -17,7 +17,7 @@ package org.onap.aai.esr.handle;
 
 import org.onap.aai.esr.common.ExtSysResuorceType;
 import org.onap.aai.esr.common.Parameters;
-import org.onap.aai.esr.entity.db.VnfmData;
+import org.onap.aai.esr.entity.aai.VnfmData;
 import org.onap.aai.esr.exception.ExtsysException;
 import org.onap.aai.esr.util.HqlFactory;
 import org.slf4j.Logger;

@@ -16,7 +16,7 @@
 package org.onap.aai.esr.dao;
 
 import org.hibernate.SessionFactory;
-import org.onap.aai.esr.entity.db.EmsData;
+import org.onap.aai.esr.entity.aai.EmsData;
 
 
 

@@ -18,7 +18,7 @@ package org.onap.aai.esr.db.util;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
-import org.onap.aai.esr.entity.db.VnfmData;
+import org.onap.aai.esr.entity.aai.VnfmData;
 import org.onap.aai.esr.util.HqlFactory;
 
 

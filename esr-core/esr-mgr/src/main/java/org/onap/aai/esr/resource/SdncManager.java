@@ -23,8 +23,8 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 import org.eclipse.jetty.http.HttpStatus;
-import org.onap.aai.esr.entity.db.SdncData;
-import org.onap.aai.esr.entity.rest.SdncRestData;
+import org.onap.aai.esr.entity.aai.SdncData;
+import org.onap.aai.esr.entity.rest.ThirdPartySdncRestData;
 import org.onap.aai.esr.exception.ExtsysException;
 import org.onap.aai.esr.handle.SdncHandler;
 import org.onap.aai.esr.util.ExtsysDbUtil;
@@ -78,12 +78,13 @@ public class SdncManager {
     }
     if (list == null || list.size() <= 0) {
       LOGGER.info("query all sdnc end.no match condition record");
-      return RestResponseUtil.getSuccessResponse(new ArrayList<SdncRestData>());
+      return RestResponseUtil.getSuccessResponse(new ArrayList<ThirdPartySdncRestData>());
     } else {
       LOGGER.info("query all sdnc end.size:" + list.size());
-      ArrayList<SdncRestData> restList = new ArrayList<SdncRestData>();
+      ArrayList<ThirdPartySdncRestData> restList = new ArrayList<ThirdPartySdncRestData>();
       for (int i = 0; i < list.size(); i++) {
-        restList.add(new SdncRestData(list.get(i)));
+//        restList.add(new ThirdPartySdncRestData(list.get(i)));
+        restList.add(new ThirdPartySdncRestData());
       }
       return RestResponseUtil.getSuccessResponse(restList);
     }
@@ -119,7 +120,8 @@ public class SdncManager {
       return RestResponseUtil.getSuccessResponse(null);
     } else {
       LOGGER.info("query  sdnc end.info:" + ExtsysDbUtil.objectToString(list));
-      return RestResponseUtil.getSuccessResponse(new SdncRestData(list.get(0)));
+//      return RestResponseUtil.getSuccessResponse(new ThirdPartySdncRestData(list.get(0)));
+      return RestResponseUtil.getSuccessResponse(new ThirdPartySdncRestData());
     }
   }
   
@@ -176,7 +178,8 @@ public class SdncManager {
       return RestResponseUtil.getErrorResponse(error);
     }
     LOGGER.info(" update sdnc end !");
-    return RestResponseUtil.getSuccessResponse(new SdncRestData(newData));
+//    return RestResponseUtil.getSuccessResponse(new ThirdPartySdncRestData(newData));
+    return RestResponseUtil.getSuccessResponse(new ThirdPartySdncRestData());
   }
   
   /**
@@ -205,6 +208,7 @@ public class SdncManager {
       return RestResponseUtil.getErrorResponse(error);
     }
     LOGGER.info(" add sdnc end !");
-    return RestResponseUtil.getCreateSussceeResponse(new SdncRestData(sdncData));
+//    return RestResponseUtil.getCreateSussceeResponse(new ThirdPartySdncRestData(sdncData));
+    return RestResponseUtil.getCreateSussceeResponse(new ThirdPartySdncRestData());
   }
 }

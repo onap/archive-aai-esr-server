@@ -22,11 +22,11 @@ import io.dropwizard.setup.Environment;
 
 import org.onap.aai.esr.ExtsysAppConfiguration;
 import org.onap.aai.esr.dao.DaoManager;
-import org.onap.aai.esr.entity.db.BaseData;
-import org.onap.aai.esr.entity.db.EmsData;
-import org.onap.aai.esr.entity.db.SdncData;
-import org.onap.aai.esr.entity.db.VimData;
-import org.onap.aai.esr.entity.db.VnfmData;
+import org.onap.aai.esr.entity.aai.BaseData;
+import org.onap.aai.esr.entity.aai.EmsData;
+import org.onap.aai.esr.entity.aai.SdncData;
+import org.onap.aai.esr.entity.aai.VimData;
+import org.onap.aai.esr.entity.aai.VnfmData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
