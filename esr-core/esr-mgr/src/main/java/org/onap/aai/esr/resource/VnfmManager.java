@@ -28,6 +28,7 @@ import org.onap.aai.esr.exception.ExtsysException;
 import org.onap.aai.esr.handle.VnfmHandler;
 import org.onap.aai.esr.util.ExtsysDbUtil;
 import org.onap.aai.esr.util.RestResponseUtil;
+import org.onap.aai.esr.wrapper.VnfmManagerWrapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -68,26 +69,7 @@ public class VnfmManager {
   @Timed
   public Response queryVnfmList() {
     LOGGER.info("start query all vnfm!");
-    List<VnfmData> list;
-    try {
-      list = handler.getAll();
-    } catch (ExtsysException error) {
-      LOGGER.error("query all vnfm failed.errorMsg:" + error.getErrorMsg());
-      return RestResponseUtil.getErrorResponse(error);
-    }
-    if (list == null || list.size() <= 0) {
-      LOGGER.info("query all vnfm end.no match condition record");
-      return RestResponseUtil.getSuccessResponse(new ArrayList<VnfmRestData>());
-    } else {
-      LOGGER.info("query all vnfm end.size:" + list.size());
-      ArrayList<VnfmRestData> restList = new ArrayList<VnfmRestData>();
-      for (int i = 0; i < list.size(); i++) {
-//        restList.add(new VnfmRestData(list.get(i)));
-        restList.add(new VnfmRestData());
-      }
-      return RestResponseUtil.getSuccessResponse(restList);
-    }
-
+    return VnfmManagerWrapper.getInstance().queryVnfmList();
   }
   
   /**
@@ -107,21 +89,7 @@ public class VnfmManager {
   @Timed
   public Response queryVnfmById(@ApiParam(value = "vnfm id") @PathParam("vnfmId") String vnfmId) {
     LOGGER.info("start query  vnfm by id." + vnfmId);
-    List<VnfmData> list;
-    try {
-      list = handler.getVnfmById(vnfmId);
-    } catch (ExtsysException error) {
-      LOGGER.error("query  vnfm failed.errorMsg:" + error.getErrorMsg());
-      return RestResponseUtil.getErrorResponse(error);
-    }
-    if (list == null || list.size() <= 0) {
-      LOGGER.info("query  vnfm end.no match condition record");
-      return RestResponseUtil.getSuccessResponse(null);
-    } else {
-      LOGGER.info("query  vnfm end.info:" + ExtsysDbUtil.objectToString(list));
-//      return RestResponseUtil.getSuccessResponse(new VnfmRestData(list.get(0)));
-      return RestResponseUtil.getSuccessResponse(new VnfmRestData());
-    }
+    return VnfmManagerWrapper.getInstance().queryVnfmById(vnfmId);
   }
   
   /**
@@ -140,14 +108,7 @@ public class VnfmManager {
   @Timed
   public Response delVnfm(@ApiParam(value = "vnfm id") @PathParam("vnfmId") String vnfmId) {
     LOGGER.info("start delete vnfm .id:" + vnfmId);
-    try {
-      handler.delete(vnfmId);
-    } catch (ExtsysException error) {
-      LOGGER.error("delete vnfm failed.errorMsg:" + error.getErrorMsg());
-      return RestResponseUtil.getErrorResponse(error);
-    }
-    LOGGER.info(" delete vnfm end !");
-    return Response.noContent().build();
+    return VnfmManagerWrapper.getInstance().delVnfm(vnfmId);
   }
   
   /**
@@ -166,19 +127,10 @@ public class VnfmManager {
       @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
           response = String.class)})
   @Timed
-  public Response updateVnfms(@ApiParam(value = "vnfm", required = true) VnfmData vnfm,
+  public Response updateVnfm(@ApiParam(value = "vnfm", required = true) VnfmRestData vnfm,
       @ApiParam(value = "vnfm id", required = true) @PathParam("vnfmId") String vnfmId) {
     LOGGER.info("start update vnfm .id:" + vnfmId + " info:" + ExtsysDbUtil.objectToString(vnfm));
-    VnfmData newData;
-    try {
-      newData = handler.update(vnfm, vnfmId);
-    } catch (ExtsysException error) {
-      LOGGER.error("update vnfm failed.errorMsg:" + error.getErrorMsg());
-      return RestResponseUtil.getErrorResponse(error);
-    }
-    LOGGER.info(" update vnfm end !");
-//    return RestResponseUtil.getSuccessResponse(new VnfmRestData(newData));
-    return RestResponseUtil.getSuccessResponse(new VnfmRestData());
+    return VnfmManagerWrapper.getInstance().updateVnfm(vnfm, vnfmId);
   }
   
   /**
@@ -197,17 +149,7 @@ public class VnfmManager {
       @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
           response = String.class)})
   @Timed
-  public Response addVnfms(@ApiParam(value = "vnfm", required = true) VnfmData vnfm) {
-    LOGGER.info("start add vnfm" + " info:" + ExtsysDbUtil.objectToString(vnfm));
-    VnfmData vnfmData;
-    try {
-      vnfmData = handler.add(vnfm);
-    } catch (ExtsysException error) {
-      LOGGER.error("add vnfm failed.errorMsg:" + error.getErrorMsg());
-      return RestResponseUtil.getErrorResponse(error);
-    }
-    LOGGER.info(" add vnfm end !");
-//    return RestResponseUtil.getCreateSussceeResponse(new VnfmRestData(vnfmData));
-    return RestResponseUtil.getCreateSussceeResponse(new VnfmRestData());
+  public Response registerVnfm(@ApiParam(value = "vnfm", required = true) VnfmRestData vnfm) {
+    return VnfmManagerWrapper.getInstance().registerVnfm(vnfm);
   }
 }
