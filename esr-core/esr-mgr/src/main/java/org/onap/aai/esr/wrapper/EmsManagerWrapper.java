@@ -19,50 +19,51 @@ import java.util.ArrayList;
 
 import javax.ws.rs.core.Response;
 
+import org.onap.aai.esr.entity.rest.EmsRestData;
 import org.onap.aai.esr.entity.rest.RegisterResponse;
 import org.onap.aai.esr.entity.rest.VnfmRestData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class VnfmManagerWrapper {
-  private static VnfmManagerWrapper vnfmManagerWrapper;
-  private static final Logger LOG = LoggerFactory.getLogger(VnfmManagerWrapper.class);
+public class EmsManagerWrapper {
+  private static EmsManagerWrapper emsManagerWrapper;
+  private static final Logger LOG = LoggerFactory.getLogger(EmsManagerWrapper.class);
 
   /**
    * get VnfmManagerWrapper instance.
    * @return vnfm manager wrapper instance
    */
-  public static VnfmManagerWrapper getInstance() {
-    if (vnfmManagerWrapper == null) {
-      vnfmManagerWrapper = new VnfmManagerWrapper();
+  public static EmsManagerWrapper getInstance() {
+    if (emsManagerWrapper == null) {
+      emsManagerWrapper = new EmsManagerWrapper();
     }
-    return vnfmManagerWrapper;
+    return emsManagerWrapper;
   }
-
-  public Response registerVnfm(VnfmRestData vnfm) {
+  
+  public Response registerEms(EmsRestData ems) {
     //TODO
     RegisterResponse result = null;
     return Response.ok(result).build();
   }
-  
-  public Response updateVnfm(VnfmRestData vnfm, String vnfmId) {
+
+  public Response updateEms(EmsRestData ems) {
     //TODO
     return Response.ok().build();
   }
   
-  public Response queryVnfmList() {
-    ArrayList<VnfmRestData> vnfmList = new ArrayList<VnfmRestData>();
+  public Response queryEmsList() {
     //TODO
-    return Response.ok(vnfmList).build();
+    ArrayList<EmsRestData> emsList = new ArrayList<EmsRestData>();
+    return Response.ok(emsList).build();
   }
   
-  public Response queryVnfmById(String vnfmId) {
-    VnfmRestData vnfm = new VnfmRestData();
+  public Response queryEmsById(String emsId) {
+    EmsRestData ems = new EmsRestData();
     //TODO
-    return Response.ok(vnfm).build();
+    return Response.ok(ems).build();
   }
   
-  public Response delVnfm(String vnfmId) {
+  public Response delEms(String emsId) {
     //TODO
     return Response.noContent().build();
   }

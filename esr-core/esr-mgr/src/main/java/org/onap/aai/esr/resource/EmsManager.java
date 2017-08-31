@@ -29,6 +29,7 @@ import org.onap.aai.esr.exception.ExtsysException;
 import org.onap.aai.esr.handle.EmsHandler;
 import org.onap.aai.esr.util.ExtsysDbUtil;
 import org.onap.aai.esr.util.RestResponseUtil;
+import org.onap.aai.esr.wrapper.EmsManagerWrapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;  
 
@@ -69,26 +70,7 @@ public class EmsManager {
   @Timed
   public Response queryEmsList() {
     LOGGER.info("start query all ems!");
-    List<EmsData> list;
-    try {
-      list = handler.getAll();
-    } catch (ExtsysException error) {
-      LOGGER.error("query all ems failed.errorMsg:" + error.getErrorMsg());
-      return RestResponseUtil.getErrorResponse(error);
-    }
-    if (list == null || list.size() <= 0) {
-      LOGGER.info("query all ems end.no match condition record");
-      return RestResponseUtil.getSuccessResponse(new ArrayList<EmsRestData>());
-    } else {
-      LOGGER.info("query all ems end.size:" + list.size());
-      ArrayList<EmsRestData> restList = new ArrayList<EmsRestData>();
-      for (int i = 0; i < list.size(); i++) {
-//        restList.add(new EmsRestData(list.get(i)));
-        //TODO
-      }
-      return RestResponseUtil.getSuccessResponse(restList);
-    }
-
+    return EmsManagerWrapper.getInstance().queryEmsList();
   }
   
   /**
@@ -108,21 +90,7 @@ public class EmsManager {
   @Timed
   public Response queryemsById(@ApiParam(value = "ems id") @PathParam("emsId") String emsId) {
     LOGGER.info("start query  ems by id." + emsId);
-    List<EmsData> list;
-    try {
-      list = handler.getEmsById(emsId);
-    } catch (ExtsysException error) {
-      LOGGER.error("query  ems failed.errorMsg:" + error.getErrorMsg());
-      return RestResponseUtil.getErrorResponse(error);
-    }
-    if (list == null || list.size() <= 0) {
-      LOGGER.info("query  ems end.no match condition record");
-      return RestResponseUtil.getSuccessResponse(null);
-    } else {
-      LOGGER.info("query  ems end.info:" + ExtsysDbUtil.objectToString(list));
-//      return RestResponseUtil.getSuccessResponse(new EmsRestData(list.get(0)));
-      return RestResponseUtil.getSuccessResponse(new EmsRestData());
-    }
+    return EmsManagerWrapper.getInstance().queryEmsById(emsId);
   }
   
   /**
@@ -141,14 +109,7 @@ public class EmsManager {
   @Timed
   public Response delems(@ApiParam(value = "ems id") @PathParam("emsId") String emsId) {
     LOGGER.info("start delete ems .id:" + emsId);
-    try {
-      handler.delete(emsId);
-    } catch (ExtsysException error) {
-      LOGGER.error("delete ems failed.errorMsg:" + error.getErrorMsg());
-      return RestResponseUtil.getErrorResponse(error);
-    }
-    LOGGER.info(" delete ems end !");
-    return Response.noContent().build();
+    return EmsManagerWrapper.getInstance().delEms(emsId);
   }
   
   /**
@@ -167,23 +128,14 @@ public class EmsManager {
       @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
           response = String.class)})
   @Timed
-  public Response updateemss(@ApiParam(value = "ems", required = true) EmsData ems,
+  public Response updateEms(@ApiParam(value = "ems", required = true) EmsRestData ems,
       @ApiParam(value = "ems id", required = true) @PathParam("emsId") String emsId) {
     LOGGER.info("start update ems .id:" + emsId + " info:" + ExtsysDbUtil.objectToString(ems));
-    EmsData newData;
-    try {
-      newData = handler.update(ems, emsId);
-    } catch (ExtsysException error) {
-      LOGGER.error("update ems failed.errorMsg:" + error.getErrorMsg());
-      return RestResponseUtil.getErrorResponse(error);
-    }
-    LOGGER.info(" update ems end !");
-//    return RestResponseUtil.getSuccessResponse(new EmsRestData(newData));
     return RestResponseUtil.getSuccessResponse(new EmsRestData());
   }
   
   /**
-   * add ems.
+   * register ems.
    */
   @POST
   @Path("")
@@ -198,17 +150,8 @@ public class EmsManager {
       @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
           response = String.class)})
   @Timed
-  public Response addemss(@ApiParam(value = "ems", required = true) EmsData ems) {
+  public Response registerEms(@ApiParam(value = "ems", required = true) EmsRestData ems) {
     LOGGER.info("start add ems" + " info:" + ExtsysDbUtil.objectToString(ems));
-    EmsData emsData;
-    try {
-      emsData = handler.add(ems);
-    } catch (ExtsysException error) {
-      LOGGER.error("add ems failed.errorMsg:" + error.getErrorMsg());
-      return RestResponseUtil.getErrorResponse(error);
-    }
-    LOGGER.info(" add ems end !");
-//    return RestResponseUtil.getCreateSussceeResponse(new EmsRestData(emsData));
-    return RestResponseUtil.getCreateSussceeResponse(new EmsRestData());
+    return EmsManagerWrapper.getInstance().registerEms(ems);
   }
 }
