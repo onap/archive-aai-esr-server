@@ -21,7 +21,7 @@ import org.onap.aai.esr.dao.BaseDao;
 import org.onap.aai.esr.dao.DaoManager;
 import org.onap.aai.esr.entity.aai.BaseData;
 import org.onap.aai.esr.exception.ExtsysException;
-import org.onap.aai.esr.util.ExtsysDbUtil;
+import org.onap.aai.esr.util.ExtsysUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -51,7 +51,7 @@ public abstract class BaseHandler<T extends BaseData> {
   public T create(T data, String resouceType) throws ExtsysException {
     T rtnData = null;
     boolean check = true;
-    logger.info("BaseHandler:start create data.info:" + ExtsysDbUtil.objectToString(data));
+    logger.info("BaseHandler:start create data.info:" + ExtsysUtil.objectToString(data));
     try {
       check = validity(data);
       if (check) {
@@ -65,8 +65,8 @@ public abstract class BaseHandler<T extends BaseData> {
       throw error;
     }
     try {      
-      data.setId(ExtsysDbUtil.generateId());
-      data.setCreateTime(ExtsysDbUtil.getNowTime());
+      data.setId(ExtsysUtil.generateId());
+      data.setCreateTime(ExtsysUtil.getNowTime());
       data.setCategory(resouceType);
       BaseDao dao = DaoManager.getInstance().getDao(resouceType);
       rtnData = (T) dao.create(data);
@@ -74,7 +74,7 @@ public abstract class BaseHandler<T extends BaseData> {
       logger.error("BaseHandler:error while creating " + resouceType, error);
       throw error;
     }
-    logger.info("BaseHandler:create data end.info:" + ExtsysDbUtil.objectToString(data));
+    logger.info("BaseHandler:create data end.info:" + ExtsysUtil.objectToString(data));
     return rtnData;
   }
 
@@ -86,7 +86,7 @@ public abstract class BaseHandler<T extends BaseData> {
    */
   @SuppressWarnings({"rawtypes", "unchecked"})
   public void delete(T data, String resouceType) throws ExtsysException {
-    logger.info("BaseHandler:start delete data.info:" + ExtsysDbUtil.objectToString(data));
+    logger.info("BaseHandler:start delete data.info:" + ExtsysUtil.objectToString(data));
     try {
       BaseDao dao = DaoManager.getInstance().getDao(resouceType);
       dao.delete(data);
@@ -106,7 +106,7 @@ public abstract class BaseHandler<T extends BaseData> {
   @SuppressWarnings({"rawtypes", "unchecked"})
   public void delete(Map<String, String> queryParam, String resouceType) throws ExtsysException {
     logger.info("BaseHandler:start delete data by condition.info:"
-        + ExtsysDbUtil.objectToString(queryParam));
+        + ExtsysUtil.objectToString(queryParam));
     List<T> datas;
     try {
       BaseDao dao = DaoManager.getInstance().getDao(resouceType);
@@ -130,7 +130,7 @@ public abstract class BaseHandler<T extends BaseData> {
    */
   @SuppressWarnings({"rawtypes", "unchecked"})
   public void update(T data, String filter, String resouceType) throws ExtsysException {
-    logger.info("BaseHandler:start update data .info:" + ExtsysDbUtil.objectToString(data)
+    logger.info("BaseHandler:start update data .info:" + ExtsysUtil.objectToString(data)
         + " filter:" + filter);
     try {
       BaseDao dao = DaoManager.getInstance().getDao(resouceType);
@@ -153,7 +153,7 @@ public abstract class BaseHandler<T extends BaseData> {
    */
   @SuppressWarnings({"rawtypes", "unchecked"})
   public List<T> query(Map<String, String> queryParam, String resouceType) throws ExtsysException {
-    logger.info("BaseHandler:start query data .info:" + ExtsysDbUtil.objectToString(queryParam));
+    logger.info("BaseHandler:start query data .info:" + ExtsysUtil.objectToString(queryParam));
     List<T> datas = null;
     try {
       BaseDao dao = DaoManager.getInstance().getDao(resouceType);
@@ -163,7 +163,7 @@ public abstract class BaseHandler<T extends BaseData> {
       logger.error("BaseHandler:error while querying " + resouceType, error);
       throw error;
     }
-    logger.info("BaseHandler: query data end .info:" + ExtsysDbUtil.objectToString(datas));
+    logger.info("BaseHandler: query data end .info:" + ExtsysUtil.objectToString(datas));
     return datas;
   }
 
@@ -186,7 +186,7 @@ public abstract class BaseHandler<T extends BaseData> {
       logger.error("BaseHandler:error while union querying " + resouceType, error);
       throw error;
     }
-    logger.info("BaseHandler:union query data end .info:" + ExtsysDbUtil.objectToString(datas));
+    logger.info("BaseHandler:union query data end .info:" + ExtsysUtil.objectToString(datas));
     return datas;
   }
 

@@ -23,18 +23,13 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 import org.eclipse.jetty.http.HttpStatus;
-import org.onap.aai.esr.entity.aai.EmsData;
-import org.onap.aai.esr.entity.rest.EmsRestData;
-import org.onap.aai.esr.exception.ExtsysException;
-import org.onap.aai.esr.handle.EmsHandler;
+import org.onap.aai.esr.entity.rest.ThirdPartySdncRestData;
+import org.onap.aai.esr.handle.SdncHandler;
 import org.onap.aai.esr.util.ExtsysUtil;
-import org.onap.aai.esr.util.RestResponseUtil;
-import org.onap.aai.esr.wrapper.EmsManagerWrapper;
+import org.onap.aai.esr.wrapper.ThirdpatySdncWrapper;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;  
+import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -46,19 +41,19 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-@Path("/emses")
-@Api(tags = {" ems Management "})
-public class EmsManager {
+@Path("/sdncontrollers")
+@Api(tags = {"ThirdParty sdnc Management     "})
+public class ThirdpatySdncManager {
 
-  EmsHandler handler = new EmsHandler();
-  private static final Logger LOGGER = LoggerFactory.getLogger(EmsManager.class);
+  SdncHandler handler = new SdncHandler();
+  private static final Logger LOGGER = LoggerFactory.getLogger(ThirdpatySdncManager.class);
 
   /**
-   * query all ems.
+   *query all thirdParty sdnc.
    */
   @Path("")
   @GET
-  @ApiOperation(value = "get  all ems ")
+  @ApiOperation(value = "get all thirdParty sdnc ")
   @Produces(MediaType.APPLICATION_JSON)
   @ApiResponses(value = {
       @ApiResponse(code = HttpStatus.NOT_FOUND_404, message = "microservice not found",
@@ -68,17 +63,17 @@ public class EmsManager {
       @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
           response = String.class)})
   @Timed
-  public Response queryEmsList() {
-    LOGGER.info("start query all ems!");
-    return EmsManagerWrapper.getInstance().queryEmsList();
+  public Response queryThirdpartySdncList() {
+    LOGGER.info("start query all thirdParty sdnc!");
+    return ThirdpatySdncWrapper.getInstance().queryThirdpartySdncList();
   }
   
   /**
-   * query  ems info by id.
+   *query thirdParty sdnc by id.
    */
-  @Path("/{emsId}")
+  @Path("/{thirdPartySdncId}")
   @GET
-  @ApiOperation(value = "get ems by id")
+  @ApiOperation(value = "get thirdParty sdnc by id")
   @Produces(MediaType.APPLICATION_JSON)
   @ApiResponses(value = {
       @ApiResponse(code = HttpStatus.NOT_FOUND_404, message = "microservice not found",
@@ -88,17 +83,17 @@ public class EmsManager {
       @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
           response = String.class)})
   @Timed
-  public Response queryemsById(@ApiParam(value = "ems id") @PathParam("emsId") String emsId) {
-    LOGGER.info("start query  ems by id." + emsId);
-    return EmsManagerWrapper.getInstance().queryEmsById(emsId);
+  public Response queryThirdpartySdncById(@ApiParam(value = "thirdparty sdnc id") @PathParam("thirdPartySdncId") String thirdPartySdncId) {
+    LOGGER.info("start query thirdparty sdnc by id." + thirdPartySdncId);
+    return ThirdpatySdncWrapper.getInstance().queryThirdpartySdncById(thirdPartySdncId);
   }
   
   /**
-   * delete ems by id.
+   *delete thirdparty sdnc by id.
    */
-  @Path("/{emsId}")
+  @Path("/{thirdPartySdncId}")
   @DELETE
-  @ApiOperation(value = "delete a ems")
+  @ApiOperation(value = "delete a thirdparty sdnc")
   @ApiResponses(value = {
       @ApiResponse(code = HttpStatus.NOT_FOUND_404, message = "microservice not found",
           response = String.class),
@@ -107,19 +102,19 @@ public class EmsManager {
       @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
           response = String.class)})
   @Timed
-  public Response delems(@ApiParam(value = "ems id") @PathParam("emsId") String emsId) {
-    LOGGER.info("start delete ems .id:" + emsId);
-    return EmsManagerWrapper.getInstance().delEms(emsId);
+  public Response delThirdpartySdnc(@ApiParam(value = "thirdparty sdnc id") @PathParam("thirdPartySdncId") String thirdPartySdncId) {
+    LOGGER.info("start delete thirdparty sdnc .id:" + thirdPartySdncId);
+    return ThirdpatySdncWrapper.getInstance().delThirdpartySdnc(thirdPartySdncId);
   }
   
   /**
-   * update ems by id.
+   *update thirdParty sdnc by id.
    */
   @PUT
-  @Path("/{emsId}")
+  @Path("/{thirdPartySdncId}")
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces({MediaType.TEXT_PLAIN, MediaType.APPLICATION_JSON})
-  @ApiOperation(value = "update a ems")
+  @ApiOperation(value = "update a thirdParty Sdnc")
   @ApiResponses(value = {
       @ApiResponse(code = HttpStatus.NOT_FOUND_404, message = "microservice not found",
           response = String.class),
@@ -128,20 +123,20 @@ public class EmsManager {
       @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
           response = String.class)})
   @Timed
-  public Response updateEms(@ApiParam(value = "ems", required = true) EmsRestData ems,
-      @ApiParam(value = "ems id", required = true) @PathParam("emsId") String emsId) {
-    LOGGER.info("start update ems .id:" + emsId + " info:" + ExtsysUtil.objectToString(ems));
-    return RestResponseUtil.getSuccessResponse(new EmsRestData());
+  public Response updateThirdpartySdnc(@ApiParam(value = "thirdpartySdnc", required = true) ThirdPartySdncRestData thirdPartySdnc,
+      @ApiParam(value = "sdnc id", required = true) @PathParam("thirdPartySdncId") String thirdPartySdncId) {
+    LOGGER.info("start update sdnc .id:" + thirdPartySdncId + " info:" + ExtsysUtil.objectToString(thirdPartySdnc));
+    return ThirdpatySdncWrapper.getInstance().updateThirdpartySdnc(thirdPartySdnc);
   }
   
   /**
-   * register ems.
+   *thirdParty sdnc register.
    */
   @POST
   @Path("")
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces({MediaType.TEXT_PLAIN, MediaType.APPLICATION_JSON})
-  @ApiOperation(value = "create a ems")
+  @ApiOperation(value = "register a thirdparty sdnc")
   @ApiResponses(value = {
       @ApiResponse(code = HttpStatus.NOT_FOUND_404, message = "microservice not found",
           response = String.class),
@@ -150,8 +145,8 @@ public class EmsManager {
       @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
           response = String.class)})
   @Timed
-  public Response registerEms(@ApiParam(value = "ems", required = true) EmsRestData ems) {
-    LOGGER.info("start add ems" + " info:" + ExtsysUtil.objectToString(ems));
-    return EmsManagerWrapper.getInstance().registerEms(ems);
+  public Response registerThirdpatySdnc(@ApiParam(value = "thirdPartySdnc", required = true) ThirdPartySdncRestData thirdPartySdnc) {
+    LOGGER.info("start register sdnc" + " info:" + ExtsysUtil.objectToString(thirdPartySdnc));
+    return ThirdpatySdncWrapper.getInstance().registerThirdpartySdnc(thirdPartySdnc);
   }
 }

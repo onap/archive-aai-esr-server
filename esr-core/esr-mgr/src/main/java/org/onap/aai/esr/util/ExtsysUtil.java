@@ -24,8 +24,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
-public class ExtsysDbUtil {
-  private final static Logger logger = LoggerFactory.getLogger(ExtsysDbUtil.class);
+public class ExtsysUtil {
+  private final static Logger logger = LoggerFactory.getLogger(ExtsysUtil.class);
 
   public static String generateId() {
     return UUID.randomUUID().toString();

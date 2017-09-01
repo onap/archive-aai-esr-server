@@ -21,7 +21,7 @@ import com.eclipsesource.jaxrs.consumer.ConsumerFactory;
 import org.glassfish.jersey.client.ClientConfig;
 import org.onap.aai.esr.common.Config;
 import org.onap.aai.esr.externalservice.entity.ServiceRegisterEntity;
-import org.onap.aai.esr.util.ExtsysDbUtil;
+import org.onap.aai.esr.util.ExtsysUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -36,7 +36,7 @@ public class MicroserviceBusConsumer {
    */
   public static boolean registerService(ServiceRegisterEntity entity) {
     ClientConfig config = new ClientConfig();
-    LOG.info("microservice register body:" + ExtsysDbUtil.objectToString(entity));
+    LOG.info("microservice register body:" + ExtsysUtil.objectToString(entity));
     try {
       MicroserviceBusRest resourceserviceproxy = ConsumerFactory.createConsumer(
           Config.getConfigration().getMsbServerAddr(), config, MicroserviceBusRest.class);

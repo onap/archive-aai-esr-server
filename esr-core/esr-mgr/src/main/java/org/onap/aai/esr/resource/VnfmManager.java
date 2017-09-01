@@ -26,7 +26,7 @@ import org.onap.aai.esr.entity.aai.VnfmData;
 import org.onap.aai.esr.entity.rest.VnfmRestData;
 import org.onap.aai.esr.exception.ExtsysException;
 import org.onap.aai.esr.handle.VnfmHandler;
-import org.onap.aai.esr.util.ExtsysDbUtil;
+import org.onap.aai.esr.util.ExtsysUtil;
 import org.onap.aai.esr.util.RestResponseUtil;
 import org.onap.aai.esr.wrapper.VnfmManagerWrapper;
 import org.slf4j.Logger;
@@ -129,7 +129,7 @@ public class VnfmManager {
   @Timed
   public Response updateVnfm(@ApiParam(value = "vnfm", required = true) VnfmRestData vnfm,
       @ApiParam(value = "vnfm id", required = true) @PathParam("vnfmId") String vnfmId) {
-    LOGGER.info("start update vnfm .id:" + vnfmId + " info:" + ExtsysDbUtil.objectToString(vnfm));
+    LOGGER.info("start update vnfm .id:" + vnfmId + " info:" + ExtsysUtil.objectToString(vnfm));
     return VnfmManagerWrapper.getInstance().updateVnfm(vnfm, vnfmId);
   }
   

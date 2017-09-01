@@ -19,41 +19,41 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
-import org.onap.aai.esr.util.ExtsysDbUtil;
+import org.onap.aai.esr.util.ExtsysUtil;
 
 public class CatalogDbUtilTest {
 
   @Test
   public void when_generate_id_is_not_null() {
-    String actualUuid = ExtsysDbUtil.generateId();
+    String actualUuid = ExtsysUtil.generateId();
     assertNotNull(actualUuid);
   }
 
   @Test
   public void when_input_empty_string_output_false() {
     boolean expect = false;
-    boolean actual = ExtsysDbUtil.isNotEmpty("");
+    boolean actual = ExtsysUtil.isNotEmpty("");
     assertEquals(expect, actual);
   }
 
   @Test
   public void when_input_blan_string_output_true() {
     boolean expect = true;
-    boolean actual = ExtsysDbUtil.isNotEmpty(" ");
+    boolean actual = ExtsysUtil.isNotEmpty(" ");
     assertEquals(expect, actual);
   }
 
   @Test
   public void when_input_null_string_output_false() {
     boolean expect = false;
-    boolean actual = ExtsysDbUtil.isNotEmpty(null);
+    boolean actual = ExtsysUtil.isNotEmpty(null);
     assertEquals(expect, actual);
   }
 
   @Test
   public void when_input_str_string_output_true() {
     boolean expect = true;
-    boolean actual = ExtsysDbUtil.isNotEmpty("str");
+    boolean actual = ExtsysUtil.isNotEmpty("str");
     assertEquals(expect, actual);
   }
 

@@ -26,7 +26,7 @@ import org.onap.aai.esr.entity.aai.VimData;
 import org.onap.aai.esr.entity.rest.VimRestData;
 import org.onap.aai.esr.exception.ExtsysException;
 import org.onap.aai.esr.handle.VimHandler;
-import org.onap.aai.esr.util.ExtsysDbUtil;
+import org.onap.aai.esr.util.ExtsysUtil;
 import org.onap.aai.esr.util.RestResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -118,7 +118,7 @@ public class VimManager {
       LOGGER.info("query  vim end.no match condition record");
       return RestResponseUtil.getSuccessResponse(null);
     } else {
-      LOGGER.info("query  vim end.info:" + ExtsysDbUtil.objectToString(list));
+      LOGGER.info("query  vim end.info:" + ExtsysUtil.objectToString(list));
 //      return RestResponseUtil.getSuccessResponse(new VimRestData(list.get(0)));
       return RestResponseUtil.getSuccessResponse(new VimRestData());
     }
@@ -168,7 +168,7 @@ public class VimManager {
   @Timed
   public Response updatevims(@ApiParam(value = "vim", required = true) VimData vim,
       @ApiParam(value = "vim id", required = true) @PathParam("vimId") String vimId) {
-    LOGGER.info("start update vim .id:" + vimId + " info:" + ExtsysDbUtil.objectToString(vim));
+    LOGGER.info("start update vim .id:" + vimId + " info:" + ExtsysUtil.objectToString(vim));
     VimData newData;
     try {
       newData = handler.update(vim, vimId);
@@ -198,7 +198,7 @@ public class VimManager {
           response = String.class)})
   @Timed
   public Response addvims(@ApiParam(value = "vim", required = true) VimData vim) {
-    LOGGER.info("start add vim" + " info:" + ExtsysDbUtil.objectToString(vim));
+    LOGGER.info("start add vim" + " info:" + ExtsysUtil.objectToString(vim));
     VimData vimData;
     try {
       vimData = handler.add(vim);
