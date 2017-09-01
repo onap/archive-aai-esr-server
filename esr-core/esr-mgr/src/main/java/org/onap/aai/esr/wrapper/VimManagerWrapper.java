@@ -19,51 +19,51 @@ import java.util.ArrayList;
 
 import javax.ws.rs.core.Response;
 
-import org.onap.aai.esr.entity.rest.EmsRestData;
 import org.onap.aai.esr.entity.rest.RegisterResponse;
-import org.onap.aai.esr.entity.rest.VnfmRestData;
+import org.onap.aai.esr.entity.rest.VimRestData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class EmsManagerWrapper {
-  private static EmsManagerWrapper emsManagerWrapper;
-  private static final Logger LOG = LoggerFactory.getLogger(EmsManagerWrapper.class);
+public class VimManagerWrapper {
+
+  private static VimManagerWrapper vimManagerWrapper;
+  private static final Logger LOG = LoggerFactory.getLogger(VimManagerWrapper.class);
 
   /**
-   * get VnfmManagerWrapper instance.
-   * @return ems manager wrapper instance
+   * get VimManagerWrapper instance.
+   * @return vim manager wrapper instance
    */
-  public static EmsManagerWrapper getInstance() {
-    if (emsManagerWrapper == null) {
-      emsManagerWrapper = new EmsManagerWrapper();
+  public static VimManagerWrapper getInstance() {
+    if (vimManagerWrapper == null) {
+      vimManagerWrapper = new VimManagerWrapper();
     }
-    return emsManagerWrapper;
+    return vimManagerWrapper;
   }
   
-  public Response registerEms(EmsRestData ems) {
+  public Response registerVim(VimRestData vim) {
     //TODO
     RegisterResponse result = null;
     return Response.ok(result).build();
   }
 
-  public Response updateEms(EmsRestData ems) {
+  public Response updateVim(VimRestData vim) {
     //TODO
     return Response.ok().build();
   }
   
-  public Response queryEmsList() {
+  public Response queryVimList() {
     //TODO
-    ArrayList<EmsRestData> emsList = new ArrayList<EmsRestData>();
-    return Response.ok(emsList).build();
+    ArrayList<VimRestData> vimList = new ArrayList<VimRestData>();
+    return Response.ok(vimList).build();
   }
   
-  public Response queryEmsById(String emsId) {
-    EmsRestData ems = new EmsRestData();
+  public Response queryVimById(String vimId) {
+    VimRestData vim = new VimRestData();
     //TODO
-    return Response.ok(ems).build();
+    return Response.ok(vim).build();
   }
   
-  public Response delEms(String emsId) {
+  public Response delVim(String vimId) {
     //TODO
     return Response.noContent().build();
   }

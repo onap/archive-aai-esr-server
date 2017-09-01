@@ -28,6 +28,7 @@ import org.onap.aai.esr.exception.ExtsysException;
 import org.onap.aai.esr.handle.VimHandler;
 import org.onap.aai.esr.util.ExtsysUtil;
 import org.onap.aai.esr.util.RestResponseUtil;
+import org.onap.aai.esr.wrapper.VimManagerWrapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -66,28 +67,8 @@ public class VimManager {
       @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
           response = String.class)})
   @Timed
-  public Response queryvimList() {
-    LOGGER.info("start query all vim!");
-    List<VimData> list;
-    try {
-      list = handler.getAll();
-    } catch (ExtsysException error) {
-      LOGGER.error("query all vim failed.errorMsg:" + error.getErrorMsg());
-      return RestResponseUtil.getErrorResponse(error);
-    }
-    if (list == null || list.size() <= 0) {
-      LOGGER.info("query all vim end.no match condition record");
-      return RestResponseUtil.getSuccessResponse(new ArrayList<VimRestData>());
-    } else {
-      LOGGER.info("query all vim end.size:" + list.size());
-      ArrayList<VimRestData> restList = new ArrayList<VimRestData>();
-      for (int i = 0; i < list.size(); i++) {
-//        restList.add(new VimRestData(list.get(i)));
-        restList.add(new VimRestData());
-      }
-      return RestResponseUtil.getSuccessResponse(restList);
-    }
-
+  public Response queryVimList() {
+    return VimManagerWrapper.getInstance().queryVimList();
   }
 
   /**
@@ -105,23 +86,9 @@ public class VimManager {
       @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
           response = String.class)})
   @Timed
-  public Response queryvimById(@ApiParam(value = "vim id") @PathParam("vimId") String vimId) {
-    LOGGER.info("start query  vim by id." + vimId);
-    List<VimData> list;
-    try {
-      list = handler.getVimById(vimId);
-    } catch (ExtsysException error) {
-      LOGGER.error("query  vim failed.errorMsg:" + error.getErrorMsg());
-      return RestResponseUtil.getErrorResponse(error);
-    }
-    if (list == null || list.size() <= 0) {
-      LOGGER.info("query  vim end.no match condition record");
-      return RestResponseUtil.getSuccessResponse(null);
-    } else {
-      LOGGER.info("query  vim end.info:" + ExtsysUtil.objectToString(list));
-//      return RestResponseUtil.getSuccessResponse(new VimRestData(list.get(0)));
-      return RestResponseUtil.getSuccessResponse(new VimRestData());
-    }
+  public Response queryVimById(@ApiParam(value = "vim id") @PathParam("vimId") String vimId) {
+    LOGGER.info("start query vim by id." + vimId);
+    return VimManagerWrapper.getInstance().queryVimById(vimId);
   }
   
   /**
@@ -140,14 +107,7 @@ public class VimManager {
   @Timed
   public Response delvim(@ApiParam(value = "vim id") @PathParam("vimId") String vimId) {
     LOGGER.info("start delete vim .id:" + vimId);
-    try {
-      handler.delete(vimId);
-    } catch (ExtsysException error) {
-      LOGGER.error("delete vim failed.errorMsg:" + error.getErrorMsg());
-      return RestResponseUtil.getErrorResponse(error);
-    }
-    LOGGER.info(" delete vim end !");
-    return Response.noContent().build();
+    return VimManagerWrapper.getInstance().delVim(vimId);
   }
   
   /**
@@ -166,23 +126,14 @@ public class VimManager {
       @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
           response = String.class)})
   @Timed
-  public Response updatevims(@ApiParam(value = "vim", required = true) VimData vim,
+  public Response updatevims(@ApiParam(value = "vim", required = true) VimRestData vim,
       @ApiParam(value = "vim id", required = true) @PathParam("vimId") String vimId) {
     LOGGER.info("start update vim .id:" + vimId + " info:" + ExtsysUtil.objectToString(vim));
-    VimData newData;
-    try {
-      newData = handler.update(vim, vimId);
-    } catch (ExtsysException error) {
-      LOGGER.error("update vim failed.errorMsg:" + error.getErrorMsg());
-      return RestResponseUtil.getErrorResponse(error);
-    }
-    LOGGER.info(" update vim end !");
-//    return RestResponseUtil.getSuccessResponse(new VimRestData(newData));
-    return RestResponseUtil.getSuccessResponse(new VimRestData());
+    return VimManagerWrapper.getInstance().updateVim(vim);
   }
   
   /**
-   * add vim .
+   * register vim .
    */
   @POST
   @Path("")
@@ -197,17 +148,8 @@ public class VimManager {
       @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
           response = String.class)})
   @Timed
-  public Response addvims(@ApiParam(value = "vim", required = true) VimData vim) {
+  public Response registerVims(@ApiParam(value = "vim", required = true) VimRestData vim) {
     LOGGER.info("start add vim" + " info:" + ExtsysUtil.objectToString(vim));
-    VimData vimData;
-    try {
-      vimData = handler.add(vim);
-    } catch (ExtsysException error) {
-      LOGGER.error("add vim failed.errorMsg:" + error.getErrorMsg());
-      return RestResponseUtil.getErrorResponse(error);
-    }
-    LOGGER.info(" add vim end !");
-//    return RestResponseUtil.getCreateSussceeResponse(new VimRestData(vimData));
-    return RestResponseUtil.getCreateSussceeResponse(new VimRestData());
+    return VimManagerWrapper.getInstance().registerVim(vim);
   }
 }
