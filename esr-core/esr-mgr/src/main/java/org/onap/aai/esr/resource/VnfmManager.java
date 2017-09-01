@@ -25,7 +25,6 @@ import org.eclipse.jetty.http.HttpStatus;
 import org.onap.aai.esr.entity.aai.VnfmData;
 import org.onap.aai.esr.entity.rest.VnfmRestData;
 import org.onap.aai.esr.exception.ExtsysException;
-import org.onap.aai.esr.handle.VnfmHandler;
 import org.onap.aai.esr.util.ExtsysUtil;
 import org.onap.aai.esr.util.RestResponseUtil;
 import org.onap.aai.esr.wrapper.VnfmManagerWrapper;
@@ -49,7 +48,6 @@ import javax.ws.rs.core.Response;
 @Api(tags = {" vnfm Management "})
 public class VnfmManager {
 
-  VnfmHandler handler = new VnfmHandler();
   private static final Logger LOGGER = LoggerFactory.getLogger(VnfmManager.class);
 
   /**

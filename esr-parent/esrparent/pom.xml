@@ -37,7 +37,6 @@
         <gson.version>2.2.4</gson.version>
         <junit.version>4.10</junit.version>
         <org.powermock.version>1.4.10</org.powermock.version>
-        <h2database.version>1.4.182</h2database.version>
         <org.apache.ant.version>1.8.2</org.apache.ant.version>
     </properties>
 
@@ -108,12 +107,6 @@
                 <artifactId>powermock-api-mockito</artifactId> 
                 <version>${org.powermock.version}</version>
             </dependency> 
-            <dependency>
-                <groupId>com.h2database</groupId>
-                <artifactId>h2</artifactId>
-                <version>${h2database.version}</version>
-                <scope>test</scope>
-            </dependency>
             <dependency>
                 <groupId>org.apache.ant</groupId>
                 <artifactId>ant</artifactId>

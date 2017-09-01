@@ -24,7 +24,6 @@ import io.swagger.annotations.ApiResponses;
 
 import org.eclipse.jetty.http.HttpStatus;
 import org.onap.aai.esr.entity.rest.ThirdPartySdncRestData;
-import org.onap.aai.esr.handle.SdncHandler;
 import org.onap.aai.esr.util.ExtsysUtil;
 import org.onap.aai.esr.wrapper.ThirdpatySdncWrapper;
 import org.slf4j.Logger;
@@ -45,7 +44,6 @@ import javax.ws.rs.core.Response;
 @Api(tags = {"ThirdParty sdnc Management     "})
 public class ThirdpatySdncManager {
 
-  SdncHandler handler = new SdncHandler();
   private static final Logger LOGGER = LoggerFactory.getLogger(ThirdpatySdncManager.class);
 
   /**

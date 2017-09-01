@@ -25,7 +25,6 @@ import org.eclipse.jetty.http.HttpStatus;
 import org.onap.aai.esr.entity.aai.VimData;
 import org.onap.aai.esr.entity.rest.VimRestData;
 import org.onap.aai.esr.exception.ExtsysException;
-import org.onap.aai.esr.handle.VimHandler;
 import org.onap.aai.esr.util.ExtsysUtil;
 import org.onap.aai.esr.util.RestResponseUtil;
 import org.onap.aai.esr.wrapper.VimManagerWrapper;
@@ -49,7 +48,6 @@ import javax.ws.rs.core.Response;
 @Api(tags = {" vim Management "})
 public class VimManager {
 
-  VimHandler handler = new VimHandler();
   private static final Logger LOGGER = LoggerFactory.getLogger(VimManager.class);
 
   /**

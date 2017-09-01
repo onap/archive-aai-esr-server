@@ -29,13 +29,11 @@ import io.swagger.jaxrs.listing.ApiListingResource;
 import org.glassfish.jersey.media.multipart.MultiPartFeature;
 import org.onap.aai.esr.common.Config;
 import org.onap.aai.esr.common.ServiceRegistrer;
-import org.onap.aai.esr.dao.DaoManager;
 import org.onap.aai.esr.entity.aai.BaseData;
 import org.onap.aai.esr.entity.aai.EmsData;
 import org.onap.aai.esr.entity.aai.SdncData;
 import org.onap.aai.esr.entity.aai.VimData;
 import org.onap.aai.esr.entity.aai.VnfmData;
-import org.onap.aai.esr.hibernate.HibernateBundleAgent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -52,12 +50,10 @@ public class ExtsysApp extends Application<ExtsysAppConfiguration> {
     return "ONAP-ESR";
   }
 
-  private final HibernateBundleAgent bundle = new HibernateBundleAgent();
 
   @Override
   public void initialize(Bootstrap<ExtsysAppConfiguration> bootstrap) {
     bootstrap.addBundle(new AssetsBundle("/api-doc", "/api-doc", "index.html", "api-doc"));
-    initDb(bootstrap);
   }
 
   private void initService() {
@@ -66,9 +62,6 @@ public class ExtsysApp extends Application<ExtsysAppConfiguration> {
     registerExtsysService.start();
   }
 
-  private void initDb(Bootstrap<ExtsysAppConfiguration> bootstrap) {
-    bootstrap.addBundle(bundle);
-  }
 
   @Override
   public void run(ExtsysAppConfiguration configuration, Environment environment) {
