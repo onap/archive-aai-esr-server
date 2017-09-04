@@ -191,6 +191,11 @@
             <artifactId>ant</artifactId>
             <scope>test</scope>
         </dependency>
-        <!-- UT end -->
+        <!-- MSB java-sdk -->
+	<dependency>
+            <groupId>org.onap.msb.java-sdk</groupId>
+            <artifactId>msb-java-sdk</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+         </dependency>    
     </dependencies>
 </project>

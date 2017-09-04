@@ -31,27 +31,20 @@ public class ExtsysAppConfiguration extends Configuration {
   private String template;
 
   @NotEmpty
-  private String defaultName = "OPENO-Extsys";
+  private String defaultName = "ONAP-A&AI-ESR";
 
   @NotEmpty
+  private String msbIp;
+  
+  @NotEmpty
+  private int msbPort;
+  
+  @NotEmpty
   private String msbServerAddr;
+  
   @Valid
   private String serviceIp;
-
-  @Valid
-  @NotNull
-  private DataSourceFactory database = new DataSourceFactory();
-
-  @JsonProperty("database")
-  public DataSourceFactory getDataSourceFactory() {
-    return database;
-  }
-
-  @JsonProperty("database")
-  public void setDataSourceFactory(DataSourceFactory dataSourceFactory) {
-    this.database = dataSourceFactory;
-  }
-
+  
   @JsonProperty
   public String getTemplate() {
     return template;
@@ -70,6 +63,26 @@ public class ExtsysAppConfiguration extends Configuration {
   @JsonProperty
   public void setDefaultName(String name) {
     this.defaultName = name;
+  }
+  
+  @JsonProperty
+  public String getMsbIp() {
+    return msbIp;
+  }
+  
+  @JsonProperty
+  public String setMsbIp() {
+    return msbIp;
+  }
+  
+  @JsonProperty
+  public int getMsbPort() {
+    return msbPort;
+  }
+  
+  @JsonProperty
+  public int setMsbPort() {
+    return msbPort;
   }
 
   @JsonProperty
