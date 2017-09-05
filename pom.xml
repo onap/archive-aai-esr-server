@@ -17,18 +17,24 @@
 
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.onap.oparent</groupId>
         <artifactId>oparent</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
-
-    <modelVersion>4.0.0</modelVersion>
-    <artifactId>esr-root</artifactId>
-    <name>esr-server</name>
+	
+	<groupId>org.onap.aai.esr-server</groupId>
+    <artifactId>aai-esr-server-parent</artifactId>
     <packaging>pom</packaging>
 
-<properties>
+    <version>1.0.0-SNAPSHOT</version>
+    <name>aai-esr-server-parent</name>
+    <modules>
+        <module>esr-core</module>
+    </modules>
+	
+	<properties>
         <dropwizard.version>0.8.0</dropwizard.version>
         <swagger.version>1.5.3</swagger.version>
         <jersey.version>2.16</jersey.version>
@@ -207,7 +213,5 @@
         </pluginManagement>
     </build>   
 	
-	<modules>
-        <module>esr-core</module>
-    </modules>
+	
 </project>
