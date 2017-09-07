@@ -16,19 +16,21 @@
 #
 
 DIRNAME=`dirname $0`
-HOME=`cd $DIRNAME/; pwd`
-user=$1
-password=$2
-port=$3
-host=$4
-echo "start init esr db"
-main_path=$HOME/../
-mysql -u$user -p$password -P$port -h$host <$main_path/dbscripts/mysql/onap-aai-esr-createobj.sql
-sql_result=$?
-if [ $sql_result != 0 ] ; then
-   echo "failed to init esr database!"
-   exit 1
-fi
-echo "init esr database success!"
-exit 0
+RUNHOME=`cd $DIRNAME/; pwd`
+echo @RUNHOME@ $RUNHOME
+
+echo @JAVA_HOME@ $JAVA_HOME
+JAVA="$JAVA_HOME/bin/java"
+echo @JAVA@ $JAVA
+main_path=$RUNHOME/../
+cd $main_path
+JAVA_OPTS="-Xms50m -Xmx128m"
+port=9518
+#JAVA_OPTS="$JAVA_OPTS -Xdebug -Xnoagent -Djava.compiler=NONE -Xrunjdwp:transport=dt_socket,address=$port,server=y,suspend=n"
+echo @JAVA_OPTS@ $JAVA_OPTS
+
+class_path="$main_path/:$main_path/esr-service.jar"
+echo @class_path@ $class_path
+
+"$JAVA" $JAVA_OPTS -classpath "$class_path" org.onap.aai.esr.ExtsysApp server "$main_path/conf/extsys.yml"
 

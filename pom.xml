@@ -31,7 +31,8 @@
     <version>1.0.0-SNAPSHOT</version>
     <name>aai-esr-server-parent</name>
     <modules>
-        <module>esr-core</module>
+        <module>esr-mgr</module>
+		<module>standalone</module>
     </modules>
 	
 	<properties>
