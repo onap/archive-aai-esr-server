@@ -22,6 +22,7 @@ serviceIp:
 msbIp: 127.0.0.1
 msbPort: 10081
 msbServerAddr: http://127.0.0.1:80
+registByHand: false
 
 # use the simple server factory if you only want to run on a single port
 #server:

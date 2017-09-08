@@ -49,7 +49,7 @@ public class ExtsysApp extends Application<ExtsysAppConfiguration> {
     environment.jersey().register(new VimManager());
     environment.jersey().register(new VnfmManager());
     
-//    String MSB_IP="127.0.0.1";
+    if (configuration.getRegistByHand().endsWith("true")){
       String MSB_IP=configuration.getMsbIp();
       Integer MSB_Port= Integer.valueOf(configuration.getMsbPort());    
       MSBServiceClient msbClient = new MSBServiceClient(MSB_IP, MSB_Port);
@@ -59,6 +59,7 @@ public class ExtsysApp extends Application<ExtsysAppConfiguration> {
       } catch (Exception e) {
         LOGGER.error("Register esr-server to msb by java-sdk failed", e);
       }
+    }
     LOGGER.info("Initialize extsys finished.");
   }
 

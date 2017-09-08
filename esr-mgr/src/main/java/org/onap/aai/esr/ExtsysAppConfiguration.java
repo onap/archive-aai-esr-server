@@ -39,6 +39,9 @@ public class ExtsysAppConfiguration extends Configuration {
   private String msbPort;
   
   @NotEmpty
+  private String registByHand;
+  
+  @NotEmpty
   private String msbServerAddr;
   
   @Valid
@@ -92,6 +95,17 @@ public class ExtsysAppConfiguration extends Configuration {
   public void setServiceIp(String serviceIp) {
     this.serviceIp = serviceIp;
   }
+
+  @JsonProperty
+  public String getRegistByHand() {
+    return registByHand;
+  }
+
+  @JsonProperty
+  public void setRegistByHand(String registByHand) {
+    this.registByHand = registByHand;
+  }
+
   @JsonProperty
   public void setMsbPort(String msbPort) {
     this.msbPort = msbPort;
