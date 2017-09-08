@@ -34,48 +34,48 @@ import retrofit2.http.Headers;
 @Path("/aai/v11/cloud-infrastructure/cloud-regions")
 public interface IEsrVimRest {
 
-//  @Headers({  
-//    "X-TransactionId: 9999",
-//    "Accept: application/json",  
-//    "X-FromAppId: aai-esr"
-//  })
-//  @Path("/cloud-region/{cloud_owner}/{cloud_region_id}")
-//  @PUT
-//  @Consumes(MediaType.APPLICATION_JSON)
-//
-//  public ClientResponse registerVIMServce(@Header("Authorization") String authorization, @PathParam("cloud_owner") String cloud_owner,
-//      CloudRegion entity) throws Exception;
-//
-//  @Headers({  
-//    "X-TransactionId: 9999",
-//    "Accept: application/json",  
-//    "X-FromAppId: aai-esr"
-//  })
-//  @Path("/cloud-region/{cloud_owner}/{cloud_region_id}?depth=all")
-//  @GET
-//  @Produces(MediaType.APPLICATION_JSON)
-//  public ClientResponse queryVIMDetail(@Header("Authorization") String authorization, @PathParam("cloud_owner") String cloud_owner,
-//      @PathParam("cloud_region_id") String cloud_region_id) throws Exception;
-//  
-//  @Headers({  
-//    "X-TransactionId: 9999",
-//    "Accept: application/json",  
-//    "X-FromAppId: aai-esr"
-//  })
-//  @Path("/")
-//  @GET
-//  @Produces(MediaType.APPLICATION_JSON)
-//  public ClientResponse queryVIMList(@Header("Authorization") String authorization) throws Exception;
-//  
-//
-//  @Headers({  
-//    "X-TransactionId: 9999",
-//    "Accept: application/json",  
-//    "X-FromAppId: aai-esr"
-//  })
-//  @Path("/cloud-region/{cloud_owner}/{cloud_region_id}/esr-system-info/{esr_system_info_id}")
-//  @GET
-//  public ClientResponse delVIMAuthInfo(@Header("Authorization") String authorization, @PathParam("cloud_owner") String cloud_owner,
-//      @PathParam("cloud_region_id") String cloud_region_id, @PathParam("esr_system_info_id") String esr_system_info_id) throws Exception;
+  @Headers({  
+    "X-TransactionId: 9999",
+    "Accept: application/json",  
+    "X-FromAppId: aai-esr"
+  })
+  @Path("/cloud-region/{cloud_owner}/{cloud_region_id}")
+  @PUT
+  @Consumes(MediaType.APPLICATION_JSON)
+
+  public ClientResponse registerVIMServce(@Header("Authorization") String authorization, @PathParam("cloud_owner") String cloud_owner,
+      CloudRegion entity) throws Exception;
+
+  @Headers({  
+    "X-TransactionId: 9999",
+    "Accept: application/json",  
+    "X-FromAppId: aai-esr"
+  })
+  @Path("/cloud-region/{cloud_owner}/{cloud_region_id}?depth=all")
+  @GET
+  @Produces(MediaType.APPLICATION_JSON)
+  public ClientResponse queryVIMDetail(@Header("Authorization") String authorization, @PathParam("cloud_owner") String cloud_owner,
+      @PathParam("cloud_region_id") String cloud_region_id) throws Exception;
+  
+  @Headers({  
+    "X-TransactionId: 9999",
+    "Accept: application/json",  
+    "X-FromAppId: aai-esr"
+  })
+  @Path("/")
+  @GET
+  @Produces(MediaType.APPLICATION_JSON)
+  public ClientResponse queryVIMList(@Header("Authorization") String authorization) throws Exception;
+  
+
+  @Headers({  
+    "X-TransactionId: 9999",
+    "Accept: application/json",  
+    "X-FromAppId: aai-esr"
+  })
+  @Path("/cloud-region/{cloud_owner}/{cloud_region_id}/esr-system-info/{esr_system_info_id}")
+  @GET
+  public ClientResponse delVIMAuthInfo(@Header("Authorization") String authorization, @PathParam("cloud_owner") String cloud_owner,
+      @PathParam("cloud_region_id") String cloud_region_id, @PathParam("esr_system_info_id") String esr_system_info_id) throws Exception;
   
 }

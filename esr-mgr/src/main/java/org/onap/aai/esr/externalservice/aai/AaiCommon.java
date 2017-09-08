@@ -17,11 +17,11 @@ package org.onap.aai.esr.externalservice.aai;
 
 import java.io.IOException;
 import java.io.StringReader;
-import com.sun.jersey.api.client.ClientResponse;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.glassfish.jersey.client.ClientResponse;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -34,15 +34,15 @@ public class AaiCommon {
   private static String AAI_AUTHENTICATION_PAASWORD = "AAI";
   private static String RESOURCE_VERSION_PARAM = "resource-version";
   
-//  public String getAuthenticationCredentials() {
-//    String usernameAndPassword = AAI_AUTHENTICATION_USER + ":"
-//        + AAI_AUTHENTICATION_PAASWORD;
-//    return "Basic " + java.util.Base64.getEncoder().encodeToString("AAI:AAI".getBytes());
-//  }
+  public String getAuthenticationCredentials() {
+    String usernameAndPassword = AAI_AUTHENTICATION_USER + ":"
+        + AAI_AUTHENTICATION_PAASWORD;
+    return "Basic " + java.util.Base64.getEncoder().encodeToString("AAI:AAI".getBytes());
+  }
   
   public String getResourceVersion(ClientResponse response)
       throws ParserConfigurationException, SAXException, IOException {
-    String respData = response.getEntity(String.class);
+    String respData = response.readEntity(String.class);
 
     DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
     DocumentBuilder builder = factory.newDocumentBuilder();

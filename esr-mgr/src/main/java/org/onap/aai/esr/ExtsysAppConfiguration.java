@@ -18,14 +18,13 @@ package org.onap.aai.esr;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.dropwizard.Configuration;
-import io.dropwizard.db.DataSourceFactory;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.jvnet.hk2.annotations.Service;
+
 
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 
-
-
+@Service
 public class ExtsysAppConfiguration extends Configuration {
   @NotEmpty
   private String template;
@@ -37,7 +36,7 @@ public class ExtsysAppConfiguration extends Configuration {
   private String msbIp;
   
   @NotEmpty
-  private int msbPort;
+  private String msbPort;
   
   @NotEmpty
   private String msbServerAddr;
@@ -76,16 +75,6 @@ public class ExtsysAppConfiguration extends Configuration {
   }
   
   @JsonProperty
-  public int getMsbPort() {
-    return msbPort;
-  }
-  
-  @JsonProperty
-  public int setMsbPort() {
-    return msbPort;
-  }
-
-  @JsonProperty
   public String getMsbServerAddr() {
     return msbServerAddr;
   }
@@ -102,5 +91,14 @@ public class ExtsysAppConfiguration extends Configuration {
   @JsonProperty
   public void setServiceIp(String serviceIp) {
     this.serviceIp = serviceIp;
+  }
+  @JsonProperty
+  public void setMsbPort(String msbPort) {
+    this.msbPort = msbPort;
+  }
+  
+  @JsonProperty
+  public String getMsbPort() {
+    return msbPort;
   }
 }
