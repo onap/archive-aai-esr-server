@@ -59,6 +59,7 @@
                                     </includes>
                                     <excludes>
                                         <exclude>**/*.bat</exclude>
+                                        <exclude>Dockerfile</exclude>
                                     </excludes>
                                 </resource>
                             </resources>
@@ -82,7 +83,28 @@
                                     </includes>
                                     <excludes>
                                         <exclude>**/*.sh</exclude>
+                                        <exclude>Dockerfile</exclude>
                                     </excludes>
+                                </resource>
+                            </resources>
+                            <overwrite>true</overwrite>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-dockerfile</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>target/version</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>src/main/assembly/</directory>
+                                    <filtering>false</filtering>
+                                    <includes>
+                                        <include>Dockerfile</include>
+                                    </includes>
                                 </resource>
                             </resources>
                             <overwrite>true</overwrite>
@@ -166,6 +188,55 @@
             </plugin>
         </plugins>
     </build>
+	
+	    <profiles>
+        <profile>
+            <id>docker</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>io.fabric8</groupId>
+                        <artifactId>docker-maven-plugin</artifactId>
+                        <version>0.16.5</version>
+                        <inherited>false</inherited>
+                        <configuration>
+                            <images>
+                                <image>
+                                    <name>onap/aai/esr-server</name>
+                                    <build>
+                                        <cleanup>try</cleanup>
+                                        <dockerFileDir>${basedir}/target/version/</dockerFileDir>
+                                        <dockerFile>${basedir}/target/version/Dockerfile</dockerFile>
+                                        <tags>
+                                            <tag>${project.version}-STAGING-latest</tag>
+                                        </tags>
+                                    </build>
+                                </image>
+                            </images>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>generate-images</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>build</goal>
+                                </goals>
+                            </execution>
+
+                            <execution>
+                                <id>push-images</id>
+                                <phase>deploy</phase>
+                                <goals>
+                                    <goal>build</goal>
+                                    <goal>push</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
     <dependencies>
         <dependency>
