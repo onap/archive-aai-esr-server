@@ -21,13 +21,12 @@ import javax.ws.rs.core.Response;
 
 import org.onap.aai.esr.entity.rest.EmsRestData;
 import org.onap.aai.esr.entity.rest.RegisterResponse;
-import org.onap.aai.esr.entity.rest.VnfmRestData;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+//import org.slf4j.Logger;
+//import org.slf4j.LoggerFactory;
 
 public class EmsManagerWrapper {
   private static EmsManagerWrapper emsManagerWrapper;
-  private static final Logger LOG = LoggerFactory.getLogger(EmsManagerWrapper.class);
+//  private static final Logger LOG = LoggerFactory.getLogger(EmsManagerWrapper.class);
 
   /**
    * get VnfmManagerWrapper instance.

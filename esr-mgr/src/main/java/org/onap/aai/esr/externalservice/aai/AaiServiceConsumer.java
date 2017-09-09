@@ -15,18 +15,18 @@
  */
 package org.onap.aai.esr.externalservice.aai;
 
-import org.glassfish.jersey.client.ClientConfig;
-
-import com.eclipsesource.jaxrs.consumer.ConsumerFactory;
+//import org.glassfish.jersey.client.ClientConfig;
+//
+//import com.eclipsesource.jaxrs.consumer.ConsumerFactory;
 
 public class AaiServiceConsumer {
-  private static IEsrVimRest aaiAdapterProxy;
-
-  static {
-      ClientConfig config = new ClientConfig();
-      aaiAdapterProxy =
-              ConsumerFactory.createConsumer(AaiAdapterConfig.getAaiAdapterAddr(),
-                      config, IEsrVimRest.class);
-  }
+//  private static IEsrVimRest aaiAdapterProxy;
+//
+//  static {
+//      ClientConfig config = new ClientConfig();
+//      aaiAdapterProxy =
+//              ConsumerFactory.createConsumer(AaiAdapterConfig.getAaiAdapterAddr(),
+//                      config, IEsrVimRest.class);
+//  }
 
 }

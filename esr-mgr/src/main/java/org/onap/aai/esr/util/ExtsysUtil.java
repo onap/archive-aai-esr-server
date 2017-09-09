@@ -17,15 +17,15 @@ package org.onap.aai.esr.util;
 
 import com.google.gson.Gson;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+//import org.slf4j.Logger;
+//import org.slf4j.LoggerFactory;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
 public class ExtsysUtil {
-  private final static Logger logger = LoggerFactory.getLogger(ExtsysUtil.class);
+//  private final static Logger logger = LoggerFactory.getLogger(ExtsysUtil.class);
 
   public static String generateId() {
     return UUID.randomUUID().toString();

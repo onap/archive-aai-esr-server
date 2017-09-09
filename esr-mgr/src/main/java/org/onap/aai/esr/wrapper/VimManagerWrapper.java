@@ -21,13 +21,13 @@ import javax.ws.rs.core.Response;
 
 import org.onap.aai.esr.entity.rest.RegisterResponse;
 import org.onap.aai.esr.entity.rest.VimRestData;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+//import org.slf4j.Logger;
+//import org.slf4j.LoggerFactory;
 
 public class VimManagerWrapper {
 
   private static VimManagerWrapper vimManagerWrapper;
-  private static final Logger LOG = LoggerFactory.getLogger(VimManagerWrapper.class);
+//  private static final Logger LOG = LoggerFactory.getLogger(VimManagerWrapper.class);
 
   /**
    * get VimManagerWrapper instance.

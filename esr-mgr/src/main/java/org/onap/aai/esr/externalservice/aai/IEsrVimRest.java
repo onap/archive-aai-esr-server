@@ -44,7 +44,7 @@ public interface IEsrVimRest {
   @Consumes(MediaType.APPLICATION_JSON)
 
   public ClientResponse registerVIMServce(@Header("Authorization") String authorization, @PathParam("cloud_owner") String cloud_owner,
-      CloudRegion entity) throws Exception;
+      CloudRegion entity);
 
   @Headers({  
     "X-TransactionId: 9999",
@@ -55,7 +55,7 @@ public interface IEsrVimRest {
   @GET
   @Produces(MediaType.APPLICATION_JSON)
   public ClientResponse queryVIMDetail(@Header("Authorization") String authorization, @PathParam("cloud_owner") String cloud_owner,
-      @PathParam("cloud_region_id") String cloud_region_id) throws Exception;
+      @PathParam("cloud_region_id") String cloud_region_id);
   
   @Headers({  
     "X-TransactionId: 9999",
@@ -65,7 +65,7 @@ public interface IEsrVimRest {
   @Path("/")
   @GET
   @Produces(MediaType.APPLICATION_JSON)
-  public ClientResponse queryVIMList(@Header("Authorization") String authorization) throws Exception;
+  public ClientResponse queryVIMList(@Header("Authorization") String authorization);
   
 
   @Headers({  
@@ -76,6 +76,6 @@ public interface IEsrVimRest {
   @Path("/cloud-region/{cloud_owner}/{cloud_region_id}/esr-system-info/{esr_system_info_id}")
   @GET
   public ClientResponse delVIMAuthInfo(@Header("Authorization") String authorization, @PathParam("cloud_owner") String cloud_owner,
-      @PathParam("cloud_region_id") String cloud_region_id, @PathParam("esr_system_info_id") String esr_system_info_id) throws Exception;
+      @PathParam("cloud_region_id") String cloud_region_id, @PathParam("esr_system_info_id") String esr_system_info_id);
   
 }

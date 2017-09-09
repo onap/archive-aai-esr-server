@@ -23,17 +23,13 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 import org.eclipse.jetty.http.HttpStatus;
-import org.onap.aai.esr.entity.aai.EmsData;
 import org.onap.aai.esr.entity.rest.EmsRestData;
-import org.onap.aai.esr.exception.ExtsysException;
 import org.onap.aai.esr.util.ExtsysUtil;
 import org.onap.aai.esr.util.RestResponseUtil;
 import org.onap.aai.esr.wrapper.EmsManagerWrapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;  
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;

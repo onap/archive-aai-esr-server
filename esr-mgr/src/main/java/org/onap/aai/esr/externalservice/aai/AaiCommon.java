@@ -30,15 +30,15 @@ import org.xml.sax.SAXException;
 
 public class AaiCommon {
 
-  private static String AAI_AUTHENTICATION_USER = "AAI";
-  private static String AAI_AUTHENTICATION_PAASWORD = "AAI";
+//  private static String AAI_AUTHENTICATION_USER = "AAI";
+//  private static String AAI_AUTHENTICATION_PAASWORD = "AAI";
   private static String RESOURCE_VERSION_PARAM = "resource-version";
   
-  public String getAuthenticationCredentials() {
-    String usernameAndPassword = AAI_AUTHENTICATION_USER + ":"
-        + AAI_AUTHENTICATION_PAASWORD;
-    return "Basic " + java.util.Base64.getEncoder().encodeToString("AAI:AAI".getBytes());
-  }
+//  public String getAuthenticationCredentials() {
+//    String usernameAndPassword = AAI_AUTHENTICATION_USER + ":"
+//        + AAI_AUTHENTICATION_PAASWORD;
+//    return "Basic " + java.util.Base64.getEncoder().encodeToString("AAI:AAI".getBytes());
+//  }
   
   public String getResourceVersion(ClientResponse response)
       throws ParserConfigurationException, SAXException, IOException {

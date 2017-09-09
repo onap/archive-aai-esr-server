@@ -21,13 +21,13 @@ import javax.ws.rs.core.Response;
 
 import org.onap.aai.esr.entity.rest.RegisterResponse;
 import org.onap.aai.esr.entity.rest.ThirdPartySdncRestData;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+//import org.slf4j.Logger;
+//import org.slf4j.LoggerFactory;
 
 public class ThirdpatySdncWrapper {
 
   private static ThirdpatySdncWrapper thirdpatySdncWrapper;
-  private static final Logger LOG = LoggerFactory.getLogger(ThirdpatySdncWrapper.class);
+//  private static final Logger LOG = LoggerFactory.getLogger(ThirdpatySdncWrapper.class);
 
   /**
    * get ThirdpatySdncWrapper instance.
