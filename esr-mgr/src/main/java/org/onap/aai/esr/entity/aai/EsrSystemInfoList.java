@@ -13,17 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.onap.aai.esr.common;
+package org.onap.aai.esr.entity.aai;
 
+public class EsrSystemInfoList {
 
-public class MsbUtil {
+  private EsrSystemInfo esrSystemInfoList;
 
-//  public static String getVimBaseUrl() {
-//    return Config.getConfigration().getMsbServerAddr() + "/api/vim/v1";
-//  }
-//
-//  public static String getAaiServiceUrl() {
-//    return Config.getConfigration().getMsbServerAddr() + "/aai/v11/";
-//  }
+  public EsrSystemInfo getEsrSystemInfoList() {
+    return esrSystemInfoList;
+  }
 
+  public void setEsrSystemInfoList(EsrSystemInfo esrSystemInfoList) {
+    this.esrSystemInfoList = esrSystemInfoList;
+  }
 }
