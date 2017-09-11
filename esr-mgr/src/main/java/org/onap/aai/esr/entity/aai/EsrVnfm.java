@@ -23,6 +23,8 @@ public class EsrVnfm {
   
   private String certificateUrl;
   
+  private String resouceVersion;
+  
   private EsrSystemInfoList esrSystemInfoList;
 
   public String getVnfmId() {
@@ -55,6 +57,14 @@ public class EsrVnfm {
 
   public void setEsrSystemInfoList(EsrSystemInfoList esrSystemInfoList) {
     this.esrSystemInfoList = esrSystemInfoList;
+  }
+
+  public String getResouceVersion() {
+    return resouceVersion;
+  }
+
+  public void setResouceVersion(String resouceVersion) {
+    this.resouceVersion = resouceVersion;
   }
 
 }

@@ -25,7 +25,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import org.glassfish.jersey.client.ClientResponse;
-import org.onap.aai.esr.externalservice.entity.CloudRegion;
+import org.onap.aai.esr.entity.aai.CloudRegion;
 
 import retrofit2.http.Header;
 import retrofit2.http.Headers;

@@ -16,11 +16,6 @@
 
 package org.onap.aai.esr.common;
 
-
-public enum ExtSysResuorceType {
-  VIM, SDNC, EMS, VNFM, BASE;
-
-  public static ExtSysResuorceType getType(String type) {
-    return valueOf(type);
-  }
+public enum SystemType {
+  VNFM,EMS_RESOUCE,EMS_PERFORMANCE,EMS_ALARM,thirdparty_SDNC,VIM
 }

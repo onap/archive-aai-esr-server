@@ -33,6 +33,8 @@ public class CloudRegion {
   
   private String cloudExtraInfo;
   
+  private String resouceVersion;
+  
   private EsrSystemInfoList esrSystemInfoList;
 
   public String getCloudOwner() {
@@ -105,5 +107,13 @@ public class CloudRegion {
 
   public void setEsrSystemInfoList(EsrSystemInfoList esrSystemInfoList) {
     this.esrSystemInfoList = esrSystemInfoList;
+  }
+
+  public String getResouceVersion() {
+    return resouceVersion;
+  }
+
+  public void setResouceVersion(String resouceVersion) {
+    this.resouceVersion = resouceVersion;
   }
 }

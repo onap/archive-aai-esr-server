@@ -17,13 +17,13 @@ package org.onap.aai.esr.entity.aai;
 
 public class EsrSystemInfoList {
 
-  private EsrSystemInfo esrSystemInfoList;
+  private EsrSystemInfo esrSystemInfo;
 
-  public EsrSystemInfo getEsrSystemInfoList() {
-    return esrSystemInfoList;
+  public EsrSystemInfo getEsrSystemInfo() {
+    return esrSystemInfo;
   }
 
-  public void setEsrSystemInfoList(EsrSystemInfo esrSystemInfoList) {
-    this.esrSystemInfoList = esrSystemInfoList;
+  public void setEsrSystemInfo(EsrSystemInfo esrSystemInfo) {
+    this.esrSystemInfo = esrSystemInfo;
   }
 }

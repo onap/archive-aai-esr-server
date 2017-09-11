@@ -33,7 +33,7 @@ public class VimRegisterInfo {
   
   private String cloudExtraInfo;
   
-  private AuthInfoItem authInfoItem;
+  private VimAuthInfo vimAuthInfo;
 
   public String getCloudOwner() {
     return cloudOwner;
@@ -99,12 +99,13 @@ public class VimRegisterInfo {
     this.cloudExtraInfo = cloudExtraInfo;
   }
 
-  public AuthInfoItem getAuthInfoItem() {
-    return authInfoItem;
+  public VimAuthInfo getVimAuthInfo() {
+    return vimAuthInfo;
   }
 
-  public void setAuthInfoItem(AuthInfoItem authInfoItem) {
-    this.authInfoItem = authInfoItem;
+  public void setVimAuthInfo(VimAuthInfo vimAuthInfo) {
+    this.vimAuthInfo = vimAuthInfo;
   }
+
 
 }

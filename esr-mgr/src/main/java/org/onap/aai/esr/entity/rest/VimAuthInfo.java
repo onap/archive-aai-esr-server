@@ -15,7 +15,7 @@
  */
 package org.onap.aai.esr.entity.rest;
 
-public class AuthInfoItem {
+public class VimAuthInfo {
   
   private String cloudDomain;
   
@@ -27,7 +27,7 @@ public class AuthInfoItem {
   
   private String sslCacert;
 
-  private String sslInsecure;
+  private Boolean sslInsecure;
 
   public String getCloudDomain() {
     return cloudDomain;
@@ -69,11 +69,12 @@ public class AuthInfoItem {
     this.sslCacert = sslCacert;
   }
 
-  public String getSslInsecure() {
+  public Boolean getSslInsecure() {
     return sslInsecure;
   }
 
-  public void setSslInsecure(String sslInsecure) {
+  public void setSslInsecure(Boolean sslInsecure) {
     this.sslInsecure = sslInsecure;
   }
+
 }

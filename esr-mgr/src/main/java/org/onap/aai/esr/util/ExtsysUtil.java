@@ -21,8 +21,13 @@ import com.google.gson.Gson;
 //import org.slf4j.LoggerFactory;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
+
+import org.onap.aai.esr.entity.aai.AuthInfo;
+import org.onap.aai.esr.entity.aai.EsrSystemInfo;
+import org.onap.aai.esr.entity.aai.EsrSystemInfoList;
 
 public class ExtsysUtil {
 //  private final static Logger logger = LoggerFactory.getLogger(ExtsysUtil.class);
@@ -50,5 +55,15 @@ public class ExtsysUtil {
   public static String getNowTime() {
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     return sdf.format(new Date());
+  }
+  
+  public static EsrSystemInfoList getEsrSystemInfoList(AuthInfo authInfo) {
+    EsrSystemInfoList esrSystemInfoList = new EsrSystemInfoList();
+    EsrSystemInfo esrSystemInfo = new EsrSystemInfo();
+    ArrayList<AuthInfo> authInfos = new ArrayList<AuthInfo>();
+    authInfos.add(authInfo);
+    esrSystemInfo.setEsrSystemInfo(authInfos);
+    esrSystemInfoList.setEsrSystemInfo(esrSystemInfo);
+    return esrSystemInfoList;
   }
 }

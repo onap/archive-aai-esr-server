@@ -39,7 +39,7 @@ public class AuthInfo {
   
   private String sslCassert;
   
-  private String sslInsecure;
+  private Boolean sslInsecure;
   
   private String ipAddress;
   
@@ -50,6 +50,8 @@ public class AuthInfo {
   private String defaultTenant;
   
   private String systemStatus;
+  
+  private String resouceVersion;
 
   public String getEsrSystemInfoId() {
     return esrSystemInfoId;
@@ -139,14 +141,6 @@ public class AuthInfo {
     this.sslCassert = sslCassert;
   }
 
-  public String getSslInsecure() {
-    return sslInsecure;
-  }
-
-  public void setSslInsecure(String sslInsecure) {
-    this.sslInsecure = sslInsecure;
-  }
-
   public String getIpAddress() {
     return ipAddress;
   }
@@ -185,6 +179,22 @@ public class AuthInfo {
 
   public void setSystemStatus(String systemStatus) {
     this.systemStatus = systemStatus;
+  }
+
+  public Boolean getSslInsecure() {
+    return sslInsecure;
+  }
+
+  public void setSslInsecure(Boolean sslInsecure) {
+    this.sslInsecure = sslInsecure;
+  }
+
+  public String getResouceVersion() {
+    return resouceVersion;
+  }
+
+  public void setResouceVersion(String resouceVersion) {
+    this.resouceVersion = resouceVersion;
   }
 
 }
