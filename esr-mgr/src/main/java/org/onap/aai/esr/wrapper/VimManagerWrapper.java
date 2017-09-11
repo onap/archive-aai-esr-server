@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import javax.ws.rs.core.Response;
 
 import org.onap.aai.esr.entity.rest.RegisterResponse;
-import org.onap.aai.esr.entity.rest.VimRestData;
+import org.onap.aai.esr.entity.rest.VimRegisterInfo;
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
 
@@ -40,25 +40,25 @@ public class VimManagerWrapper {
     return vimManagerWrapper;
   }
   
-  public Response registerVim(VimRestData vim) {
+  public Response registerVim(VimRegisterInfo vim) {
     //TODO
     RegisterResponse result = null;
     return Response.ok(result).build();
   }
 
-  public Response updateVim(VimRestData vim) {
+  public Response updateVim(VimRegisterInfo vim) {
     //TODO
     return Response.ok().build();
   }
   
   public Response queryVimList() {
     //TODO
-    ArrayList<VimRestData> vimList = new ArrayList<VimRestData>();
+    ArrayList<VimRegisterInfo> vimList = new ArrayList<VimRegisterInfo>();
     return Response.ok(vimList).build();
   }
   
   public Response queryVimById(String vimId) {
-    VimRestData vim = new VimRestData();
+    VimRegisterInfo vim = new VimRegisterInfo();
     //TODO
     return Response.ok(vim).build();
   }

@@ -22,7 +22,7 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.eclipse.jetty.http.HttpStatus;
-import org.onap.aai.esr.entity.rest.VnfmRestData;
+import org.onap.aai.esr.entity.rest.VnfmRegisterInfo;
 import org.onap.aai.esr.util.ExtsysUtil;
 import org.onap.aai.esr.wrapper.VnfmManagerWrapper;
 import org.slf4j.Logger;
@@ -120,7 +120,7 @@ public class VnfmManager {
       @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
           response = String.class)})
   @Timed
-  public Response updateVnfm(@ApiParam(value = "vnfm", required = true) VnfmRestData vnfm,
+  public Response updateVnfm(@ApiParam(value = "vnfm", required = true) VnfmRegisterInfo vnfm,
       @ApiParam(value = "vnfm id", required = true) @PathParam("vnfmId") String vnfmId) {
     LOGGER.info("start update vnfm .id:" + vnfmId + " info:" + ExtsysUtil.objectToString(vnfm));
     return VnfmManagerWrapper.getInstance().updateVnfm(vnfm, vnfmId);
@@ -142,7 +142,7 @@ public class VnfmManager {
       @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
           response = String.class)})
   @Timed
-  public Response registerVnfm(@ApiParam(value = "vnfm", required = true) VnfmRestData vnfm) {
+  public Response registerVnfm(@ApiParam(value = "vnfm", required = true) VnfmRegisterInfo vnfm) {
     return VnfmManagerWrapper.getInstance().registerVnfm(vnfm);
   }
 }

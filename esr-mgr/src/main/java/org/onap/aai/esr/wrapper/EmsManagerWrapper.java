@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 import javax.ws.rs.core.Response;
 
-import org.onap.aai.esr.entity.rest.EmsRestData;
+import org.onap.aai.esr.entity.rest.EmsRegisterInfo;
 import org.onap.aai.esr.entity.rest.RegisterResponse;
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
@@ -39,25 +39,25 @@ public class EmsManagerWrapper {
     return emsManagerWrapper;
   }
   
-  public Response registerEms(EmsRestData ems) {
+  public Response registerEms(EmsRegisterInfo ems) {
     //TODO
     RegisterResponse result = null;
     return Response.ok(result).build();
   }
 
-  public Response updateEms(EmsRestData ems) {
+  public Response updateEms(EmsRegisterInfo ems) {
     //TODO
     return Response.ok().build();
   }
   
   public Response queryEmsList() {
     //TODO
-    ArrayList<EmsRestData> emsList = new ArrayList<EmsRestData>();
+    ArrayList<EmsRegisterInfo> emsList = new ArrayList<EmsRegisterInfo>();
     return Response.ok(emsList).build();
   }
   
   public Response queryEmsById(String emsId) {
-    EmsRestData ems = new EmsRestData();
+    EmsRegisterInfo ems = new EmsRegisterInfo();
     //TODO
     return Response.ok(ems).build();
   }

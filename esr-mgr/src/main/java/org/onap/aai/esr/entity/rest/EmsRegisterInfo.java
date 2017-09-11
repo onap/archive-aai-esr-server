@@ -16,7 +16,7 @@
 package org.onap.aai.esr.entity.rest;
 
 
-public class EmsRestData extends BaseRestData{
+public class EmsRegisterInfo {
 
   private String emsId;
   

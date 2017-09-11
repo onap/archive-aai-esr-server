@@ -23,7 +23,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 import org.eclipse.jetty.http.HttpStatus;
-import org.onap.aai.esr.entity.rest.ThirdPartySdncRestData;
+import org.onap.aai.esr.entity.rest.ThirdpartySdncRegisterInfo;
 import org.onap.aai.esr.util.ExtsysUtil;
 import org.onap.aai.esr.wrapper.ThirdpatySdncWrapper;
 import org.slf4j.Logger;
@@ -121,7 +121,7 @@ public class ThirdpatySdncManager {
       @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
           response = String.class)})
   @Timed
-  public Response updateThirdpartySdnc(@ApiParam(value = "thirdpartySdnc", required = true) ThirdPartySdncRestData thirdPartySdnc,
+  public Response updateThirdpartySdnc(@ApiParam(value = "thirdpartySdnc", required = true) ThirdpartySdncRegisterInfo thirdPartySdnc,
       @ApiParam(value = "sdnc id", required = true) @PathParam("thirdPartySdncId") String thirdPartySdncId) {
     LOGGER.info("start update sdnc .id:" + thirdPartySdncId + " info:" + ExtsysUtil.objectToString(thirdPartySdnc));
     return ThirdpatySdncWrapper.getInstance().updateThirdpartySdnc(thirdPartySdnc);
@@ -143,7 +143,7 @@ public class ThirdpatySdncManager {
       @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
           response = String.class)})
   @Timed
-  public Response registerThirdpatySdnc(@ApiParam(value = "thirdPartySdnc", required = true) ThirdPartySdncRestData thirdPartySdnc) {
+  public Response registerThirdpatySdnc(@ApiParam(value = "thirdPartySdnc", required = true) ThirdpartySdncRegisterInfo thirdPartySdnc) {
     LOGGER.info("start register sdnc" + " info:" + ExtsysUtil.objectToString(thirdPartySdnc));
     return ThirdpatySdncWrapper.getInstance().registerThirdpartySdnc(thirdPartySdnc);
   }

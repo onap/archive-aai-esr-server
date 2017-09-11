@@ -23,7 +23,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 import org.eclipse.jetty.http.HttpStatus;
-import org.onap.aai.esr.entity.rest.EmsRestData;
+import org.onap.aai.esr.entity.rest.EmsRegisterInfo;
 import org.onap.aai.esr.util.ExtsysUtil;
 import org.onap.aai.esr.util.RestResponseUtil;
 import org.onap.aai.esr.wrapper.EmsManagerWrapper;
@@ -122,10 +122,10 @@ public class EmsManager {
       @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
           response = String.class)})
   @Timed
-  public Response updateEms(@ApiParam(value = "ems", required = true) EmsRestData ems,
+  public Response updateEms(@ApiParam(value = "ems", required = true) EmsRegisterInfo ems,
       @ApiParam(value = "ems id", required = true) @PathParam("emsId") String emsId) {
     LOGGER.info("start update ems .id:" + emsId + " info:" + ExtsysUtil.objectToString(ems));
-    return RestResponseUtil.getSuccessResponse(new EmsRestData());
+    return RestResponseUtil.getSuccessResponse(new EmsRegisterInfo());
   }
   
   /**
@@ -144,7 +144,7 @@ public class EmsManager {
       @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
           response = String.class)})
   @Timed
-  public Response registerEms(@ApiParam(value = "ems", required = true) EmsRestData ems) {
+  public Response registerEms(@ApiParam(value = "ems", required = true) EmsRegisterInfo ems) {
     LOGGER.info("start add ems" + " info:" + ExtsysUtil.objectToString(ems));
     return EmsManagerWrapper.getInstance().registerEms(ems);
   }

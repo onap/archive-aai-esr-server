@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import javax.ws.rs.core.Response;
 
 import org.onap.aai.esr.entity.rest.RegisterResponse;
-import org.onap.aai.esr.entity.rest.VnfmRestData;
+import org.onap.aai.esr.entity.rest.VnfmRegisterInfo;
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
 
@@ -39,25 +39,25 @@ public class VnfmManagerWrapper {
     return vnfmManagerWrapper;
   }
 
-  public Response registerVnfm(VnfmRestData vnfm) {
+  public Response registerVnfm(VnfmRegisterInfo vnfm) {
     //TODO
     RegisterResponse result = null;
     return Response.ok(result).build();
   }
   
-  public Response updateVnfm(VnfmRestData vnfm, String vnfmId) {
+  public Response updateVnfm(VnfmRegisterInfo vnfm, String vnfmId) {
     //TODO
     return Response.ok().build();
   }
   
   public Response queryVnfmList() {
-    ArrayList<VnfmRestData> vnfmList = new ArrayList<VnfmRestData>();
+    ArrayList<VnfmRegisterInfo> vnfmList = new ArrayList<VnfmRegisterInfo>();
     //TODO
     return Response.ok(vnfmList).build();
   }
   
   public Response queryVnfmById(String vnfmId) {
-    VnfmRestData vnfm = new VnfmRestData();
+    VnfmRegisterInfo vnfm = new VnfmRegisterInfo();
     //TODO
     return Response.ok(vnfm).build();
   }

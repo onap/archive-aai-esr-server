@@ -15,7 +15,7 @@
  */
 package org.onap.aai.esr.entity.rest;
 
-public class VimRestData extends BaseRestData {
+public class VimRegisterInfo {
 
   private String cloudOwner;
 

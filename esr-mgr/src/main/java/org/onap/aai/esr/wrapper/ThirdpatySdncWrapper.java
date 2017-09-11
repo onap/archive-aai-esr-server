@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import javax.ws.rs.core.Response;
 
 import org.onap.aai.esr.entity.rest.RegisterResponse;
-import org.onap.aai.esr.entity.rest.ThirdPartySdncRestData;
+import org.onap.aai.esr.entity.rest.ThirdpartySdncRegisterInfo;
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
 
@@ -40,25 +40,25 @@ public class ThirdpatySdncWrapper {
     return thirdpatySdncWrapper;
   }
   
-  public Response registerThirdpartySdnc(ThirdPartySdncRestData thirdpartySdnc) {
+  public Response registerThirdpartySdnc(ThirdpartySdncRegisterInfo thirdpartySdnc) {
     //TODO
     RegisterResponse result = null;
     return Response.ok(result).build();
   }
 
-  public Response updateThirdpartySdnc(ThirdPartySdncRestData thirdpartySdnc) {
+  public Response updateThirdpartySdnc(ThirdpartySdncRegisterInfo thirdpartySdnc) {
     //TODO
     return Response.ok().build();
   }
   
   public Response queryThirdpartySdncList() {
     //TODO
-    ArrayList<ThirdPartySdncRestData> thirdpartySdncList = new ArrayList<ThirdPartySdncRestData>();
+    ArrayList<ThirdpartySdncRegisterInfo> thirdpartySdncList = new ArrayList<ThirdpartySdncRegisterInfo>();
     return Response.ok(thirdpartySdncList).build();
   }
   
   public Response queryThirdpartySdncById(String thirdpartySdncId) {
-    ThirdPartySdncRestData thirdpartySdnc = new ThirdPartySdncRestData();
+    ThirdpartySdncRegisterInfo thirdpartySdnc = new ThirdpartySdncRegisterInfo();
     //TODO
     return Response.ok(thirdpartySdnc).build();
   }

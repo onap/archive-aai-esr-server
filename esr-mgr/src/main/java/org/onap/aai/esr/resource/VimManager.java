@@ -22,7 +22,7 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.eclipse.jetty.http.HttpStatus;
-import org.onap.aai.esr.entity.rest.VimRestData;
+import org.onap.aai.esr.entity.rest.VimRegisterInfo;
 import org.onap.aai.esr.util.ExtsysUtil;
 import org.onap.aai.esr.wrapper.VimManagerWrapper;
 import org.slf4j.Logger;
@@ -119,7 +119,7 @@ public class VimManager {
       @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
           response = String.class)})
   @Timed
-  public Response updatevims(@ApiParam(value = "vim", required = true) VimRestData vim,
+  public Response updatevims(@ApiParam(value = "vim", required = true) VimRegisterInfo vim,
       @ApiParam(value = "vim id", required = true) @PathParam("vimId") String vimId) {
     LOGGER.info("start update vim .id:" + vimId + " info:" + ExtsysUtil.objectToString(vim));
     return VimManagerWrapper.getInstance().updateVim(vim);
@@ -141,7 +141,7 @@ public class VimManager {
       @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
           response = String.class)})
   @Timed
-  public Response registerVims(@ApiParam(value = "vim", required = true) VimRestData vim) {
+  public Response registerVims(@ApiParam(value = "vim", required = true) VimRegisterInfo vim) {
     LOGGER.info("start add vim" + " info:" + ExtsysUtil.objectToString(vim));
     return VimManagerWrapper.getInstance().registerVim(vim);
   }

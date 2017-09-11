@@ -15,43 +15,58 @@
  */
 package org.onap.aai.esr.entity.rest;
 
+public class VnfmRegisterInfo{
 
-public class BaseRestData {
-
-  private String instanceId;
-
-  private String systemName;
-
-  private String vendor;
-
-  private String version;
-
+  private String vnfmId;
+  
+  private String name;
+  
   private String type;
   
-  private String url;
+  private String vimId;
   
-  private String username;
+  private String vendor;
+  
+  private String version;
+  
+  private String certificateUrl;
+  
+  private String url;
+
+  private String userName;
   
   private String password;
-  
-  private String systemStatus;
 
-  private String systemType;
-
-  public String getInstanceId() {
-    return instanceId;
+  public String getVnfmId() {
+    return vnfmId;
   }
 
-  public void setInstanceId(String instanceId) {
-    this.instanceId = instanceId;
+  public void setVnfmId(String vnfmId) {
+    this.vnfmId = vnfmId;
   }
 
-  public String getSystemName() {
-    return systemName;
+  public String getName() {
+    return name;
   }
 
-  public void setSystemName(String systemName) {
-    this.systemName = systemName;
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public String getType() {
+    return type;
+  }
+
+  public void setType(String type) {
+    this.type = type;
+  }
+
+  public String getVimId() {
+    return vimId;
+  }
+
+  public void setVimId(String vimId) {
+    this.vimId = vimId;
   }
 
   public String getVendor() {
@@ -70,12 +85,12 @@ public class BaseRestData {
     this.version = version;
   }
 
-  public String getType() {
-    return type;
+  public String getCertificateUrl() {
+    return certificateUrl;
   }
 
-  public void setType(String type) {
-    this.type = type;
+  public void setCertificateUrl(String certificateUrl) {
+    this.certificateUrl = certificateUrl;
   }
 
   public String getUrl() {
@@ -86,12 +101,12 @@ public class BaseRestData {
     this.url = url;
   }
 
-  public String getUsername() {
-    return username;
+  public String getUserName() {
+    return userName;
   }
 
-  public void setUsername(String username) {
-    this.username = username;
+  public void setUserName(String userName) {
+    this.userName = userName;
   }
 
   public String getPassword() {
@@ -101,22 +116,5 @@ public class BaseRestData {
   public void setPassword(String password) {
     this.password = password;
   }
-
-  public String getSystemStatus() {
-    return systemStatus;
-  }
-
-  public void setSystemStatus(String systemStatus) {
-    this.systemStatus = systemStatus;
-  }
-
-  public String getSystemType() {
-    return systemType;
-  }
-
-  public void setSystemType(String systemType) {
-    this.systemType = systemType;
-  }
-
-
+  
 }

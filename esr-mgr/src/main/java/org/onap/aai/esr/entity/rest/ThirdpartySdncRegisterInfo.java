@@ -15,7 +15,7 @@
  */
 package org.onap.aai.esr.entity.rest;
 
-public class ThirdPartySdncRestData {
+public class ThirdpartySdncRegisterInfo {
 
   private String thirdpartySdncId;
   
@@ -80,7 +80,7 @@ public class ThirdPartySdncRestData {
     this.protocol = protocol;
   }
   
-  public ThirdPartySdncRestData() {
+  public ThirdpartySdncRegisterInfo() {
 
   }
 
