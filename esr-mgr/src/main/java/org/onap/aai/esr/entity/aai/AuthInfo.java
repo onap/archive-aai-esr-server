@@ -49,6 +49,10 @@ public class AuthInfo {
   
   private String defaultTenant;
   
+  private Boolean passive;
+  
+  private String remotePath;
+  
   private String systemStatus;
   
   private String resouceVersion;
@@ -197,4 +201,20 @@ public class AuthInfo {
     this.resouceVersion = resouceVersion;
   }
 
+  public Boolean getPassive() {
+    return passive;
+  }
+
+  public void setPassive(Boolean passive) {
+    this.passive = passive;
+  }
+
+  public String getRemotePath() {
+    return remotePath;
+  }
+
+  public void setRemotePath(String remotePath) {
+    this.remotePath = remotePath;
+  }
+  
 }

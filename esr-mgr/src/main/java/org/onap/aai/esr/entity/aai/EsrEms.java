@@ -20,10 +20,6 @@ public class EsrEms {
 
   private String emsId;
   
-  private Boolean passive;
-  
-  private String remotePath;
-  
   private String resouceVersion;
   
   private EsrSystemInfoList esrSystemInfoList;
@@ -34,22 +30,6 @@ public class EsrEms {
 
   public void setEmsId(String emsId) {
     this.emsId = emsId;
-  }
-
-  public Boolean getPassive() {
-    return passive;
-  }
-
-  public void setPassive(Boolean passive) {
-    this.passive = passive;
-  }
-
-  public String getRemotePath() {
-    return remotePath;
-  }
-
-  public void setRemotePath(String remotePath) {
-    this.remotePath = remotePath;
   }
 
   public EsrSystemInfoList getEsrSystemInfoList() {

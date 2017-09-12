@@ -44,7 +44,7 @@ public class VimManagerUtil {
     cloudRegion.setCloudExtraInfo(vimRegisterInfo.getCloudExtraInfo());
     
     authInfo = vimAuthInfo2AuthInfo(vimRegisterInfo.getVimAuthInfo());
-    esrSystemInfo = ExtsysUtil.getEsrSystemInfoList(authInfo);
+    esrSystemInfo = ExtsysUtil.getEsrSystemInfoListFromAuthInfo(authInfo);
     cloudRegion.setEsrSystemInfoList(esrSystemInfo);
     return cloudRegion;
   }

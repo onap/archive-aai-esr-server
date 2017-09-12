@@ -29,7 +29,7 @@ public class FtpAddr {
   
   private String remotepath;
   
-  private String passive;
+  private Boolean passive;
 
   public String getFtptype() {
     return ftptype;
@@ -79,11 +79,11 @@ public class FtpAddr {
     this.remotepath = remotepath;
   }
 
-  public String getPassive() {
+  public Boolean getPassive() {
     return passive;
   }
 
-  public void setPassive(String passive) {
+  public void setPassive(Boolean passive) {
     this.passive = passive;
   }
 }

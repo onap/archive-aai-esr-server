@@ -57,11 +57,19 @@ public class ExtsysUtil {
     return sdf.format(new Date());
   }
   
-  public static EsrSystemInfoList getEsrSystemInfoList(AuthInfo authInfo) {
+  public static EsrSystemInfoList getEsrSystemInfoListFromAuthInfo(AuthInfo authInfo) {
     EsrSystemInfoList esrSystemInfoList = new EsrSystemInfoList();
     EsrSystemInfo esrSystemInfo = new EsrSystemInfo();
     ArrayList<AuthInfo> authInfos = new ArrayList<AuthInfo>();
     authInfos.add(authInfo);
+    esrSystemInfo.setEsrSystemInfo(authInfos);
+    esrSystemInfoList.setEsrSystemInfo(esrSystemInfo);
+    return esrSystemInfoList;
+  }
+  
+  public static EsrSystemInfoList getEsrSystemInfoListFromAuthInfoList(ArrayList<AuthInfo> authInfos) {
+    EsrSystemInfoList esrSystemInfoList = new EsrSystemInfoList();
+    EsrSystemInfo esrSystemInfo = new EsrSystemInfo();
     esrSystemInfo.setEsrSystemInfo(authInfos);
     esrSystemInfoList.setEsrSystemInfo(esrSystemInfo);
     return esrSystemInfoList;
