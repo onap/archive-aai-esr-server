@@ -21,7 +21,6 @@ import org.onap.aai.esr.common.SystemStatus;
 import org.onap.aai.esr.common.SystemType;
 import org.onap.aai.esr.entity.aai.AuthInfo;
 import org.onap.aai.esr.entity.aai.CloudRegion;
-import org.onap.aai.esr.entity.aai.EsrSystemInfo;
 import org.onap.aai.esr.entity.aai.EsrSystemInfoList;
 import org.onap.aai.esr.entity.rest.VimAuthInfo;
 import org.onap.aai.esr.entity.rest.VimRegisterInfo;
