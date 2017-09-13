@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 import org.onap.aai.esr.common.SystemStatus;
 import org.onap.aai.esr.common.SystemType;
-import org.onap.aai.esr.entity.aai.AuthInfo;
+import org.onap.aai.esr.entity.aai.EsrSystemInfo;
 import org.onap.aai.esr.entity.aai.CloudRegion;
 import org.onap.aai.esr.entity.aai.EsrSystemInfoList;
 import org.onap.aai.esr.entity.rest.VimAuthInfo;
@@ -30,8 +30,9 @@ public class VimManagerUtil {
   
   public static CloudRegion vimRegisterInfo2CloudRegion(VimRegisterInfo vimRegisterInfo) {
     CloudRegion cloudRegion = new CloudRegion();
-    EsrSystemInfoList esrSystemInfo = new EsrSystemInfoList();
-    AuthInfo authInfo = new AuthInfo();
+    EsrSystemInfoList esrSystemInfoList = new EsrSystemInfoList();
+    ArrayList<EsrSystemInfo> esrSystemInfo = new ArrayList<EsrSystemInfo>();
+    EsrSystemInfo esrSystemInfoObj = new EsrSystemInfo();
     
     cloudRegion.setCloudOwner(vimRegisterInfo.getCloudOwner());
     cloudRegion.setCloudRegionId(vimRegisterInfo.getCloudRegionId());
@@ -42,27 +43,27 @@ public class VimManagerUtil {
     cloudRegion.setOwnerDefinedType(vimRegisterInfo.getOwnerDefinedType());
     cloudRegion.setCloudExtraInfo(vimRegisterInfo.getCloudExtraInfo());
     
-    authInfo = vimAuthInfo2AuthInfo(vimRegisterInfo.getVimAuthInfo());
-    esrSystemInfo = ExtsysUtil.getEsrSystemInfoListFromAuthInfo(authInfo);
-    cloudRegion.setEsrSystemInfoList(esrSystemInfo);
+    esrSystemInfoObj = vimAuthInfo2EsrSystemInfoObj(vimRegisterInfo.getVimAuthInfo());
+    esrSystemInfoList = ExtsysUtil.getEsrSystemInfoListFromAuthInfo(esrSystemInfoObj);
+    cloudRegion.setEsrSystemInfoList(esrSystemInfoList);
     return cloudRegion;
   }
 
-  private static AuthInfo vimAuthInfo2AuthInfo(VimAuthInfo vimAuthInfo) {
-    AuthInfo authInfo = new AuthInfo();
-    authInfo.setCloudDomain(vimAuthInfo.getCloudDomain());
-    authInfo.setUserName(vimAuthInfo.getUserName());
-    authInfo.setPassword(vimAuthInfo.getPassword());
-    authInfo.setServiceUrl(vimAuthInfo.getAuthUrl());
-    authInfo.setSslCassert(vimAuthInfo.getSslCacert());
-    authInfo.setSslInsecure(vimAuthInfo.getSslInsecure());
-    authInfo.setEsrSystemInfoId(ExtsysUtil.generateId());
-    authInfo.setSystemType(SystemType.VIM.toString());
-    authInfo.setSystemStatus(SystemStatus.normal.toString());
-    return authInfo;
+  private static EsrSystemInfo vimAuthInfo2EsrSystemInfoObj(VimAuthInfo vimAuthInfo) {
+    EsrSystemInfo esrSystemInfoObj = new EsrSystemInfo();
+    esrSystemInfoObj.setCloudDomain(vimAuthInfo.getCloudDomain());
+    esrSystemInfoObj.setUserName(vimAuthInfo.getUserName());
+    esrSystemInfoObj.setPassword(vimAuthInfo.getPassword());
+    esrSystemInfoObj.setServiceUrl(vimAuthInfo.getAuthUrl());
+    esrSystemInfoObj.setSslCassert(vimAuthInfo.getSslCacert());
+    esrSystemInfoObj.setSslInsecure(vimAuthInfo.getSslInsecure());
+    esrSystemInfoObj.setEsrSystemInfoId(ExtsysUtil.generateId());
+    esrSystemInfoObj.setSystemType(SystemType.VIM.toString());
+    esrSystemInfoObj.setSystemStatus(SystemStatus.normal.toString());
+    return esrSystemInfoObj;
   }
   
-  private static VimAuthInfo authInfo2VimAuthInfo(AuthInfo authInfo) {
+  private static VimAuthInfo authInfo2VimAuthInfo(EsrSystemInfo authInfo) {
     VimAuthInfo vimAuthInfo = new VimAuthInfo();
     vimAuthInfo.setAuthUrl(authInfo.getServiceUrl());
     vimAuthInfo.setCloudDomain(authInfo.getCloudDomain());
@@ -76,7 +77,7 @@ public class VimManagerUtil {
   public static VimRegisterInfo cloudRegion2VimRegisterInfo(CloudRegion cloudRegion) {
     VimRegisterInfo vimRegisterInfo = new VimRegisterInfo();
     VimAuthInfo vimAuthInfo = new VimAuthInfo();
-    vimAuthInfo = authInfo2VimAuthInfo(cloudRegion.getEsrSystemInfoList().getEsrSystemInfo().getEsrSystemInfo().get(0));
+    vimAuthInfo = authInfo2VimAuthInfo(cloudRegion.getEsrSystemInfoList().getEsrSystemInfo().get(0));
     vimRegisterInfo.setVimAuthInfo(vimAuthInfo);
     vimRegisterInfo.setCloudExtraInfo(cloudRegion.getCloudExtraInfo());
     vimRegisterInfo.setCloudOwner(cloudRegion.getCloudOwner());

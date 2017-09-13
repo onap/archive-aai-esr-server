@@ -25,7 +25,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 
-import org.onap.aai.esr.entity.aai.AuthInfo;
 import org.onap.aai.esr.entity.aai.EsrSystemInfo;
 import org.onap.aai.esr.entity.aai.EsrSystemInfoList;
 
@@ -57,21 +56,17 @@ public class ExtsysUtil {
     return sdf.format(new Date());
   }
   
-  public static EsrSystemInfoList getEsrSystemInfoListFromAuthInfo(AuthInfo authInfo) {
+  public static EsrSystemInfoList getEsrSystemInfoListFromAuthInfo(EsrSystemInfo esrSystemInfoObj) {
     EsrSystemInfoList esrSystemInfoList = new EsrSystemInfoList();
-    EsrSystemInfo esrSystemInfo = new EsrSystemInfo();
-    ArrayList<AuthInfo> authInfos = new ArrayList<AuthInfo>();
-    authInfos.add(authInfo);
-    esrSystemInfo.setEsrSystemInfo(authInfos);
+    ArrayList<EsrSystemInfo> esrSystemInfo = new ArrayList<EsrSystemInfo>();
+    esrSystemInfo.add(esrSystemInfoObj);
     esrSystemInfoList.setEsrSystemInfo(esrSystemInfo);
     return esrSystemInfoList;
   }
   
-  public static EsrSystemInfoList getEsrSystemInfoListFromAuthInfoList(ArrayList<AuthInfo> authInfos) {
+  public static EsrSystemInfoList getEsrSystemInfoListFromAuthInfoList(ArrayList<EsrSystemInfo> esrSystemInfo) {
     EsrSystemInfoList esrSystemInfoList = new EsrSystemInfoList();
-    EsrSystemInfo esrSystemInfo = new EsrSystemInfo();
-    esrSystemInfo.setEsrSystemInfo(authInfos);
-    esrSystemInfoList.setEsrSystemInfo(esrSystemInfo);
+    esrSystemInfoList.setEsrSystemInfo(esrSystemInfo);;
     return esrSystemInfoList;
   }
 }

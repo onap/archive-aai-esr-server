@@ -23,7 +23,7 @@ echo ### Starting esr-service
 set main_path=%RUNHOME%..\
 cd /d %main_path%
 set JAVA="%JAVA_HOME%\bin\java.exe"
-set port=8312
+set port=9500
 set jvm_opts=-Xms50m -Xmx128m
 rem set jvm_opts=%jvm_opts% -Xdebug -Xnoagent -Djava.compiler=NONE -Xrunjdwp:transport=dt_socket,address=%port%,server=y,suspend=n
 set class_path=%main_path%;%main_path%esr-service.jar

@@ -15,15 +15,22 @@
  */
 package org.onap.aai.esr.entity.aai;
 
+import java.util.ArrayList;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
+
 public class EsrSystemInfoList {
 
-  private EsrSystemInfo esrSystemInfo;
+  @SerializedName("esr-system-info")
+  @JsonProperty("esr-system-info")
+  private ArrayList<EsrSystemInfo> esrSystemInfo;
 
-  public EsrSystemInfo getEsrSystemInfo() {
+  public ArrayList<EsrSystemInfo> getEsrSystemInfo() {
     return esrSystemInfo;
   }
 
-  public void setEsrSystemInfo(EsrSystemInfo esrSystemInfo) {
+  public void setEsrSystemInfo(ArrayList<EsrSystemInfo> esrSystemInfo) {
     this.esrSystemInfo = esrSystemInfo;
   }
 }

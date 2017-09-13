@@ -16,7 +16,7 @@
 package org.onap.aai.esr.util;
 
 import org.onap.aai.esr.common.SystemType;
-import org.onap.aai.esr.entity.aai.AuthInfo;
+import org.onap.aai.esr.entity.aai.EsrSystemInfo;
 import org.onap.aai.esr.entity.aai.EsrSystemInfoList;
 import org.onap.aai.esr.entity.aai.EsrVnfm;
 import org.onap.aai.esr.entity.rest.VnfmRegisterInfo;
@@ -26,7 +26,7 @@ public class VnfmManagerUtil {
   public EsrVnfm vnfmRegisterInfo2EsrVnfm(VnfmRegisterInfo vnfmRegisterInfo) {
     EsrVnfm esrVnfm = new EsrVnfm();
     EsrSystemInfoList esrSystemInfo = new EsrSystemInfoList();
-    AuthInfo authInfo = new AuthInfo();
+    EsrSystemInfo authInfo = new EsrSystemInfo();
     esrVnfm.setCertificateUrl(vnfmRegisterInfo.getCertificateUrl());
     esrVnfm.setResouceVersion(vnfmRegisterInfo.getVersion());
     esrVnfm.setVimId(vnfmRegisterInfo.getVimId());
@@ -41,8 +41,8 @@ public class VnfmManagerUtil {
    * @param vnfmRegisterInfo vnfm register informantion from portal
    * @return
    */
-  private AuthInfo getAuthInfoFromVnfmRegisterInfo(VnfmRegisterInfo vnfmRegisterInfo) {
-    AuthInfo authInfo = new AuthInfo();
+  private EsrSystemInfo getAuthInfoFromVnfmRegisterInfo(VnfmRegisterInfo vnfmRegisterInfo) {
+    EsrSystemInfo authInfo = new EsrSystemInfo();
     authInfo.setEsrSystemInfoId(ExtsysUtil.generateId());
     authInfo.setSystemName(vnfmRegisterInfo.getName());
     authInfo.setType(vnfmRegisterInfo.getType());
@@ -57,11 +57,11 @@ public class VnfmManagerUtil {
   
   public VnfmRegisterInfo esrVnfm2VnfmRegisterInfo(EsrVnfm esrVnfm) {
     VnfmRegisterInfo vnfmRegisterInfo = new VnfmRegisterInfo();
-    AuthInfo authInfo = new AuthInfo();
+    EsrSystemInfo authInfo = new EsrSystemInfo();
     vnfmRegisterInfo.setVnfmId(esrVnfm.getVnfmId());
     vnfmRegisterInfo.setCertificateUrl(esrVnfm.getCertificateUrl());
     vnfmRegisterInfo.setVimId(esrVnfm.getVimId());
-    authInfo = esrVnfm.getEsrSystemInfoList().getEsrSystemInfo().getEsrSystemInfo().get(0);
+    authInfo = esrVnfm.getEsrSystemInfoList().getEsrSystemInfo().get(0);
     vnfmRegisterInfo.setName(authInfo.getSystemName());
     vnfmRegisterInfo.setPassword(authInfo.getPassword());
     vnfmRegisterInfo.setType(authInfo.getType());
