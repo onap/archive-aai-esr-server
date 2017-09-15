@@ -39,16 +39,16 @@ public class MsbHelper {
 
     MicroServiceInfo msinfo = new MicroServiceInfo();
 
-    msinfo.setServiceName("animals");
+    msinfo.setServiceName("aai-esr-server");
     msinfo.setVersion("v1");
-    msinfo.setUrl("/api/rpc/v1");
+    msinfo.setUrl("/api/aai-esr-server/v1");
     msinfo.setProtocol("REST");
     msinfo.setVisualRange("0|1");
     
     Set<Node> nodes = new HashSet<>();
     Node node1 = new Node();
     node1.setIp(InetAddress.getLocalHost().getHostAddress());
-    node1.setPort("9090");
+    node1.setPort("9518");
     nodes.add(node1);
     msinfo.setNodes(nodes);
     msbClient.registerMicroServiceInfo(msinfo, false);
