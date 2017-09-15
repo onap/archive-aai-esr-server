@@ -48,7 +48,6 @@ public class VnfmManager {
   /**
    * query all vnfm.
    */
-  @Path("")
   @GET
   @ApiOperation(value = "get  all vnfm ")
   @Produces(MediaType.APPLICATION_JSON)
@@ -130,7 +129,6 @@ public class VnfmManager {
    * add  vnfm .
    */
   @POST
-  @Path("")
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces({MediaType.TEXT_PLAIN, MediaType.APPLICATION_JSON})
   @ApiOperation(value = "create a vnfm")

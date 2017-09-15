@@ -17,14 +17,11 @@ package org.onap.aai.esr.externalservice.aai;
 
 import org.glassfish.jersey.client.ClientConfig;
 import org.onap.aai.esr.entity.aai.CloudRegionDetail;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.eclipsesource.jaxrs.consumer.ConsumerFactory;
 
 public class CloudRegionProxy {
 
-  private static final Logger logger = LoggerFactory.getLogger(CloudRegionProxy.class);
   private static ICloudRegion adapterServiceproxy;
 
   private static String transactionId = "9999";

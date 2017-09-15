@@ -15,7 +15,6 @@
  */
 package org.onap.aai.esr.util;
 
-import java.util.ArrayList;
 
 import org.onap.aai.esr.common.SystemStatus;
 import org.onap.aai.esr.common.SystemType;
@@ -31,7 +30,6 @@ public class VimManagerUtil {
   public static CloudRegionDetail vimRegisterInfo2CloudRegion(VimRegisterInfo vimRegisterInfo) {
     CloudRegionDetail cloudRegion = new CloudRegionDetail();
     EsrSystemInfoList esrSystemInfoList = new EsrSystemInfoList();
-    ArrayList<EsrSystemInfo> esrSystemInfo = new ArrayList<EsrSystemInfo>();
     EsrSystemInfo esrSystemInfoObj = new EsrSystemInfo();
     
     cloudRegion.setCloudOwner(vimRegisterInfo.getCloudOwner());

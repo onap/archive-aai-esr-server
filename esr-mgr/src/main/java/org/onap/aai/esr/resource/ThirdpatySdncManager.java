@@ -49,7 +49,6 @@ public class ThirdpatySdncManager {
   /**
    *query all thirdParty sdnc.
    */
-  @Path("")
   @GET
   @ApiOperation(value = "get all thirdParty sdnc ")
   @Produces(MediaType.APPLICATION_JSON)
@@ -131,7 +130,6 @@ public class ThirdpatySdncManager {
    *thirdParty sdnc register.
    */
   @POST
-  @Path("")
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces({MediaType.TEXT_PLAIN, MediaType.APPLICATION_JSON})
   @ApiOperation(value = "register a thirdparty sdnc")

@@ -17,7 +17,6 @@ package org.onap.aai.esr.entity.aai;
 
 import java.io.Serializable;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.gson.annotations.SerializedName;
 
 public class CloudRegionDetail implements Serializable {

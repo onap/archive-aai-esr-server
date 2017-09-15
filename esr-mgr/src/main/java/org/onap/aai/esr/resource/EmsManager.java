@@ -50,7 +50,6 @@ public class EmsManager {
   /**
    * query all ems.
    */
-  @Path("")
   @GET
   @ApiOperation(value = "get  all ems ")
   @Produces(MediaType.APPLICATION_JSON)

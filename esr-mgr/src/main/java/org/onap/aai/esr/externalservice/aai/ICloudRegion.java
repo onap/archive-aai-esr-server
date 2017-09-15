@@ -51,7 +51,6 @@ public interface ICloudRegion {
       @PathParam("cloud_region_id") String cloud_region_id) throws Exception;
   
   @GET
-  @Path("/")
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   public String queryVIMList(@HeaderParam("X-TransactionId") String transactionId,

@@ -18,7 +18,6 @@ package org.onap.aai.esr.resource;
 import com.codahale.metrics.annotation.Timed;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.eclipse.jetty.http.HttpStatus;
@@ -48,7 +47,6 @@ public class VimManager {
   /**
    * query all VIM.
    */
-  @Path("")
   @GET
   @ApiOperation(value = "get  all vim ")
   @Produces(MediaType.APPLICATION_JSON)
@@ -128,7 +126,6 @@ public class VimManager {
    * register vim .
    */
   @POST
-  @Path("")
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces({MediaType.TEXT_PLAIN, MediaType.APPLICATION_JSON})
   @ApiOperation(value = "create a vim")

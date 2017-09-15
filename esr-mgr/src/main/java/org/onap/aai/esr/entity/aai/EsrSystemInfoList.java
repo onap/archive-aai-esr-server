@@ -17,7 +17,6 @@ package org.onap.aai.esr.entity.aai;
 
 import java.util.ArrayList;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.gson.annotations.SerializedName;
 
 public class EsrSystemInfoList {
