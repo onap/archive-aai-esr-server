@@ -85,6 +85,7 @@ public class VimManagerUtil {
     vimRegisterInfo.setCloudType(cloudRegion.getCloudType());
     vimRegisterInfo.setCloudZone(cloudRegion.getCloudZone());
     vimRegisterInfo.setComplexName(cloudRegion.getComplexName());
+    vimRegisterInfo.setCloudRegionVersion(cloudRegion.getCloudRegionVersion());
     vimRegisterInfo.setOwnerDefinedType(cloudRegion.getOwnerDefinedType());
     return vimRegisterInfo;
   }

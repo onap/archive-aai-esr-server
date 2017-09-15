@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import javax.ws.rs.core.Response;
 
 import org.onap.aai.esr.entity.rest.EmsRegisterInfo;
-import org.onap.aai.esr.entity.rest.RegisterResponse;
+import org.onap.aai.esr.entity.rest.CommonRegisterResponse;
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
 
@@ -41,7 +41,7 @@ public class EmsManagerWrapper {
   
   public Response registerEms(EmsRegisterInfo ems) {
     //TODO
-    RegisterResponse result = null;
+    CommonRegisterResponse result = null;
     return Response.ok(result).build();
   }
 

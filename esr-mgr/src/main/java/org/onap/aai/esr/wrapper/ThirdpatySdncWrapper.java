@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 import javax.ws.rs.core.Response;
 
-import org.onap.aai.esr.entity.rest.RegisterResponse;
+import org.onap.aai.esr.entity.rest.CommonRegisterResponse;
 import org.onap.aai.esr.entity.rest.ThirdpartySdncRegisterInfo;
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
@@ -42,7 +42,7 @@ public class ThirdpatySdncWrapper {
   
   public Response registerThirdpartySdnc(ThirdpartySdncRegisterInfo thirdpartySdnc) {
     //TODO
-    RegisterResponse result = null;
+    CommonRegisterResponse result = null;
     return Response.ok(result).build();
   }
 

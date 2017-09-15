@@ -19,10 +19,12 @@ template: Hello, %s!
 #defaultName: ${DW_DEFAULT_NAME:-Stranger}
 # the micro service ip
 serviceIp: 
-msbIp: 127.0.0.1
-msbPort: 10081
-msbServerAddr: http://127.0.0.1:80
-registByHand: false
+msbDiscoveryIp: 127.0.0.1
+msbDiscoveryPort: 10081
+msbServerAddr: http://127.0.0.1:10081
+cloudInfrastructureAddr: http://127.0.0.1/api/aai-cloudInfrastructure/v11
+externalSystemAddr: http://127.0.0.1/api/aai-externalSystem/v11
+registByHand: true
 
 # use the simple server factory if you only want to run on a single port
 #server:

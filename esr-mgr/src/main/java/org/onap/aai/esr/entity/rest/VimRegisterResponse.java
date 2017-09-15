@@ -13,20 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.onap.aai.esr.externalservice.aai;
+package org.onap.aai.esr.entity.rest;
 
-//import org.glassfish.jersey.client.ClientConfig;
-//
-//import com.eclipsesource.jaxrs.consumer.ConsumerFactory;
+public class VimRegisterResponse {
+  
+  private String cloudOwner;
+  
+  private String cloudRegionId;
 
-public class AaiServiceConsumer {
-//  private static IEsrVimRest aaiAdapterProxy;
-//
-//  static {
-//      ClientConfig config = new ClientConfig();
-//      aaiAdapterProxy =
-//              ConsumerFactory.createConsumer(AaiAdapterConfig.getAaiAdapterAddr(),
-//                      config, IEsrVimRest.class);
-//  }
+  public String getCloudOwner() {
+    return cloudOwner;
+  }
+
+  public void setCloudOwner(String cloudOwner) {
+    this.cloudOwner = cloudOwner;
+  }
+
+  public String getCloudRegionId() {
+    return cloudRegionId;
+  }
+
+  public void setCloudRegionId(String cloudRegionId) {
+    this.cloudRegionId = cloudRegionId;
+  }
 
 }

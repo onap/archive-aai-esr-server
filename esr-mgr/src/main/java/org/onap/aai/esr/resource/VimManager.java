@@ -67,7 +67,7 @@ public class VimManager {
   /**
    * query vim by id.
    */
-  @Path("/{vimId}")
+  @Path("/{cloudOwner}/{cloudRegionId}")
   @GET
   @ApiOperation(value = "get vim by id")
   @Produces(MediaType.APPLICATION_JSON)
@@ -79,9 +79,9 @@ public class VimManager {
       @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
           response = String.class)})
   @Timed
-  public Response queryVimById(@ApiParam(value = "vim id") @PathParam("vimId") String vimId) {
-    LOGGER.info("start query vim by id." + vimId);
-    return VimManagerWrapper.getInstance().queryVimById(vimId);
+  public Response queryVimById(@PathParam("cloudOwner") String cloudOwner, @PathParam("cloudRegionId") String cloudRegionId) {
+    LOGGER.info("start query vim by cloud owner and cloud region id." + cloudOwner +"," + cloudRegionId);
+    return VimManagerWrapper.getInstance().queryVimById(cloudOwner, cloudRegionId);
   }
   
   /**
@@ -98,7 +98,7 @@ public class VimManager {
       @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
           response = String.class)})
   @Timed
-  public Response delvim(@ApiParam(value = "vim id") @PathParam("vimId") String vimId) {
+  public Response delvim(@PathParam("vimId") String vimId) {
     LOGGER.info("start delete vim .id:" + vimId);
     return VimManagerWrapper.getInstance().delVim(vimId);
   }
@@ -119,8 +119,7 @@ public class VimManager {
       @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
           response = String.class)})
   @Timed
-  public Response updatevims(@ApiParam(value = "vim", required = true) VimRegisterInfo vim,
-      @ApiParam(value = "vim id", required = true) @PathParam("vimId") String vimId) {
+  public Response updatevims(VimRegisterInfo vim, @PathParam("vimId") String vimId) {
     LOGGER.info("start update vim .id:" + vimId + " info:" + ExtsysUtil.objectToString(vim));
     return VimManagerWrapper.getInstance().updateVim(vim);
   }
@@ -141,7 +140,7 @@ public class VimManager {
       @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
           response = String.class)})
   @Timed
-  public Response registerVims(@ApiParam(value = "vim", required = true) VimRegisterInfo vim) {
+  public Response registerVims(VimRegisterInfo vim) {
     LOGGER.info("start add vim" + " info:" + ExtsysUtil.objectToString(vim));
     return VimManagerWrapper.getInstance().registerVim(vim);
   }

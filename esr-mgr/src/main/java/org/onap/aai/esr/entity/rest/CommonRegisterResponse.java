@@ -15,7 +15,7 @@
  */
 package org.onap.aai.esr.entity.rest;
 
-public class RegisterResponse {
+public class CommonRegisterResponse {
   
   private String id;
 

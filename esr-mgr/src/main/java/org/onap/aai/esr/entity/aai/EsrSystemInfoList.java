@@ -23,7 +23,6 @@ import com.google.gson.annotations.SerializedName;
 public class EsrSystemInfoList {
 
   @SerializedName("esr-system-info")
-  @JsonProperty("esr-system-info")
   private ArrayList<EsrSystemInfo> esrSystemInfo;
 
   public ArrayList<EsrSystemInfo> getEsrSystemInfo() {

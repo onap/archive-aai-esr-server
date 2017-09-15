@@ -15,89 +15,69 @@
  */
 package org.onap.aai.esr.entity.aai;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.gson.annotations.SerializedName;
 
 public class EsrSystemInfo {
   
   @SerializedName("esr-system-info-id")
-  @JsonProperty("esr-system-info-id")
   private String esrSystemInfoId;
   
   @SerializedName("system-name")
-  @JsonProperty("system-name")
   private String systemName;
   
   @SerializedName("type")
-  @JsonProperty("type")
   private String type;
   
   @SerializedName("vendor")
-  @JsonProperty("vendor")
   private String vendor;
   
   @SerializedName("version")
-  @JsonProperty("version")
   private String version;
   
   @SerializedName("service-url")
-  @JsonProperty("service-url")
   private String serviceUrl;
   
   @SerializedName("user-name")
-  @JsonProperty("user-name")
   private String userName;
   
   @SerializedName("password")
-  @JsonProperty("password")
   private String password;
   
   @SerializedName("system-type")
-  @JsonProperty("system-type")
   private String systemType;
   
   @SerializedName("protocol")
-  @JsonProperty("protocol")
   private String protocol;
   
   @SerializedName("ssl-cassert")
-  @JsonProperty("ssl-cassert")
   private String sslCassert;
   
   @SerializedName("ssl-insecure")
-  @JsonProperty("ssl-insecure")
   private Boolean sslInsecure;
   
   @SerializedName("ip-address")
-  @JsonProperty("ip-address")
   private String ipAddress;
   
   @SerializedName("port")
-  @JsonProperty("port")
   private String port;
   
   @SerializedName("cloud-domain")
-  @JsonProperty("cloud-domain")
   private String cloudDomain;
   
   @SerializedName("default-tenant")
-  @JsonProperty("default-tenant")
   private String defaultTenant;
   
   @SerializedName("passive")
-  @JsonProperty("passive")
   private Boolean passive;
   
   @SerializedName("remote-path")
-  @JsonProperty("remote-path")
   private String remotePath;
   
   @SerializedName("system-status")
-  @JsonProperty("system-status")
   private String systemStatus;
   
-  @JsonProperty("resouce-version")
-  private String resouceVersion;
+  @SerializedName("resource-version")
+  private String resourceVersion;
 
   public String getEsrSystemInfoId() {
     return esrSystemInfoId;
@@ -252,11 +232,11 @@ public class EsrSystemInfo {
   }
 
   public String getResouceVersion() {
-    return resouceVersion;
+    return resourceVersion;
   }
 
   public void setResouceVersion(String resouceVersion) {
-    this.resouceVersion = resouceVersion;
+    this.resourceVersion = resouceVersion;
   }
 
 }

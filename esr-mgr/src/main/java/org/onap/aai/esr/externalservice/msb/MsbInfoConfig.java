@@ -13,27 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.onap.aai.esr.externalservice.aai;
+package org.onap.aai.esr.externalservice.msb;
 
-public class AaiAdapterConfig {
+public class MsbInfoConfig {
+
+  protected static String msbDiscoveryIp;
   
-  protected static String cloudInfrastructureAddr;
-  
-  protected static String externalSystemAddr;
-  
-  public static void setCloudInfrastructureAddr(String address){
-    cloudInfrastructureAddr = address;
-  }
-  
-  public static String getCloudInfrastructureAddr(){
-      return cloudInfrastructureAddr;
+  protected static String msbDiscoveryPort;
+
+  public static String getMsbDiscoveryIp() {
+    return msbDiscoveryIp;
   }
 
-  public static String getExternalSystemAddr() {
-    return externalSystemAddr;
+  public static void setMsbDiscoveryIp(String msbDiscoveryIp) {
+    MsbInfoConfig.msbDiscoveryIp = msbDiscoveryIp;
   }
 
-  public static void setExternalSystemAddr(String externalSystemAddr) {
-    AaiAdapterConfig.externalSystemAddr = externalSystemAddr;
+  public static String getMsbDiscoveryPort() {
+    return msbDiscoveryPort;
+  }
+
+  public static void setMsbDiscoveryPort(String msbDiscoveryPort) {
+    MsbInfoConfig.msbDiscoveryPort = msbDiscoveryPort;
   }
 }

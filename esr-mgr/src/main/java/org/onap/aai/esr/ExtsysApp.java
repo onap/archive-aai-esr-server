@@ -16,7 +16,9 @@
 package org.onap.aai.esr;
 
 
+import org.onap.aai.esr.externalservice.aai.AaiAdapterConfig;
 import org.onap.aai.esr.externalservice.msb.MsbHelper;
+import org.onap.aai.esr.externalservice.msb.MsbInfoConfig;
 import org.onap.aai.esr.resource.EmsManager;
 import org.onap.aai.esr.resource.ThirdpatySdncManager;
 import org.onap.aai.esr.resource.VimManager;
@@ -44,14 +46,18 @@ public class ExtsysApp extends Application<ExtsysAppConfiguration> {
   @Override
   public void run(ExtsysAppConfiguration configuration, Environment environment) {
     LOGGER.info("Start to initialize esr.");
+    AaiAdapterConfig.setCloudInfrastructureAddr(configuration.getCloudInfrastructureAddr());
+    AaiAdapterConfig.setExternalSystemAddr(configuration.getExternalSystemAddr());
+    MsbInfoConfig.setMsbDiscoveryIp(configuration.getMsbDiscoveryIp());
+    MsbInfoConfig.setMsbDiscoveryPort(configuration.getMsbDiscoveryPort());
     environment.jersey().register(new EmsManager());
     environment.jersey().register(new ThirdpatySdncManager());
     environment.jersey().register(new VimManager());
     environment.jersey().register(new VnfmManager());
     
     if (configuration.getRegistByHand().endsWith("true")){
-      String MSB_IP=configuration.getMsbIp();
-      Integer MSB_Port= Integer.valueOf(configuration.getMsbPort());    
+      String MSB_IP=configuration.getMsbDiscoveryIp();
+      Integer MSB_Port= Integer.valueOf(configuration.getMsbDiscoveryPort());
       MSBServiceClient msbClient = new MSBServiceClient(MSB_IP, MSB_Port);
       MsbHelper helper = new MsbHelper(msbClient);
       try {

@@ -15,26 +15,43 @@
  */
 package org.onap.aai.esr.entity.aai;
 
-public class CloudRegion {
+import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
+
+public class CloudRegion implements Serializable {
+  
+  public static final long serialVersionUID = 1L;
+
+  @SerializedName("cloud-owner")
   private String cloudOwner;
   
+  @SerializedName("cloud-region-id")
   private String cloudRegionId;
   
+  @SerializedName("cloud-type")
   private String cloudType;
   
+  @SerializedName("cloud-region-version")
   private String cloudRegionVersion;
   
+  @SerializedName("owner-defined-type")
   private String ownerDefinedType;
   
+  @SerializedName("cloud-zone")
   private String cloudZone;
   
+  @SerializedName("complex-name")
   private String complexName;
   
+  @SerializedName("cloud-extra-info")
   private String cloudExtraInfo;
   
+  @SerializedName("resouce-version")
   private String resouceVersion;
   
+  @SerializedName("esr-system-info-list")
   private EsrSystemInfoList esrSystemInfoList;
 
   public String getCloudOwner() {
@@ -101,6 +118,14 @@ public class CloudRegion {
     this.cloudExtraInfo = cloudExtraInfo;
   }
 
+  public String getResouceVersion() {
+    return resouceVersion;
+  }
+
+  public void setResouceVersion(String resouceVersion) {
+    this.resouceVersion = resouceVersion;
+  }
+
   public EsrSystemInfoList getEsrSystemInfoList() {
     return esrSystemInfoList;
   }
@@ -109,11 +134,4 @@ public class CloudRegion {
     this.esrSystemInfoList = esrSystemInfoList;
   }
 
-  public String getResouceVersion() {
-    return resouceVersion;
-  }
-
-  public void setResouceVersion(String resouceVersion) {
-    this.resouceVersion = resouceVersion;
-  }
 }

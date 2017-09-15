@@ -33,16 +33,22 @@ public class ExtsysAppConfiguration extends Configuration {
   private String defaultName = "ONAP-A&AI-ESR";
 
   @NotEmpty
-  private String msbIp;
+  private String msbDiscoveryIp;
   
   @NotEmpty
-  private String msbPort;
+  private String msbDiscoveryPort;
   
   @NotEmpty
   private String registByHand;
   
   @NotEmpty
   private String msbServerAddr;
+  
+  @NotEmpty
+  private String cloudInfrastructureAddr;
+  
+  @NotEmpty
+  private String externalSystemAddr;
   
   @Valid
   private String serviceIp;
@@ -68,13 +74,13 @@ public class ExtsysAppConfiguration extends Configuration {
   }
   
   @JsonProperty
-  public String getMsbIp() {
-    return msbIp;
+  public String getMsbDiscoveryIp() {
+    return msbDiscoveryIp;
   }
   
   @JsonProperty
-  public String setMsbIp() {
-    return msbIp;
+  public String setMsbDiscoveryIp() {
+    return msbDiscoveryIp;
   }
   
   @JsonProperty
@@ -107,12 +113,37 @@ public class ExtsysAppConfiguration extends Configuration {
   }
 
   @JsonProperty
-  public void setMsbPort(String msbPort) {
-    this.msbPort = msbPort;
+  public void setMsbDiscoveryPort(String msbDiscoveryPort) {
+    this.msbDiscoveryPort = msbDiscoveryPort;
   }
   
   @JsonProperty
-  public String getMsbPort() {
-    return msbPort;
+  public String getMsbDiscoveryPort() {
+    return msbDiscoveryPort;
+  }
+
+  @JsonProperty
+  public String getCloudInfrastructureAddr() {
+    return cloudInfrastructureAddr;
+  }
+
+  @JsonProperty
+  public void setCloudInfrastructureAddr(String cloudInfrastructureAddr) {
+    this.cloudInfrastructureAddr = cloudInfrastructureAddr;
+  }
+
+  @JsonProperty
+  public String getExternalSystemAddr() {
+    return externalSystemAddr;
+  }
+
+  @JsonProperty
+  public void setExternalSystemAddr(String externalSystemAddr) {
+    this.externalSystemAddr = externalSystemAddr;
+  }
+
+  @JsonProperty
+  public void setMsbDiscoveryIp(String msbDiscoveryIp) {
+    this.msbDiscoveryIp = msbDiscoveryIp;
   }
 }
