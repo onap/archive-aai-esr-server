@@ -24,7 +24,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.onap.aai.esr.entity.aai.CloudRegion;
+import org.onap.aai.esr.entity.aai.CloudRegionDetail;
 
 
 @Path("/cloud-regions")
@@ -38,7 +38,7 @@ public interface ICloudRegion {
       @HeaderParam("X-FromAppId") String fromApp,
       @HeaderParam("Authorization") String authorization,
       @PathParam("cloud_owner") String cloud_owner,
-      @PathParam("cloud_region_id") String cloud_region_id, CloudRegion cloudRegion) throws Exception;
+      @PathParam("cloud_region_id") String cloud_region_id, CloudRegionDetail cloudRegion) throws Exception;
 
   @GET
   @Path("/cloud-region/{cloud_owner}/{cloud_region_id}?depth=all")
@@ -49,5 +49,13 @@ public interface ICloudRegion {
       @HeaderParam("Authorization") String authorization,
       @PathParam("cloud_owner") String cloud_owner,
       @PathParam("cloud_region_id") String cloud_region_id) throws Exception;
+  
+  @GET
+  @Path("/")
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  public String queryVIMList(@HeaderParam("X-TransactionId") String transactionId,
+      @HeaderParam("X-FromAppId") String fromApp,
+      @HeaderParam("Authorization") String authorization) throws Exception;
 
 }

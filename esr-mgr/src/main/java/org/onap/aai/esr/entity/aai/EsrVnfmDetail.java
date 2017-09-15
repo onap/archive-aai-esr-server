@@ -1,5 +1,5 @@
 /**
- * Copyright 2016-2017 ZTE Corporation.
+ * Copyright 2017 ZTE Corporation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,21 +15,40 @@
  */
 package org.onap.aai.esr.entity.aai;
 
-
-public class EsrEms {
-
-  private String emsId;
+public class EsrVnfmDetail {
+  
+  private String vnfmId;
+  
+  private String vimId;
+  
+  private String certificateUrl;
   
   private String resouceVersion;
   
   private EsrSystemInfoList esrSystemInfoList;
 
-  public String getEmsId() {
-    return emsId;
+  public String getVnfmId() {
+    return vnfmId;
   }
 
-  public void setEmsId(String emsId) {
-    this.emsId = emsId;
+  public void setVnfmId(String vnfmId) {
+    this.vnfmId = vnfmId;
+  }
+
+  public String getVimId() {
+    return vimId;
+  }
+
+  public void setVimId(String vimId) {
+    this.vimId = vimId;
+  }
+
+  public String getCertificateUrl() {
+    return certificateUrl;
+  }
+
+  public void setCertificateUrl(String certificateUrl) {
+    this.certificateUrl = certificateUrl;
   }
 
   public EsrSystemInfoList getEsrSystemInfoList() {
@@ -47,4 +66,5 @@ public class EsrEms {
   public void setResouceVersion(String resouceVersion) {
     this.resouceVersion = resouceVersion;
   }
+
 }

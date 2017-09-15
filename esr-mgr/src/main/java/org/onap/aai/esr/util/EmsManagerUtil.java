@@ -19,15 +19,15 @@ import java.util.ArrayList;
 
 import org.onap.aai.esr.common.SystemType;
 import org.onap.aai.esr.entity.aai.EsrSystemInfo;
-import org.onap.aai.esr.entity.aai.EsrEms;
+import org.onap.aai.esr.entity.aai.EsrEmsDetail;
 import org.onap.aai.esr.entity.rest.AlarmAddr;
 import org.onap.aai.esr.entity.rest.EmsRegisterInfo;
 import org.onap.aai.esr.entity.rest.FtpAddr;
 
 public class EmsManagerUtil {
   
-  public static EsrEms emsRegisterInfo2EsrEms(EmsRegisterInfo emsRegisterInfo) {
-    EsrEms esrEms = new EsrEms();
+  public static EsrEmsDetail emsRegisterInfo2EsrEms(EmsRegisterInfo emsRegisterInfo) {
+    EsrEmsDetail esrEms = new EsrEmsDetail();
     esrEms.setEmsId(ExtsysUtil.generateId());
     ArrayList<EsrSystemInfo> authInfos = new ArrayList<EsrSystemInfo>();
     authInfos = getAuthInfosFromRegisterData(emsRegisterInfo);
@@ -87,7 +87,7 @@ public class EmsManagerUtil {
     return authInfo;
   }
   
-  public static EmsRegisterInfo EsrEms2EmsRegisterInfo(EsrEms esrEms) {
+  public static EmsRegisterInfo EsrEms2EmsRegisterInfo(EsrEmsDetail esrEms) {
     EmsRegisterInfo emsRegisterInfo = new EmsRegisterInfo();
     ArrayList<EsrSystemInfo> esrSystemInfo = new ArrayList<EsrSystemInfo>();
     EsrSystemInfo authInfo = new EsrSystemInfo();

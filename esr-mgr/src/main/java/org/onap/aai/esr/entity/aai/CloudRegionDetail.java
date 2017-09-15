@@ -17,9 +17,10 @@ package org.onap.aai.esr.entity.aai;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.gson.annotations.SerializedName;
 
-public class CloudRegion implements Serializable {
+public class CloudRegionDetail implements Serializable {
   
   public static final long serialVersionUID = 1L;
 
@@ -49,6 +50,9 @@ public class CloudRegion implements Serializable {
   
   @SerializedName("resouce-version")
   private String resouceVersion;
+  
+  @SerializedName("esr-system-info-list")
+  private EsrSystemInfoList esrSystemInfoList;
 
   public String getCloudOwner() {
     return cloudOwner;
@@ -122,8 +126,12 @@ public class CloudRegion implements Serializable {
     this.resouceVersion = resouceVersion;
   }
 
-  public static long getSerialversionuid() {
-    return serialVersionUID;
+  public EsrSystemInfoList getEsrSystemInfoList() {
+    return esrSystemInfoList;
+  }
+
+  public void setEsrSystemInfoList(EsrSystemInfoList esrSystemInfoList) {
+    this.esrSystemInfoList = esrSystemInfoList;
   }
 
 }

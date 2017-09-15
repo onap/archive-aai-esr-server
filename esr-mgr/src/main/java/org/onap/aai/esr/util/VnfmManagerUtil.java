@@ -18,13 +18,13 @@ package org.onap.aai.esr.util;
 import org.onap.aai.esr.common.SystemType;
 import org.onap.aai.esr.entity.aai.EsrSystemInfo;
 import org.onap.aai.esr.entity.aai.EsrSystemInfoList;
-import org.onap.aai.esr.entity.aai.EsrVnfm;
+import org.onap.aai.esr.entity.aai.EsrVnfmDetail;
 import org.onap.aai.esr.entity.rest.VnfmRegisterInfo;
 
 public class VnfmManagerUtil {
   
-  public EsrVnfm vnfmRegisterInfo2EsrVnfm(VnfmRegisterInfo vnfmRegisterInfo) {
-    EsrVnfm esrVnfm = new EsrVnfm();
+  public EsrVnfmDetail vnfmRegisterInfo2EsrVnfm(VnfmRegisterInfo vnfmRegisterInfo) {
+    EsrVnfmDetail esrVnfm = new EsrVnfmDetail();
     EsrSystemInfoList esrSystemInfo = new EsrSystemInfoList();
     EsrSystemInfo authInfo = new EsrSystemInfo();
     esrVnfm.setCertificateUrl(vnfmRegisterInfo.getCertificateUrl());
@@ -55,7 +55,7 @@ public class VnfmManagerUtil {
     return authInfo;
   }
   
-  public VnfmRegisterInfo esrVnfm2VnfmRegisterInfo(EsrVnfm esrVnfm) {
+  public VnfmRegisterInfo esrVnfm2VnfmRegisterInfo(EsrVnfmDetail esrVnfm) {
     VnfmRegisterInfo vnfmRegisterInfo = new VnfmRegisterInfo();
     EsrSystemInfo authInfo = new EsrSystemInfo();
     vnfmRegisterInfo.setVnfmId(esrVnfm.getVnfmId());

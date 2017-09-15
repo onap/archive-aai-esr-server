@@ -61,7 +61,7 @@ public class VimManager {
           response = String.class)})
   @Timed
   public Response queryVimList() {
-    return VimManagerWrapper.getInstance().queryVimList();
+    return VimManagerWrapper.getInstance().queryVimListDetails();
   }
 
   /**

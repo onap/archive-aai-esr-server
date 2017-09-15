@@ -15,7 +15,7 @@
  */
 package org.onap.aai.esr.entity.aai;
 
-public class EsrThirdpartySdnc {
+public class EsrThirdpartySdncDetail {
 
   private String thirdpartySdncId;
   

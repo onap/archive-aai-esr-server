@@ -20,6 +20,8 @@ import java.util.ArrayList;
 import javax.ws.rs.core.Response;
 
 import org.onap.aai.esr.entity.aai.CloudRegion;
+import org.onap.aai.esr.entity.aai.CloudRegionDetail;
+import org.onap.aai.esr.entity.aai.CloudRegionList;
 import org.onap.aai.esr.entity.rest.VimRegisterInfo;
 import org.onap.aai.esr.entity.rest.VimRegisterResponse;
 import org.onap.aai.esr.externalservice.aai.CloudRegionProxy;
@@ -50,7 +52,7 @@ public class VimManagerWrapper {
   
   public Response registerVim(VimRegisterInfo vimRegisterInfo) {
     LOG.info("Start register VIM, input VIM info is: " + ExtsysUtil.objectToString(vimRegisterInfo));
-    CloudRegion cloudRegion = new CloudRegion();
+    CloudRegionDetail cloudRegion = new CloudRegionDetail();
     VimRegisterResponse result = new VimRegisterResponse();
     cloudRegion = VimManagerUtil.vimRegisterInfo2CloudRegion(vimRegisterInfo);
     String cloud_owner = vimRegisterInfo.getCloudOwner();
@@ -72,26 +74,61 @@ public class VimManagerWrapper {
     return Response.ok().build();
   }
   
-  public Response queryVimList() {
-    //TODO
-    ArrayList<VimRegisterInfo> vimList = new ArrayList<VimRegisterInfo>();
-    return Response.ok(vimList).build();
+  public Response queryVimListDetails() {
+    ArrayList<VimRegisterInfo> vimRegisterInfos = new ArrayList<VimRegisterInfo>();
+    CloudRegionList cloudRegionList = new CloudRegionList();
+    try {
+      String aaiVimList = CloudRegionProxy.qureyVimList();
+      cloudRegionList = new Gson().fromJson(aaiVimList, CloudRegionList.class);
+      vimRegisterInfos = getVimDetailList(cloudRegionList);
+      return Response.ok(vimRegisterInfos).build();
+    } catch (Exception error) {
+      LOG.error("Query vim list details failed !" + error.getMessage());
+      return Response.serverError().build();
+    }
+    
   }
   
   public Response queryVimById(String cloudOwner, String cloudRegionId) {
     VimRegisterInfo vim = new VimRegisterInfo();
-    CloudRegion cloudRegion = new CloudRegion();
+    CloudRegionDetail cloudRegionDetail = new CloudRegionDetail();
     try {
       String cloudRegionstr = CloudRegionProxy.queryVimDetail(cloudOwner, cloudRegionId);
       LOG.info("Response from AAI by query VIM: " + cloudRegionstr);
-      cloudRegion = new Gson().fromJson(cloudRegionstr, CloudRegion.class);
-      vim = VimManagerUtil.cloudRegion2VimRegisterInfo(cloudRegion);
+      cloudRegionDetail = new Gson().fromJson(cloudRegionstr, CloudRegionDetail.class);
+      vim = VimManagerUtil.cloudRegion2VimRegisterInfo(cloudRegionDetail);
       return Response.ok(vim).build();
     } catch (Exception e) {
       e.printStackTrace();
       return Response.serverError().build();
     }
     
+  }
+  
+  private ArrayList<VimRegisterInfo> getVimDetailList(CloudRegionList cloudRegionList) {
+    ArrayList<VimRegisterInfo> vimRegisterInfos = new ArrayList<VimRegisterInfo>();
+    VimRegisterInfo vimRegisterInfo = new VimRegisterInfo();
+    int cloudRegionNum = cloudRegionList.getCloudRegion().size();
+    for (int i=0; i<cloudRegionNum; i++) {
+      String cloudOwner = cloudRegionList.getCloudRegion().get(i).getCloudOwner();
+      String cloudRegionId = cloudRegionList.getCloudRegion().get(i).getCloudRegionId();
+      vimRegisterInfo = getVimDetail(cloudOwner, cloudRegionId);
+      vimRegisterInfos.add(vimRegisterInfo);
+    }
+    return vimRegisterInfos;
+  }
+  
+  private VimRegisterInfo getVimDetail(String cloudOwner, String cloudRegionId) {
+    CloudRegionDetail cloudRegionDetail = new CloudRegionDetail();
+    VimRegisterInfo registeredVimInfo = new VimRegisterInfo();
+    try {
+      String cloudRegionstr = CloudRegionProxy.queryVimDetail(cloudOwner, cloudRegionId);
+      cloudRegionDetail = new Gson().fromJson(cloudRegionstr, CloudRegionDetail.class);
+      registeredVimInfo = VimManagerUtil.cloudRegion2VimRegisterInfo(cloudRegionDetail);
+    } catch (Exception error) {
+      LOG.error("query VIM detail failed ! cloud-owner = " + cloudOwner +", cloud-region-id = "+ cloudRegionId + error.getMessage());
+    }
+    return registeredVimInfo;
   }
   
   public Response delVim(String vimId) {

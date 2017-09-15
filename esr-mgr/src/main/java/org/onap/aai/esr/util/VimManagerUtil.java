@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import org.onap.aai.esr.common.SystemStatus;
 import org.onap.aai.esr.common.SystemType;
 import org.onap.aai.esr.entity.aai.EsrSystemInfo;
-import org.onap.aai.esr.entity.aai.CloudRegion;
+import org.onap.aai.esr.entity.aai.CloudRegionDetail;
 import org.onap.aai.esr.entity.aai.EsrSystemInfoList;
 import org.onap.aai.esr.entity.rest.VimAuthInfo;
 import org.onap.aai.esr.entity.rest.VimRegisterInfo;
@@ -28,8 +28,8 @@ import org.onap.aai.esr.entity.rest.VimRegisterInfo;
 
 public class VimManagerUtil {
   
-  public static CloudRegion vimRegisterInfo2CloudRegion(VimRegisterInfo vimRegisterInfo) {
-    CloudRegion cloudRegion = new CloudRegion();
+  public static CloudRegionDetail vimRegisterInfo2CloudRegion(VimRegisterInfo vimRegisterInfo) {
+    CloudRegionDetail cloudRegion = new CloudRegionDetail();
     EsrSystemInfoList esrSystemInfoList = new EsrSystemInfoList();
     ArrayList<EsrSystemInfo> esrSystemInfo = new ArrayList<EsrSystemInfo>();
     EsrSystemInfo esrSystemInfoObj = new EsrSystemInfo();
@@ -74,7 +74,7 @@ public class VimManagerUtil {
     return vimAuthInfo;
   }
   
-  public static VimRegisterInfo cloudRegion2VimRegisterInfo(CloudRegion cloudRegion) {
+  public static VimRegisterInfo cloudRegion2VimRegisterInfo(CloudRegionDetail cloudRegion) {
     VimRegisterInfo vimRegisterInfo = new VimRegisterInfo();
     VimAuthInfo vimAuthInfo = new VimAuthInfo();
     vimAuthInfo = authInfo2VimAuthInfo(cloudRegion.getEsrSystemInfoList().getEsrSystemInfo().get(0));
