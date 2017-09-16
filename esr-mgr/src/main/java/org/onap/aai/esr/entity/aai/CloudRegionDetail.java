@@ -47,8 +47,8 @@ public class CloudRegionDetail implements Serializable {
   @SerializedName("cloud-extra-info")
   private String cloudExtraInfo;
   
-  @SerializedName("resouce-version")
-  private String resouceVersion;
+  @SerializedName("resource-version")
+  private String resourceVersion;
   
   @SerializedName("esr-system-info-list")
   private EsrSystemInfoList esrSystemInfoList;
@@ -117,12 +117,12 @@ public class CloudRegionDetail implements Serializable {
     this.cloudExtraInfo = cloudExtraInfo;
   }
 
-  public String getResouceVersion() {
-    return resouceVersion;
+  public String getResourceVersion() {
+    return resourceVersion;
   }
 
-  public void setResouceVersion(String resouceVersion) {
-    this.resouceVersion = resouceVersion;
+  public void setResourceVersion(String resourceVersion) {
+    this.resourceVersion = resourceVersion;
   }
 
   public EsrSystemInfoList getEsrSystemInfoList() {

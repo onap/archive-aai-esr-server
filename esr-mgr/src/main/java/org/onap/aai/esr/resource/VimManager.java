@@ -85,7 +85,7 @@ public class VimManager {
   /**
    * delete vim by id.
    */
-  @Path("/{vimId}")
+  @Path("/{cloudOwner}/{cloudRegionId}")
   @DELETE
   @ApiOperation(value = "delete a vim")
   @ApiResponses(value = {
@@ -96,16 +96,16 @@ public class VimManager {
       @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
           response = String.class)})
   @Timed
-  public Response delvim(@PathParam("vimId") String vimId) {
-    LOGGER.info("start delete vim .id:" + vimId);
-    return VimManagerWrapper.getInstance().delVim(vimId);
+  public Response delvim(@PathParam("cloudOwner") String cloudOwner,@PathParam("cloudRegionId") String cloudRegionId) {
+    LOGGER.info("start delete cloud-owner :" + cloudOwner +", cloud-region-id: " + cloudRegionId);
+    return VimManagerWrapper.getInstance().delVim(cloudOwner, cloudRegionId);
   }
   
   /**
    * update vim by id.
    */
   @PUT
-  @Path("/{vimId}")
+  @Path("/{cloudOwner}/{cloudRegionId}")
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   @ApiOperation(value = "update a vim")
@@ -117,9 +117,9 @@ public class VimManager {
       @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
           response = String.class)})
   @Timed
-  public Response updatevims(VimRegisterInfo vim, @PathParam("vimId") String vimId) {
-    LOGGER.info("start update vim .id:" + vimId + " info:" + ExtsysUtil.objectToString(vim));
-    return VimManagerWrapper.getInstance().updateVim(vim);
+  public Response updatevims(@PathParam("cloudOwner") String cloudOwner, @PathParam("cloudRegionId") String cloudRegionId, VimRegisterInfo vim) {
+    LOGGER.info("start update vim info:" + ExtsysUtil.objectToString(vim));
+    return VimManagerWrapper.getInstance().updateVim(cloudOwner, cloudRegionId, vim);
   }
   
   /**

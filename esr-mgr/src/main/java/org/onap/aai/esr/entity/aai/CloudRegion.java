@@ -47,8 +47,8 @@ public class CloudRegion implements Serializable {
   @SerializedName("cloud-extra-info")
   private String cloudExtraInfo;
   
-  @SerializedName("resouce-version")
-  private String resouceVersion;
+  @SerializedName("resource-version")
+  private String resourceVersion;
 
   public String getCloudOwner() {
     return cloudOwner;
@@ -114,12 +114,12 @@ public class CloudRegion implements Serializable {
     this.cloudExtraInfo = cloudExtraInfo;
   }
 
-  public String getResouceVersion() {
-    return resouceVersion;
+  public String getResourceVersion() {
+    return resourceVersion;
   }
 
-  public void setResouceVersion(String resouceVersion) {
-    this.resouceVersion = resouceVersion;
+  public void setResourceVersion(String resourceVersion) {
+    this.resourceVersion = resourceVersion;
   }
 
   public static long getSerialversionuid() {

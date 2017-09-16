@@ -19,6 +19,7 @@ import java.util.ArrayList;
 
 import javax.ws.rs.core.Response;
 
+import org.onap.aai.esr.entity.aai.EsrSystemInfo;
 import org.onap.aai.esr.entity.aai.EsrVnfmDetail;
 import org.onap.aai.esr.entity.aai.EsrVnfmList;
 import org.onap.aai.esr.entity.rest.CommonRegisterResponse;
@@ -63,8 +64,29 @@ public class VnfmManagerWrapper {
   }
 
   public Response updateVnfm(VnfmRegisterInfo vnfm, String vnfmId) {
-    // TODO
-    return Response.ok().build();
+    CommonRegisterResponse result = new CommonRegisterResponse();
+    EsrVnfmDetail esrVnfmDetail = new EsrVnfmDetail();
+    EsrVnfmDetail originalEsrVnfmDetail = new EsrVnfmDetail();
+    EsrSystemInfo originalEsrSystemInfo = new EsrSystemInfo();
+    originalEsrVnfmDetail = queryEsrVnfmDetail(vnfmId);
+    esrVnfmDetail = VnfmManagerUtil.vnfmRegisterInfo2EsrVnfm(vnfm);
+    String resourceVersion = getResourceVersion(vnfmId);
+    esrVnfmDetail.setResourceVersion(resourceVersion);
+    esrVnfmDetail.setVnfmId(vnfmId);
+    originalEsrSystemInfo = originalEsrVnfmDetail.getEsrSystemInfoList().getEsrSystemInfo().get(0);
+    esrVnfmDetail.getEsrSystemInfoList().getEsrSystemInfo().get(0)
+        .setEsrSystemInfoId(originalEsrSystemInfo.getEsrSystemInfoId());
+    esrVnfmDetail.getEsrSystemInfoList().getEsrSystemInfo().get(0)
+        .setResouceVersion(originalEsrSystemInfo.getResouceVersion());
+    try {
+      ExternalSystemProxy.registerVnfm(vnfmId, esrVnfmDetail);
+      result.setId(vnfmId);
+      return Response.ok(result).build();
+    } catch (Exception e) {
+      e.printStackTrace();
+      LOG.error("Update VNFM failed !" + e.getMessage());
+      return Response.serverError().build();
+    }
   }
 
   public Response queryVnfmList() {
@@ -95,17 +117,8 @@ public class VnfmManagerWrapper {
   }
 
   public Response delVnfm(String vnfmId) {
-    EsrVnfmDetail esrVnfmDetail = new EsrVnfmDetail();
-    try {
-      String esrVnfmstr = ExternalSystemProxy.queryVnfmDetail(vnfmId);
-      LOG.info("Response from AAI by query VNFM: " + esrVnfmstr);
-      esrVnfmDetail = new Gson().fromJson(esrVnfmstr, EsrVnfmDetail.class);
-    } catch (Exception e) {
-      e.printStackTrace();
-      LOG.error("Query VNFM detail failed! VNFM ID: " + vnfmId, e.getMessage());
-    }
-    if (esrVnfmDetail != null && esrVnfmDetail.getResourceVersion() != null) {
-      String resourceVersion = esrVnfmDetail.getResourceVersion();
+    String resourceVersion = getResourceVersion(vnfmId);
+    if (resourceVersion != null) {
       try {
         ExternalSystemProxy.deleteVnfm(vnfmId, resourceVersion);
         return Response.ok().build();
@@ -148,5 +161,28 @@ public class VnfmManagerWrapper {
       }
     }
     return vnfmInfoList;
+  }
+  
+  private String getResourceVersion (String vnfmId) {
+    EsrVnfmDetail esrVnfmDetail = new EsrVnfmDetail();
+    String resourceVersion = null;
+    esrVnfmDetail = queryEsrVnfmDetail(vnfmId);
+    if (esrVnfmDetail != null && esrVnfmDetail.getResourceVersion() != null) {
+      resourceVersion = esrVnfmDetail.getResourceVersion();
+    }
+    return resourceVersion;
+  }
+  
+  private EsrVnfmDetail queryEsrVnfmDetail (String vnfmId) {
+    EsrVnfmDetail esrVnfmDetail = new EsrVnfmDetail();
+    try {
+      String esrVnfmstr = ExternalSystemProxy.queryVnfmDetail(vnfmId);
+      LOG.info("Response from AAI by query VNFM: " + esrVnfmstr);
+      esrVnfmDetail = new Gson().fromJson(esrVnfmstr, EsrVnfmDetail.class);
+    } catch (Exception e) {
+      e.printStackTrace();
+      LOG.error("Query VNFM detail failed! VNFM ID: " + vnfmId, e.getMessage());
+    }
+    return esrVnfmDetail;
   }
 }

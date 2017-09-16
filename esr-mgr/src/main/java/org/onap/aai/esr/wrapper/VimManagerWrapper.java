@@ -21,6 +21,7 @@ import javax.ws.rs.core.Response;
 
 import org.onap.aai.esr.entity.aai.CloudRegionDetail;
 import org.onap.aai.esr.entity.aai.CloudRegionList;
+import org.onap.aai.esr.entity.aai.EsrSystemInfo;
 import org.onap.aai.esr.entity.rest.VimRegisterInfo;
 import org.onap.aai.esr.entity.rest.VimRegisterResponse;
 import org.onap.aai.esr.externalservice.aai.CloudRegionProxy;
@@ -70,16 +71,12 @@ public class VimManagerWrapper {
     }
   }
 
-  public Response updateVim(VimRegisterInfo vimRegisterInfo) {
+  public Response updateVim(String cloudOwner, String cloudRegionId,VimRegisterInfo vimRegisterInfo) {
     LOG.info("Start update VIM, input VIM info is: " + ExtsysUtil.objectToString(vimRegisterInfo));
-    String cloudOwner = vimRegisterInfo.getCloudOwner();
-    String cloudRegionId = vimRegisterInfo.getCloudRegionId();
-    String resourceVersion = getResourceVersion(cloudOwner, cloudRegionId);
     CloudRegionDetail cloudRegionDetail = new CloudRegionDetail();
     VimRegisterResponse result = new VimRegisterResponse();
-    cloudRegionDetail = VimManagerUtil.vimRegisterInfo2CloudRegion(vimRegisterInfo);
-    cloudRegionDetail.setResouceVersion(resourceVersion);
 
+    cloudRegionDetail = getVimUpdateInfo(vimRegisterInfo);
     try {
       CloudRegionProxy.registerVim(cloudOwner, cloudRegionId, cloudRegionDetail);
       result.setCloudOwner(cloudOwner);
@@ -152,12 +149,12 @@ public class VimManagerWrapper {
     return registeredVimInfo;
   }
 
-  private String getResourceVersion(String cloudOwner, String cloudRegionId) {
+  private CloudRegionDetail getOriginalCloudRegion(String cloudOwner, String cloudRegionId) {
     CloudRegionDetail cloudRegionDetail = new CloudRegionDetail();
     try {
       String cloudRegionstr = CloudRegionProxy.queryVimDetail(cloudOwner, cloudRegionId);
       cloudRegionDetail = new Gson().fromJson(cloudRegionstr, CloudRegionDetail.class);
-      return cloudRegionDetail.getResouceVersion();
+      return cloudRegionDetail;
     } catch (Exception error) {
       error.printStackTrace();
       LOG.error("query VIM detail failed ! cloud-owner = " + cloudOwner + ", cloud-region-id = "
@@ -165,8 +162,26 @@ public class VimManagerWrapper {
       return null;
     }
   }
+  
+  private CloudRegionDetail getVimUpdateInfo(VimRegisterInfo vimRegisterInfo) {
+    CloudRegionDetail cloudRegionDetail = new CloudRegionDetail();
+    CloudRegionDetail originalCloudRegionDetail = new CloudRegionDetail();
+    EsrSystemInfo originalSystemInfo = new EsrSystemInfo();
+    String cloudOwner = vimRegisterInfo.getCloudOwner();
+    String cloudRegionId = vimRegisterInfo.getCloudRegionId();
+    originalCloudRegionDetail = getOriginalCloudRegion(cloudOwner, cloudRegionId);
+    String resourceVersion = originalCloudRegionDetail.getResourceVersion();
+    cloudRegionDetail = VimManagerUtil.vimRegisterInfo2CloudRegion(vimRegisterInfo);
+    if(originalCloudRegionDetail != null && resourceVersion != null) {
+      cloudRegionDetail.setResourceVersion(resourceVersion);
+      originalSystemInfo = originalCloudRegionDetail.getEsrSystemInfoList().getEsrSystemInfo().get(0);
+      cloudRegionDetail.getEsrSystemInfoList().getEsrSystemInfo().get(0).setEsrSystemInfoId(originalSystemInfo.getEsrSystemInfoId());
+      cloudRegionDetail.getEsrSystemInfoList().getEsrSystemInfo().get(0).setResouceVersion(originalSystemInfo.getResouceVersion());
+    }
+    return cloudRegionDetail;
+  }
 
-  public Response delVim(String vimId) {
+  public Response delVim(String cloudOwner, String cloudRegionId) {
     // TODO
     return Response.noContent().build();
   }
