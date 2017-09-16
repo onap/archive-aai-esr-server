@@ -19,8 +19,8 @@ import java.io.Serializable;
 
 import com.google.gson.annotations.SerializedName;
 
-public class EsrVnfmDetail implements Serializable {
-  
+public class EsrVnfm  implements Serializable {
+
   public static final long serialVersionUID = 1L;
   
   @SerializedName("vnfm-id")
@@ -29,14 +29,11 @@ public class EsrVnfmDetail implements Serializable {
   @SerializedName("vim-id")
   private String vimId;
   
-  @SerializedName("certificate-url")
+  @SerializedName("certificate-id")
   private String certificateUrl;
   
   @SerializedName("resouce-version")
   private String resouceVersion;
-  
-  @SerializedName("esr-system-info-list")
-  private EsrSystemInfoList esrSystemInfoList;
 
   public String getVnfmId() {
     return vnfmId;
@@ -62,14 +59,6 @@ public class EsrVnfmDetail implements Serializable {
     this.certificateUrl = certificateUrl;
   }
 
-  public EsrSystemInfoList getEsrSystemInfoList() {
-    return esrSystemInfoList;
-  }
-
-  public void setEsrSystemInfoList(EsrSystemInfoList esrSystemInfoList) {
-    this.esrSystemInfoList = esrSystemInfoList;
-  }
-
   public String getResouceVersion() {
     return resouceVersion;
   }
@@ -78,4 +67,7 @@ public class EsrVnfmDetail implements Serializable {
     this.resouceVersion = resouceVersion;
   }
 
+  public static long getSerialversionuid() {
+    return serialVersionUID;
+  }
 }

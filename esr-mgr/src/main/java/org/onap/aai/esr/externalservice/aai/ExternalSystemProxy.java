@@ -44,4 +44,8 @@ public class ExternalSystemProxy {
   public static String queryVnfmDetail(String vnfmId) throws Exception {
     return externalSystemproxy.queryVNFMDetail(transactionId, fromAppId, authorization, vnfmId);
   }
+  
+  public static String queryVnfmList() throws Exception {
+    return externalSystemproxy.queryVNFMList(transactionId, fromAppId, authorization);
+  }
 }
