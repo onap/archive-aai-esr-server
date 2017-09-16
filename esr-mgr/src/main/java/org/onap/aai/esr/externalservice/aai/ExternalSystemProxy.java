@@ -48,4 +48,8 @@ public class ExternalSystemProxy {
   public static String queryVnfmList() throws Exception {
     return externalSystemproxy.queryVNFMList(transactionId, fromAppId, authorization);
   }
+  
+  public static void deleteVnfm(String vnfmId, String resourceVersion) throws Exception {
+    externalSystemproxy.deleteVNFM(transactionId, fromAppId, authorization, vnfmId, resourceVersion);
+  }
 }

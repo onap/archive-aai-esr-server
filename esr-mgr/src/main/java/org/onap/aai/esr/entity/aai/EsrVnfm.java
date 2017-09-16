@@ -32,8 +32,8 @@ public class EsrVnfm  implements Serializable {
   @SerializedName("certificate-id")
   private String certificateUrl;
   
-  @SerializedName("resouce-version")
-  private String resouceVersion;
+  @SerializedName("resource-version")
+  private String resourceVersion;
 
   public String getVnfmId() {
     return vnfmId;
@@ -59,12 +59,12 @@ public class EsrVnfm  implements Serializable {
     this.certificateUrl = certificateUrl;
   }
 
-  public String getResouceVersion() {
-    return resouceVersion;
+  public String getResourceVersion() {
+    return resourceVersion;
   }
 
-  public void setResouceVersion(String resouceVersion) {
-    this.resouceVersion = resouceVersion;
+  public void setResourceVersion(String resourceVersion) {
+    this.resourceVersion = resourceVersion;
   }
 
   public static long getSerialversionuid() {

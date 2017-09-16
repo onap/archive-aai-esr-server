@@ -32,8 +32,8 @@ public class EsrVnfmDetail implements Serializable {
   @SerializedName("certificate-url")
   private String certificateUrl;
   
-  @SerializedName("resouce-version")
-  private String resouceVersion;
+  @SerializedName("resource-version")
+  private String resourceVersion;
   
   @SerializedName("esr-system-info-list")
   private EsrSystemInfoList esrSystemInfoList;
@@ -70,12 +70,12 @@ public class EsrVnfmDetail implements Serializable {
     this.esrSystemInfoList = esrSystemInfoList;
   }
 
-  public String getResouceVersion() {
-    return resouceVersion;
+  public String getResourceVersion() {
+    return resourceVersion;
   }
 
-  public void setResouceVersion(String resouceVersion) {
-    this.resouceVersion = resouceVersion;
+  public void setResourceVersion(String resourceVersion) {
+    this.resourceVersion = resourceVersion;
   }
 
 }

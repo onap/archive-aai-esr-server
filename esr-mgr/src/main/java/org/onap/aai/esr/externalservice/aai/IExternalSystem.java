@@ -67,7 +67,7 @@ public interface IExternalSystem {
       @HeaderParam("X-FromAppId") String fromApp,
       @HeaderParam("Authorization") String authorization,
       @PathParam("vnfm_id") String vnfmId,
-      @QueryParam("resouce-version") String resourceVersion) throws Exception;
+      @QueryParam("resource-version") String resourceVersion) throws Exception;
 
   @PUT
   @Path("/esr-ems-list/esr-ems/{ems_id}")
@@ -103,7 +103,7 @@ public interface IExternalSystem {
       @HeaderParam("X-FromAppId") String fromApp,
       @HeaderParam("Authorization") String authorization,
       @PathParam("ems_id") String emsId,
-      @QueryParam("resouce-version") String resourceVersion) throws Exception;
+      @QueryParam("resource-version") String resourceVersion) throws Exception;
   
   @PUT
   @Path("/esr-thirdparty-sdnc-list/esr-thirdparty-sdnc/{thirdparty-sdnc-id}")
@@ -139,5 +139,5 @@ public interface IExternalSystem {
       @HeaderParam("X-FromAppId") String fromApp,
       @HeaderParam("Authorization") String authorization,
       @PathParam("thirdparty-sdnc-id") String thirdpartySdncId,
-      @QueryParam("resouce-version") String resourceVersion) throws Exception;
+      @QueryParam("resource-version") String resourceVersion) throws Exception;
 }

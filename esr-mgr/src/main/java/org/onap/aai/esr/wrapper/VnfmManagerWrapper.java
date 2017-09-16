@@ -36,6 +36,7 @@ public class VnfmManagerWrapper {
 
   /**
    * get VnfmManagerWrapper instance.
+   * 
    * @return vnfm manager wrapper instance
    */
   public static VnfmManagerWrapper getInstance() {
@@ -55,31 +56,34 @@ public class VnfmManagerWrapper {
       result.setId(vnfmId);
       return Response.ok(result).build();
     } catch (Exception e) {
+      e.printStackTrace();
       LOG.error("Register VNFM failed !" + e.getMessage());
       return Response.serverError().build();
     }
   }
-  
+
   public Response updateVnfm(VnfmRegisterInfo vnfm, String vnfmId) {
-    //TODO
+    // TODO
     return Response.ok().build();
   }
-  
+
   public Response queryVnfmList() {
     ArrayList<VnfmRegisterInfo> vnfmList = new ArrayList<VnfmRegisterInfo>();
     EsrVnfmList esrVnfm = new EsrVnfmList();
     try {
       String esrVnfmStr = ExternalSystemProxy.queryVnfmList();
       esrVnfm = new Gson().fromJson(esrVnfmStr, EsrVnfmList.class);
+      LOG.info("Response from AAI by query VNFM list: " + esrVnfm);
       vnfmList = getVnfmDetailList(esrVnfm);
       return Response.ok(vnfmList).build();
     } catch (Exception e) {
+      e.printStackTrace();
       LOG.error("Query VNFM list failed !");
       return Response.serverError().build();
     }
-    
+
   }
-  
+
   public Response queryVnfmById(String vnfmId) {
     VnfmRegisterInfo vnfm = new VnfmRegisterInfo();
     vnfm = queryVnfmDetail(vnfmId);
@@ -89,12 +93,34 @@ public class VnfmManagerWrapper {
       return Response.serverError().build();
     }
   }
-  
+
   public Response delVnfm(String vnfmId) {
-    //TODO
-    return Response.noContent().build();
+    EsrVnfmDetail esrVnfmDetail = new EsrVnfmDetail();
+    try {
+      String esrVnfmstr = ExternalSystemProxy.queryVnfmDetail(vnfmId);
+      LOG.info("Response from AAI by query VNFM: " + esrVnfmstr);
+      esrVnfmDetail = new Gson().fromJson(esrVnfmstr, EsrVnfmDetail.class);
+    } catch (Exception e) {
+      e.printStackTrace();
+      LOG.error("Query VNFM detail failed! VNFM ID: " + vnfmId, e.getMessage());
+    }
+    if (esrVnfmDetail != null && esrVnfmDetail.getResourceVersion() != null) {
+      String resourceVersion = esrVnfmDetail.getResourceVersion();
+      try {
+        ExternalSystemProxy.deleteVnfm(vnfmId, resourceVersion);
+        return Response.ok().build();
+      } catch (Exception e) {
+        e.printStackTrace();
+        LOG.error("Delete VNFM from A&AI failed! VNFM ID: " + vnfmId + "resouce-version:"
+            + resourceVersion, e.getMessage());
+        return Response.serverError().build();
+      }
+    } else {
+      LOG.error("resouce-version is null ! Can not delete resouce from A&AI. ");
+      return Response.serverError().build();
+    }
   }
-  
+
   private VnfmRegisterInfo queryVnfmDetail(String vnfmId) {
     VnfmRegisterInfo vnfm = new VnfmRegisterInfo();
     EsrVnfmDetail esrVnfmDetail = new EsrVnfmDetail();
@@ -105,18 +131,19 @@ public class VnfmManagerWrapper {
       vnfm = VnfmManagerUtil.esrVnfm2VnfmRegisterInfo(esrVnfmDetail);
       return vnfm;
     } catch (Exception e) {
+      e.printStackTrace();
       LOG.error("Query VNFM detail failed! VNFM ID: " + vnfmId, e.getMessage());
       return null;
     }
   }
-  
+
   private ArrayList<VnfmRegisterInfo> getVnfmDetailList(EsrVnfmList esrVnfm) {
     ArrayList<VnfmRegisterInfo> vnfmInfoList = new ArrayList<VnfmRegisterInfo>();
     VnfmRegisterInfo vnfmInfo = new VnfmRegisterInfo();
-    for (int i=0; i<esrVnfm.getEsrVnfm().size(); i++) {
+    for (int i = 0; i < esrVnfm.getEsrVnfm().size(); i++) {
       String vnfmId = esrVnfm.getEsrVnfm().get(i).getVnfmId();
       vnfmInfo = queryVnfmDetail(vnfmId);
-      if(vnfmInfo != null) {
+      if (vnfmInfo != null) {
         vnfmInfoList.add(vnfmInfo);
       }
     }
