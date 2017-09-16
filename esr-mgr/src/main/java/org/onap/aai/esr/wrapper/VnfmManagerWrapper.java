@@ -19,13 +19,18 @@ import java.util.ArrayList;
 
 import javax.ws.rs.core.Response;
 
+import org.onap.aai.esr.entity.aai.CloudRegionDetail;
 import org.onap.aai.esr.entity.aai.EsrVnfmDetail;
 import org.onap.aai.esr.entity.rest.CommonRegisterResponse;
 import org.onap.aai.esr.entity.rest.VnfmRegisterInfo;
+import org.onap.aai.esr.externalservice.aai.CloudRegionProxy;
 import org.onap.aai.esr.externalservice.aai.ExternalSystemProxy;
+import org.onap.aai.esr.util.VimManagerUtil;
 import org.onap.aai.esr.util.VnfmManagerUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.google.gson.Gson;
 
 public class VnfmManagerWrapper {
   private static VnfmManagerWrapper vnfmManagerWrapper;
@@ -70,8 +75,17 @@ public class VnfmManagerWrapper {
   
   public Response queryVnfmById(String vnfmId) {
     VnfmRegisterInfo vnfm = new VnfmRegisterInfo();
-    //TODO
-    return Response.ok(vnfm).build();
+    EsrVnfmDetail esrVnfmDetail = new EsrVnfmDetail();
+    try {
+      String esrVnfmstr = ExternalSystemProxy.queryVnfmDetail(vnfmId);
+      LOG.info("Response from AAI by query VNFM: " + esrVnfmstr);
+      esrVnfmDetail = new Gson().fromJson(esrVnfmstr, EsrVnfmDetail.class);
+      vnfm = VnfmManagerUtil.esrVnfm2VnfmRegisterInfo(esrVnfmDetail);
+      return Response.ok(vnfm).build();
+    } catch (Exception e) {
+      e.printStackTrace();
+      return Response.serverError().build();
+    }
   }
   
   public Response delVnfm(String vnfmId) {

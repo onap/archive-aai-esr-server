@@ -15,12 +15,15 @@
  */
 package org.onap.aai.esr.entity.aai;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import com.google.gson.annotations.SerializedName;
 
-public class EsrSystemInfoList {
+public class EsrSystemInfoList implements Serializable {
 
+  public static final long serialVersionUID = 1L;
+  
   @SerializedName("esr-system-info")
   private ArrayList<EsrSystemInfo> esrSystemInfo;
 

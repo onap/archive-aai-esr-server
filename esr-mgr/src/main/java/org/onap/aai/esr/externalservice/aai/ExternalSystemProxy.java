@@ -22,14 +22,14 @@ import com.eclipsesource.jaxrs.consumer.ConsumerFactory;
 
 public class ExternalSystemProxy {
 
-  private static IExternalSystem adapterServiceproxy;
+  private static IExternalSystem externalSystemproxy;
 
   private static String transactionId = "9999";
   private static String fromAppId = "esr-server";
   private static String authorization = AaiCommon.getAuthenticationCredentials();
   static {
     ClientConfig config = new ClientConfig();
-    adapterServiceproxy = ConsumerFactory.createConsumer(AaiAdapterConfig.getExternalSystemAddr(),
+    externalSystemproxy = ConsumerFactory.createConsumer(AaiAdapterConfig.getExternalSystemAddr(),
         config, IExternalSystem.class);
   }
 
@@ -41,5 +41,7 @@ public class ExternalSystemProxy {
         esrVnfmDetail);
   }
   
-  
+  public static String queryVnfmDetail(String vnfmId) throws Exception {
+    return externalSystemproxy.queryVNFMDetail(transactionId, fromAppId, authorization, vnfmId);
+  }
 }
