@@ -15,13 +15,21 @@
  */
 package org.onap.aai.esr.entity.aai;
 
+import java.io.Serializable;
 
-public class EsrEmsDetail {
+import com.google.gson.annotations.SerializedName;
 
+public class EsrEmsDetail implements Serializable {
+
+  public static final long serialVersionUID = 1L;
+  
+  @SerializedName("ems-id")
   private String emsId;
   
-  private String resouceVersion;
+  @SerializedName("resource-version")
+  private String resourceVersion;
   
+  @SerializedName("esr-system-info-list")
   private EsrSystemInfoList esrSystemInfoList;
 
   public String getEmsId() {
@@ -40,11 +48,11 @@ public class EsrEmsDetail {
     this.esrSystemInfoList = esrSystemInfoList;
   }
 
-  public String getResouceVersion() {
-    return resouceVersion;
+  public String getResourceVersion() {
+    return resourceVersion;
   }
 
-  public void setResouceVersion(String resouceVersion) {
-    this.resouceVersion = resouceVersion;
+  public void setResourceVersion(String resourceVersion) {
+    this.resourceVersion = resourceVersion;
   }
 }

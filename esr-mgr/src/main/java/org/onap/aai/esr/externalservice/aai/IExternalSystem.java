@@ -30,6 +30,7 @@ import org.onap.aai.esr.entity.aai.EsrEmsDetail;
 import org.onap.aai.esr.entity.aai.EsrThirdpartySdncDetail;
 import org.onap.aai.esr.entity.aai.EsrVnfmDetail;
 
+@Path("/")
 public interface IExternalSystem {
 
   @PUT

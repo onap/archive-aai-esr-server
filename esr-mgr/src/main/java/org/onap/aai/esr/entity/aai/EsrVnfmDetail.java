@@ -15,16 +15,27 @@
  */
 package org.onap.aai.esr.entity.aai;
 
-public class EsrVnfmDetail {
+import java.io.Serializable;
+
+import com.google.gson.annotations.SerializedName;
+
+public class EsrVnfmDetail implements Serializable {
   
+  public static final long serialVersionUID = 1L;
+  
+  @SerializedName("vnfm-id")
   private String vnfmId;
   
+  @SerializedName("vim-id")
   private String vimId;
   
+  @SerializedName("certificate-id")
   private String certificateUrl;
   
+  @SerializedName("resouce-version")
   private String resouceVersion;
   
+  @SerializedName("esr-system-info-list")
   private EsrSystemInfoList esrSystemInfoList;
 
   public String getVnfmId() {

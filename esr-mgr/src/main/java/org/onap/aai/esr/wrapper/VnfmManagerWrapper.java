@@ -19,14 +19,17 @@ import java.util.ArrayList;
 
 import javax.ws.rs.core.Response;
 
+import org.onap.aai.esr.entity.aai.EsrVnfmDetail;
 import org.onap.aai.esr.entity.rest.CommonRegisterResponse;
 import org.onap.aai.esr.entity.rest.VnfmRegisterInfo;
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
+import org.onap.aai.esr.externalservice.aai.ExternalSystemProxy;
+import org.onap.aai.esr.util.VnfmManagerUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class VnfmManagerWrapper {
   private static VnfmManagerWrapper vnfmManagerWrapper;
-//  private static final Logger LOG = LoggerFactory.getLogger(VnfmManagerWrapper.class);
+  private static final Logger LOG = LoggerFactory.getLogger(VnfmManagerWrapper.class);
 
   /**
    * get VnfmManagerWrapper instance.
@@ -40,9 +43,18 @@ public class VnfmManagerWrapper {
   }
 
   public Response registerVnfm(VnfmRegisterInfo vnfm) {
-    //TODO
-    CommonRegisterResponse result = null;
-    return Response.ok(result).build();
+    CommonRegisterResponse result = new CommonRegisterResponse();
+    EsrVnfmDetail esrVnfmDetail = new EsrVnfmDetail();
+    esrVnfmDetail = VnfmManagerUtil.vnfmRegisterInfo2EsrVnfm(vnfm);
+    String vnfmId = esrVnfmDetail.getVnfmId();
+    try {
+      ExternalSystemProxy.registerVnfm(vnfmId, esrVnfmDetail);
+      result.setId(vnfmId);
+      return Response.ok(result).build();
+    } catch (Exception e) {
+      LOG.error("Register VNFM failed !" + e.getMessage());
+      return Response.serverError().build();
+    }
   }
   
   public Response updateVnfm(VnfmRegisterInfo vnfm, String vnfmId) {

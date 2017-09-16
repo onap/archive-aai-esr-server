@@ -15,16 +15,27 @@
  */
 package org.onap.aai.esr.entity.aai;
 
-public class EsrThirdpartySdncDetail {
+import java.io.Serializable;
 
+import com.google.gson.annotations.SerializedName;
+
+public class EsrThirdpartySdncDetail implements Serializable {
+
+  public static final long serialVersionUID = 1L;
+  
+  @SerializedName("thirdparty-sdnc-id")
   private String thirdpartySdncId;
   
+  @SerializedName("location")
   private String location;
   
+  @SerializedName("product-name")
   private String productName;
   
+  @SerializedName("resouce-version")
   private String resouceVersion;
   
+  @SerializedName("esr-system-info-list")
   private EsrSystemInfoList esrSystemInfoList;
 
   public String getThirdpartySdncId() {

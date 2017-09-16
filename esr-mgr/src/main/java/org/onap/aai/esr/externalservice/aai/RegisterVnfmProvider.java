@@ -25,33 +25,34 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.ext.MessageBodyWriter;
 
-import org.onap.aai.esr.entity.aai.CloudRegionDetail;
+import org.onap.aai.esr.entity.aai.EsrVnfmDetail;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.gson.Gson;
 
-public class RegisterVimProvider implements MessageBodyWriter<CloudRegionDetail>{
-  private static final Logger logger = LoggerFactory.getLogger(RegisterVimProvider.class);
+public class RegisterVnfmProvider  implements MessageBodyWriter<EsrVnfmDetail>{
+
+  private static final Logger logger = LoggerFactory.getLogger(RegisterVnfmProvider.class);
 
   @Override
   public boolean isWriteable(Class<?> type, Type genericType, Annotation[] annotations,
       MediaType mediaType) {
-    return CloudRegionDetail.class.isAssignableFrom(type);
+    return EsrVnfmDetail.class.isAssignableFrom(type);
   }
 
   @Override
-  public long getSize(CloudRegionDetail t, Class<?> type, Type genericType,
+  public long getSize(EsrVnfmDetail t, Class<?> type, Type genericType,
       Annotation[] annotations, MediaType mediaType) {
     return -1;
   }
 
   @Override
-  public void writeTo(CloudRegionDetail t, Class<?> type, Type genericType,
+  public void writeTo(EsrVnfmDetail t, Class<?> type, Type genericType,
       Annotation[] annotations, MediaType mediaType, MultivaluedMap<String, Object> httpHeaders,
       OutputStream entityStream) throws IOException, WebApplicationException {
-    String json = new Gson().toJson(t, CloudRegionDetail.class);
-    logger.info("the param to register VIM input is:" + json);
+    String json = new Gson().toJson(t, EsrVnfmDetail.class);
+    logger.info("the param to register VNFM input is:" + json);
     entityStream.write(json.getBytes("UTF-8"));
   }
 }

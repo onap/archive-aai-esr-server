@@ -33,7 +33,6 @@ public class CloudRegionProxy {
         config, ICloudRegion.class);
   }
 
-
   public static void registerVim(String cloudOwner, String cloudRegionId, CloudRegionDetail cloudRegion)
       throws Exception {
     ClientConfig config = new ClientConfig(new RegisterVimProvider());

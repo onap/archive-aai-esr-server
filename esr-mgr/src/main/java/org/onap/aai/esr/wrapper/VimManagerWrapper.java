@@ -62,10 +62,11 @@ public class VimManagerWrapper {
       result.setCloudRegionId(cloudRegionId);
       return Response.ok(result).build();
     } catch (Exception e) {
-      e.printStackTrace();
+      LOG.error("Register VIM failed !" + e.getMessage());
       return Response.serverError().build();
     }
   }
+  
   public Response updateVim(VimRegisterInfo vimRegisterInfo) {
     LOG.info("Start update VIM, input VIM info is: " + ExtsysUtil.objectToString(vimRegisterInfo));
     String cloudOwner = vimRegisterInfo.getCloudOwner();
@@ -83,6 +84,7 @@ public class VimManagerWrapper {
       return Response.ok(result).build();
     } catch (Exception e) {
       e.printStackTrace();
+      LOG.error("Update VIM failed !" + e.getMessage());
       return Response.serverError().build();
     }
   }
