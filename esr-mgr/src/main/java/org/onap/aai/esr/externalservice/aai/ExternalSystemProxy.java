@@ -69,4 +69,8 @@ public class ExternalSystemProxy {
   public static String querySdncList() throws Exception {
     return externalSystemproxy.queryThirdpartySdncList(transactionId, fromAppId, authorization);
   }
+  
+  public static void deleteThirdpartySdnc(String sdncId, String resourceVersion) throws Exception {
+    externalSystemproxy.deleteThirdpartySdnc(transactionId, fromAppId, authorization, sdncId, resourceVersion);
+  }
 }

@@ -119,8 +119,23 @@ public class ThirdpatySdncWrapper {
   }
   
   public Response delThirdpartySdnc(String thirdpartySdncId) {
-    //TODO
-    return Response.noContent().build();
+    EsrThirdpartySdncDetail thirdpartySdncDetail = new EsrThirdpartySdncDetail();
+    thirdpartySdncDetail = queryEsrThirdpartySdncDetail(thirdpartySdncId);
+    String resourceVersion = thirdpartySdncDetail.getResourceVersion();
+    if (resourceVersion != null) {
+      try {
+        ExternalSystemProxy.deleteThirdpartySdnc(thirdpartySdncId, resourceVersion);
+        return Response.ok().build();
+      } catch (Exception e) {
+        e.printStackTrace();
+        LOG.error("Delete VNFM from A&AI failed! thirdparty SDNC ID: " + thirdpartySdncId + "resouce-version:"
+            + resourceVersion, e.getMessage());
+        return Response.serverError().build();
+      }
+    } else {
+      LOG.error("resouce-version is null ! Can not delete resouce from A&AI. ");
+      return Response.serverError().build();
+    }
   }
   
   private ThirdpartySdncRegisterInfo querySdncDetail(String sdncId) {
