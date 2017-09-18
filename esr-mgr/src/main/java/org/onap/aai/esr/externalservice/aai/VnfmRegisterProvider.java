@@ -31,9 +31,9 @@ import org.slf4j.LoggerFactory;
 
 import com.google.gson.Gson;
 
-public class RegisterVnfmProvider  implements MessageBodyWriter<EsrVnfmDetail>{
+public class VnfmRegisterProvider  implements MessageBodyWriter<EsrVnfmDetail>{
 
-  private static final Logger logger = LoggerFactory.getLogger(RegisterVnfmProvider.class);
+  private static final Logger logger = LoggerFactory.getLogger(VnfmRegisterProvider.class);
 
   @Override
   public boolean isWriteable(Class<?> type, Type genericType, Annotation[] annotations,

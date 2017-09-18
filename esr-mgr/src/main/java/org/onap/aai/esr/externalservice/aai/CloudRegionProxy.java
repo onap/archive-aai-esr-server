@@ -35,7 +35,7 @@ public class CloudRegionProxy {
 
   public static void registerVim(String cloudOwner, String cloudRegionId, CloudRegionDetail cloudRegion)
       throws Exception {
-    ClientConfig config = new ClientConfig(new RegisterVimProvider());
+    ClientConfig config = new ClientConfig(new VimRegisterProvider());
     ICloudRegion registerVimServiceproxy = ConsumerFactory
         .createConsumer(AaiAdapterConfig.getCloudInfrastructureAddr(), config, ICloudRegion.class);
     registerVimServiceproxy.registerVIMService(transactionId, fromAppId, authorization, cloudOwner,

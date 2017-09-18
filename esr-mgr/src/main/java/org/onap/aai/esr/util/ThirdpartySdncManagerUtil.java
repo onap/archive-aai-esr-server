@@ -25,7 +25,7 @@ import org.onap.aai.esr.entity.rest.ThirdpartySdncRegisterInfo;
 
 public class ThirdpartySdncManagerUtil {
   
-  public EsrThirdpartySdncDetail sdncRegisterInfo2EsrSdnc(ThirdpartySdncRegisterInfo sdncRegisterInfo) {
+  public static EsrThirdpartySdncDetail sdncRegisterInfo2EsrSdnc(ThirdpartySdncRegisterInfo sdncRegisterInfo) {
     EsrThirdpartySdncDetail esrThirdpartySdnc = new EsrThirdpartySdncDetail();
     sdncRegisterInfo.setThirdpartySdncId(ExtsysUtil.generateId());
     esrThirdpartySdnc.setThirdpartySdncId(sdncRegisterInfo.getThirdpartySdncId());
@@ -35,11 +35,12 @@ public class ThirdpartySdncManagerUtil {
     return esrThirdpartySdnc;
   }
   
-  private EsrSystemInfoList getEsrSystemInfoList(ThirdpartySdncRegisterInfo sdncRegisterInfo) {
+  private static EsrSystemInfoList getEsrSystemInfoList(ThirdpartySdncRegisterInfo sdncRegisterInfo) {
     EsrSystemInfoList esrSystemInfoList = new EsrSystemInfoList();
     ArrayList<EsrSystemInfo> esrSystemInfo = new ArrayList<EsrSystemInfo>();
     EsrSystemInfo authInfo = new EsrSystemInfo();
-    authInfo.setResouceVersion(sdncRegisterInfo.getVersion());
+    authInfo.setEsrSystemInfoId(ExtsysUtil.generateId());
+    authInfo.setVersion(sdncRegisterInfo.getVersion());
     authInfo.setSystemName(sdncRegisterInfo.getName());
     authInfo.setServiceUrl(sdncRegisterInfo.getUrl());
     authInfo.setVendor(sdncRegisterInfo.getVendor());
@@ -53,7 +54,7 @@ public class ThirdpartySdncManagerUtil {
     return esrSystemInfoList;
   }
 
-  public ThirdpartySdncRegisterInfo esrSdnc2SdncRegisterInfo(EsrThirdpartySdncDetail esrSdnc) {
+  public static ThirdpartySdncRegisterInfo esrSdnc2SdncRegisterInfo(EsrThirdpartySdncDetail esrSdnc) {
     ThirdpartySdncRegisterInfo registerSdncInfo = new ThirdpartySdncRegisterInfo();
     EsrSystemInfo esrSystemInfo = esrSdnc.getEsrSystemInfoList().getEsrSystemInfo().get(0);
     registerSdncInfo.setThirdpartySdncId(esrSdnc.getThirdpartySdncId());

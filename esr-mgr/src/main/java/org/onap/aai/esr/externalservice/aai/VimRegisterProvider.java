@@ -31,8 +31,8 @@ import org.slf4j.LoggerFactory;
 
 import com.google.gson.Gson;
 
-public class RegisterVimProvider implements MessageBodyWriter<CloudRegionDetail>{
-  private static final Logger logger = LoggerFactory.getLogger(RegisterVimProvider.class);
+public class VimRegisterProvider implements MessageBodyWriter<CloudRegionDetail>{
+  private static final Logger logger = LoggerFactory.getLogger(VimRegisterProvider.class);
 
   @Override
   public boolean isWriteable(Class<?> type, Type genericType, Annotation[] annotations,

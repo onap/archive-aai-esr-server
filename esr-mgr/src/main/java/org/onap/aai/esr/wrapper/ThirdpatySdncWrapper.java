@@ -19,15 +19,18 @@ import java.util.ArrayList;
 
 import javax.ws.rs.core.Response;
 
+import org.onap.aai.esr.entity.aai.EsrThirdpartySdncDetail;
 import org.onap.aai.esr.entity.rest.CommonRegisterResponse;
 import org.onap.aai.esr.entity.rest.ThirdpartySdncRegisterInfo;
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
+import org.onap.aai.esr.externalservice.aai.ExternalSystemProxy;
+import org.onap.aai.esr.util.ThirdpartySdncManagerUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ThirdpatySdncWrapper {
 
   private static ThirdpatySdncWrapper thirdpatySdncWrapper;
-//  private static final Logger LOG = LoggerFactory.getLogger(ThirdpatySdncWrapper.class);
+  private static final Logger LOG = LoggerFactory.getLogger(ThirdpatySdncWrapper.class);
 
   /**
    * get ThirdpatySdncWrapper instance.
@@ -41,9 +44,20 @@ public class ThirdpatySdncWrapper {
   }
   
   public Response registerThirdpartySdnc(ThirdpartySdncRegisterInfo thirdpartySdnc) {
-    //TODO
-    CommonRegisterResponse result = null;
-    return Response.ok(result).build();
+    CommonRegisterResponse result = new CommonRegisterResponse();
+    EsrThirdpartySdncDetail esrSdncDetail = new EsrThirdpartySdncDetail();
+    esrSdncDetail = ThirdpartySdncManagerUtil.sdncRegisterInfo2EsrSdnc(thirdpartySdnc);
+    String sdncId = esrSdncDetail.getThirdpartySdncId();
+    try {
+      ExternalSystemProxy.registerSdnc(sdncId, esrSdncDetail);
+      result.setId(sdncId);
+      return Response.ok(result).build();
+    } catch (Exception e) {
+      e.printStackTrace();
+      LOG.error("Register thirdParty SDNC failed !" + e.getMessage());
+      return Response.serverError().build();
+    }
+    
   }
 
   public Response updateThirdpartySdnc(ThirdpartySdncRegisterInfo thirdpartySdnc) {
