@@ -27,6 +27,8 @@ import org.onap.aai.esr.entity.rest.CommonRegisterResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.gson.Gson;
+
 public class EmsManagerWrapper {
   private static EmsManagerWrapper emsManagerWrapper;
   private static final Logger LOG = LoggerFactory.getLogger(EmsManagerWrapper.class);
@@ -71,12 +73,32 @@ public class EmsManagerWrapper {
   
   public Response queryEmsById(String emsId) {
     EmsRegisterInfo ems = new EmsRegisterInfo();
-    //TODO
-    return Response.ok(ems).build();
+    ems = queryEmsDetail(emsId);
+    if (ems != null) {
+      return Response.ok(ems).build();
+    } else {
+      return Response.ok().build();
+    }
   }
   
   public Response delEms(String emsId) {
     //TODO
     return Response.noContent().build();
+  }
+  
+  private EmsRegisterInfo queryEmsDetail(String emsId) {
+    EmsRegisterInfo emsRegisterInfo = new EmsRegisterInfo();
+    EsrEmsDetail esrEmsDetail = new EsrEmsDetail();
+    try {
+      String esrEmsStr = ExternalSystemProxy.queryEmsDetail(emsId);
+      LOG.info("Response from AAI by query EMS: " + esrEmsStr);
+      esrEmsDetail = new Gson().fromJson(esrEmsStr, EsrEmsDetail.class);
+      emsRegisterInfo = EmsManagerUtil.EsrEms2EmsRegisterInfo(esrEmsDetail);
+      return emsRegisterInfo;
+    } catch (Exception e) {
+      e.printStackTrace();
+      LOG.error("Query VNFM detail failed! EMS ID: " + emsId, e.getMessage());
+      return null;
+    }
   }
 }

@@ -104,7 +104,7 @@ public class EmsManagerUtil {
       } else if(authInfo.getSystemType().equals(SystemType.EMS_PERFORMANCE.toString())) {
         FtpAddr performanceAddr = new FtpAddr();
         performanceAddr = getFtpAddrFromAuthInfo(authInfo);
-        emsRegisterInfo.setResourceAddr(performanceAddr);
+        emsRegisterInfo.setPerformanceAddr(performanceAddr);
       } else if(authInfo.getSystemType().equals(SystemType.EMS_ALARM.toString())) {
         AlarmAddr alarmAddr = new AlarmAddr();
         alarmAddr = getAlarmAddrFromAuthInfo(authInfo);

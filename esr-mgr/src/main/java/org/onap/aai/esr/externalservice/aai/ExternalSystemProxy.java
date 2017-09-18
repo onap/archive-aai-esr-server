@@ -82,4 +82,8 @@ public class ExternalSystemProxy {
     registerEmsServiceproxy.registerEMS(transactionId, fromAppId, authorization, emsId,
         emsDetail);
   }
+  
+  public static String queryEmsDetail(String emsId) throws Exception {
+    return externalSystemproxy.queryEMSDetail(transactionId, fromAppId, authorization, emsId);
+  }
 }
