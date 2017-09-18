@@ -131,7 +131,6 @@ public class EmsManager {
    * register ems.
    */
   @POST
-  @Path("")
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces({MediaType.TEXT_PLAIN, MediaType.APPLICATION_JSON})
   @ApiOperation(value = "create a ems")

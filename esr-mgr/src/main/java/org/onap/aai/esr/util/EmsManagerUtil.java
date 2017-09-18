@@ -76,6 +76,7 @@ public class EmsManagerUtil {
     EsrSystemInfo authInfo = new EsrSystemInfo();
     AlarmAddr alarmAddr = new AlarmAddr();
     alarmAddr = emsRegisterInfo.getAlarmAddr();
+    authInfo.setEsrSystemInfoId(ExtsysUtil.generateId());
     authInfo.setIpAddress(alarmAddr.getIp());
     authInfo.setPort(alarmAddr.getPort());
     authInfo.setUserName(alarmAddr.getUser());

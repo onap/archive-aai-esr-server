@@ -16,6 +16,7 @@
 package org.onap.aai.esr.externalservice.aai;
 
 import org.glassfish.jersey.client.ClientConfig;
+import org.onap.aai.esr.entity.aai.EsrEmsDetail;
 import org.onap.aai.esr.entity.aai.EsrThirdpartySdncDetail;
 import org.onap.aai.esr.entity.aai.EsrVnfmDetail;
 
@@ -56,9 +57,9 @@ public class ExternalSystemProxy {
   
   public static void registerSdnc(String thirdpartySdncId, EsrThirdpartySdncDetail esrSdncDetail) throws Exception {
     ClientConfig config = new ClientConfig(new ThirdpartySdncRegisterProvider());
-    IExternalSystem registerVnfmServiceproxy = ConsumerFactory
+    IExternalSystem registerSdncServiceproxy = ConsumerFactory
         .createConsumer(AaiAdapterConfig.getExternalSystemAddr(), config, IExternalSystem.class);
-    registerVnfmServiceproxy.registerThirdpartySdnc(transactionId, fromAppId, authorization, thirdpartySdncId,
+    registerSdncServiceproxy.registerThirdpartySdnc(transactionId, fromAppId, authorization, thirdpartySdncId,
         esrSdncDetail);
   }
   
@@ -72,5 +73,13 @@ public class ExternalSystemProxy {
   
   public static void deleteThirdpartySdnc(String sdncId, String resourceVersion) throws Exception {
     externalSystemproxy.deleteThirdpartySdnc(transactionId, fromAppId, authorization, sdncId, resourceVersion);
+  }
+  
+  public static void registerEms(String emsId, EsrEmsDetail emsDetail) throws Exception {
+    ClientConfig config = new ClientConfig(new EmsRegisterProvider());
+    IExternalSystem registerEmsServiceproxy = ConsumerFactory
+        .createConsumer(AaiAdapterConfig.getExternalSystemAddr(), config, IExternalSystem.class);
+    registerEmsServiceproxy.registerEMS(transactionId, fromAppId, authorization, emsId,
+        emsDetail);
   }
 }

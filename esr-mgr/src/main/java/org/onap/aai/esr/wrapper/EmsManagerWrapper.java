@@ -20,13 +20,16 @@ import java.util.ArrayList;
 import javax.ws.rs.core.Response;
 
 import org.onap.aai.esr.entity.rest.EmsRegisterInfo;
+import org.onap.aai.esr.externalservice.aai.ExternalSystemProxy;
+import org.onap.aai.esr.util.EmsManagerUtil;
+import org.onap.aai.esr.entity.aai.EsrEmsDetail;
 import org.onap.aai.esr.entity.rest.CommonRegisterResponse;
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class EmsManagerWrapper {
   private static EmsManagerWrapper emsManagerWrapper;
-//  private static final Logger LOG = LoggerFactory.getLogger(EmsManagerWrapper.class);
+  private static final Logger LOG = LoggerFactory.getLogger(EmsManagerWrapper.class);
 
   /**
    * get VnfmManagerWrapper instance.
@@ -39,10 +42,20 @@ public class EmsManagerWrapper {
     return emsManagerWrapper;
   }
   
-  public Response registerEms(EmsRegisterInfo ems) {
-    //TODO
-    CommonRegisterResponse result = null;
-    return Response.ok(result).build();
+  public Response registerEms(EmsRegisterInfo emsRegisterInfo) {
+    CommonRegisterResponse result = new CommonRegisterResponse();
+    EsrEmsDetail esrEmsDetail = new EsrEmsDetail();
+    esrEmsDetail = EmsManagerUtil.emsRegisterInfo2EsrEms(emsRegisterInfo);
+    String emsId = esrEmsDetail.getEmsId();
+    try {
+      ExternalSystemProxy.registerEms(emsId, esrEmsDetail);
+      result.setId(emsId);
+      return Response.ok(result).build();
+    } catch (Exception e) {
+      e.printStackTrace();
+      LOG.error("Register EMS failed !" + e.getMessage());
+      return Response.serverError().build();
+    }
   }
 
   public Response updateEms(EmsRegisterInfo ems) {
