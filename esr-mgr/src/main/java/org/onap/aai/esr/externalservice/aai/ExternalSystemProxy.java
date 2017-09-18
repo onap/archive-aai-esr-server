@@ -61,4 +61,8 @@ public class ExternalSystemProxy {
     registerVnfmServiceproxy.registerThirdpartySdnc(transactionId, fromAppId, authorization, thirdpartySdncId,
         esrSdncDetail);
   }
+  
+  public static String queryThirdpartySdncDetail(String thirdpartySdncId) throws Exception{
+    return externalSystemproxy.queryThirdpartySdncDetail(transactionId, fromAppId, authorization, thirdpartySdncId);
+  }
 }

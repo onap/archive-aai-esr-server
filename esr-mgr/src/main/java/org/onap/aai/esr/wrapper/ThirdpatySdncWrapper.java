@@ -27,6 +27,8 @@ import org.onap.aai.esr.util.ThirdpartySdncManagerUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.gson.Gson;
+
 public class ThirdpatySdncWrapper {
 
   private static ThirdpatySdncWrapper thirdpatySdncWrapper;
@@ -73,12 +75,32 @@ public class ThirdpatySdncWrapper {
   
   public Response queryThirdpartySdncById(String thirdpartySdncId) {
     ThirdpartySdncRegisterInfo thirdpartySdnc = new ThirdpartySdncRegisterInfo();
-    //TODO
-    return Response.ok(thirdpartySdnc).build();
+    thirdpartySdnc = querySdncDetail(thirdpartySdncId);
+    if(thirdpartySdnc != null) {
+      return Response.ok(thirdpartySdnc).build();
+    } else {
+      return Response.serverError().build();
+    }
   }
   
   public Response delThirdpartySdnc(String thirdpartySdncId) {
     //TODO
     return Response.noContent().build();
+  }
+  
+  private ThirdpartySdncRegisterInfo querySdncDetail(String sdncId) {
+    ThirdpartySdncRegisterInfo sdncRegisterInfo = new ThirdpartySdncRegisterInfo();
+    EsrThirdpartySdncDetail esrSdncDetail = new EsrThirdpartySdncDetail();
+    try {
+      String esrSdncStr = ExternalSystemProxy.queryThirdpartySdncDetail(sdncId);
+      LOG.info("Response from AAI by query thirdparty SDNC: " + esrSdncStr);
+      esrSdncDetail = new Gson().fromJson(esrSdncStr, EsrThirdpartySdncDetail.class);
+      sdncRegisterInfo = ThirdpartySdncManagerUtil.esrSdnc2SdncRegisterInfo(esrSdncDetail);
+      return sdncRegisterInfo;
+    } catch (Exception e) {
+      e.printStackTrace();
+      LOG.error("Query VNFM detail failed! thirdpaty SDNC ID: " + sdncId, e.getMessage());
+      return null;
+    }
   }
 }
