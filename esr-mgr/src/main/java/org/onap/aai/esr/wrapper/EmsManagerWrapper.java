@@ -23,6 +23,7 @@ import org.onap.aai.esr.entity.rest.EmsRegisterInfo;
 import org.onap.aai.esr.externalservice.aai.ExternalSystemProxy;
 import org.onap.aai.esr.util.EmsManagerUtil;
 import org.onap.aai.esr.entity.aai.EsrEmsDetail;
+import org.onap.aai.esr.entity.aai.EsrEmsList;
 import org.onap.aai.esr.entity.rest.CommonRegisterResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -66,9 +67,19 @@ public class EmsManagerWrapper {
   }
   
   public Response queryEmsList() {
-    //TODO
     ArrayList<EmsRegisterInfo> emsList = new ArrayList<EmsRegisterInfo>();
-    return Response.ok(emsList).build();
+    EsrEmsList esrEms = new EsrEmsList();
+    try {
+      String esrEmsStr = ExternalSystemProxy.queryEmsList();
+      esrEms = new Gson().fromJson(esrEmsStr, EsrEmsList.class);
+      LOG.info("Response from AAI by query EMS list: " + esrEms);
+      emsList = getEmsDetailList(esrEms);
+      return Response.ok(emsList).build();
+    } catch (Exception e) {
+      e.printStackTrace();
+      LOG.error("Query EMS list failed !");
+      return Response.serverError().build();
+    }
   }
   
   public Response queryEmsById(String emsId) {
@@ -97,8 +108,21 @@ public class EmsManagerWrapper {
       return emsRegisterInfo;
     } catch (Exception e) {
       e.printStackTrace();
-      LOG.error("Query VNFM detail failed! EMS ID: " + emsId, e.getMessage());
+      LOG.error("Query EMS detail failed! EMS ID: " + emsId, e.getMessage());
       return null;
     }
+  }
+  
+  private ArrayList<EmsRegisterInfo> getEmsDetailList(EsrEmsList esrEms) {
+    ArrayList<EmsRegisterInfo> emsInfoList = new ArrayList<EmsRegisterInfo>();
+    EmsRegisterInfo emsInfo = new EmsRegisterInfo();
+    for (int i = 0; i < esrEms.getEsrEms().size(); i++) {
+      String emsId = esrEms.getEsrEms().get(i).getEmsId();
+      emsInfo = queryEmsDetail(emsId);
+      if (emsInfo != null) {
+        emsInfoList.add(emsInfo);
+      }
+    }
+    return emsInfoList;
   }
 }

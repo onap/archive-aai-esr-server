@@ -19,44 +19,22 @@ import java.io.Serializable;
 
 import com.google.gson.annotations.SerializedName;
 
-public class EsrVnfm implements Serializable {
-
-  public static final long serialVersionUID = 1L;
+public class EsrEms implements Serializable {
   
-  @SerializedName("vnfm-id")
-  private String vnfmId;
+public static final long serialVersionUID = 1L;
   
-  @SerializedName("vim-id")
-  private String vimId;
-  
-  @SerializedName("certificate-id")
-  private String certificateUrl;
+  @SerializedName("ems-id")
+  private String emsId;
   
   @SerializedName("resource-version")
   private String resourceVersion;
 
-  public String getVnfmId() {
-    return vnfmId;
+  public String getEmsId() {
+    return emsId;
   }
 
-  public void setVnfmId(String vnfmId) {
-    this.vnfmId = vnfmId;
-  }
-
-  public String getVimId() {
-    return vimId;
-  }
-
-  public void setVimId(String vimId) {
-    this.vimId = vimId;
-  }
-
-  public String getCertificateUrl() {
-    return certificateUrl;
-  }
-
-  public void setCertificateUrl(String certificateUrl) {
-    this.certificateUrl = certificateUrl;
+  public void setEmsId(String emsId) {
+    this.emsId = emsId;
   }
 
   public String getResourceVersion() {
@@ -65,9 +43,5 @@ public class EsrVnfm implements Serializable {
 
   public void setResourceVersion(String resourceVersion) {
     this.resourceVersion = resourceVersion;
-  }
-
-  public static long getSerialversionuid() {
-    return serialVersionUID;
   }
 }

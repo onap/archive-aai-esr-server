@@ -103,7 +103,6 @@ public class VnfmManagerWrapper {
       LOG.error("Query VNFM list failed !");
       return Response.serverError().build();
     }
-
   }
 
   public Response queryVnfmById(String vnfmId) {
