@@ -130,7 +130,7 @@ public class ThirdpatySdncWrapper {
         e.printStackTrace();
         LOG.error("Delete VNFM from A&AI failed! thirdparty SDNC ID: " + thirdpartySdncId + "resouce-version:"
             + resourceVersion, e.getMessage());
-        return Response.serverError().build();
+        return Response.noContent().build();
       }
     } else {
       LOG.error("resouce-version is null ! Can not delete resouce from A&AI. ");

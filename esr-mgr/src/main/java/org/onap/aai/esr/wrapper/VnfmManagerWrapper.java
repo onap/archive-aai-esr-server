@@ -120,7 +120,7 @@ public class VnfmManagerWrapper {
     if (resourceVersion != null) {
       try {
         ExternalSystemProxy.deleteVnfm(vnfmId, resourceVersion);
-        return Response.ok().build();
+        return Response.noContent().build();
       } catch (Exception e) {
         e.printStackTrace();
         LOG.error("Delete VNFM from A&AI failed! VNFM ID: " + vnfmId + "resouce-version:"

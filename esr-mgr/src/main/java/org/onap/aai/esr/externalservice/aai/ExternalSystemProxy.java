@@ -90,4 +90,8 @@ public class ExternalSystemProxy {
   public static String queryEmsList() throws Exception {
     return externalSystemproxy.queryEMSList(transactionId, fromAppId, authorization);
   }
+  
+  public static void deleteEms(String emsId, String resourceVersion) throws Exception {
+    externalSystemproxy.deleteEMS(transactionId, fromAppId, authorization, emsId, resourceVersion);
+  }
 }

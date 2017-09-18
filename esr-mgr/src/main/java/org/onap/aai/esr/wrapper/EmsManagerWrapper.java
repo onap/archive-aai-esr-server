@@ -93,8 +93,23 @@ public class EmsManagerWrapper {
   }
   
   public Response delEms(String emsId) {
-    //TODO
-    return Response.noContent().build();
+    EsrEmsDetail esrEmsDetail = new EsrEmsDetail();
+    esrEmsDetail = queryEsrEmsDetail(emsId);
+    String resourceVersion = esrEmsDetail.getResourceVersion();
+    if (resourceVersion != null) {
+      try {
+        ExternalSystemProxy.deleteEms(emsId, resourceVersion);
+        return Response.noContent().build();
+      } catch (Exception e) {
+        e.printStackTrace();
+        LOG.error("Delete EMS from A&AI failed! EMS ID: " + emsId + "resouce-version:"
+            + resourceVersion, e.getMessage());
+        return Response.serverError().build();
+      }
+    } else {
+      LOG.error("resouce-version is null ! Can not delete resouce from A&AI. ");
+      return Response.serverError().build();
+    }
   }
   
   private EmsRegisterInfo queryEmsDetail(String emsId) {
@@ -124,5 +139,18 @@ public class EmsManagerWrapper {
       }
     }
     return emsInfoList;
+  }
+  
+  private EsrEmsDetail queryEsrEmsDetail (String emsId) {
+    EsrEmsDetail esrEmsDetail = new EsrEmsDetail();
+    try {
+      String esrEmsStr = ExternalSystemProxy.queryEmsDetail(emsId);
+      LOG.info("Response from AAI by query EMS: " + esrEmsStr);
+      esrEmsDetail = new Gson().fromJson(esrEmsStr, EsrEmsDetail.class);
+    } catch (Exception e) {
+      e.printStackTrace();
+      LOG.error("Query EMS detail failed! EMS ID: " + emsId, e.getMessage());
+    }
+    return esrEmsDetail;
   }
 }
