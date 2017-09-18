@@ -24,6 +24,7 @@ import org.onap.aai.esr.externalservice.aai.ExternalSystemProxy;
 import org.onap.aai.esr.util.EmsManagerUtil;
 import org.onap.aai.esr.entity.aai.EsrEmsDetail;
 import org.onap.aai.esr.entity.aai.EsrEmsList;
+import org.onap.aai.esr.entity.aai.EsrSystemInfo;
 import org.onap.aai.esr.entity.rest.CommonRegisterResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -61,9 +62,19 @@ public class EmsManagerWrapper {
     }
   }
 
-  public Response updateEms(EmsRegisterInfo ems) {
-    //TODO
-    return Response.ok().build();
+  public Response updateEms(EmsRegisterInfo emsRegisterInfo, String emsId) {
+    CommonRegisterResponse result = new CommonRegisterResponse();
+    EsrEmsDetail esrEmsDetail = new EsrEmsDetail();
+    esrEmsDetail = getNewEsrEmsDetail(emsRegisterInfo, emsId);
+    try {
+      ExternalSystemProxy.registerEms(emsId, esrEmsDetail);
+      result.setId(emsId);
+      return Response.ok(result).build();
+    } catch (Exception e) {
+      e.printStackTrace();
+      LOG.error("Update VNFM failed !" + e.getMessage());
+      return Response.serverError().build();
+    }
   }
   
   public Response queryEmsList() {
@@ -150,6 +161,37 @@ public class EmsManagerWrapper {
     } catch (Exception e) {
       e.printStackTrace();
       LOG.error("Query EMS detail failed! EMS ID: " + emsId, e.getMessage());
+    }
+    return esrEmsDetail;
+  }
+  
+  private EsrEmsDetail getNewEsrEmsDetail(EmsRegisterInfo emsRegisterInfo, String emsId) {
+    EsrEmsDetail esrEmsDetail = new EsrEmsDetail();
+    ArrayList<EsrSystemInfo> newEsrSysInfoList = new ArrayList<EsrSystemInfo>();
+    EsrSystemInfo newEsrSystemInfo = new EsrSystemInfo();
+    EsrEmsDetail oriEsrEmsDetail = new EsrEmsDetail();
+    ArrayList<EsrSystemInfo> oriEsrSysInfoList = new ArrayList<EsrSystemInfo>();
+    EsrSystemInfo originalEsrSystemInfo = new EsrSystemInfo();
+    
+    oriEsrEmsDetail = queryEsrEmsDetail(emsId);
+    esrEmsDetail = EmsManagerUtil.emsRegisterInfo2EsrEms(emsRegisterInfo);
+    String emsResourceVersion = oriEsrEmsDetail.getResourceVersion();
+    esrEmsDetail.setResourceVersion(emsResourceVersion);
+    esrEmsDetail.setEmsId(emsId);
+    newEsrSysInfoList = esrEmsDetail.getEsrSystemInfoList().getEsrSystemInfo();
+    oriEsrSysInfoList = oriEsrEmsDetail.getEsrSystemInfoList().getEsrSystemInfo();
+    for (int i = 0; i < oriEsrSysInfoList.size(); i++) {
+      originalEsrSystemInfo = oriEsrSysInfoList.get(i);
+      for (int j = 0; j < newEsrSysInfoList.size(); j++) {
+        newEsrSystemInfo = newEsrSysInfoList.get(j);
+        if (originalEsrSystemInfo.getSystemType().equals(newEsrSystemInfo.getSystemType())) {
+          esrEmsDetail.getEsrSystemInfoList().getEsrSystemInfo().get(j)
+              .setResouceVersion(originalEsrSystemInfo.getResouceVersion());
+          esrEmsDetail.getEsrSystemInfoList().getEsrSystemInfo().get(j)
+              .setEsrSystemInfoId(originalEsrSystemInfo.getEsrSystemInfoId());
+          break;
+        }
+      }
     }
     return esrEmsDetail;
   }

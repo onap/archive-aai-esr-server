@@ -124,7 +124,7 @@ public class EmsManager {
   public Response updateEms(@ApiParam(value = "ems", required = true) EmsRegisterInfo ems,
       @ApiParam(value = "ems id", required = true) @PathParam("emsId") String emsId) {
     LOGGER.info("start update ems .id:" + emsId + " info:" + ExtsysUtil.objectToString(ems));
-    return RestResponseUtil.getSuccessResponse(new EmsRegisterInfo());
+    return EmsManagerWrapper.getInstance().updateEms(ems, emsId);
   }
   
   /**
