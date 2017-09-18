@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import javax.ws.rs.core.Response;
 
 import org.onap.aai.esr.entity.aai.EsrThirdpartySdncDetail;
+import org.onap.aai.esr.entity.aai.EsrThirdpartySdncList;
 import org.onap.aai.esr.entity.rest.CommonRegisterResponse;
 import org.onap.aai.esr.entity.rest.ThirdpartySdncRegisterInfo;
 import org.onap.aai.esr.externalservice.aai.ExternalSystemProxy;
@@ -68,9 +69,19 @@ public class ThirdpatySdncWrapper {
   }
   
   public Response queryThirdpartySdncList() {
-    //TODO
-    ArrayList<ThirdpartySdncRegisterInfo> thirdpartySdncList = new ArrayList<ThirdpartySdncRegisterInfo>();
-    return Response.ok(thirdpartySdncList).build();
+    ArrayList<ThirdpartySdncRegisterInfo> sdncList = new ArrayList<ThirdpartySdncRegisterInfo>();
+    EsrThirdpartySdncList esrSdnc = new EsrThirdpartySdncList();
+    try {
+      String esrSdncStr = ExternalSystemProxy.querySdncList();
+      esrSdnc = new Gson().fromJson(esrSdncStr, EsrThirdpartySdncList.class);
+      LOG.info("Response from AAI by query thirdparty SDNC list: " + esrSdnc);
+      sdncList = getSdncDetailList(esrSdnc);
+      return Response.ok(sdncList).build();
+    } catch (Exception e) {
+      e.printStackTrace();
+      LOG.error("Query thirdparty SDNC list failed !");
+      return Response.serverError().build();
+    }
   }
   
   public Response queryThirdpartySdncById(String thirdpartySdncId) {
@@ -102,5 +113,18 @@ public class ThirdpatySdncWrapper {
       LOG.error("Query VNFM detail failed! thirdpaty SDNC ID: " + sdncId, e.getMessage());
       return null;
     }
+  }
+  
+  private ArrayList<ThirdpartySdncRegisterInfo> getSdncDetailList(EsrThirdpartySdncList esrThirdPartySdnc) {
+    ArrayList<ThirdpartySdncRegisterInfo> sdncInfoList = new ArrayList<ThirdpartySdncRegisterInfo>();
+    ThirdpartySdncRegisterInfo sdncInfo = new ThirdpartySdncRegisterInfo();
+    for (int i = 0; i < esrThirdPartySdnc.getEsrThirdpartySdnc().size(); i++) {
+      String sdncId = esrThirdPartySdnc.getEsrThirdpartySdnc().get(i).getThirdpartySdncId();
+      sdncInfo = querySdncDetail(sdncId);
+      if (sdncInfo != null) {
+        sdncInfoList.add(sdncInfo);
+      }
+    }
+    return sdncInfoList;
   }
 }
