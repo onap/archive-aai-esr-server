@@ -19,12 +19,15 @@ import java.util.ArrayList;
 
 import javax.ws.rs.core.Response;
 
+import org.onap.aai.esr.entity.aai.EsrSystemInfo;
 import org.onap.aai.esr.entity.aai.EsrThirdpartySdncDetail;
 import org.onap.aai.esr.entity.aai.EsrThirdpartySdncList;
+import org.onap.aai.esr.entity.aai.EsrVnfmDetail;
 import org.onap.aai.esr.entity.rest.CommonRegisterResponse;
 import org.onap.aai.esr.entity.rest.ThirdpartySdncRegisterInfo;
 import org.onap.aai.esr.externalservice.aai.ExternalSystemProxy;
 import org.onap.aai.esr.util.ThirdpartySdncManagerUtil;
+import org.onap.aai.esr.util.VnfmManagerUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -63,9 +66,30 @@ public class ThirdpatySdncWrapper {
     
   }
 
-  public Response updateThirdpartySdnc(ThirdpartySdncRegisterInfo thirdpartySdnc) {
-    //TODO
-    return Response.ok().build();
+  public Response updateThirdpartySdnc(ThirdpartySdncRegisterInfo thirdpartySdnc, String sdncId) {
+    CommonRegisterResponse result = new CommonRegisterResponse();
+    EsrThirdpartySdncDetail esrSdncDetail = new EsrThirdpartySdncDetail();
+    EsrThirdpartySdncDetail originalEsrSdncDetail = new EsrThirdpartySdncDetail();
+    EsrSystemInfo originalEsrSystemInfo = new EsrSystemInfo();
+    originalEsrSdncDetail = queryEsrThirdpartySdncDetail(sdncId);
+    esrSdncDetail = ThirdpartySdncManagerUtil.sdncRegisterInfo2EsrSdnc(thirdpartySdnc);
+    String resourceVersion = originalEsrSdncDetail.getResourceVersion();
+    esrSdncDetail.setResourceVersion(resourceVersion);
+    esrSdncDetail.setThirdpartySdncId(sdncId);
+    originalEsrSystemInfo = originalEsrSdncDetail.getEsrSystemInfoList().getEsrSystemInfo().get(0);
+    esrSdncDetail.getEsrSystemInfoList().getEsrSystemInfo().get(0)
+        .setEsrSystemInfoId(originalEsrSystemInfo.getEsrSystemInfoId());
+    esrSdncDetail.getEsrSystemInfoList().getEsrSystemInfo().get(0)
+        .setResouceVersion(originalEsrSystemInfo.getResouceVersion());
+    try {
+      ExternalSystemProxy.registerSdnc(sdncId, esrSdncDetail);
+      result.setId(sdncId);
+      return Response.ok(result).build();
+    } catch (Exception e) {
+      e.printStackTrace();
+      LOG.error("Update VNFM failed !" + e.getMessage());
+      return Response.serverError().build();
+    }
   }
   
   public Response queryThirdpartySdncList() {
@@ -90,7 +114,7 @@ public class ThirdpatySdncWrapper {
     if(thirdpartySdnc != null) {
       return Response.ok(thirdpartySdnc).build();
     } else {
-      return Response.serverError().build();
+      return Response.ok().build();
     }
   }
   
@@ -127,4 +151,18 @@ public class ThirdpatySdncWrapper {
     }
     return sdncInfoList;
   }
+  
+  private EsrThirdpartySdncDetail queryEsrThirdpartySdncDetail (String sdncId) {
+    EsrThirdpartySdncDetail esrSdncDetail = new EsrThirdpartySdncDetail();
+    try {
+      String esrThirdpartySdncStr = ExternalSystemProxy.queryThirdpartySdncDetail(sdncId);
+      LOG.info("Response from AAI by query thirdparty SDNC: " + esrThirdpartySdncStr);
+      esrSdncDetail = new Gson().fromJson(esrThirdpartySdncStr, EsrThirdpartySdncDetail.class);
+    } catch (Exception e) {
+      e.printStackTrace();
+      LOG.error("Query VNFM detail failed! VNFM ID: " + sdncId, e.getMessage());
+    }
+    return esrSdncDetail;
+  }
+  
 }

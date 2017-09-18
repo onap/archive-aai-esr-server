@@ -112,7 +112,7 @@ public class VnfmManagerWrapper {
     if (vnfm != null) {
       return Response.ok(vnfm).build();
     } else {
-      return Response.serverError().build();
+      return Response.ok().build();
     }
   }
 

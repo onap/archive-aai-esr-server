@@ -123,7 +123,7 @@ public class ThirdpatySdncManager {
   public Response updateThirdpartySdnc(@ApiParam(value = "thirdpartySdnc", required = true) ThirdpartySdncRegisterInfo thirdPartySdnc,
       @ApiParam(value = "sdnc id", required = true) @PathParam("thirdPartySdncId") String thirdPartySdncId) {
     LOGGER.info("start update sdnc .id:" + thirdPartySdncId + " info:" + ExtsysUtil.objectToString(thirdPartySdnc));
-    return ThirdpatySdncWrapper.getInstance().updateThirdpartySdnc(thirdPartySdnc);
+    return ThirdpatySdncWrapper.getInstance().updateThirdpartySdnc(thirdPartySdnc, thirdPartySdncId);
   }
   
   /**
