@@ -44,6 +44,7 @@ public class VimManagerUtil {
     cloudRegion.setCloudExtraInfo(vimRegisterInfo.getCloudExtraInfo());
     
     esrSystemInfoObj = vimAuthInfo2EsrSystemInfoObj(vimRegisterInfo.getVimAuthInfos());
+    esrSystemInfoObj.setSystemStatus(vimRegisterInfo.getStatus());
     esrSystemInfoList = ExtsysUtil.getEsrSystemInfoListFromAuthInfo(esrSystemInfoObj);
     cloudRegion.setEsrSystemInfoList(esrSystemInfoList);
     return cloudRegion;
@@ -61,7 +62,7 @@ public class VimManagerUtil {
     esrSystemInfoObj.setSslInsecure(vimAuthInfo.getSslInsecure());
     esrSystemInfoObj.setEsrSystemInfoId(ExtsysUtil.generateId());
     esrSystemInfoObj.setSystemType(SystemType.VIM.toString());
-    esrSystemInfoObj.setSystemStatus(SystemStatus.normal.toString());
+//    esrSystemInfoObj.setSystemStatus(SystemStatus.normal.toString());
     return esrSystemInfoObj;
   }
   
@@ -91,6 +92,7 @@ public class VimManagerUtil {
     vimRegisterInfo.setComplexName(cloudRegion.getComplexName());
     vimRegisterInfo.setCloudRegionVersion(cloudRegion.getCloudRegionVersion());
     vimRegisterInfo.setOwnerDefinedType(cloudRegion.getOwnerDefinedType());
+    vimRegisterInfo.setStatus(cloudRegion.getEsrSystemInfoList().getEsrSystemInfo().get(0).getSystemStatus());
     return vimRegisterInfo;
   }
 }

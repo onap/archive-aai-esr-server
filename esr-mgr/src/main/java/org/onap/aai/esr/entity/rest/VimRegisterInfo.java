@@ -35,6 +35,8 @@ public class VimRegisterInfo {
   
   private String cloudExtraInfo;
   
+  private String status;
+  
   private ArrayList<VimAuthInfo> vimAuthInfos;
 
   public String getCloudOwner() {
@@ -107,6 +109,14 @@ public class VimRegisterInfo {
 
   public void setVimAuthInfos(ArrayList<VimAuthInfo> vimAuthInfos) {
     this.vimAuthInfos = vimAuthInfos;
+  }
+
+  public String getStatus() {
+    return status;
+  }
+
+  public void setStatus(String status) {
+    this.status = status;
   }
 
 }
