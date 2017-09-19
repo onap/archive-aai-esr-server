@@ -16,6 +16,8 @@
 package org.onap.aai.esr.util;
 
 
+import java.util.ArrayList;
+
 import org.onap.aai.esr.common.SystemStatus;
 import org.onap.aai.esr.common.SystemType;
 import org.onap.aai.esr.entity.aai.EsrSystemInfo;
@@ -41,14 +43,16 @@ public class VimManagerUtil {
     cloudRegion.setOwnerDefinedType(vimRegisterInfo.getOwnerDefinedType());
     cloudRegion.setCloudExtraInfo(vimRegisterInfo.getCloudExtraInfo());
     
-    esrSystemInfoObj = vimAuthInfo2EsrSystemInfoObj(vimRegisterInfo.getVimAuthInfo());
+    esrSystemInfoObj = vimAuthInfo2EsrSystemInfoObj(vimRegisterInfo.getVimAuthInfos());
     esrSystemInfoList = ExtsysUtil.getEsrSystemInfoListFromAuthInfo(esrSystemInfoObj);
     cloudRegion.setEsrSystemInfoList(esrSystemInfoList);
     return cloudRegion;
   }
 
-  private static EsrSystemInfo vimAuthInfo2EsrSystemInfoObj(VimAuthInfo vimAuthInfo) {
+  private static EsrSystemInfo vimAuthInfo2EsrSystemInfoObj(ArrayList<VimAuthInfo> vimAuthInfos) {
     EsrSystemInfo esrSystemInfoObj = new EsrSystemInfo();
+    VimAuthInfo vimAuthInfo = new VimAuthInfo();
+    vimAuthInfo = vimAuthInfos.get(0);
     esrSystemInfoObj.setCloudDomain(vimAuthInfo.getCloudDomain());
     esrSystemInfoObj.setUserName(vimAuthInfo.getUserName());
     esrSystemInfoObj.setPassword(vimAuthInfo.getPassword());
@@ -75,8 +79,10 @@ public class VimManagerUtil {
   public static VimRegisterInfo cloudRegion2VimRegisterInfo(CloudRegionDetail cloudRegion) {
     VimRegisterInfo vimRegisterInfo = new VimRegisterInfo();
     VimAuthInfo vimAuthInfo = new VimAuthInfo();
+    ArrayList<VimAuthInfo> vimAuthInfos = new ArrayList<VimAuthInfo>();
     vimAuthInfo = authInfo2VimAuthInfo(cloudRegion.getEsrSystemInfoList().getEsrSystemInfo().get(0));
-    vimRegisterInfo.setVimAuthInfo(vimAuthInfo);
+    vimAuthInfos.add(vimAuthInfo);
+    vimRegisterInfo.setVimAuthInfos(vimAuthInfos);
     vimRegisterInfo.setCloudExtraInfo(cloudRegion.getCloudExtraInfo());
     vimRegisterInfo.setCloudOwner(cloudRegion.getCloudOwner());
     vimRegisterInfo.setCloudRegionId(cloudRegion.getCloudRegionId());

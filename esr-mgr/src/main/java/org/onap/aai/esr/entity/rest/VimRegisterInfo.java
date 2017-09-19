@@ -15,6 +15,8 @@
  */
 package org.onap.aai.esr.entity.rest;
 
+import java.util.ArrayList;
+
 public class VimRegisterInfo {
 
   private String cloudOwner;
@@ -33,7 +35,7 @@ public class VimRegisterInfo {
   
   private String cloudExtraInfo;
   
-  private VimAuthInfo vimAuthInfo;
+  private ArrayList<VimAuthInfo> vimAuthInfos;
 
   public String getCloudOwner() {
     return cloudOwner;
@@ -99,13 +101,12 @@ public class VimRegisterInfo {
     this.cloudExtraInfo = cloudExtraInfo;
   }
 
-  public VimAuthInfo getVimAuthInfo() {
-    return vimAuthInfo;
+  public ArrayList<VimAuthInfo> getVimAuthInfos() {
+    return vimAuthInfos;
   }
 
-  public void setVimAuthInfo(VimAuthInfo vimAuthInfo) {
-    this.vimAuthInfo = vimAuthInfo;
+  public void setVimAuthInfos(ArrayList<VimAuthInfo> vimAuthInfos) {
+    this.vimAuthInfos = vimAuthInfos;
   }
-
 
 }
