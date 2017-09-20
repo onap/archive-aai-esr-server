@@ -21,15 +21,15 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-public class EsrEmsListTest {
+public class EsrThirdpartySdncListTest {
   @Test
-  public void getterAndSetter4EsrEmsList() {
-    EsrEmsList esrEmsList = new EsrEmsList();
-    ArrayList<EsrEms> esrEmses = new ArrayList<EsrEms>();
-    EsrEms esrEms = new EsrEms();
-    esrEms.setEmsId("123");
-    esrEmses.add(esrEms);
-    esrEmsList.setEsrEms(esrEmses);
-    assertEquals(esrEmsList.getEsrEms(), esrEmses);
+  public void getterAndSetter4EsrThirdpartySdncList() {
+    EsrThirdpartySdncList esrThirdpartySdncList = new EsrThirdpartySdncList();
+    ArrayList<EsrThirdpartySdnc> esrThirdpartySdncs = new ArrayList<EsrThirdpartySdnc>();
+    EsrThirdpartySdnc esrThirdpartySdnc = new EsrThirdpartySdnc();
+    esrThirdpartySdnc.setThirdpartySdncId("123");
+    esrThirdpartySdncs.add(esrThirdpartySdnc);
+    esrThirdpartySdncList.setEsrThirdpartySdnc(esrThirdpartySdncs);
+    assertEquals(esrThirdpartySdncList.getEsrThirdpartySdnc(), esrThirdpartySdncs);
   }
 }

@@ -47,8 +47,8 @@ public class EsrEmsDetailTest {
     esrSystemInfoObj.setEsrSystemInfoId("123");
     esrSystemInfo.add(esrSystemInfoObj );
     esrSystemInfoList.setEsrSystemInfo(esrSystemInfo);
-    EsrEmsDetail cloudRegion = new EsrEmsDetail();
-    cloudRegion.setEsrSystemInfoList(esrSystemInfoList);
-    assertEquals(cloudRegion.getEsrSystemInfoList(), esrSystemInfoList);
+    EsrEmsDetail esrEmsDetail = new EsrEmsDetail();
+    esrEmsDetail.setEsrSystemInfoList(esrSystemInfoList);
+    assertEquals(esrEmsDetail.getEsrSystemInfoList(), esrSystemInfoList);
   }
 }
