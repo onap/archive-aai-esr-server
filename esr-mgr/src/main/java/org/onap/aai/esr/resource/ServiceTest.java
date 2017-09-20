@@ -22,7 +22,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.eclipse.jetty.http.HttpStatus;
-import org.onap.aai.esr.wrapper.EmsManagerWrapper;
 
 import com.codahale.metrics.annotation.Timed;
 
