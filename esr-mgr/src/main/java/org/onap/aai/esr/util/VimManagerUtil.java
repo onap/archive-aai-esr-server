@@ -18,7 +18,6 @@ package org.onap.aai.esr.util;
 
 import java.util.ArrayList;
 
-import org.onap.aai.esr.common.SystemStatus;
 import org.onap.aai.esr.common.SystemType;
 import org.onap.aai.esr.entity.aai.EsrSystemInfo;
 import org.onap.aai.esr.entity.aai.CloudRegionDetail;
