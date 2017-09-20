@@ -172,7 +172,7 @@ public class VimManagerWrapper {
     originalCloudRegionDetail = getOriginalCloudRegion(cloudOwner, cloudRegionId);
     String resourceVersion = originalCloudRegionDetail.getResourceVersion();
     cloudRegionDetail = VimManagerUtil.vimRegisterInfo2CloudRegion(vimRegisterInfo);
-    if(originalCloudRegionDetail != null && resourceVersion != null) {
+    if(resourceVersion != null) {
       cloudRegionDetail.setResourceVersion(resourceVersion);
       originalSystemInfo = originalCloudRegionDetail.getEsrSystemInfoList().getEsrSystemInfo().get(0);
       cloudRegionDetail.getEsrSystemInfoList().getEsrSystemInfo().get(0).setEsrSystemInfoId(originalSystemInfo.getEsrSystemInfoId());
