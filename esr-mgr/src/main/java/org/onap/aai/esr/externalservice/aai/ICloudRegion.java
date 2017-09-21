@@ -16,12 +16,14 @@
 package org.onap.aai.esr.externalservice.aai;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import org.onap.aai.esr.entity.aai.CloudRegionDetail;
@@ -57,4 +59,14 @@ public interface ICloudRegion {
       @HeaderParam("X-FromAppId") String fromApp,
       @HeaderParam("Authorization") String authorization) throws Exception;
 
+  @DELETE
+  @Path("/cloud-region/{cloud_owner}/{cloud_region_id}")
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  public void deleteVim(@HeaderParam("X-TransactionId") String transactionId,
+      @HeaderParam("X-FromAppId") String fromApp,
+      @HeaderParam("Authorization") String authorization,
+      @PathParam("cloud_owner") String cloud_owner,
+      @PathParam("cloud_region_id") String cloud_region_id,
+      @QueryParam("resource-version") String resourceVersion) throws Exception;
 }

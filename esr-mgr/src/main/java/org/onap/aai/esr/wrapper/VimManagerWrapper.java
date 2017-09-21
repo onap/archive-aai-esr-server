@@ -183,7 +183,38 @@ public class VimManagerWrapper {
   }
 
   public Response delVim(String cloudOwner, String cloudRegionId) {
-    // TODO
-    return Response.noContent().build();
+    CloudRegionDetail cloudRegionDetail = new CloudRegionDetail();
+    cloudRegionDetail = queryCloudRegionDetail(cloudOwner, cloudRegionId);
+    String resourceVersion = cloudRegionDetail.getResourceVersion();
+    if (resourceVersion != null) {
+      try {
+        CloudRegionProxy.deleteVim(cloudOwner, cloudRegionId, resourceVersion);
+        return Response.noContent().build();
+      } catch (Exception e) {
+        e.printStackTrace();
+        LOG.error(
+            "Delete cloud region from A&AI failed! cloud-owner = " + cloudOwner
+                + ", cloud-region-id = " + cloudRegionId + "resouce-version:" + resourceVersion,
+            e.getMessage());
+        return Response.noContent().build();
+      }
+    } else {
+      LOG.error("resouce-version is null ! Can not delete resouce from A&AI. ");
+      return Response.noContent().build();
+    }
+  }
+  
+  private CloudRegionDetail queryCloudRegionDetail (String cloudOwner, String cloudRegionId) {
+    CloudRegionDetail cloudRegionDetail = new CloudRegionDetail();
+    try {
+      String cloudRegionStr = CloudRegionProxy.queryVimDetail(cloudOwner, cloudRegionId);
+      LOG.info("Response from AAI by query cloud region: " + cloudRegionStr);
+      cloudRegionDetail = new Gson().fromJson(cloudRegionStr, CloudRegionDetail.class);
+    } catch (Exception e) {
+      e.printStackTrace();
+      LOG.error("Query EMS detail failed! cloud-owner = " + cloudOwner
+                + ", cloud-region-id = " + cloudRegionId , e.getMessage());
+    }
+    return cloudRegionDetail;
   }
 }
