@@ -22,12 +22,10 @@ import javax.ws.rs.core.Response;
 import org.onap.aai.esr.entity.aai.EsrSystemInfo;
 import org.onap.aai.esr.entity.aai.EsrThirdpartySdncDetail;
 import org.onap.aai.esr.entity.aai.EsrThirdpartySdncList;
-import org.onap.aai.esr.entity.aai.EsrVnfmDetail;
 import org.onap.aai.esr.entity.rest.CommonRegisterResponse;
 import org.onap.aai.esr.entity.rest.ThirdpartySdncRegisterInfo;
 import org.onap.aai.esr.externalservice.aai.ExternalSystemProxy;
 import org.onap.aai.esr.util.ThirdpartySdncManagerUtil;
-import org.onap.aai.esr.util.VnfmManagerUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

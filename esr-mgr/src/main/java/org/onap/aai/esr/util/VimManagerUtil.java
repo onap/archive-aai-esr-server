@@ -27,6 +27,7 @@ import org.onap.aai.esr.entity.rest.VimRegisterInfo;
 
 
 public class VimManagerUtil {
+  private static ExtsysUtil extsysUtil = new ExtsysUtil();
   
   public CloudRegionDetail vimRegisterInfo2CloudRegion(VimRegisterInfo vimRegisterInfo) {
     CloudRegionDetail cloudRegion = new CloudRegionDetail();
@@ -44,7 +45,7 @@ public class VimManagerUtil {
     
     esrSystemInfoObj = vimAuthInfo2EsrSystemInfoObj(vimRegisterInfo.getVimAuthInfos());
     esrSystemInfoObj.setSystemStatus(vimRegisterInfo.getStatus());
-    esrSystemInfoList = ExtsysUtil.getEsrSystemInfoListFromAuthInfo(esrSystemInfoObj);
+    esrSystemInfoList = extsysUtil.getEsrSystemInfoListFromAuthInfo(esrSystemInfoObj);
     cloudRegion.setEsrSystemInfoList(esrSystemInfoList);
     return cloudRegion;
   }

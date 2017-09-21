@@ -25,13 +25,14 @@ import org.onap.aai.esr.entity.rest.EmsRegisterInfo;
 import org.onap.aai.esr.entity.rest.FtpAddr;
 
 public class EmsManagerUtil {
+  private static ExtsysUtil extsysUtil = new ExtsysUtil();
   
   public EsrEmsDetail emsRegisterInfo2EsrEms(EmsRegisterInfo emsRegisterInfo) {
     EsrEmsDetail esrEms = new EsrEmsDetail();
     esrEms.setEmsId(ExtsysUtil.generateId());
     ArrayList<EsrSystemInfo> authInfos = new ArrayList<EsrSystemInfo>();
     authInfos = getAuthInfosFromRegisterData(emsRegisterInfo);
-    esrEms.setEsrSystemInfoList(ExtsysUtil.getEsrSystemInfoListFromAuthInfoList(authInfos));
+    esrEms.setEsrSystemInfoList(extsysUtil.getEsrSystemInfoListFromAuthInfoList(authInfos));
     return esrEms;
   }
 

@@ -20,23 +20,16 @@ import com.google.gson.Gson;
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.UUID;
 
 import org.onap.aai.esr.entity.aai.EsrSystemInfo;
 import org.onap.aai.esr.entity.aai.EsrSystemInfoList;
 
 public class ExtsysUtil {
-//  private final static Logger logger = LoggerFactory.getLogger(ExtsysUtil.class);
 
   public static String generateId() {
     return UUID.randomUUID().toString();
-  }
-
-  public static boolean isNotEmpty(String str) {
-    return str != null && !"".equals(str) && str.length() > 0;
   }
 
   /**
@@ -51,12 +44,7 @@ public class ExtsysUtil {
     }
   }
 
-  public static String getNowTime() {
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    return sdf.format(new Date());
-  }
-  
-  public static EsrSystemInfoList getEsrSystemInfoListFromAuthInfo(EsrSystemInfo esrSystemInfoObj) {
+  public EsrSystemInfoList getEsrSystemInfoListFromAuthInfo(EsrSystemInfo esrSystemInfoObj) {
     EsrSystemInfoList esrSystemInfoList = new EsrSystemInfoList();
     ArrayList<EsrSystemInfo> esrSystemInfo = new ArrayList<EsrSystemInfo>();
     esrSystemInfo.add(esrSystemInfoObj);
@@ -64,7 +52,7 @@ public class ExtsysUtil {
     return esrSystemInfoList;
   }
   
-  public static EsrSystemInfoList getEsrSystemInfoListFromAuthInfoList(ArrayList<EsrSystemInfo> esrSystemInfo) {
+  public EsrSystemInfoList getEsrSystemInfoListFromAuthInfoList(ArrayList<EsrSystemInfo> esrSystemInfo) {
     EsrSystemInfoList esrSystemInfoList = new EsrSystemInfoList();
     esrSystemInfoList.setEsrSystemInfo(esrSystemInfo);;
     return esrSystemInfoList;

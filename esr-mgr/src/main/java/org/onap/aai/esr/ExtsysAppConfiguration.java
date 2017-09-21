@@ -73,8 +73,8 @@ public class ExtsysAppConfiguration extends Configuration {
   }
   
   @JsonProperty
-  public String setMsbDiscoveryIp() {
-    return msbDiscoveryIp;
+  public void setMsbDiscoveryIp(String discoveryIp) {
+    this.msbDiscoveryIp = discoveryIp;
   }
   
   @JsonProperty

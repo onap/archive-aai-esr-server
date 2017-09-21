@@ -22,6 +22,7 @@ import org.onap.aai.esr.entity.aai.EsrVnfmDetail;
 import org.onap.aai.esr.entity.rest.VnfmRegisterInfo;
 
 public class VnfmManagerUtil {
+  private static ExtsysUtil extsysUtil = new ExtsysUtil();
   
   public EsrVnfmDetail vnfmRegisterInfo2EsrVnfm(VnfmRegisterInfo vnfmRegisterInfo) {
     EsrVnfmDetail esrVnfm = new EsrVnfmDetail();
@@ -32,7 +33,7 @@ public class VnfmManagerUtil {
     esrVnfm.setVimId(vnfmRegisterInfo.getVimId());
     esrVnfm.setVnfmId(ExtsysUtil.generateId());
     authInfo = getAuthInfoFromVnfmRegisterInfo(vnfmRegisterInfo);
-    esrSystemInfo = ExtsysUtil.getEsrSystemInfoListFromAuthInfo(authInfo);
+    esrSystemInfo = extsysUtil.getEsrSystemInfoListFromAuthInfo(authInfo);
     esrVnfm.setEsrSystemInfoList(esrSystemInfo);
     return esrVnfm;
   }
