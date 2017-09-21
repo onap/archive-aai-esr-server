@@ -50,6 +50,9 @@ public class ExtsysAppConfiguration extends Configuration {
   @NotEmpty
   private String externalSystemAddr;
   
+  @NotEmpty
+  private String multiCloudAddr;
+  
   @Valid
   private String serviceIp;
   
@@ -145,5 +148,15 @@ public class ExtsysAppConfiguration extends Configuration {
   @JsonProperty
   public void setMsbDiscoveryIp(String msbDiscoveryIp) {
     this.msbDiscoveryIp = msbDiscoveryIp;
+  }
+
+  @JsonProperty
+  public String getMultiCloudAddr() {
+    return multiCloudAddr;
+  }
+
+  @JsonProperty
+  public void setMultiCloudAddr(String multiCloudAddr) {
+    this.multiCloudAddr = multiCloudAddr;
   }
 }

@@ -25,6 +25,8 @@ import org.onap.aai.esr.entity.aai.EsrSystemInfo;
 import org.onap.aai.esr.entity.rest.VimRegisterInfo;
 import org.onap.aai.esr.entity.rest.VimRegisterResponse;
 import org.onap.aai.esr.externalservice.aai.CloudRegionProxy;
+import org.onap.aai.esr.externalservice.cloud.Tenant;
+import org.onap.aai.esr.externalservice.cloud.VimManagerProxy;
 import org.onap.aai.esr.util.ExtsysUtil;
 import org.onap.aai.esr.util.VimManagerUtil;
 import org.slf4j.Logger;
@@ -64,6 +66,14 @@ public class VimManagerWrapper {
       CloudRegionProxy.registerVim(cloudOwner, cloudRegionId, cloudRegion);
       result.setCloudOwner(cloudOwner);
       result.setCloudRegionId(cloudRegionId);
+      Tenant tenant = new Tenant();
+      tenant.setDefaultTenant(cloudRegion.getEsrSystemInfoList().getEsrSystemInfo().get(0).getDefaultTenant());
+      try {
+        VimManagerProxy.updateVim(cloudOwner, cloudRegionId, tenant);
+      } catch (Exception e) {
+        e.printStackTrace();
+        LOG.error("Update VIM by Multi-cloud failed !" + e.getMessage());
+      }
       return Response.ok(result).build();
     } catch (Exception error) {
       error.printStackTrace();
