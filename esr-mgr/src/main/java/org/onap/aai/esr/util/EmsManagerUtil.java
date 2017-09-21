@@ -26,7 +26,7 @@ import org.onap.aai.esr.entity.rest.FtpAddr;
 
 public class EmsManagerUtil {
   
-  public static EsrEmsDetail emsRegisterInfo2EsrEms(EmsRegisterInfo emsRegisterInfo) {
+  public EsrEmsDetail emsRegisterInfo2EsrEms(EmsRegisterInfo emsRegisterInfo) {
     EsrEmsDetail esrEms = new EsrEmsDetail();
     esrEms.setEmsId(ExtsysUtil.generateId());
     ArrayList<EsrSystemInfo> authInfos = new ArrayList<EsrSystemInfo>();
@@ -35,7 +35,7 @@ public class EmsManagerUtil {
     return esrEms;
   }
 
-  private static ArrayList<EsrSystemInfo> getAuthInfosFromRegisterData(EmsRegisterInfo emsRegisterInfo) {
+  private ArrayList<EsrSystemInfo> getAuthInfosFromRegisterData(EmsRegisterInfo emsRegisterInfo) {
     ArrayList<EsrSystemInfo> authInfos = new ArrayList<EsrSystemInfo>();
     EsrSystemInfo resouceAuthInfo = new EsrSystemInfo();
     EsrSystemInfo performanceAuthInfo = new EsrSystemInfo();
@@ -49,7 +49,7 @@ public class EmsManagerUtil {
     return authInfos;
   }
   
-  private static EsrSystemInfo getAuthInfoFromFtpAddr(EmsRegisterInfo emsRegisterInfo, String systemType) {
+  private EsrSystemInfo getAuthInfoFromFtpAddr(EmsRegisterInfo emsRegisterInfo, String systemType) {
     EsrSystemInfo authInfo = new EsrSystemInfo();
     FtpAddr ftpAddr = new FtpAddr();
     if(systemType.equals(SystemType.EMS_RESOUCE.toString())) {
@@ -72,7 +72,7 @@ public class EmsManagerUtil {
     return authInfo;
   }
   
-  private static EsrSystemInfo getAuthInfoFromAlarmAddr(EmsRegisterInfo emsRegisterInfo) {
+  private EsrSystemInfo getAuthInfoFromAlarmAddr(EmsRegisterInfo emsRegisterInfo) {
     EsrSystemInfo authInfo = new EsrSystemInfo();
     AlarmAddr alarmAddr = new AlarmAddr();
     alarmAddr = emsRegisterInfo.getAlarmAddr();
@@ -88,7 +88,7 @@ public class EmsManagerUtil {
     return authInfo;
   }
   
-  public static EmsRegisterInfo EsrEms2EmsRegisterInfo(EsrEmsDetail esrEms) {
+  public EmsRegisterInfo EsrEms2EmsRegisterInfo(EsrEmsDetail esrEms) {
     EmsRegisterInfo emsRegisterInfo = new EmsRegisterInfo();
     ArrayList<EsrSystemInfo> esrSystemInfo = new ArrayList<EsrSystemInfo>();
     EsrSystemInfo authInfo = new EsrSystemInfo();
@@ -117,7 +117,7 @@ public class EmsManagerUtil {
     return emsRegisterInfo;
   }
   
-  private static FtpAddr getFtpAddrFromAuthInfo(EsrSystemInfo authInfo) {
+  private FtpAddr getFtpAddrFromAuthInfo(EsrSystemInfo authInfo) {
     FtpAddr ftpAddr = new FtpAddr();
     ftpAddr.setFtptype(authInfo.getType());
     ftpAddr.setIp(authInfo.getIpAddress());
@@ -129,7 +129,7 @@ public class EmsManagerUtil {
     return ftpAddr;
   }
   
-  private static AlarmAddr getAlarmAddrFromAuthInfo(EsrSystemInfo authInfo) {
+  private AlarmAddr getAlarmAddrFromAuthInfo(EsrSystemInfo authInfo) {
     AlarmAddr alarmAddr = new AlarmAddr();
     alarmAddr.setIp(authInfo.getIpAddress());
     alarmAddr.setPassword(authInfo.getPassword());

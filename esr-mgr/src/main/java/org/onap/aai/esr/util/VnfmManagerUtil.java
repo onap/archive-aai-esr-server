@@ -23,7 +23,7 @@ import org.onap.aai.esr.entity.rest.VnfmRegisterInfo;
 
 public class VnfmManagerUtil {
   
-  public static EsrVnfmDetail vnfmRegisterInfo2EsrVnfm(VnfmRegisterInfo vnfmRegisterInfo) {
+  public EsrVnfmDetail vnfmRegisterInfo2EsrVnfm(VnfmRegisterInfo vnfmRegisterInfo) {
     EsrVnfmDetail esrVnfm = new EsrVnfmDetail();
     EsrSystemInfoList esrSystemInfo = new EsrSystemInfoList();
     EsrSystemInfo authInfo = new EsrSystemInfo();
@@ -41,7 +41,7 @@ public class VnfmManagerUtil {
    * @param vnfmRegisterInfo vnfm register informantion from portal
    * @return
    */
-  private static EsrSystemInfo getAuthInfoFromVnfmRegisterInfo(VnfmRegisterInfo vnfmRegisterInfo) {
+  private EsrSystemInfo getAuthInfoFromVnfmRegisterInfo(VnfmRegisterInfo vnfmRegisterInfo) {
     EsrSystemInfo authInfo = new EsrSystemInfo();
     authInfo.setEsrSystemInfoId(ExtsysUtil.generateId());
     authInfo.setSystemName(vnfmRegisterInfo.getName());
@@ -55,7 +55,7 @@ public class VnfmManagerUtil {
     return authInfo;
   }
   
-  public static VnfmRegisterInfo esrVnfm2VnfmRegisterInfo(EsrVnfmDetail esrVnfm) {
+  public VnfmRegisterInfo esrVnfm2VnfmRegisterInfo(EsrVnfmDetail esrVnfm) {
     VnfmRegisterInfo vnfmRegisterInfo = new VnfmRegisterInfo();
     EsrSystemInfo authInfo = new EsrSystemInfo();
     vnfmRegisterInfo.setVnfmId(esrVnfm.getVnfmId());

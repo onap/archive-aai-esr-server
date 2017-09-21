@@ -37,6 +37,7 @@ public class ThirdpatySdncWrapper {
 
   private static ThirdpatySdncWrapper thirdpatySdncWrapper;
   private static final Logger LOG = LoggerFactory.getLogger(ThirdpatySdncWrapper.class);
+  private static ThirdpartySdncManagerUtil thirdpartySdncManagerUtil = new ThirdpartySdncManagerUtil();
 
   /**
    * get ThirdpatySdncWrapper instance.
@@ -52,7 +53,7 @@ public class ThirdpatySdncWrapper {
   public Response registerThirdpartySdnc(ThirdpartySdncRegisterInfo thirdpartySdnc) {
     CommonRegisterResponse result = new CommonRegisterResponse();
     EsrThirdpartySdncDetail esrSdncDetail = new EsrThirdpartySdncDetail();
-    esrSdncDetail = ThirdpartySdncManagerUtil.sdncRegisterInfo2EsrSdnc(thirdpartySdnc);
+    esrSdncDetail = thirdpartySdncManagerUtil.sdncRegisterInfo2EsrSdnc(thirdpartySdnc);
     String sdncId = esrSdncDetail.getThirdpartySdncId();
     try {
       ExternalSystemProxy.registerSdnc(sdncId, esrSdncDetail);
@@ -72,7 +73,7 @@ public class ThirdpatySdncWrapper {
     EsrThirdpartySdncDetail originalEsrSdncDetail = new EsrThirdpartySdncDetail();
     EsrSystemInfo originalEsrSystemInfo = new EsrSystemInfo();
     originalEsrSdncDetail = queryEsrThirdpartySdncDetail(sdncId);
-    esrSdncDetail = ThirdpartySdncManagerUtil.sdncRegisterInfo2EsrSdnc(thirdpartySdnc);
+    esrSdncDetail = thirdpartySdncManagerUtil.sdncRegisterInfo2EsrSdnc(thirdpartySdnc);
     String resourceVersion = originalEsrSdncDetail.getResourceVersion();
     esrSdncDetail.setResourceVersion(resourceVersion);
     esrSdncDetail.setThirdpartySdncId(sdncId);
@@ -145,7 +146,7 @@ public class ThirdpatySdncWrapper {
       String esrSdncStr = ExternalSystemProxy.queryThirdpartySdncDetail(sdncId);
       LOG.info("Response from AAI by query thirdparty SDNC: " + esrSdncStr);
       esrSdncDetail = new Gson().fromJson(esrSdncStr, EsrThirdpartySdncDetail.class);
-      sdncRegisterInfo = ThirdpartySdncManagerUtil.esrSdnc2SdncRegisterInfo(esrSdncDetail);
+      sdncRegisterInfo = thirdpartySdncManagerUtil.esrSdnc2SdncRegisterInfo(esrSdncDetail);
       return sdncRegisterInfo;
     } catch (Exception e) {
       e.printStackTrace();

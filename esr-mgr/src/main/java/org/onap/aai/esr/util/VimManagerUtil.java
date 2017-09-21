@@ -28,7 +28,7 @@ import org.onap.aai.esr.entity.rest.VimRegisterInfo;
 
 public class VimManagerUtil {
   
-  public static CloudRegionDetail vimRegisterInfo2CloudRegion(VimRegisterInfo vimRegisterInfo) {
+  public CloudRegionDetail vimRegisterInfo2CloudRegion(VimRegisterInfo vimRegisterInfo) {
     CloudRegionDetail cloudRegion = new CloudRegionDetail();
     EsrSystemInfoList esrSystemInfoList = new EsrSystemInfoList();
     EsrSystemInfo esrSystemInfoObj = new EsrSystemInfo();
@@ -49,7 +49,7 @@ public class VimManagerUtil {
     return cloudRegion;
   }
 
-  private static EsrSystemInfo vimAuthInfo2EsrSystemInfoObj(ArrayList<VimAuthInfo> vimAuthInfos) {
+  private EsrSystemInfo vimAuthInfo2EsrSystemInfoObj(ArrayList<VimAuthInfo> vimAuthInfos) {
     EsrSystemInfo esrSystemInfoObj = new EsrSystemInfo();
     VimAuthInfo vimAuthInfo = new VimAuthInfo();
     vimAuthInfo = vimAuthInfos.get(0);
@@ -65,7 +65,7 @@ public class VimManagerUtil {
     return esrSystemInfoObj;
   }
   
-  private static VimAuthInfo authInfo2VimAuthInfo(EsrSystemInfo authInfo) {
+  private VimAuthInfo authInfo2VimAuthInfo(EsrSystemInfo authInfo) {
     VimAuthInfo vimAuthInfo = new VimAuthInfo();
     vimAuthInfo.setAuthUrl(authInfo.getServiceUrl());
     vimAuthInfo.setCloudDomain(authInfo.getCloudDomain());
@@ -76,7 +76,7 @@ public class VimManagerUtil {
     return vimAuthInfo;
   }
   
-  public static VimRegisterInfo cloudRegion2VimRegisterInfo(CloudRegionDetail cloudRegion) {
+  public VimRegisterInfo cloudRegion2VimRegisterInfo(CloudRegionDetail cloudRegion) {
     VimRegisterInfo vimRegisterInfo = new VimRegisterInfo();
     VimAuthInfo vimAuthInfo = new VimAuthInfo();
     ArrayList<VimAuthInfo> vimAuthInfos = new ArrayList<VimAuthInfo>();

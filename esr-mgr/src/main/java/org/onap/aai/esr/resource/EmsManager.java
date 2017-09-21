@@ -25,7 +25,6 @@ import io.swagger.annotations.ApiResponses;
 import org.eclipse.jetty.http.HttpStatus;
 import org.onap.aai.esr.entity.rest.EmsRegisterInfo;
 import org.onap.aai.esr.util.ExtsysUtil;
-import org.onap.aai.esr.util.RestResponseUtil;
 import org.onap.aai.esr.wrapper.EmsManagerWrapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;  

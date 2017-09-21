@@ -34,6 +34,7 @@ import com.google.gson.Gson;
 public class EmsManagerWrapper {
   private static EmsManagerWrapper emsManagerWrapper;
   private static final Logger LOG = LoggerFactory.getLogger(EmsManagerWrapper.class);
+  private static EmsManagerUtil emsManagerUtil = new EmsManagerUtil();
 
   /**
    * get VnfmManagerWrapper instance.
@@ -49,7 +50,7 @@ public class EmsManagerWrapper {
   public Response registerEms(EmsRegisterInfo emsRegisterInfo) {
     CommonRegisterResponse result = new CommonRegisterResponse();
     EsrEmsDetail esrEmsDetail = new EsrEmsDetail();
-    esrEmsDetail = EmsManagerUtil.emsRegisterInfo2EsrEms(emsRegisterInfo);
+    esrEmsDetail = emsManagerUtil.emsRegisterInfo2EsrEms(emsRegisterInfo);
     String emsId = esrEmsDetail.getEmsId();
     try {
       ExternalSystemProxy.registerEms(emsId, esrEmsDetail);
@@ -130,7 +131,7 @@ public class EmsManagerWrapper {
       String esrEmsStr = ExternalSystemProxy.queryEmsDetail(emsId);
       LOG.info("Response from AAI by query EMS: " + esrEmsStr);
       esrEmsDetail = new Gson().fromJson(esrEmsStr, EsrEmsDetail.class);
-      emsRegisterInfo = EmsManagerUtil.EsrEms2EmsRegisterInfo(esrEmsDetail);
+      emsRegisterInfo = emsManagerUtil.EsrEms2EmsRegisterInfo(esrEmsDetail);
       return emsRegisterInfo;
     } catch (Exception e) {
       e.printStackTrace();
@@ -174,7 +175,7 @@ public class EmsManagerWrapper {
     EsrSystemInfo originalEsrSystemInfo = new EsrSystemInfo();
     
     oriEsrEmsDetail = queryEsrEmsDetail(emsId);
-    esrEmsDetail = EmsManagerUtil.emsRegisterInfo2EsrEms(emsRegisterInfo);
+    esrEmsDetail = emsManagerUtil.emsRegisterInfo2EsrEms(emsRegisterInfo);
     String emsResourceVersion = oriEsrEmsDetail.getResourceVersion();
     esrEmsDetail.setResourceVersion(emsResourceVersion);
     esrEmsDetail.setEmsId(emsId);

@@ -37,6 +37,7 @@ public class VimManagerWrapper {
 
   private static VimManagerWrapper vimManagerWrapper;
   private static final Logger LOG = LoggerFactory.getLogger(VimManagerWrapper.class);
+  private static VimManagerUtil vimManagerUtil = new VimManagerUtil();
 
   /**
    * get VimManagerWrapper instance.
@@ -56,7 +57,7 @@ public class VimManagerWrapper {
         "Start register VIM, input VIM info is: " + ExtsysUtil.objectToString(vimRegisterInfo));
     CloudRegionDetail cloudRegion = new CloudRegionDetail();
     VimRegisterResponse result = new VimRegisterResponse();
-    cloudRegion = VimManagerUtil.vimRegisterInfo2CloudRegion(vimRegisterInfo);
+    cloudRegion = vimManagerUtil.vimRegisterInfo2CloudRegion(vimRegisterInfo);
     String cloudOwner = vimRegisterInfo.getCloudOwner();
     String cloudRegionId = vimRegisterInfo.getCloudRegionId();
     try {
@@ -112,7 +113,7 @@ public class VimManagerWrapper {
       String cloudRegionstr = CloudRegionProxy.queryVimDetail(cloudOwner, cloudRegionId);
       LOG.info("Response from AAI by query VIM: " + cloudRegionstr);
       cloudRegionDetail = new Gson().fromJson(cloudRegionstr, CloudRegionDetail.class);
-      vim = VimManagerUtil.cloudRegion2VimRegisterInfo(cloudRegionDetail);
+      vim = vimManagerUtil.cloudRegion2VimRegisterInfo(cloudRegionDetail);
       return Response.ok(vim).build();
     } catch (Exception e) {
       e.printStackTrace();
@@ -140,7 +141,7 @@ public class VimManagerWrapper {
     try {
       String cloudRegionstr = CloudRegionProxy.queryVimDetail(cloudOwner, cloudRegionId);
       cloudRegionDetail = new Gson().fromJson(cloudRegionstr, CloudRegionDetail.class);
-      registeredVimInfo = VimManagerUtil.cloudRegion2VimRegisterInfo(cloudRegionDetail);
+      registeredVimInfo = vimManagerUtil.cloudRegion2VimRegisterInfo(cloudRegionDetail);
     } catch (Exception error) {
       error.printStackTrace();
       LOG.error("query VIM detail failed ! cloud-owner = " + cloudOwner + ", cloud-region-id = "
@@ -171,7 +172,7 @@ public class VimManagerWrapper {
     String cloudRegionId = vimRegisterInfo.getCloudRegionId();
     originalCloudRegionDetail = getOriginalCloudRegion(cloudOwner, cloudRegionId);
     String resourceVersion = originalCloudRegionDetail.getResourceVersion();
-    cloudRegionDetail = VimManagerUtil.vimRegisterInfo2CloudRegion(vimRegisterInfo);
+    cloudRegionDetail = vimManagerUtil.vimRegisterInfo2CloudRegion(vimRegisterInfo);
     if(resourceVersion != null) {
       cloudRegionDetail.setResourceVersion(resourceVersion);
       originalSystemInfo = originalCloudRegionDetail.getEsrSystemInfoList().getEsrSystemInfo().get(0);
