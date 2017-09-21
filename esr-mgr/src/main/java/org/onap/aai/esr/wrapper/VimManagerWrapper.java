@@ -101,7 +101,7 @@ public class VimManagerWrapper {
     } catch (Exception error) {
       error.printStackTrace();
       LOG.error("Query vim list details failed !" + error.getMessage());
-      return Response.serverError().build();
+      return Response.ok().build();
     }
 
   }

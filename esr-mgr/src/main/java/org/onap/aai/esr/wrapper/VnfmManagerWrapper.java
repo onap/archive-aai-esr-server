@@ -103,7 +103,7 @@ public class VnfmManagerWrapper {
     } catch (Exception e) {
       e.printStackTrace();
       LOG.error("Query VNFM list failed !");
-      return Response.serverError().build();
+      return Response.ok().build();
     }
   }
 
@@ -127,11 +127,11 @@ public class VnfmManagerWrapper {
         e.printStackTrace();
         LOG.error("Delete VNFM from A&AI failed! VNFM ID: " + vnfmId + "resouce-version:"
             + resourceVersion, e.getMessage());
-        return Response.serverError().build();
+        return Response.noContent().build();
       }
     } else {
       LOG.error("resouce-version is null ! Can not delete resouce from A&AI. ");
-      return Response.serverError().build();
+      return Response.noContent().build();
     }
   }
 
