@@ -101,7 +101,7 @@ public class VimManagerWrapper {
     } catch (Exception error) {
       error.printStackTrace();
       LOG.error("Query vim list details failed !" + error.getMessage());
-      return Response.ok().build();
+      return Response.ok(vimRegisterInfos).build();
     }
 
   }
@@ -117,7 +117,7 @@ public class VimManagerWrapper {
       return Response.ok(vim).build();
     } catch (Exception e) {
       e.printStackTrace();
-      return Response.serverError().build();
+      return Response.ok(vim).build();
     }
 
   }
@@ -183,7 +183,38 @@ public class VimManagerWrapper {
   }
 
   public Response delVim(String cloudOwner, String cloudRegionId) {
-    // TODO
-    return Response.noContent().build();
+    CloudRegionDetail cloudRegionDetail = new CloudRegionDetail();
+    cloudRegionDetail = queryCloudRegionDetail(cloudOwner, cloudRegionId);
+    String resourceVersion = cloudRegionDetail.getResourceVersion();
+    if (resourceVersion != null) {
+      try {
+        CloudRegionProxy.deleteVim(cloudOwner, cloudRegionId, resourceVersion);
+        return Response.noContent().build();
+      } catch (Exception e) {
+        e.printStackTrace();
+        LOG.error(
+            "Delete cloud region from A&AI failed! cloud-owner = " + cloudOwner
+                + ", cloud-region-id = " + cloudRegionId + "resouce-version:" + resourceVersion,
+            e.getMessage());
+        return Response.serverError().build();
+      }
+    } else {
+      LOG.error("resouce-version is null ! Can not delete resouce from A&AI. ");
+      return Response.serverError().build();
+    }
+  }
+  
+  private CloudRegionDetail queryCloudRegionDetail (String cloudOwner, String cloudRegionId) {
+    CloudRegionDetail cloudRegionDetail = new CloudRegionDetail();
+    try {
+      String cloudRegionStr = CloudRegionProxy.queryVimDetail(cloudOwner, cloudRegionId);
+      LOG.info("Response from AAI by query cloud region: " + cloudRegionStr);
+      cloudRegionDetail = new Gson().fromJson(cloudRegionStr, CloudRegionDetail.class);
+    } catch (Exception e) {
+      e.printStackTrace();
+      LOG.error("Query EMS detail failed! cloud-owner = " + cloudOwner
+                + ", cloud-region-id = " + cloudRegionId , e.getMessage());
+    }
+    return cloudRegionDetail;
   }
 }

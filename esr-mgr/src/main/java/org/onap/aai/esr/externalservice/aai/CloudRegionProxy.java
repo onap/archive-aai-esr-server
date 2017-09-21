@@ -33,8 +33,8 @@ public class CloudRegionProxy {
         config, ICloudRegion.class);
   }
 
-  public static void registerVim(String cloudOwner, String cloudRegionId, CloudRegionDetail cloudRegion)
-      throws Exception {
+  public static void registerVim(String cloudOwner, String cloudRegionId,
+      CloudRegionDetail cloudRegion) throws Exception {
     ClientConfig config = new ClientConfig(new VimRegisterProvider());
     ICloudRegion registerVimServiceproxy = ConsumerFactory
         .createConsumer(AaiAdapterConfig.getCloudInfrastructureAddr(), config, ICloudRegion.class);
@@ -46,8 +46,14 @@ public class CloudRegionProxy {
     return adapterServiceproxy.queryVIMDetail(transactionId, fromAppId, authorization, cloud_owner,
         cloud_region_id);
   }
-  
+
   public static String qureyVimList() throws Exception {
     return adapterServiceproxy.queryVIMList(transactionId, fromAppId, authorization);
+  }
+
+  public static void deleteVim(String cloud_owner, String cloud_region_id, String resourceVersion)
+      throws Exception {
+    adapterServiceproxy.deleteVim(transactionId, fromAppId, authorization, cloud_owner,
+        cloud_region_id, resourceVersion);
   }
 }

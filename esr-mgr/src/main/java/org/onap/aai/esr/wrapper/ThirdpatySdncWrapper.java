@@ -105,7 +105,7 @@ public class ThirdpatySdncWrapper {
     } catch (Exception e) {
       e.printStackTrace();
       LOG.error("Query thirdparty SDNC list failed !");
-      return Response.ok().build();
+      return Response.ok(sdncList).build();
     }
   }
   
@@ -115,7 +115,7 @@ public class ThirdpatySdncWrapper {
     if(thirdpartySdnc != null) {
       return Response.ok(thirdpartySdnc).build();
     } else {
-      return Response.ok().build();
+      return Response.ok(thirdpartySdnc).build();
     }
   }
   
@@ -131,11 +131,11 @@ public class ThirdpatySdncWrapper {
         e.printStackTrace();
         LOG.error("Delete VNFM from A&AI failed! thirdparty SDNC ID: " + thirdpartySdncId + "resouce-version:"
             + resourceVersion, e.getMessage());
-        return Response.noContent().build();
+        return Response.serverError().build();
       }
     } else {
       LOG.error("resouce-version is null ! Can not delete resouce from A&AI. ");
-      return Response.noContent().build();
+      return Response.serverError().build();
     }
   }
   

@@ -90,7 +90,7 @@ public class EmsManagerWrapper {
     } catch (Exception e) {
       e.printStackTrace();
       LOG.error("Query EMS list failed !");
-      return Response.ok().build();
+      return Response.ok(emsList).build();
     }
   }
   
@@ -100,7 +100,7 @@ public class EmsManagerWrapper {
     if (ems != null) {
       return Response.ok(ems).build();
     } else {
-      return Response.ok().build();
+      return Response.ok(ems).build();
     }
   }
   
@@ -120,7 +120,7 @@ public class EmsManagerWrapper {
       }
     } else {
       LOG.error("resouce-version is null ! Can not delete resouce from A&AI. ");
-      return Response.noContent().build();
+      return Response.serverError().build();
     }
   }
   
