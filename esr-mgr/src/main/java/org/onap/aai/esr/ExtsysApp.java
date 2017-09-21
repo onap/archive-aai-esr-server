@@ -16,9 +16,8 @@
 package org.onap.aai.esr;
 
 
-import org.onap.aai.esr.externalservice.aai.AaiAdapterConfig;
+import org.onap.aai.esr.common.MsbConfig;
 import org.onap.aai.esr.externalservice.msb.MsbHelper;
-import org.onap.aai.esr.externalservice.msb.MsbInfoConfig;
 import org.onap.aai.esr.resource.EmsManager;
 import org.onap.aai.esr.resource.ThirdpatySdncManager;
 import org.onap.aai.esr.resource.VimManager;
@@ -46,10 +45,9 @@ public class ExtsysApp extends Application<ExtsysAppConfiguration> {
   @Override
   public void run(ExtsysAppConfiguration configuration, Environment environment) {
     LOGGER.info("Start to initialize esr.");
-    AaiAdapterConfig.setCloudInfrastructureAddr(configuration.getCloudInfrastructureAddr());
-    AaiAdapterConfig.setExternalSystemAddr(configuration.getExternalSystemAddr());
-    MsbInfoConfig.setMsbDiscoveryIp(configuration.getMsbDiscoveryIp());
-    MsbInfoConfig.setMsbDiscoveryPort(configuration.getMsbDiscoveryPort());
+    MsbConfig.setMsbServerAddr(configuration.getMsbServerAddr());
+    MsbConfig.setMsbDiscoveryIp(configuration.getMsbDiscoveryIp());
+    MsbConfig.setMsbDiscoveryPort(configuration.getMsbDiscoveryPort());
     environment.jersey().register(new EmsManager());
     environment.jersey().register(new ThirdpatySdncManager());
     environment.jersey().register(new VimManager());

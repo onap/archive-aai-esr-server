@@ -44,15 +44,6 @@ public class ExtsysAppConfiguration extends Configuration {
   @NotEmpty
   private String msbServerAddr;
   
-  @NotEmpty
-  private String cloudInfrastructureAddr;
-  
-  @NotEmpty
-  private String externalSystemAddr;
-  
-  @NotEmpty
-  private String multiCloudAddr;
-  
   @Valid
   private String serviceIp;
   
@@ -125,38 +116,4 @@ public class ExtsysAppConfiguration extends Configuration {
     return msbDiscoveryPort;
   }
 
-  @JsonProperty
-  public String getCloudInfrastructureAddr() {
-    return cloudInfrastructureAddr;
-  }
-
-  @JsonProperty
-  public void setCloudInfrastructureAddr(String cloudInfrastructureAddr) {
-    this.cloudInfrastructureAddr = cloudInfrastructureAddr;
-  }
-
-  @JsonProperty
-  public String getExternalSystemAddr() {
-    return externalSystemAddr;
-  }
-
-  @JsonProperty
-  public void setExternalSystemAddr(String externalSystemAddr) {
-    this.externalSystemAddr = externalSystemAddr;
-  }
-
-  @JsonProperty
-  public void setMsbDiscoveryIp(String msbDiscoveryIp) {
-    this.msbDiscoveryIp = msbDiscoveryIp;
-  }
-
-  @JsonProperty
-  public String getMultiCloudAddr() {
-    return multiCloudAddr;
-  }
-
-  @JsonProperty
-  public void setMultiCloudAddr(String multiCloudAddr) {
-    this.multiCloudAddr = multiCloudAddr;
-  }
 }

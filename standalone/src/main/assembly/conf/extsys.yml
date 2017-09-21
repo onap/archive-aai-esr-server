@@ -21,10 +21,7 @@ template: Hello, %s!
 serviceIp: 
 msbDiscoveryIp: 127.0.0.1
 msbDiscoveryPort: 10081
-msbServerAddr: http://127.0.0.1:10081
-cloudInfrastructureAddr: http://127.0.0.1/api/aai-cloudInfrastructure/v11
-externalSystemAddr: http://127.0.0.1/api/aai-externalSystem/v11
-multiCloudAddr: http://10.74.148.80/api/multicloud/v0
+msbServerAddr: http://10.74.148.80:80
 registByHand: true
 
 # use the simple server factory if you only want to run on a single port

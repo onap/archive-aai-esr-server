@@ -16,6 +16,7 @@
 package org.onap.aai.esr.externalservice.aai;
 
 import org.glassfish.jersey.client.ClientConfig;
+import org.onap.aai.esr.common.MsbConfig;
 import org.onap.aai.esr.entity.aai.EsrEmsDetail;
 import org.onap.aai.esr.entity.aai.EsrThirdpartySdncDetail;
 import org.onap.aai.esr.entity.aai.EsrVnfmDetail;
@@ -31,14 +32,14 @@ public class ExternalSystemProxy {
   private static String authorization = AaiCommon.getAuthenticationCredentials();
   static {
     ClientConfig config = new ClientConfig();
-    externalSystemproxy = ConsumerFactory.createConsumer(AaiAdapterConfig.getExternalSystemAddr(),
+    externalSystemproxy = ConsumerFactory.createConsumer(MsbConfig.getExternalSystemAddr(),
         config, IExternalSystem.class);
   }
 
   public static void registerVnfm(String vnfmId, EsrVnfmDetail esrVnfmDetail) throws Exception {
     ClientConfig config = new ClientConfig(new VnfmRegisterProvider());
     IExternalSystem registerVnfmServiceproxy = ConsumerFactory
-        .createConsumer(AaiAdapterConfig.getExternalSystemAddr(), config, IExternalSystem.class);
+        .createConsumer(MsbConfig.getExternalSystemAddr(), config, IExternalSystem.class);
     registerVnfmServiceproxy.registerVNFM(transactionId, fromAppId, authorization, vnfmId,
         esrVnfmDetail);
   }
@@ -58,7 +59,7 @@ public class ExternalSystemProxy {
   public static void registerSdnc(String thirdpartySdncId, EsrThirdpartySdncDetail esrSdncDetail) throws Exception {
     ClientConfig config = new ClientConfig(new ThirdpartySdncRegisterProvider());
     IExternalSystem registerSdncServiceproxy = ConsumerFactory
-        .createConsumer(AaiAdapterConfig.getExternalSystemAddr(), config, IExternalSystem.class);
+        .createConsumer(MsbConfig.getExternalSystemAddr(), config, IExternalSystem.class);
     registerSdncServiceproxy.registerThirdpartySdnc(transactionId, fromAppId, authorization, thirdpartySdncId,
         esrSdncDetail);
   }
@@ -78,7 +79,7 @@ public class ExternalSystemProxy {
   public static void registerEms(String emsId, EsrEmsDetail emsDetail) throws Exception {
     ClientConfig config = new ClientConfig(new EmsRegisterProvider());
     IExternalSystem registerEmsServiceproxy = ConsumerFactory
-        .createConsumer(AaiAdapterConfig.getExternalSystemAddr(), config, IExternalSystem.class);
+        .createConsumer(MsbConfig.getExternalSystemAddr(), config, IExternalSystem.class);
     registerEmsServiceproxy.registerEMS(transactionId, fromAppId, authorization, emsId,
         emsDetail);
   }

@@ -16,6 +16,7 @@
 package org.onap.aai.esr.externalservice.aai;
 
 import org.glassfish.jersey.client.ClientConfig;
+import org.onap.aai.esr.common.MsbConfig;
 import org.onap.aai.esr.entity.aai.CloudRegionDetail;
 
 import com.eclipsesource.jaxrs.consumer.ConsumerFactory;
@@ -29,7 +30,7 @@ public class CloudRegionProxy {
   private static String authorization = AaiCommon.getAuthenticationCredentials();
   static {
     ClientConfig config = new ClientConfig();
-    adapterServiceproxy = ConsumerFactory.createConsumer(AaiAdapterConfig.getCloudInfrastructureAddr(),
+    adapterServiceproxy = ConsumerFactory.createConsumer(MsbConfig.getCloudInfrastructureAddr(),
         config, ICloudRegion.class);
   }
 
@@ -37,7 +38,7 @@ public class CloudRegionProxy {
       CloudRegionDetail cloudRegion) throws Exception {
     ClientConfig config = new ClientConfig(new VimRegisterProvider());
     ICloudRegion registerVimServiceproxy = ConsumerFactory
-        .createConsumer(AaiAdapterConfig.getCloudInfrastructureAddr(), config, ICloudRegion.class);
+        .createConsumer(MsbConfig.getCloudInfrastructureAddr(), config, ICloudRegion.class);
     registerVimServiceproxy.registerVIMService(transactionId, fromAppId, authorization, cloudOwner,
         cloudRegionId, cloudRegion);
   }
