@@ -45,6 +45,8 @@ public class VnfmManager {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(VnfmManager.class);
 
+  private static ExtsysUtil extsysUtil = new ExtsysUtil();
+  
   /**
    * query all vnfm.
    */
@@ -121,7 +123,7 @@ public class VnfmManager {
   @Timed
   public Response updateVnfm(@ApiParam(value = "vnfm", required = true) VnfmRegisterInfo vnfm,
       @ApiParam(value = "vnfm id", required = true) @PathParam("vnfmId") String vnfmId) {
-    LOGGER.info("start update vnfm .id:" + vnfmId + " info:" + ExtsysUtil.objectToString(vnfm));
+    LOGGER.info("start update vnfm .id:" + vnfmId + " info:" + extsysUtil.objectToString(vnfm));
     return VnfmManagerWrapper.getInstance().updateVnfm(vnfm, vnfmId);
   }
   

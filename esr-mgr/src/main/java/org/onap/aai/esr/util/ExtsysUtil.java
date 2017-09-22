@@ -35,7 +35,7 @@ public class ExtsysUtil {
   /**
    * change object to str.
    */
-  public static String objectToString(Object obj) {
+  public String objectToString(Object obj) {
     Gson gson = new Gson();
     if (obj != null) {
       return gson.toJson(obj);

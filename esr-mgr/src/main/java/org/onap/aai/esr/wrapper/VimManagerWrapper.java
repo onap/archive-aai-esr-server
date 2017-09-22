@@ -40,6 +40,7 @@ public class VimManagerWrapper {
   private static VimManagerWrapper vimManagerWrapper;
   private static final Logger LOG = LoggerFactory.getLogger(VimManagerWrapper.class);
   private static VimManagerUtil vimManagerUtil = new VimManagerUtil();
+  private static ExtsysUtil extsysUtil = new ExtsysUtil();
 
   /**
    * get VimManagerWrapper instance.
@@ -56,7 +57,7 @@ public class VimManagerWrapper {
 
   public Response registerVim(VimRegisterInfo vimRegisterInfo) {
     LOG.info(
-        "Start register VIM, input VIM info is: " + ExtsysUtil.objectToString(vimRegisterInfo));
+        "Start register VIM, input VIM info is: " + extsysUtil.objectToString(vimRegisterInfo));
     CloudRegionDetail cloudRegion = new CloudRegionDetail();
     VimRegisterResponse result = new VimRegisterResponse();
     cloudRegion = vimManagerUtil.vimRegisterInfo2CloudRegion(vimRegisterInfo);
@@ -83,7 +84,7 @@ public class VimManagerWrapper {
   }
 
   public Response updateVim(String cloudOwner, String cloudRegionId,VimRegisterInfo vimRegisterInfo) {
-    LOG.info("Start update VIM, input VIM info is: " + ExtsysUtil.objectToString(vimRegisterInfo));
+    LOG.info("Start update VIM, input VIM info is: " + extsysUtil.objectToString(vimRegisterInfo));
     CloudRegionDetail cloudRegionDetail = new CloudRegionDetail();
     VimRegisterResponse result = new VimRegisterResponse();
 

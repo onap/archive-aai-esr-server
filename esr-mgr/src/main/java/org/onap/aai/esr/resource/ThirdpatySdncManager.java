@@ -46,6 +46,7 @@ public class ThirdpatySdncManager {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(ThirdpatySdncManager.class);
 
+  private static ExtsysUtil extsysUtil = new ExtsysUtil();
   /**
    *query all thirdParty sdnc.
    */
@@ -122,7 +123,7 @@ public class ThirdpatySdncManager {
   @Timed
   public Response updateThirdpartySdnc(@ApiParam(value = "thirdpartySdnc", required = true) ThirdpartySdncRegisterInfo thirdPartySdnc,
       @ApiParam(value = "sdnc id", required = true) @PathParam("thirdPartySdncId") String thirdPartySdncId) {
-    LOGGER.info("start update sdnc .id:" + thirdPartySdncId + " info:" + ExtsysUtil.objectToString(thirdPartySdnc));
+    LOGGER.info("start update sdnc .id:" + thirdPartySdncId + " info:" + extsysUtil.objectToString(thirdPartySdnc));
     return ThirdpatySdncWrapper.getInstance().updateThirdpartySdnc(thirdPartySdnc, thirdPartySdncId);
   }
   
@@ -142,7 +143,7 @@ public class ThirdpatySdncManager {
           response = String.class)})
   @Timed
   public Response registerThirdpatySdnc(@ApiParam(value = "thirdPartySdnc", required = true) ThirdpartySdncRegisterInfo thirdPartySdnc) {
-    LOGGER.info("start register sdnc" + " info:" + ExtsysUtil.objectToString(thirdPartySdnc));
+    LOGGER.info("start register sdnc" + " info:" + extsysUtil.objectToString(thirdPartySdnc));
     return ThirdpatySdncWrapper.getInstance().registerThirdpartySdnc(thirdPartySdnc);
   }
 }

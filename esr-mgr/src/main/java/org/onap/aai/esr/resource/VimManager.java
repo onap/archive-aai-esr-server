@@ -44,6 +44,8 @@ public class VimManager {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(VimManager.class);
 
+  private static ExtsysUtil extsysUtil = new ExtsysUtil();
+  
   /**
    * query all VIM.
    */
@@ -118,7 +120,7 @@ public class VimManager {
           response = String.class)})
   @Timed
   public Response updatevims(@PathParam("cloudOwner") String cloudOwner, @PathParam("cloudRegionId") String cloudRegionId, VimRegisterInfo vim) {
-    LOGGER.info("start update vim info:" + ExtsysUtil.objectToString(vim));
+    LOGGER.info("start update vim info:" + extsysUtil.objectToString(vim));
     return VimManagerWrapper.getInstance().updateVim(cloudOwner, cloudRegionId, vim);
   }
   
@@ -138,7 +140,7 @@ public class VimManager {
           response = String.class)})
   @Timed
   public Response registerVims(VimRegisterInfo vim) {
-    LOGGER.info("start add vim" + " info:" + ExtsysUtil.objectToString(vim));
+    LOGGER.info("start add vim" + " info:" + extsysUtil.objectToString(vim));
     return VimManagerWrapper.getInstance().registerVim(vim);
   }
 }

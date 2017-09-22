@@ -46,6 +46,8 @@ public class EmsManager {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(EmsManager.class);
 
+  private static ExtsysUtil extsysUtil = new ExtsysUtil();
+  
   /**
    * query all ems.
    */
@@ -122,7 +124,7 @@ public class EmsManager {
   @Timed
   public Response updateEms(@ApiParam(value = "ems", required = true) EmsRegisterInfo ems,
       @ApiParam(value = "ems id", required = true) @PathParam("emsId") String emsId) {
-    LOGGER.info("start update ems .id:" + emsId + " info:" + ExtsysUtil.objectToString(ems));
+    LOGGER.info("start update ems .id:" + emsId + " info:" + extsysUtil.objectToString(ems));
     return EmsManagerWrapper.getInstance().updateEms(ems, emsId);
   }
   
@@ -142,7 +144,7 @@ public class EmsManager {
           response = String.class)})
   @Timed
   public Response registerEms(@ApiParam(value = "ems", required = true) EmsRegisterInfo ems) {
-    LOGGER.info("start add ems" + " info:" + ExtsysUtil.objectToString(ems));
+    LOGGER.info("start add ems" + " info:" + extsysUtil.objectToString(ems));
     return EmsManagerWrapper.getInstance().registerEms(ems);
   }
 }
