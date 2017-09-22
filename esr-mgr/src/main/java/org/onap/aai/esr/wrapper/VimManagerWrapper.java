@@ -17,6 +17,7 @@ package org.onap.aai.esr.wrapper;
 
 import java.util.ArrayList;
 
+import javax.inject.Inject;
 import javax.ws.rs.core.Response;
 
 import org.onap.aai.esr.entity.aai.CloudRegionDetail;
@@ -39,8 +40,15 @@ public class VimManagerWrapper {
 
   private static VimManagerWrapper vimManagerWrapper;
   private static final Logger LOG = LoggerFactory.getLogger(VimManagerWrapper.class);
-  private static VimManagerUtil vimManagerUtil = new VimManagerUtil();
-  private static ExtsysUtil extsysUtil = new ExtsysUtil();
+  
+  @Inject
+  private VimManagerUtil vimManagerUtil;
+  
+  @Inject
+  private CloudRegionProxy cloudRegionProxy;
+  
+  @Inject
+  private ExtsysUtil extsysUtil;
 
   /**
    * get VimManagerWrapper instance.
@@ -64,7 +72,7 @@ public class VimManagerWrapper {
     String cloudOwner = vimRegisterInfo.getCloudOwner();
     String cloudRegionId = vimRegisterInfo.getCloudRegionId();
     try {
-      CloudRegionProxy.registerVim(cloudOwner, cloudRegionId, cloudRegion);
+      cloudRegionProxy.registerVim(cloudOwner, cloudRegionId, cloudRegion);
       result.setCloudOwner(cloudOwner);
       result.setCloudRegionId(cloudRegionId);
       Tenant tenant = new Tenant();
@@ -90,7 +98,7 @@ public class VimManagerWrapper {
 
     cloudRegionDetail = getVimUpdateInfo(vimRegisterInfo);
     try {
-      CloudRegionProxy.registerVim(cloudOwner, cloudRegionId, cloudRegionDetail);
+        cloudRegionProxy.registerVim(cloudOwner, cloudRegionId, cloudRegionDetail);
       result.setCloudOwner(cloudOwner);
       result.setCloudRegionId(cloudRegionId);
       return Response.ok(result).build();
@@ -105,7 +113,7 @@ public class VimManagerWrapper {
     ArrayList<VimRegisterInfo> vimRegisterInfos = new ArrayList<VimRegisterInfo>();
     CloudRegionList cloudRegionList = new CloudRegionList();
     try {
-      String aaiVimList = CloudRegionProxy.qureyVimList();
+      String aaiVimList = cloudRegionProxy.qureyVimList();
       cloudRegionList = new Gson().fromJson(aaiVimList, CloudRegionList.class);
       vimRegisterInfos = getVimDetailList(cloudRegionList);
       return Response.ok(vimRegisterInfos).build();
@@ -121,7 +129,7 @@ public class VimManagerWrapper {
     VimRegisterInfo vim = new VimRegisterInfo();
     CloudRegionDetail cloudRegionDetail = new CloudRegionDetail();
     try {
-      String cloudRegionstr = CloudRegionProxy.queryVimDetail(cloudOwner, cloudRegionId);
+      String cloudRegionstr = cloudRegionProxy.queryVimDetail(cloudOwner, cloudRegionId);
       LOG.info("Response from AAI by query VIM: " + cloudRegionstr);
       cloudRegionDetail = new Gson().fromJson(cloudRegionstr, CloudRegionDetail.class);
       vim = vimManagerUtil.cloudRegion2VimRegisterInfo(cloudRegionDetail);
@@ -150,7 +158,7 @@ public class VimManagerWrapper {
     CloudRegionDetail cloudRegionDetail = new CloudRegionDetail();
     VimRegisterInfo registeredVimInfo = new VimRegisterInfo();
     try {
-      String cloudRegionstr = CloudRegionProxy.queryVimDetail(cloudOwner, cloudRegionId);
+      String cloudRegionstr = cloudRegionProxy.queryVimDetail(cloudOwner, cloudRegionId);
       cloudRegionDetail = new Gson().fromJson(cloudRegionstr, CloudRegionDetail.class);
       registeredVimInfo = vimManagerUtil.cloudRegion2VimRegisterInfo(cloudRegionDetail);
     } catch (Exception error) {
@@ -164,7 +172,7 @@ public class VimManagerWrapper {
   private CloudRegionDetail getOriginalCloudRegion(String cloudOwner, String cloudRegionId) {
     CloudRegionDetail cloudRegionDetail = new CloudRegionDetail();
     try {
-      String cloudRegionstr = CloudRegionProxy.queryVimDetail(cloudOwner, cloudRegionId);
+      String cloudRegionstr = cloudRegionProxy.queryVimDetail(cloudOwner, cloudRegionId);
       cloudRegionDetail = new Gson().fromJson(cloudRegionstr, CloudRegionDetail.class);
       return cloudRegionDetail;
     } catch (Exception error) {
@@ -199,7 +207,7 @@ public class VimManagerWrapper {
     String resourceVersion = cloudRegionDetail.getResourceVersion();
     if (resourceVersion != null) {
       try {
-        CloudRegionProxy.deleteVim(cloudOwner, cloudRegionId, resourceVersion);
+        cloudRegionProxy.deleteVim(cloudOwner, cloudRegionId, resourceVersion);
         return Response.noContent().build();
       } catch (Exception e) {
         e.printStackTrace();
@@ -218,7 +226,7 @@ public class VimManagerWrapper {
   private CloudRegionDetail queryCloudRegionDetail (String cloudOwner, String cloudRegionId) {
     CloudRegionDetail cloudRegionDetail = new CloudRegionDetail();
     try {
-      String cloudRegionStr = CloudRegionProxy.queryVimDetail(cloudOwner, cloudRegionId);
+      String cloudRegionStr = cloudRegionProxy.queryVimDetail(cloudOwner, cloudRegionId);
       LOG.info("Response from AAI by query cloud region: " + cloudRegionStr);
       cloudRegionDetail = new Gson().fromJson(cloudRegionStr, CloudRegionDetail.class);
     } catch (Exception e) {
