@@ -17,16 +17,21 @@ package org.onap.aai.esr.externalservice.cloud;
 
 import org.glassfish.jersey.client.ClientConfig;
 import org.onap.aai.esr.common.MsbConfig;
+import org.onap.aai.esr.exception.ExtsysException;
 
 import com.eclipsesource.jaxrs.consumer.ConsumerFactory;
 
 public class VimManagerProxy {
   
   public static void updateVim(String cloudOwner, String cloudRegionId,
-      Tenant tenant) throws Exception {
+      Tenant tenant) throws ExtsysException {
     ClientConfig config = new ClientConfig(new VimUpdateProvider());
     IVimManage updateVimServiceproxy = ConsumerFactory
         .createConsumer(MsbConfig.getCloudInfrastructureAddr(), config, IVimManage.class);
-    updateVimServiceproxy.updateVIM(cloudOwner, cloudRegionId, tenant);
+    try {
+      updateVimServiceproxy.updateVIM(cloudOwner, cloudRegionId, tenant);
+    } catch (Exception e) {
+      throw new ExtsysException("Update cloud region to A&AI by Multi-Cloud failed.", e);
+    }
   }
 }

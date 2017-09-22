@@ -29,7 +29,7 @@ public class EmsManagerUtil {
   
   public EsrEmsDetail emsRegisterInfo2EsrEms(EmsRegisterInfo emsRegisterInfo) {
     EsrEmsDetail esrEms = new EsrEmsDetail();
-    esrEms.setEmsId(ExtsysUtil.generateId());
+    esrEms.setEmsId(extsysUtil.generateId());
     ArrayList<EsrSystemInfo> authInfos = new ArrayList<EsrSystemInfo>();
     authInfos = getAuthInfosFromRegisterData(emsRegisterInfo);
     esrEms.setEsrSystemInfoList(extsysUtil.getEsrSystemInfoListFromAuthInfoList(authInfos));
@@ -65,7 +65,7 @@ public class EmsManagerUtil {
     authInfo.setPassword(ftpAddr.getPassword());
     authInfo.setRemotePath(ftpAddr.getRemotepath());
     authInfo.setPassive(ftpAddr.getPassive());
-    authInfo.setEsrSystemInfoId(ExtsysUtil.generateId());
+    authInfo.setEsrSystemInfoId(extsysUtil.generateId());
     authInfo.setSystemType(systemType);
     authInfo.setSystemName(emsRegisterInfo.getName());
     authInfo.setVendor(emsRegisterInfo.getVendor());
@@ -77,7 +77,7 @@ public class EmsManagerUtil {
     EsrSystemInfo authInfo = new EsrSystemInfo();
     AlarmAddr alarmAddr = new AlarmAddr();
     alarmAddr = emsRegisterInfo.getAlarmAddr();
-    authInfo.setEsrSystemInfoId(ExtsysUtil.generateId());
+    authInfo.setEsrSystemInfoId(extsysUtil.generateId());
     authInfo.setIpAddress(alarmAddr.getIp());
     authInfo.setPort(alarmAddr.getPort());
     authInfo.setUserName(alarmAddr.getUser());

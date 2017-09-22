@@ -17,18 +17,14 @@ package org.onap.aai.esr.util;
 
 import com.google.gson.Gson;
 
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
-
 import java.util.ArrayList;
 import java.util.UUID;
-
 import org.onap.aai.esr.entity.aai.EsrSystemInfo;
 import org.onap.aai.esr.entity.aai.EsrSystemInfoList;
 
 public class ExtsysUtil {
 
-  public static String generateId() {
+  public String generateId() {
     return UUID.randomUUID().toString();
   }
 

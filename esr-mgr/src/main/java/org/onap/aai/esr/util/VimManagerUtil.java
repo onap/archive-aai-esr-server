@@ -25,7 +25,6 @@ import org.onap.aai.esr.entity.aai.EsrSystemInfoList;
 import org.onap.aai.esr.entity.rest.VimAuthInfo;
 import org.onap.aai.esr.entity.rest.VimRegisterInfo;
 
-
 public class VimManagerUtil {
   private static ExtsysUtil extsysUtil = new ExtsysUtil();
   
@@ -60,7 +59,7 @@ public class VimManagerUtil {
     esrSystemInfoObj.setServiceUrl(vimAuthInfo.getAuthUrl());
     esrSystemInfoObj.setSslCassert(vimAuthInfo.getSslCacert());
     esrSystemInfoObj.setSslInsecure(vimAuthInfo.getSslInsecure());
-    esrSystemInfoObj.setEsrSystemInfoId(ExtsysUtil.generateId());
+    esrSystemInfoObj.setEsrSystemInfoId(extsysUtil.generateId());
     esrSystemInfoObj.setSystemType(SystemType.VIM.toString());
 //    esrSystemInfoObj.setSystemStatus(SystemStatus.normal.toString());
     return esrSystemInfoObj;

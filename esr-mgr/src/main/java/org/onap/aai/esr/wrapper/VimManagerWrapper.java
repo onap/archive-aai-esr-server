@@ -17,7 +17,6 @@ package org.onap.aai.esr.wrapper;
 
 import java.util.ArrayList;
 
-import javax.inject.Inject;
 import javax.ws.rs.core.Response;
 
 import org.onap.aai.esr.entity.aai.CloudRegionDetail;
@@ -25,6 +24,8 @@ import org.onap.aai.esr.entity.aai.CloudRegionList;
 import org.onap.aai.esr.entity.aai.EsrSystemInfo;
 import org.onap.aai.esr.entity.rest.VimRegisterInfo;
 import org.onap.aai.esr.entity.rest.VimRegisterResponse;
+import org.onap.aai.esr.exception.ExceptionUtil;
+import org.onap.aai.esr.exception.ExtsysException;
 import org.onap.aai.esr.externalservice.aai.CloudRegionProxy;
 import org.onap.aai.esr.externalservice.cloud.Tenant;
 import org.onap.aai.esr.externalservice.cloud.VimManagerProxy;
@@ -35,20 +36,16 @@ import org.slf4j.LoggerFactory;
 
 import com.google.gson.Gson;
 
-
 public class VimManagerWrapper {
 
   private static VimManagerWrapper vimManagerWrapper;
   private static final Logger LOG = LoggerFactory.getLogger(VimManagerWrapper.class);
   
-  @Inject
-  private VimManagerUtil vimManagerUtil;
+  private static VimManagerUtil vimManagerUtil = new VimManagerUtil();
   
-  @Inject
-  private CloudRegionProxy cloudRegionProxy;
+  private static CloudRegionProxy cloudRegionProxy = new CloudRegionProxy();
   
-  @Inject
-  private ExtsysUtil extsysUtil;
+  private static ExtsysUtil extsysUtil = new ExtsysUtil();
 
   /**
    * get VimManagerWrapper instance.
@@ -79,15 +76,14 @@ public class VimManagerWrapper {
       tenant.setDefaultTenant(cloudRegion.getEsrSystemInfoList().getEsrSystemInfo().get(0).getDefaultTenant());
       try {
         VimManagerProxy.updateVim(cloudOwner, cloudRegionId, tenant);
-      } catch (Exception e) {
-        e.printStackTrace();
-        LOG.error("Update VIM by Multi-cloud failed !" + e.getMessage());
+      } catch (ExtsysException e) {
+        LOG.error("Update VIM by Multi-cloud failed !", e);
+        throw ExceptionUtil.buildExceptionResponse(e.getMessage());
       }
       return Response.ok(result).build();
-    } catch (Exception error) {
-      error.printStackTrace();
-      LOG.error("Register VIM failed !" + error.getMessage());
-      return Response.serverError().build();
+    } catch (ExtsysException error) {
+      LOG.error("Register VIM failed !", error);
+      throw ExceptionUtil.buildExceptionResponse(error.getMessage());
     }
   }
 
@@ -102,10 +98,9 @@ public class VimManagerWrapper {
       result.setCloudOwner(cloudOwner);
       result.setCloudRegionId(cloudRegionId);
       return Response.ok(result).build();
-    } catch (Exception e) {
-      e.printStackTrace();
-      LOG.error("Update VIM failed !" + e.getMessage());
-      return Response.serverError().build();
+    } catch (ExtsysException e) {
+      LOG.error("Update VIM failed !", e);
+      throw ExceptionUtil.buildExceptionResponse(e.getMessage());
     }
   }
 
@@ -117,9 +112,8 @@ public class VimManagerWrapper {
       cloudRegionList = new Gson().fromJson(aaiVimList, CloudRegionList.class);
       vimRegisterInfos = getVimDetailList(cloudRegionList);
       return Response.ok(vimRegisterInfos).build();
-    } catch (Exception error) {
-      error.printStackTrace();
-      LOG.error("Query vim list details failed !" + error.getMessage());
+    } catch (ExtsysException error) {
+      LOG.error("Query vim list details failed !", error);
       return Response.ok(vimRegisterInfos).build();
     }
 
@@ -134,8 +128,8 @@ public class VimManagerWrapper {
       cloudRegionDetail = new Gson().fromJson(cloudRegionstr, CloudRegionDetail.class);
       vim = vimManagerUtil.cloudRegion2VimRegisterInfo(cloudRegionDetail);
       return Response.ok(vim).build();
-    } catch (Exception e) {
-      e.printStackTrace();
+    } catch (ExtsysException e) {
+      LOG.error("Query vim details by ID failed !", e);
       return Response.ok(vim).build();
     }
 
@@ -161,10 +155,9 @@ public class VimManagerWrapper {
       String cloudRegionstr = cloudRegionProxy.queryVimDetail(cloudOwner, cloudRegionId);
       cloudRegionDetail = new Gson().fromJson(cloudRegionstr, CloudRegionDetail.class);
       registeredVimInfo = vimManagerUtil.cloudRegion2VimRegisterInfo(cloudRegionDetail);
-    } catch (Exception error) {
-      error.printStackTrace();
+    } catch (ExtsysException error) {
       LOG.error("query VIM detail failed ! cloud-owner = " + cloudOwner + ", cloud-region-id = "
-          + cloudRegionId + error.getMessage());
+          + cloudRegionId, error);
     }
     return registeredVimInfo;
   }
@@ -175,10 +168,9 @@ public class VimManagerWrapper {
       String cloudRegionstr = cloudRegionProxy.queryVimDetail(cloudOwner, cloudRegionId);
       cloudRegionDetail = new Gson().fromJson(cloudRegionstr, CloudRegionDetail.class);
       return cloudRegionDetail;
-    } catch (Exception error) {
-      error.printStackTrace();
+    } catch (ExtsysException error) {
       LOG.error("query VIM detail failed ! cloud-owner = " + cloudOwner + ", cloud-region-id = "
-          + cloudRegionId + error.getMessage());
+          + cloudRegionId, error);
       return null;
     }
   }
@@ -205,34 +197,26 @@ public class VimManagerWrapper {
     CloudRegionDetail cloudRegionDetail = new CloudRegionDetail();
     cloudRegionDetail = queryCloudRegionDetail(cloudOwner, cloudRegionId);
     String resourceVersion = cloudRegionDetail.getResourceVersion();
-    if (resourceVersion != null) {
-      try {
-        cloudRegionProxy.deleteVim(cloudOwner, cloudRegionId, resourceVersion);
-        return Response.noContent().build();
-      } catch (Exception e) {
-        e.printStackTrace();
-        LOG.error(
-            "Delete cloud region from A&AI failed! cloud-owner = " + cloudOwner
-                + ", cloud-region-id = " + cloudRegionId + "resouce-version:" + resourceVersion,
-            e.getMessage());
-        return Response.serverError().build();
-      }
-    } else {
-      LOG.error("resouce-version is null ! Can not delete resouce from A&AI. ");
-      return Response.serverError().build();
+    try {
+      cloudRegionProxy.deleteVim(cloudOwner, cloudRegionId, resourceVersion);
+      return Response.noContent().build();
+    } catch (ExtsysException e) {
+      LOG.error("Delete cloud region from A&AI failed! cloud-owner = " + cloudOwner
+          + ", cloud-region-id = " + cloudRegionId + "resouce-version:" + resourceVersion, e);
+      throw ExceptionUtil.buildExceptionResponse(e.getMessage());
     }
   }
-  
+
   private CloudRegionDetail queryCloudRegionDetail (String cloudOwner, String cloudRegionId) {
     CloudRegionDetail cloudRegionDetail = new CloudRegionDetail();
     try {
       String cloudRegionStr = cloudRegionProxy.queryVimDetail(cloudOwner, cloudRegionId);
       LOG.info("Response from AAI by query cloud region: " + cloudRegionStr);
       cloudRegionDetail = new Gson().fromJson(cloudRegionStr, CloudRegionDetail.class);
-    } catch (Exception e) {
-      e.printStackTrace();
+    } catch (ExtsysException e) {
       LOG.error("Query EMS detail failed! cloud-owner = " + cloudOwner
-                + ", cloud-region-id = " + cloudRegionId , e.getMessage());
+                + ", cloud-region-id = " + cloudRegionId , e);
+      throw ExceptionUtil.buildExceptionResponse(e.getMessage());
     }
     return cloudRegionDetail;
   }

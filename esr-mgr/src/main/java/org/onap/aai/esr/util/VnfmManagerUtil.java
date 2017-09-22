@@ -30,7 +30,7 @@ public class VnfmManagerUtil {
     EsrSystemInfo authInfo = new EsrSystemInfo();
     esrVnfm.setCertificateUrl(vnfmRegisterInfo.getCertificateUrl());
     esrVnfm.setVimId(vnfmRegisterInfo.getVimId());
-    esrVnfm.setVnfmId(ExtsysUtil.generateId());
+    esrVnfm.setVnfmId(extsysUtil.generateId());
     authInfo = getAuthInfoFromVnfmRegisterInfo(vnfmRegisterInfo);
     esrSystemInfo = extsysUtil.getEsrSystemInfoListFromAuthInfo(authInfo);
     esrVnfm.setEsrSystemInfoList(esrSystemInfo);
@@ -43,7 +43,7 @@ public class VnfmManagerUtil {
    */
   private EsrSystemInfo getAuthInfoFromVnfmRegisterInfo(VnfmRegisterInfo vnfmRegisterInfo) {
     EsrSystemInfo authInfo = new EsrSystemInfo();
-    authInfo.setEsrSystemInfoId(ExtsysUtil.generateId());
+    authInfo.setEsrSystemInfoId(extsysUtil.generateId());
     authInfo.setSystemName(vnfmRegisterInfo.getName());
     authInfo.setType(vnfmRegisterInfo.getType());
     authInfo.setVendor(vnfmRegisterInfo.getVendor());
