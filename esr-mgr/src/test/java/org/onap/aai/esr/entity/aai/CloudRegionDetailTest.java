@@ -30,7 +30,6 @@ public class CloudRegionDetailTest {
       assertEquals(cloudRegion.getCloudOwner(), cloudOwner);
   }
   
-  
   @Test
   public void getterAndSetter4CloudRegionId(){
       final String cloudRegionId = "cloud-region-id-test";
