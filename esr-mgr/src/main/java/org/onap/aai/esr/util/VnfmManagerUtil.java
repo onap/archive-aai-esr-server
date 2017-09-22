@@ -29,7 +29,6 @@ public class VnfmManagerUtil {
     EsrSystemInfoList esrSystemInfo = new EsrSystemInfoList();
     EsrSystemInfo authInfo = new EsrSystemInfo();
     esrVnfm.setCertificateUrl(vnfmRegisterInfo.getCertificateUrl());
-    esrVnfm.setResourceVersion(vnfmRegisterInfo.getVersion());
     esrVnfm.setVimId(vnfmRegisterInfo.getVimId());
     esrVnfm.setVnfmId(ExtsysUtil.generateId());
     authInfo = getAuthInfoFromVnfmRegisterInfo(vnfmRegisterInfo);
