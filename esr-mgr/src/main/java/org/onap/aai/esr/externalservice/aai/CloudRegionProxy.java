@@ -18,6 +18,7 @@ package org.onap.aai.esr.externalservice.aai;
 import org.glassfish.jersey.client.ClientConfig;
 import org.onap.aai.esr.common.MsbConfig;
 import org.onap.aai.esr.entity.aai.CloudRegionDetail;
+import org.onap.aai.esr.exception.ExtsysException;
 
 import com.eclipsesource.jaxrs.consumer.ConsumerFactory;
 
@@ -35,26 +36,42 @@ public class CloudRegionProxy {
   }
 
   public void registerVim(String cloudOwner, String cloudRegionId,
-      CloudRegionDetail cloudRegion) throws Exception {
+      CloudRegionDetail cloudRegion) throws ExtsysException {
     ClientConfig config = new ClientConfig(new VimRegisterProvider());
     ICloudRegion registerVimServiceproxy = ConsumerFactory
         .createConsumer(MsbConfig.getCloudInfrastructureAddr(), config, ICloudRegion.class);
-    registerVimServiceproxy.registerVIMService(transactionId, fromAppId, authorization, cloudOwner,
-        cloudRegionId, cloudRegion);
+    try {
+      registerVimServiceproxy.registerVIMService(transactionId, fromAppId, authorization, cloudOwner,
+          cloudRegionId, cloudRegion);
+    } catch (Exception e) {
+      throw new ExtsysException("PUT cloud region to A&AI failed.", e);
+    }
   }
 
-  public String queryVimDetail(String cloud_owner, String cloud_region_id) throws Exception {
-    return adapterServiceproxy.queryVIMDetail(transactionId, fromAppId, authorization, cloud_owner,
-        cloud_region_id);
+  public String queryVimDetail(String cloud_owner, String cloud_region_id) throws ExtsysException {
+    try {
+      return adapterServiceproxy.queryVIMDetail(transactionId, fromAppId, authorization, cloud_owner,
+          cloud_region_id);
+    } catch (Exception e) {
+      throw new ExtsysException("Query cloud region detail from A&AI failed.", e);
+    }
   }
 
-  public String qureyVimList() throws Exception {
-    return adapterServiceproxy.queryVIMList(transactionId, fromAppId, authorization);
+  public String qureyVimList() throws ExtsysException {
+    try {
+      return adapterServiceproxy.queryVIMList(transactionId, fromAppId, authorization);
+    } catch (Exception e) {
+      throw new ExtsysException("Query cloud region list from A&AI failed.", e);
+    }
   }
 
-  public void deleteVim(String cloud_owner, String cloud_region_id, String resourceVersion)
-      throws Exception {
-    adapterServiceproxy.deleteVim(transactionId, fromAppId, authorization, cloud_owner,
-        cloud_region_id, resourceVersion);
+  public void deleteVim(String cloud_owner, String cloud_region_id, String resourceVersion) throws ExtsysException
+      {
+    try {
+      adapterServiceproxy.deleteVim(transactionId, fromAppId, authorization, cloud_owner,
+          cloud_region_id, resourceVersion);
+    } catch (Exception e) {
+      throw new ExtsysException("Delete cloud region from A&AI failed.", e);
+    }
   }
 }

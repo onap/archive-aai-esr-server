@@ -41,8 +41,11 @@ public class ExtsysException extends Exception {
     super();
   }
 
-  public ExtsysException(String errorCode, String errorMsg) {
-    this.errorCode = errorCode;
-    this.errorMsg = errorMsg;
+  public ExtsysException(String msg, Exception e) {
+      super(msg, e);
+  }
+  
+  public ExtsysException(String msg) {
+      super(msg);
   }
 }
