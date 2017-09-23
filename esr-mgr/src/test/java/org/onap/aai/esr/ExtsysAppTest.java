@@ -19,7 +19,6 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 import org.onap.aai.esr.common.Config;
-import org.onap.aai.esr.common.HibernateSession;
 
 public class ExtsysAppTest {
   static {
@@ -31,10 +30,5 @@ public class ExtsysAppTest {
   public void getName() throws Exception {
     ExtsysApp app = new ExtsysApp();
     assertEquals(app.getName(),"ONAP-ESR");
-  }
-
-  public static void main(String[] args) throws Exception {
-      String filePath = HibernateSession.class.getResource("/").toURI().getPath()+"extsys.yml";
-      new ExtsysApp().run(new String[]{"server", filePath});
   }
 }

@@ -18,7 +18,6 @@ package org.onap.aai.esr.util;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
-import org.onap.aai.esr.entity.aai.EsrEmsDetail;
 import org.onap.aai.esr.entity.aai.EsrThirdpartySdncDetail;
 import org.onap.aai.esr.entity.rest.ThirdpartySdncRegisterInfo;
 
