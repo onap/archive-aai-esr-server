@@ -20,6 +20,8 @@ import java.util.ArrayList;
 import javax.ws.rs.core.Response;
 
 import org.onap.aai.esr.entity.rest.EmsRegisterInfo;
+import org.onap.aai.esr.exception.ExceptionUtil;
+import org.onap.aai.esr.exception.ExtsysException;
 import org.onap.aai.esr.externalservice.aai.ExternalSystemProxy;
 import org.onap.aai.esr.util.EmsManagerUtil;
 import org.onap.aai.esr.entity.aai.EsrEmsDetail;
@@ -56,10 +58,9 @@ public class EmsManagerWrapper {
       ExternalSystemProxy.registerEms(emsId, esrEmsDetail);
       result.setId(emsId);
       return Response.ok(result).build();
-    } catch (Exception e) {
-      e.printStackTrace();
-      LOG.error("Register EMS failed !" + e.getMessage());
-      return Response.serverError().build();
+    } catch (ExtsysException e) {
+      LOG.error("Register EMS failed !", e);
+      throw ExceptionUtil.buildExceptionResponse(e.getMessage());
     }
   }
 
@@ -71,10 +72,9 @@ public class EmsManagerWrapper {
       ExternalSystemProxy.registerEms(emsId, esrEmsDetail);
       result.setId(emsId);
       return Response.ok(result).build();
-    } catch (Exception e) {
-      e.printStackTrace();
-      LOG.error("Update VNFM failed !" + e.getMessage());
-      return Response.serverError().build();
+    } catch (ExtsysException e) {
+      LOG.error("Update VNFM failed !", e);
+      throw ExceptionUtil.buildExceptionResponse(e.getMessage());
     }
   }
   
@@ -87,15 +87,14 @@ public class EmsManagerWrapper {
       LOG.info("Response from AAI by query EMS list: " + esrEms);
       emsList = getEmsDetailList(esrEms);
       return Response.ok(emsList).build();
-    } catch (Exception e) {
-      e.printStackTrace();
-      LOG.error("Query EMS list failed !");
+    } catch (ExtsysException e) {
+      LOG.error("Query EMS list failed !", e);
       return Response.ok(emsList).build();
     }
   }
   
   public Response queryEmsById(String emsId) {
-    EmsRegisterInfo ems = new EmsRegisterInfo();
+    EmsRegisterInfo ems;
     ems = queryEmsDetail(emsId);
     if (ems != null) {
       return Response.ok(ems).build();
@@ -108,22 +107,17 @@ public class EmsManagerWrapper {
     EsrEmsDetail esrEmsDetail = new EsrEmsDetail();
     esrEmsDetail = queryEsrEmsDetail(emsId);
     String resourceVersion = esrEmsDetail.getResourceVersion();
-    if (resourceVersion != null) {
-      try {
-        ExternalSystemProxy.deleteEms(emsId, resourceVersion);
-        return Response.noContent().build();
-      } catch (Exception e) {
-        e.printStackTrace();
-        LOG.error("Delete EMS from A&AI failed! EMS ID: " + emsId + "resouce-version:"
-            + resourceVersion, e.getMessage());
-        return Response.serverError().build();
-      }
-    } else {
-      LOG.error("resouce-version is null ! Can not delete resouce from A&AI. ");
-      return Response.serverError().build();
+    try {
+      ExternalSystemProxy.deleteEms(emsId, resourceVersion);
+      return Response.noContent().build();
+    } catch (ExtsysException e) {
+      LOG.error(
+          "Delete EMS from A&AI failed! EMS ID: " + emsId + "resouce-version:" + resourceVersion,
+          e);
+      throw ExceptionUtil.buildExceptionResponse(e.getMessage());
     }
   }
-  
+
   private EmsRegisterInfo queryEmsDetail(String emsId) {
     EmsRegisterInfo emsRegisterInfo = new EmsRegisterInfo();
     EsrEmsDetail esrEmsDetail = new EsrEmsDetail();
@@ -132,12 +126,10 @@ public class EmsManagerWrapper {
       LOG.info("Response from AAI by query EMS: " + esrEmsStr);
       esrEmsDetail = new Gson().fromJson(esrEmsStr, EsrEmsDetail.class);
       emsRegisterInfo = emsManagerUtil.EsrEms2EmsRegisterInfo(esrEmsDetail);
-      return emsRegisterInfo;
-    } catch (Exception e) {
-      e.printStackTrace();
-      LOG.error("Query EMS detail failed! EMS ID: " + emsId, e.getMessage());
-      return null;
+    } catch (ExtsysException e) {
+      LOG.error("Query EMS detail failed! EMS ID: " + emsId, e);
     }
+    return emsRegisterInfo;
   }
   
   private ArrayList<EmsRegisterInfo> getEmsDetailList(EsrEmsList esrEms) {
@@ -159,9 +151,8 @@ public class EmsManagerWrapper {
       String esrEmsStr = ExternalSystemProxy.queryEmsDetail(emsId);
       LOG.info("Response from AAI by query EMS: " + esrEmsStr);
       esrEmsDetail = new Gson().fromJson(esrEmsStr, EsrEmsDetail.class);
-    } catch (Exception e) {
-      e.printStackTrace();
-      LOG.error("Query EMS detail failed! EMS ID: " + emsId, e.getMessage());
+    } catch (ExtsysException e) {
+      LOG.error("Query EMS detail failed! EMS ID: " + emsId, e);
     }
     return esrEmsDetail;
   }

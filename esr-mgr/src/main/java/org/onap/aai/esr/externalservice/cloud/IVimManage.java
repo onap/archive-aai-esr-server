@@ -22,6 +22,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.onap.aai.esr.exception.ExtsysException;
+
 @Path("/")
 public interface IVimManage {
   @POST
@@ -29,6 +31,6 @@ public interface IVimManage {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   public void updateVIM(@PathParam("cloud_owner") String cloud_owner,
-      @PathParam("cloud_region_id") String cloud_region_id, Tenant tenant) throws Exception;
+      @PathParam("cloud_region_id") String cloud_region_id, Tenant tenant) throws ExtsysException;
 
 }
