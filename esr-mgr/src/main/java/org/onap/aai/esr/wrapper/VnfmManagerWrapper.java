@@ -24,6 +24,8 @@ import org.onap.aai.esr.entity.aai.EsrVnfmDetail;
 import org.onap.aai.esr.entity.aai.EsrVnfmList;
 import org.onap.aai.esr.entity.rest.CommonRegisterResponse;
 import org.onap.aai.esr.entity.rest.VnfmRegisterInfo;
+import org.onap.aai.esr.exception.ExceptionUtil;
+import org.onap.aai.esr.exception.ExtsysException;
 import org.onap.aai.esr.externalservice.aai.ExternalSystemProxy;
 import org.onap.aai.esr.util.VnfmManagerUtil;
 import org.slf4j.Logger;
@@ -58,10 +60,9 @@ public class VnfmManagerWrapper {
       ExternalSystemProxy.registerVnfm(vnfmId, esrVnfmDetail);
       result.setId(vnfmId);
       return Response.ok(result).build();
-    } catch (Exception e) {
-      e.printStackTrace();
-      LOG.error("Register VNFM failed !" + e.getMessage());
-      return Response.serverError().build();
+    } catch (ExtsysException e) {
+      LOG.error("Register VNFM failed !" , e);
+      throw ExceptionUtil.buildExceptionResponse(e.getMessage());
     }
   }
 
@@ -84,10 +85,9 @@ public class VnfmManagerWrapper {
       ExternalSystemProxy.registerVnfm(vnfmId, esrVnfmDetail);
       result.setId(vnfmId);
       return Response.ok(result).build();
-    } catch (Exception e) {
-      e.printStackTrace();
-      LOG.error("Update VNFM failed !" + e.getMessage());
-      return Response.serverError().build();
+    } catch (ExtsysException e) {
+      LOG.error("Update VNFM failed !", e);
+      throw ExceptionUtil.buildExceptionResponse(e.getMessage());
     }
   }
 
@@ -100,9 +100,8 @@ public class VnfmManagerWrapper {
       LOG.info("Response from AAI by query VNFM list: " + esrVnfm);
       vnfmList = getVnfmDetailList(esrVnfm);
       return Response.ok(vnfmList).build();
-    } catch (Exception e) {
-      e.printStackTrace();
-      LOG.error("Query VNFM list failed !");
+    } catch (ExtsysException e) {
+      LOG.error("Query VNFM list failed !", e);
       return Response.ok(vnfmList).build();
     }
   }
@@ -119,19 +118,14 @@ public class VnfmManagerWrapper {
 
   public Response delVnfm(String vnfmId) {
     String resourceVersion = getResourceVersion(vnfmId);
-    if (resourceVersion != null) {
-      try {
-        ExternalSystemProxy.deleteVnfm(vnfmId, resourceVersion);
-        return Response.noContent().build();
-      } catch (Exception e) {
-        e.printStackTrace();
-        LOG.error("Delete VNFM from A&AI failed! VNFM ID: " + vnfmId + "resouce-version:"
-            + resourceVersion, e.getMessage());
-        return Response.serverError().build();
-      }
-    } else {
-      LOG.error("resouce-version is null ! Can not delete resouce from A&AI. ");
-      return Response.serverError().build();
+    try {
+      ExternalSystemProxy.deleteVnfm(vnfmId, resourceVersion);
+      return Response.noContent().build();
+    } catch (ExtsysException e) {
+      LOG.error(
+          "Delete VNFM from A&AI failed! VNFM ID: " + vnfmId + "resouce-version:" + resourceVersion,
+          e);
+      throw ExceptionUtil.buildExceptionResponse(e.getMessage());
     }
   }
 
@@ -143,12 +137,10 @@ public class VnfmManagerWrapper {
       LOG.info("Response from AAI by query VNFM: " + esrVnfmstr);
       esrVnfmDetail = new Gson().fromJson(esrVnfmstr, EsrVnfmDetail.class);
       vnfm = vnfmManagerUtil.esrVnfm2VnfmRegisterInfo(esrVnfmDetail);
-      return vnfm;
-    } catch (Exception e) {
-      e.printStackTrace();
-      LOG.error("Query VNFM detail failed! VNFM ID: " + vnfmId, e.getMessage());
-      return null;
+    } catch (ExtsysException e) {
+      LOG.error("Query VNFM detail failed! VNFM ID: " + vnfmId, e);
     }
+    return vnfm;
   }
 
   private ArrayList<VnfmRegisterInfo> getVnfmDetailList(EsrVnfmList esrVnfm) {
@@ -180,9 +172,9 @@ public class VnfmManagerWrapper {
       String esrVnfmstr = ExternalSystemProxy.queryVnfmDetail(vnfmId);
       LOG.info("Response from AAI by query VNFM: " + esrVnfmstr);
       esrVnfmDetail = new Gson().fromJson(esrVnfmstr, EsrVnfmDetail.class);
-    } catch (Exception e) {
-      e.printStackTrace();
-      LOG.error("Query VNFM detail failed! VNFM ID: " + vnfmId, e.getMessage());
+    } catch (ExtsysException e) {
+      LOG.error("Query VNFM detail failed! VNFM ID: " + vnfmId, e);
+      throw ExceptionUtil.buildExceptionResponse(e.getMessage());
     }
     return esrVnfmDetail;
   }
