@@ -29,6 +29,7 @@ import javax.ws.rs.core.MediaType;
 import org.onap.aai.esr.entity.aai.EsrEmsDetail;
 import org.onap.aai.esr.entity.aai.EsrThirdpartySdncDetail;
 import org.onap.aai.esr.entity.aai.EsrVnfmDetail;
+import org.onap.aai.esr.exception.ExtsysException;
 
 @Path("/")
 public interface IExternalSystem {
@@ -40,7 +41,7 @@ public interface IExternalSystem {
   public void registerVNFM(@HeaderParam("X-TransactionId") String transactionId,
       @HeaderParam("X-FromAppId") String fromApp,
       @HeaderParam("Authorization") String authorization, @PathParam("vnfm_id") String vnfmId,
-      EsrVnfmDetail esrVnfmDetail) throws Exception;
+      EsrVnfmDetail esrVnfmDetail) throws ExtsysException;
 
   @GET
   @Path("/esr-vnfm-list/esr-vnfm/{vnfm_id}?depth=all")
@@ -49,7 +50,7 @@ public interface IExternalSystem {
   public String queryVNFMDetail(@HeaderParam("X-TransactionId") String transactionId,
       @HeaderParam("X-FromAppId") String fromApp,
       @HeaderParam("Authorization") String authorization, @PathParam("vnfm_id") String vnfmId)
-      throws Exception;
+      throws ExtsysException;
 
   @GET
   @Path("/esr-vnfm-list")
@@ -57,7 +58,7 @@ public interface IExternalSystem {
   @Produces(MediaType.APPLICATION_JSON)
   public String queryVNFMList(@HeaderParam("X-TransactionId") String transactionId,
       @HeaderParam("X-FromAppId") String fromApp,
-      @HeaderParam("Authorization") String authorization) throws Exception;
+      @HeaderParam("Authorization") String authorization) throws ExtsysException;
 
   @DELETE
   @Path("/esr-vnfm-list/esr-vnfm/{vnfm_id}")
@@ -67,7 +68,7 @@ public interface IExternalSystem {
       @HeaderParam("X-FromAppId") String fromApp,
       @HeaderParam("Authorization") String authorization,
       @PathParam("vnfm_id") String vnfmId,
-      @QueryParam("resource-version") String resourceVersion) throws Exception;
+      @QueryParam("resource-version") String resourceVersion) throws ExtsysException;
 
   @PUT
   @Path("/esr-ems-list/esr-ems/{ems_id}")
@@ -76,7 +77,7 @@ public interface IExternalSystem {
   public void registerEMS(@HeaderParam("X-TransactionId") String transactionId,
       @HeaderParam("X-FromAppId") String fromApp,
       @HeaderParam("Authorization") String authorization, @PathParam("ems_id") String emsId,
-      EsrEmsDetail esrEmsDetail) throws Exception;
+      EsrEmsDetail esrEmsDetail) throws ExtsysException;
 
   @GET
   @Path("/esr-ems-list/esr-ems/{ems_id}?depth=all")
@@ -85,7 +86,7 @@ public interface IExternalSystem {
   public String queryEMSDetail(@HeaderParam("X-TransactionId") String transactionId,
       @HeaderParam("X-FromAppId") String fromApp,
       @HeaderParam("Authorization") String authorization, @PathParam("ems_id") String emsId)
-      throws Exception;
+      throws ExtsysException;
 
   @GET
   @Path("/esr-ems-list")
@@ -93,7 +94,7 @@ public interface IExternalSystem {
   @Produces(MediaType.APPLICATION_JSON)
   public String queryEMSList(@HeaderParam("X-TransactionId") String transactionId,
       @HeaderParam("X-FromAppId") String fromApp,
-      @HeaderParam("Authorization") String authorization) throws Exception;
+      @HeaderParam("Authorization") String authorization) throws ExtsysException;
 
   @DELETE
   @Path("/esr-ems-list/esr-ems/{ems_id}")
@@ -103,7 +104,7 @@ public interface IExternalSystem {
       @HeaderParam("X-FromAppId") String fromApp,
       @HeaderParam("Authorization") String authorization,
       @PathParam("ems_id") String emsId,
-      @QueryParam("resource-version") String resourceVersion) throws Exception;
+      @QueryParam("resource-version") String resourceVersion) throws ExtsysException;
   
   @PUT
   @Path("/esr-thirdparty-sdnc-list/esr-thirdparty-sdnc/{thirdparty-sdnc-id}")
@@ -112,7 +113,7 @@ public interface IExternalSystem {
   public void registerThirdpartySdnc(@HeaderParam("X-TransactionId") String transactionId,
       @HeaderParam("X-FromAppId") String fromApp,
       @HeaderParam("Authorization") String authorization, @PathParam("thirdparty-sdnc-id") String thirdpartySdncId,
-      EsrThirdpartySdncDetail esrThirdpartySdncDetail) throws Exception;
+      EsrThirdpartySdncDetail esrThirdpartySdncDetail) throws ExtsysException;
 
   @GET
   @Path("/esr-thirdparty-sdnc-list/esr-thirdparty-sdnc/{thirdparty-sdnc-id}?depth=all")
@@ -121,7 +122,7 @@ public interface IExternalSystem {
   public String queryThirdpartySdncDetail(@HeaderParam("X-TransactionId") String transactionId,
       @HeaderParam("X-FromAppId") String fromApp,
       @HeaderParam("Authorization") String authorization, @PathParam("thirdparty-sdnc-id") String thirdpartySdncId)
-      throws Exception;
+      throws ExtsysException;
 
   @GET
   @Path("/esr-thirdparty-sdnc-list")
@@ -129,7 +130,7 @@ public interface IExternalSystem {
   @Produces(MediaType.APPLICATION_JSON)
   public String queryThirdpartySdncList(@HeaderParam("X-TransactionId") String transactionId,
       @HeaderParam("X-FromAppId") String fromApp,
-      @HeaderParam("Authorization") String authorization) throws Exception;
+      @HeaderParam("Authorization") String authorization) throws ExtsysException;
 
   @DELETE
   @Path("/esr-thirdparty-sdnc-list/esr-thirdparty-sdnc/{thirdparty-sdnc-id}")
@@ -139,5 +140,5 @@ public interface IExternalSystem {
       @HeaderParam("X-FromAppId") String fromApp,
       @HeaderParam("Authorization") String authorization,
       @PathParam("thirdparty-sdnc-id") String thirdpartySdncId,
-      @QueryParam("resource-version") String resourceVersion) throws Exception;
+      @QueryParam("resource-version") String resourceVersion) throws ExtsysException;
 }
