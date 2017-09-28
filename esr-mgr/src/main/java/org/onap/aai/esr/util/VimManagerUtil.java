@@ -80,7 +80,10 @@ public class VimManagerUtil {
     VimRegisterInfo vimRegisterInfo = new VimRegisterInfo();
     VimAuthInfo vimAuthInfo = new VimAuthInfo();
     ArrayList<VimAuthInfo> vimAuthInfos = new ArrayList<VimAuthInfo>();
-    vimAuthInfo = authInfo2VimAuthInfo(cloudRegion.getEsrSystemInfoList().getEsrSystemInfo().get(0));
+    if(cloudRegion.getEsrSystemInfoList()!=null){
+      vimAuthInfo = authInfo2VimAuthInfo(cloudRegion.getEsrSystemInfoList().getEsrSystemInfo().get(0));
+      vimRegisterInfo.setStatus(cloudRegion.getEsrSystemInfoList().getEsrSystemInfo().get(0).getSystemStatus());
+    }
     vimAuthInfos.add(vimAuthInfo);
     vimRegisterInfo.setVimAuthInfos(vimAuthInfos);
     vimRegisterInfo.setCloudExtraInfo(cloudRegion.getCloudExtraInfo());
@@ -91,7 +94,6 @@ public class VimManagerUtil {
     vimRegisterInfo.setComplexName(cloudRegion.getComplexName());
     vimRegisterInfo.setCloudRegionVersion(cloudRegion.getCloudRegionVersion());
     vimRegisterInfo.setOwnerDefinedType(cloudRegion.getOwnerDefinedType());
-    vimRegisterInfo.setStatus(cloudRegion.getEsrSystemInfoList().getEsrSystemInfo().get(0).getSystemStatus());
     return vimRegisterInfo;
   }
 }
