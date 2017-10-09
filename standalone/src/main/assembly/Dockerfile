@@ -22,5 +22,6 @@ WORKDIR /home/esr
 ADD esr-server-*-linux64.tar.gz /home/esr/
 RUN chmod 755 /home/esr/bin/*.sh
 
-ENTRYPOINT /home/esr/bin/run.sh
+#ENTRYPOINT /home/esr/bin/run.sh
+ENTRYPOINT /home/esr/docker/docker-entrypoint.sh
 
