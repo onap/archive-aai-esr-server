@@ -19,4 +19,4 @@ The esr server module provides the following APIs.
 * thirdparty SDNC update
 * thirdparty SDNC Deletion
 
-
+- `ESR APIs <https://wiki.onap.org/pages/viewpage.action?pageId=11930343>`_.

@@ -15,5 +15,5 @@ ESR comprises two modules: the esr server module and the esr gui module. And bot
    :maxdepth: 1
    
    offeredapis.rst
-
+   installation.rst
 
