@@ -20,7 +20,7 @@
 
 	<parent>
 		<groupId>org.onap.aai.esr-server</groupId>
-		<artifactId>aai-esr-server-parent</artifactId>
+		<artifactId>aai-esr-server</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 	
