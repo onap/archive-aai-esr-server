@@ -14,6 +14,6 @@ ESR comprises two modules: the esr server module and the esr gui module. And bot
 .. toctree::
    :maxdepth: 1
    
-   offeredapis.rst
-   installation.rst
+   platform/index.rst
+   release-notes/index.rst
 
