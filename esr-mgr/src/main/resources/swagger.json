@@ -1,0 +1,723 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "This page shows all the APIs available in the ESR server module.",
+    "version" : "v1",
+    "title" : "API Descriptions for External System Management",
+    "termsOfService" : "http://www.github.com/kongchen/swagger-maven-plugin",
+    "contact" : {
+      "name" : "Zi Li",
+      "email" : "li.zi30@zte.com.cn"
+    },
+    "license" : {
+      "name" : "Apache 2.0",
+      "url" : "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "basePath" : "/api/aai-esr-server/v1/",
+  "tags" : [ {
+    "name" : " ems Management "
+  }, {
+    "name" : " service test "
+  }, {
+    "name" : " vim Management "
+  }, {
+    "name" : " vnfm Management "
+  }, {
+    "name" : "ThirdParty sdnc Management     "
+  } ],
+  "paths" : {
+    "/emses" : {
+      "get" : {
+        "tags" : [ " ems Management " ],
+        "summary" : "get  all ems ",
+        "description" : "",
+        "operationId" : "queryEmsList",
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "404" : {
+            "description" : "microservice not found"
+          },
+          "415" : {
+            "description" : "Unprocessable MicroServiceInfo Entity "
+          },
+          "500" : {
+            "description" : "internal server error"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ " ems Management " ],
+        "summary" : "create a ems",
+        "description" : "",
+        "operationId" : "registerEms",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "text/plain", "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "ems",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/EmsRegisterInfo"
+          }
+        } ],
+        "responses" : {
+          "404" : {
+            "description" : "microservice not found"
+          },
+          "415" : {
+            "description" : "Unprocessable MicroServiceInfo Entity "
+          },
+          "500" : {
+            "description" : "internal server error"
+          }
+        }
+      }
+    },
+    "/emses/{emsId}" : {
+      "get" : {
+        "tags" : [ " ems Management " ],
+        "summary" : "get ems by id",
+        "description" : "",
+        "operationId" : "queryemsById",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "emsId",
+          "in" : "path",
+          "description" : "ems id",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "404" : {
+            "description" : "microservice not found"
+          },
+          "415" : {
+            "description" : "Unprocessable MicroServiceInfo Entity "
+          },
+          "500" : {
+            "description" : "internal server error"
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ " ems Management " ],
+        "summary" : "update a ems",
+        "description" : "",
+        "operationId" : "updateEms",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "text/plain", "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "ems",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/EmsRegisterInfo"
+          }
+        }, {
+          "name" : "emsId",
+          "in" : "path",
+          "description" : "ems id",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "404" : {
+            "description" : "microservice not found"
+          },
+          "415" : {
+            "description" : "Unprocessable MicroServiceInfo Entity "
+          },
+          "500" : {
+            "description" : "internal server error"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ " ems Management " ],
+        "summary" : "delete a ems",
+        "description" : "",
+        "operationId" : "delems",
+        "parameters" : [ {
+          "name" : "emsId",
+          "in" : "path",
+          "description" : "ems id",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "404" : {
+            "description" : "microservice not found"
+          },
+          "415" : {
+            "description" : "Unprocessable MicroServiceInfo Entity "
+          },
+          "500" : {
+            "description" : "internal server error"
+          }
+        }
+      }
+    },
+    "/sdncontrollers" : {
+      "get" : {
+        "tags" : [ "ThirdParty sdnc Management     " ],
+        "summary" : "get all thirdParty sdnc ",
+        "description" : "",
+        "operationId" : "queryThirdpartySdncList",
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "404" : {
+            "description" : "microservice not found"
+          },
+          "415" : {
+            "description" : "Unprocessable MicroServiceInfo Entity "
+          },
+          "500" : {
+            "description" : "internal server error"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "ThirdParty sdnc Management     " ],
+        "summary" : "register a thirdparty sdnc",
+        "description" : "",
+        "operationId" : "registerThirdpatySdnc",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "text/plain", "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "thirdPartySdnc",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/ThirdpartySdncRegisterInfo"
+          }
+        } ],
+        "responses" : {
+          "404" : {
+            "description" : "microservice not found"
+          },
+          "415" : {
+            "description" : "Unprocessable MicroServiceInfo Entity "
+          },
+          "500" : {
+            "description" : "internal server error"
+          }
+        }
+      }
+    },
+    "/sdncontrollers/{thirdPartySdncId}" : {
+      "get" : {
+        "tags" : [ "ThirdParty sdnc Management     " ],
+        "summary" : "get thirdParty sdnc by id",
+        "description" : "",
+        "operationId" : "queryThirdpartySdncById",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "thirdPartySdncId",
+          "in" : "path",
+          "description" : "thirdparty sdnc id",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "404" : {
+            "description" : "microservice not found"
+          },
+          "415" : {
+            "description" : "Unprocessable MicroServiceInfo Entity "
+          },
+          "500" : {
+            "description" : "internal server error"
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "ThirdParty sdnc Management     " ],
+        "summary" : "update a thirdParty Sdnc",
+        "description" : "",
+        "operationId" : "updateThirdpartySdnc",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "text/plain", "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "thirdpartySdnc",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/ThirdpartySdncRegisterInfo"
+          }
+        }, {
+          "name" : "thirdPartySdncId",
+          "in" : "path",
+          "description" : "sdnc id",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "404" : {
+            "description" : "microservice not found"
+          },
+          "415" : {
+            "description" : "Unprocessable MicroServiceInfo Entity "
+          },
+          "500" : {
+            "description" : "internal server error"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "ThirdParty sdnc Management     " ],
+        "summary" : "delete a thirdparty sdnc",
+        "description" : "",
+        "operationId" : "delThirdpartySdnc",
+        "parameters" : [ {
+          "name" : "thirdPartySdncId",
+          "in" : "path",
+          "description" : "thirdparty sdnc id",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "404" : {
+            "description" : "microservice not found"
+          },
+          "415" : {
+            "description" : "Unprocessable MicroServiceInfo Entity "
+          },
+          "500" : {
+            "description" : "internal server error"
+          }
+        }
+      }
+    },
+    "/test" : {
+      "get" : {
+        "tags" : [ " service test " ],
+        "summary" : " service test ",
+        "description" : "",
+        "operationId" : "queryEmsList",
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "404" : {
+            "description" : "microservice not found"
+          },
+          "415" : {
+            "description" : "Unprocessable MicroServiceInfo Entity "
+          },
+          "500" : {
+            "description" : "internal server error"
+          }
+        }
+      }
+    },
+    "/vims" : {
+      "get" : {
+        "tags" : [ " vim Management " ],
+        "summary" : "get  all vim ",
+        "description" : "",
+        "operationId" : "queryVimList",
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "404" : {
+            "description" : "microservice not found"
+          },
+          "415" : {
+            "description" : "Unprocessable MicroServiceInfo Entity "
+          },
+          "500" : {
+            "description" : "internal server error"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ " vim Management " ],
+        "summary" : "create a vim",
+        "description" : "",
+        "operationId" : "registerVims",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "text/plain", "application/json" ],
+        "responses" : {
+          "404" : {
+            "description" : "microservice not found"
+          },
+          "415" : {
+            "description" : "Unprocessable MicroServiceInfo Entity "
+          },
+          "500" : {
+            "description" : "internal server error"
+          }
+        }
+      }
+    },
+    "/vims/{cloudOwner}/{cloudRegionId}" : {
+      "get" : {
+        "tags" : [ " vim Management " ],
+        "summary" : "get vim by id",
+        "description" : "",
+        "operationId" : "queryVimById",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "cloudOwner",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "cloudRegionId",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "404" : {
+            "description" : "microservice not found"
+          },
+          "415" : {
+            "description" : "Unprocessable MicroServiceInfo Entity "
+          },
+          "500" : {
+            "description" : "internal server error"
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ " vim Management " ],
+        "summary" : "update a vim",
+        "description" : "",
+        "operationId" : "updatevims",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "cloudOwner",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "cloudRegionId",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "404" : {
+            "description" : "microservice not found"
+          },
+          "415" : {
+            "description" : "Unprocessable MicroServiceInfo Entity "
+          },
+          "500" : {
+            "description" : "internal server error"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ " vim Management " ],
+        "summary" : "delete a vim",
+        "description" : "",
+        "operationId" : "delvim",
+        "parameters" : [ {
+          "name" : "cloudOwner",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "cloudRegionId",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "404" : {
+            "description" : "microservice not found"
+          },
+          "415" : {
+            "description" : "Unprocessable MicroServiceInfo Entity "
+          },
+          "500" : {
+            "description" : "internal server error"
+          }
+        }
+      }
+    },
+    "/vnfms" : {
+      "get" : {
+        "tags" : [ " vnfm Management " ],
+        "summary" : "get  all vnfm ",
+        "description" : "",
+        "operationId" : "queryVnfmList",
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "404" : {
+            "description" : "microservice not found"
+          },
+          "415" : {
+            "description" : "Unprocessable MicroServiceInfo Entity "
+          },
+          "500" : {
+            "description" : "internal server error"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ " vnfm Management " ],
+        "summary" : "create a vnfm",
+        "description" : "",
+        "operationId" : "registerVnfm",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "text/plain", "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "vnfm",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/VnfmRegisterInfo"
+          }
+        } ],
+        "responses" : {
+          "404" : {
+            "description" : "microservice not found"
+          },
+          "415" : {
+            "description" : "Unprocessable MicroServiceInfo Entity "
+          },
+          "500" : {
+            "description" : "internal server error"
+          }
+        }
+      }
+    },
+    "/vnfms/{vnfmId}" : {
+      "get" : {
+        "tags" : [ " vnfm Management " ],
+        "summary" : "get vnfm by id",
+        "description" : "",
+        "operationId" : "queryVnfmById",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "vnfmId",
+          "in" : "path",
+          "description" : "vnfm id",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "404" : {
+            "description" : "microservice not found"
+          },
+          "415" : {
+            "description" : "Unprocessable MicroServiceInfo Entity "
+          },
+          "500" : {
+            "description" : "internal server error"
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ " vnfm Management " ],
+        "summary" : "update a vnfm",
+        "description" : "",
+        "operationId" : "updateVnfm",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "text/plain", "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "vnfm",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/VnfmRegisterInfo"
+          }
+        }, {
+          "name" : "vnfmId",
+          "in" : "path",
+          "description" : "vnfm id",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "404" : {
+            "description" : "microservice not found"
+          },
+          "415" : {
+            "description" : "Unprocessable MicroServiceInfo Entity "
+          },
+          "500" : {
+            "description" : "internal server error"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ " vnfm Management " ],
+        "summary" : "delete a vnfm",
+        "description" : "",
+        "operationId" : "delVnfm",
+        "parameters" : [ {
+          "name" : "vnfmId",
+          "in" : "path",
+          "description" : "vnfm id",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "404" : {
+            "description" : "microservice not found"
+          },
+          "415" : {
+            "description" : "Unprocessable MicroServiceInfo Entity "
+          },
+          "500" : {
+            "description" : "internal server error"
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "AlarmAddr" : {
+      "type" : "object",
+      "properties" : {
+        "ip" : {
+          "type" : "string"
+        },
+        "port" : {
+          "type" : "string"
+        },
+        "user" : {
+          "type" : "string"
+        },
+        "password" : {
+          "type" : "string"
+        }
+      }
+    },
+    "EmsRegisterInfo" : {
+      "type" : "object",
+      "properties" : {
+        "emsId" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "vendor" : {
+          "type" : "string"
+        },
+        "version" : {
+          "type" : "string"
+        },
+        "resourceAddr" : {
+          "$ref" : "#/definitions/FtpAddr"
+        },
+        "performanceAddr" : {
+          "$ref" : "#/definitions/FtpAddr"
+        },
+        "alarmAddr" : {
+          "$ref" : "#/definitions/AlarmAddr"
+        }
+      }
+    },
+    "FtpAddr" : {
+      "type" : "object",
+      "properties" : {
+        "ftptype" : {
+          "type" : "string"
+        },
+        "ip" : {
+          "type" : "string"
+        },
+        "port" : {
+          "type" : "string"
+        },
+        "user" : {
+          "type" : "string"
+        },
+        "password" : {
+          "type" : "string"
+        },
+        "remotepath" : {
+          "type" : "string"
+        },
+        "passive" : {
+          "type" : "boolean",
+          "default" : false
+        }
+      }
+    },
+    "ThirdpartySdncRegisterInfo" : {
+      "type" : "object",
+      "properties" : {
+        "thirdpartySdncId" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "vendor" : {
+          "type" : "string"
+        },
+        "version" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        },
+        "location" : {
+          "type" : "string"
+        },
+        "url" : {
+          "type" : "string"
+        },
+        "userName" : {
+          "type" : "string"
+        },
+        "password" : {
+          "type" : "string"
+        },
+        "productName" : {
+          "type" : "string"
+        },
+        "protocol" : {
+          "type" : "string"
+        }
+      }
+    },
+    "VnfmRegisterInfo" : {
+      "type" : "object",
+      "properties" : {
+        "vnfmId" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        },
+        "vimId" : {
+          "type" : "string"
+        },
+        "vendor" : {
+          "type" : "string"
+        },
+        "version" : {
+          "type" : "string"
+        },
+        "certificateUrl" : {
+          "type" : "string"
+        },
+        "url" : {
+          "type" : "string"
+        },
+        "userName" : {
+          "type" : "string"
+        },
+        "password" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

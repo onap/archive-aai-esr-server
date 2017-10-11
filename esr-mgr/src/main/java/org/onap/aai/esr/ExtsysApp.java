@@ -61,6 +61,7 @@ public class ExtsysApp extends Application<ExtsysAppConfiguration> {
       MsbHelper helper = new MsbHelper(msbClient);
       try {
         helper.registerMsb();
+        LOGGER.info("Register esr-server to msb by java-sdk finished");
       } catch (Exception e) {
         LOGGER.error("Register esr-server to msb by java-sdk failed", e);
       }

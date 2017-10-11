@@ -20,6 +20,8 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.SwaggerDefinition;
+
 import org.eclipse.jetty.http.HttpStatus;
 import org.onap.aai.esr.entity.rest.VimRegisterInfo;
 import org.onap.aai.esr.util.ExtsysUtil;
@@ -38,6 +40,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+@SwaggerDefinition
 @Path("/vims")
 @Api(tags = {" vim Management "})
 public class VimManager {
