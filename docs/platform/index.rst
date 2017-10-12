@@ -11,9 +11,4 @@ ESR provide a way to register external system which not included in ONAP system,
    architecture.rst
    offeredapis.rst
    consumedapis.rst
-   delivery.rst
-   log-and-diagnostic-info.rst
    installation.rst
-   configuration.rst
-   administration.rst
-   human-interfaces.rst
