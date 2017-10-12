@@ -7,7 +7,7 @@ ESR provide a way to register external system which not included in ONAP system,
 
 .. toctree::
    :maxdepth: 1
-   
+
    architecture.rst
    offeredapis.rst
    consumedapis.rst

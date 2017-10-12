@@ -7,13 +7,13 @@ ESR provide a way to register external system which not included in ONAP system,
 
 ESR comprises two modules: the esr server module and the esr gui module. And both esr service and esr gui belongs A&AI.
 
-- AAI-ESR
+- AAI ESR
     - ESR server Module
     - ESR gui Module
 
 .. toctree::
    :maxdepth: 2
-   
+
    platform/index.rst
    release-notes/index.rst
 
