@@ -35,8 +35,13 @@
         <linux64outputdir>target/assembly/${linux64id}</linux64outputdir>
         <win64outputdir>target/assembly/${win64id}</win64outputdir>
         <version.output>target/version</version.output>
-    </properties>
-
+        <docker.image.name>onap/aai/esr-server</docker.image.name>
+        <maven.build.timestamp.format>yyyyMMdd-HHmm</maven.build.timestamp.format>
+        <docker.push.registry></docker.push.registry>
+        <skip.docker.build>true</skip.docker.build>
+        <skip.docker.tag>true</skip.docker.tag>
+        <skip.docker.push>true</skip.docker.push>
+	</properties>
     <build>
         <plugins>
             <plugin>
@@ -189,7 +194,7 @@
         </plugins>
     </build>
 	
-	    <profiles>
+	<!--<profiles>
         <profile>
             <id>docker</id>
             <build>
@@ -236,8 +241,86 @@
                 </plugins>
             </build>
         </profile>
+    </profiles> -->
+	<profiles>
+        <profile>
+            <id>docker</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.spotify</groupId>
+                        <artifactId>docker-maven-plugin</artifactId>
+                        <version>0.4.11</version>
+                        <inherited>false</inherited>
+                        <configuration>
+                            <images>
+                                <image>
+                                    <imageName>onap/aai/esr-server</imageName>
+                                    <build>
+                                        <cleanup>try</cleanup>
+                                        <dockerFileDir>${basedir}/target/version/</dockerFileDir>
+                                        <dockerFile>${basedir}/target/version/Dockerfile</dockerFile>
+                                    </build>
+                                </image>
+                            </images>
+                        </configuration>
+                        <executions>
+					<execution>
+                        <id>build-image</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                        <configuration>
+                            <skipDockerBuild>${skip.docker.build}</skipDockerBuild>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>tag-image-timestamped-version</id>
+                        <phase>deploy</phase>
+                        <goals>
+                            <goal>tag</goal>
+                        </goals>
+                        <configuration>
+                            <image>${docker.image.name}</image>
+                            <newName>${docker.push.registry}/${docker.image.name}:${project.version}-${maven.build.timestamp}</newName>
+                            <pushImage>${skip.docker.push}</pushImage>
+                            <skipDockerTag>${skip.docker.tag}</skipDockerTag>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>tag-image-project-version</id>
+                        <phase>deploy</phase>
+                        <goals>
+                            <goal>tag</goal>
+                        </goals>
+                        <configuration>
+                            <image>${docker.image.name}</image>
+                            <newName>${docker.push.registry}/${docker.image.name}:${project.version}</newName>
+                            <pushImage>${skip.docker.push}</pushImage>
+                            <skipDockerTag>${skip.docker.tag}</skipDockerTag>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>tag-image-latest-version</id>
+                        <phase>deploy</phase>
+                        <goals>
+                            <goal>tag</goal>
+                        </goals>
+                        <configuration>
+                            <image>${docker.image.name}</image>
+                            <newName>${docker.push.registry}/${docker.image.name}:latest</newName>
+                            <pushImage>${skip.docker.push}</pushImage>
+                            <skipDockerTag>${skip.docker.tag}</skipDockerTag>
+                        </configuration>
+                    </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
     </profiles>
-
+	
     <dependencies>
         <dependency>
             <groupId>org.onap.aai.esr-server</groupId>
