@@ -27,7 +27,7 @@ public class VimManagerProxy {
       Tenant tenant) throws ExtsysException {
     ClientConfig config = new ClientConfig(new VimUpdateProvider());
     IVimManage updateVimServiceproxy = ConsumerFactory
-        .createConsumer(MsbConfig.getCloudInfrastructureAddr(), config, IVimManage.class);
+        .createConsumer(MsbConfig.getMultiCloudAddr(), config, IVimManage.class);
     try {
       updateVimServiceproxy.updateVIM(cloudOwner, cloudRegionId, tenant);
     } catch (Exception e) {
