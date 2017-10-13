@@ -78,7 +78,6 @@ public class VimManagerWrapper {
         VimManagerProxy.updateVim(cloudOwner, cloudRegionId, tenant);
       } catch (ExtsysException e) {
         LOG.error("Update VIM by Multi-cloud failed !", e);
-        throw ExceptionUtil.buildExceptionResponse(e.getMessage());
       }
       return Response.ok(result).build();
     } catch (ExtsysException error) {
