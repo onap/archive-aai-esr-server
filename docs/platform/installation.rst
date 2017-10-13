@@ -29,7 +29,7 @@ sudo docker run -p  9518:9518 -d --net=host --name esr-server -e MSB_ADDR=${MSB_
 Run esr-gui docker
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-sudo docker run -p  8080:9519 -d --net=host --name esr-gui nexus3.onap.org:10001/onap/aai/esr-gui
+sudo docker run -p  9519:8080 -d --net=host --name esr-gui nexus3.onap.org:10001/onap/aai/esr-gui
 
 Check status of ESR
 ^^^^^^^^^^^^^^^^^^^^^^^
