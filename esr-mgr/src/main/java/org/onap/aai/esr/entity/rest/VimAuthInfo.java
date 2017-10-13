@@ -25,6 +25,8 @@ public class VimAuthInfo {
   
   private String authUrl;
   
+  private String defaultTenant;
+  
   private String sslCacert;
 
   private Boolean sslInsecure;
@@ -75,6 +77,14 @@ public class VimAuthInfo {
 
   public void setSslInsecure(Boolean sslInsecure) {
     this.sslInsecure = sslInsecure;
+  }
+
+  public String getDefaultTenant() {
+    return defaultTenant;
+  }
+
+  public void setDefaultTenant(String defaultTenant) {
+    this.defaultTenant = defaultTenant;
   }
 
 }

@@ -41,6 +41,7 @@ public class VimManagerUtilTest {
     vimAuthInfo.setSslCacert("test");
     vimAuthInfo.setSslInsecure(true);
     vimAuthInfo.setUserName("onap");
+    vimAuthInfo.setDefaultTenant("admin");
     vimRegisterInfo.setCloudExtraInfo("{}");
     vimRegisterInfo.setCloudOwner("zte");
     vimRegisterInfo.setCloudRegionId("RegionOne");
@@ -73,6 +74,7 @@ public class VimManagerUtilTest {
         + "\"ssl-cassert\":\"test\","
         + "\"ssl-insecure\":true,"
         + "\"cloud-domain\":\"default\","
+        + "\"default-tenant\":\"admin\","
         + "\"system-status\":\"normal\"}]}}";
     assertEquals(expectResult, cloudRegionDetailStr);
   }
@@ -96,6 +98,7 @@ public class VimManagerUtilTest {
         + "\"service-url\":\"http://10.11.22.33:5000/v3\","
         + "\"user-name\":\"onap\","
         + "\"password\":\"123456\","
+        + "\"default-tenant\":\"admin\","
         + "\"system-type\":\"VIM\","
         + "\"ssl-cassert\":\"test\","
         + "\"ssl-insecure\":true,"
@@ -118,6 +121,7 @@ public class VimManagerUtilTest {
         + "\"userName\":\"onap\","
         + "\"password\":\"123456\","
         + "\"authUrl\":\"http://10.11.22.33:5000/v3\","
+        + "\"defaultTenant\":\"admin\","
         + "\"sslCacert\":\"test\","
         + "\"sslInsecure\":true}]}";
     assertEquals(expectResult, vimRegisterInfoStr);

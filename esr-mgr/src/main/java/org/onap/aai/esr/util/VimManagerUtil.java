@@ -59,6 +59,7 @@ public class VimManagerUtil {
     esrSystemInfoObj.setServiceUrl(vimAuthInfo.getAuthUrl());
     esrSystemInfoObj.setSslCassert(vimAuthInfo.getSslCacert());
     esrSystemInfoObj.setSslInsecure(vimAuthInfo.getSslInsecure());
+    esrSystemInfoObj.setDefaultTenant(vimAuthInfo.getDefaultTenant());
     esrSystemInfoObj.setEsrSystemInfoId(extsysUtil.generateId());
     esrSystemInfoObj.setSystemType(SystemType.VIM.toString());
 //    esrSystemInfoObj.setSystemStatus(SystemStatus.normal.toString());
@@ -73,6 +74,7 @@ public class VimManagerUtil {
     vimAuthInfo.setSslCacert(authInfo.getSslCassert());
     vimAuthInfo.setSslInsecure(authInfo.getSslInsecure());
     vimAuthInfo.setUserName(authInfo.getUserName());
+    vimAuthInfo.setDefaultTenant(authInfo.getDefaultTenant());
     return vimAuthInfo;
   }
   
