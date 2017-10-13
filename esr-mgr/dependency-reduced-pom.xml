@@ -100,6 +100,67 @@
       </plugin>
     </plugins>
   </build>
+  <profiles>
+    <profile>
+      <id>swagger</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>com.github.kongchen</groupId>
+            <artifactId>swagger-maven-plugin</artifactId>
+            <version>3.1.1</version>
+            <executions>
+              <execution>
+                <phase>compile</phase>
+                <goals>
+                  <goal>generate</goal>
+                </goals>
+              </execution>
+            </executions>
+            <dependencies>
+              <dependency>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-hibernate-validations</artifactId>
+                <version>1.5.6</version>
+              </dependency>
+            </dependencies>
+            <configuration>
+              <apiSources>
+                <apiSource>
+                  <springmvc>false</springmvc>
+                  <locations>org.onap.aai.esr.resource</locations>
+                  <basePath>/api/aai-esr-server/v1/</basePath>
+                  <info>
+                    <title>API Descriptions for External System Management</title>
+                    <version>v1</version>
+                    <description>This page shows all the APIs available in the ESR server module.</description>
+                    <termsOfService>http://www.github.com/kongchen/swagger-maven-plugin</termsOfService>
+                    <contact>
+                      <email>li.zi30@zte.com.cn</email>
+                      <name>Zi Li</name>
+                    </contact>
+                    <license>
+                      <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+                      <name>Apache 2.0</name>
+                    </license>
+                  </info>
+                  <securityDefinitions />
+                  <swaggerDirectory>${basedir}/src/main/resources</swaggerDirectory>
+                </apiSource>
+              </apiSources>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+      <dependencies>
+        <dependency>
+          <groupId>io.swagger</groupId>
+          <artifactId>swagger-jersey2-jaxrs</artifactId>
+          <version>1.5.0</version>
+        </dependency>
+      </dependencies>
+    </profile>
+  </profiles>
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
