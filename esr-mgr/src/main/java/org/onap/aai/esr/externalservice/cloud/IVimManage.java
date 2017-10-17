@@ -27,7 +27,7 @@ import org.onap.aai.esr.exception.ExtsysException;
 @Path("/")
 public interface IVimManage {
   @POST
-  @Path("/cloud-region/{cloud_owner}_{cloud_region_id}/registry")
+  @Path("/{cloud_owner}_{cloud_region_id}/registry")
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   public void updateVIM(@PathParam("cloud_owner") String cloud_owner,
