@@ -26,8 +26,8 @@ import com.eclipsesource.jaxrs.consumer.ConsumerFactory;
 
 public class ExternalSystemProxy {
 
+  public static boolean isTest = false;
   private static IExternalSystem externalSystemproxy;
-
   private static String transactionId = "9999";
   private static String fromAppId = "esr-server";
   private static String authorization = AaiCommon.getAuthenticationCredentials();
@@ -37,15 +37,20 @@ public class ExternalSystemProxy {
         config, IExternalSystem.class);
   }
 
-  public static void registerVnfm(String vnfmId, EsrVnfmDetail esrVnfmDetail) throws ExtsysException {
-    ClientConfig config = new ClientConfig(new VnfmRegisterProvider());
-    IExternalSystem registerVnfmServiceproxy = ConsumerFactory
-        .createConsumer(MsbConfig.getExternalSystemAddr(), config, IExternalSystem.class);
-    try {
-      registerVnfmServiceproxy.registerVNFM(transactionId, fromAppId, authorization, vnfmId,
-          esrVnfmDetail);
-    } catch (Exception e) {
-      throw new ExtsysException("PUT VNFM to A&AI failed.", e);
+  public static void registerVnfm(String vnfmId, EsrVnfmDetail esrVnfmDetail)
+      throws ExtsysException {
+    if (isTest) {
+
+    } else {
+      ClientConfig config = new ClientConfig(new VnfmRegisterProvider());
+      IExternalSystem registerVnfmServiceproxy = ConsumerFactory
+          .createConsumer(MsbConfig.getExternalSystemAddr(), config, IExternalSystem.class);
+      try {
+        registerVnfmServiceproxy.registerVNFM(transactionId, fromAppId, authorization, vnfmId,
+            esrVnfmDetail);
+      } catch (Exception e) {
+        throw new ExtsysException("PUT VNFM to A&AI failed.", e);
+      }
     }
   }
   
