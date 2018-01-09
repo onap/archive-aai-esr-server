@@ -55,6 +55,23 @@ public class ExternalSystemProxy {
   }
   
   public static String queryVnfmDetail(String vnfmId) throws ExtsysException {
+    if(isTest) {
+      String esrVnfmDetailStr = "{\"vnfm-id\":\"123456\","
+          + "\"vim-id\":\"987654\","
+          + "\"certificate-url\":\"http://11.22.33.44:5000/v3\","
+          + "\"esr-system-info-list\":{"
+          + "\"esr-system-info\":[{"
+          + "\"esr-system-info-id\":\"qwerty\","
+          + "\"system-name\":\"ONAP VNFM\","
+          + "\"type\":\"vnfm\","
+          + "\"vendor\":\"zte\","
+          + "\"version\":\"v1\","
+          + "\"service-url\":\"http://10.11.22.33:8000\","
+          + "\"user-name\":\"onap\","
+          + "\"password\":\"987654\","
+          + "\"system-type\":\"VNFM\"}]}}";
+      return esrVnfmDetailStr;
+    }
     try {
       return externalSystemproxy.queryVNFMDetail(transactionId, fromAppId, authorization, vnfmId);
     } catch (Exception e) {
