@@ -29,7 +29,7 @@
     <packaging>pom</packaging>
 
     <version>1.0.1-SNAPSHOT</version>
-    <name>aai-esr-server</name>
+    <name>aai-esr-server-amsterdam</name>
     <modules>
         <module>esr-mgr</module>
 		<module>standalone</module>
