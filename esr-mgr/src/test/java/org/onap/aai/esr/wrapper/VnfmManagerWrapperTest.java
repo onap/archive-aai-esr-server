@@ -17,6 +17,8 @@ package org.onap.aai.esr.wrapper;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.ArrayList;
+
 import javax.ws.rs.core.Response;
 
 import org.junit.Assert;
@@ -78,6 +80,62 @@ public class VnfmManagerWrapperTest {
     if (response != null) {
       Assert.assertTrue(response.getStatus() == 200);
       assertEquals(extsysUtil.objectToString(vnfmRegisterInfo), extsysUtil.objectToString(response.getEntity()));
+    }
+    ExternalSystemProxy.isTest = false;
+  }
+  
+  @Test
+  public void test_queryVnfmList() {
+    ExternalSystemProxy.isTest = true;
+    ExtsysUtil extsysUtil = new ExtsysUtil();
+    ArrayList<VnfmRegisterInfo> vnfmList = new ArrayList<VnfmRegisterInfo>();
+    VnfmRegisterInfo vnfmRegisterInfo = new VnfmRegisterInfo();
+    vnfmRegisterInfo.setVimId("987654");
+    vnfmRegisterInfo.setVersion("v1");
+    vnfmRegisterInfo.setVendor("zte");
+    vnfmRegisterInfo.setUserName("onap");
+    vnfmRegisterInfo.setUrl("http://10.11.22.33:8000");
+    vnfmRegisterInfo.setType("vnfm");
+    vnfmRegisterInfo.setPassword("987654");
+    vnfmRegisterInfo.setName("ONAP VNFM");
+    vnfmRegisterInfo.setCertificateUrl("http://11.22.33.44:5000/v3");
+    vnfmRegisterInfo.setVnfmId("123456");
+    vnfmList.add(vnfmRegisterInfo);
+    Response response = vnfmManagerWrapper.queryVnfmList();
+    if (response != null) {
+      Assert.assertTrue(response.getStatus() == 200);
+      assertEquals(extsysUtil.objectToString(vnfmList), extsysUtil.objectToString(response.getEntity()));
+    }
+    ExternalSystemProxy.isTest = false;
+  }
+  
+  @Test
+  public void test_delVnfm() {
+    ExternalSystemProxy.isTest = true;
+    Response response = vnfmManagerWrapper.delVnfm("123456");
+    if(response != null) {
+      Assert.assertTrue(response.getStatus() == 204);
+    }
+    ExternalSystemProxy.isTest = false;
+  }
+  
+  @Test
+  public void test_updateVnfm() {
+    ExternalSystemProxy.isTest = true;
+    VnfmRegisterInfo vnfmRegisterInfo = new VnfmRegisterInfo();
+    vnfmRegisterInfo.setVimId("987654");
+    vnfmRegisterInfo.setVersion("v1");
+    vnfmRegisterInfo.setVendor("zte");
+    vnfmRegisterInfo.setUserName("onap");
+    vnfmRegisterInfo.setUrl("http://10.11.22.33:8000");
+    vnfmRegisterInfo.setType("vnfm");
+    vnfmRegisterInfo.setPassword("987654");
+    vnfmRegisterInfo.setName("ONAP VNFM");
+    vnfmRegisterInfo.setCertificateUrl("http://11.22.33.44:5000/v3");
+    vnfmRegisterInfo.setVnfmId("123456");
+    Response response = vnfmManagerWrapper.updateVnfm(vnfmRegisterInfo, "123456");
+    if(response != null) {
+      Assert.assertTrue(response.getStatus() == 200);
     }
     ExternalSystemProxy.isTest = false;
   }

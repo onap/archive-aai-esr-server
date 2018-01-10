@@ -80,6 +80,14 @@ public class ExternalSystemProxy {
   }
   
   public static String queryVnfmList() throws ExtsysException {
+    if(isTest) {
+      String vnfmListStr = "{\"esr-vnfm\": "
+          + "[{\"vnfm-id\": \"123456\","
+          + "\"vim-id\": \"987654\","
+          + "\"certificate-url\": \"http://11.22.33.44:5000/v3\","
+          + "\"resource-version\": \"1\"}]}";
+      return vnfmListStr;
+    }
     try {
       return externalSystemproxy.queryVNFMList(transactionId, fromAppId, authorization);
     } catch (Exception e) {
@@ -88,10 +96,12 @@ public class ExternalSystemProxy {
   }
   
   public static void deleteVnfm(String vnfmId, String resourceVersion) throws ExtsysException {
-    try {
-      externalSystemproxy.deleteVNFM(transactionId, fromAppId, authorization, vnfmId, resourceVersion);
-    } catch (Exception e) {
-      throw new ExtsysException("Delete VNFM from A&AI failed.", e);
+    if(!isTest) {
+      try {
+        externalSystemproxy.deleteVNFM(transactionId, fromAppId, authorization, vnfmId, resourceVersion);
+      } catch (Exception e) {
+        throw new ExtsysException("Delete VNFM from A&AI failed.", e);
+      }
     }
   }
   

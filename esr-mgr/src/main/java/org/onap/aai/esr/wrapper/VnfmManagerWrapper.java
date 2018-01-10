@@ -53,8 +53,7 @@ public class VnfmManagerWrapper {
 
   public Response registerVnfm(VnfmRegisterInfo vnfm) {
     CommonRegisterResponse result = new CommonRegisterResponse();
-    EsrVnfmDetail esrVnfmDetail = new EsrVnfmDetail();
-    esrVnfmDetail = vnfmManagerUtil.vnfmRegisterInfo2EsrVnfm(vnfm);
+    EsrVnfmDetail esrVnfmDetail = vnfmManagerUtil.vnfmRegisterInfo2EsrVnfm(vnfm);
     String vnfmId = esrVnfmDetail.getVnfmId();
     try {
       ExternalSystemProxy.registerVnfm(vnfmId, esrVnfmDetail);
@@ -68,15 +67,12 @@ public class VnfmManagerWrapper {
 
   public Response updateVnfm(VnfmRegisterInfo vnfm, String vnfmId) {
     CommonRegisterResponse result = new CommonRegisterResponse();
-    EsrVnfmDetail esrVnfmDetail = new EsrVnfmDetail();
-    EsrVnfmDetail originalEsrVnfmDetail = new EsrVnfmDetail();
-    EsrSystemInfo originalEsrSystemInfo = new EsrSystemInfo();
-    originalEsrVnfmDetail = queryEsrVnfmDetail(vnfmId);
-    esrVnfmDetail = vnfmManagerUtil.vnfmRegisterInfo2EsrVnfm(vnfm);
+    EsrVnfmDetail originalEsrVnfmDetail = queryEsrVnfmDetail(vnfmId);
+    EsrVnfmDetail esrVnfmDetail = vnfmManagerUtil.vnfmRegisterInfo2EsrVnfm(vnfm);
     String resourceVersion = getResourceVersion(vnfmId);
     esrVnfmDetail.setResourceVersion(resourceVersion);
     esrVnfmDetail.setVnfmId(vnfmId);
-    originalEsrSystemInfo = originalEsrVnfmDetail.getEsrSystemInfoList().getEsrSystemInfo().get(0);
+    EsrSystemInfo originalEsrSystemInfo = originalEsrVnfmDetail.getEsrSystemInfoList().getEsrSystemInfo().get(0);
     esrVnfmDetail.getEsrSystemInfoList().getEsrSystemInfo().get(0)
         .setEsrSystemInfoId(originalEsrSystemInfo.getEsrSystemInfoId());
     esrVnfmDetail.getEsrSystemInfoList().getEsrSystemInfo().get(0)
@@ -107,8 +103,7 @@ public class VnfmManagerWrapper {
   }
 
   public Response queryVnfmById(String vnfmId) {
-    VnfmRegisterInfo vnfm = new VnfmRegisterInfo();
-    vnfm = queryVnfmDetail(vnfmId);
+    VnfmRegisterInfo vnfm = queryVnfmDetail(vnfmId);
     if (vnfm != null) {
       return Response.ok(vnfm).build();
     } else {
@@ -145,10 +140,9 @@ public class VnfmManagerWrapper {
 
   private ArrayList<VnfmRegisterInfo> getVnfmDetailList(EsrVnfmList esrVnfm) {
     ArrayList<VnfmRegisterInfo> vnfmInfoList = new ArrayList<VnfmRegisterInfo>();
-    VnfmRegisterInfo vnfmInfo = new VnfmRegisterInfo();
     for (int i = 0; i < esrVnfm.getEsrVnfm().size(); i++) {
       String vnfmId = esrVnfm.getEsrVnfm().get(i).getVnfmId();
-      vnfmInfo = queryVnfmDetail(vnfmId);
+      VnfmRegisterInfo vnfmInfo = queryVnfmDetail(vnfmId);
       if (vnfmInfo != null) {
         vnfmInfoList.add(vnfmInfo);
       }
@@ -157,9 +151,8 @@ public class VnfmManagerWrapper {
   }
   
   private String getResourceVersion (String vnfmId) {
-    EsrVnfmDetail esrVnfmDetail = new EsrVnfmDetail();
     String resourceVersion = null;
-    esrVnfmDetail = queryEsrVnfmDetail(vnfmId);
+    EsrVnfmDetail esrVnfmDetail = queryEsrVnfmDetail(vnfmId);
     if (esrVnfmDetail != null && esrVnfmDetail.getResourceVersion() != null) {
       resourceVersion = esrVnfmDetail.getResourceVersion();
     }
