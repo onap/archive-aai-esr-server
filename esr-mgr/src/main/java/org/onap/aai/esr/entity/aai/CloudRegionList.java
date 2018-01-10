@@ -16,7 +16,7 @@
 package org.onap.aai.esr.entity.aai;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -25,13 +25,13 @@ public class CloudRegionList implements Serializable {
   public static final long serialVersionUID = 1L;
 
   @SerializedName("cloud-region")
-  private ArrayList<CloudRegion> cloudRegion;
+  private List<CloudRegion> cloudRegion;
 
-  public ArrayList<CloudRegion> getCloudRegion() {
+  public List<CloudRegion> getCloudRegion() {
     return cloudRegion;
   }
 
-  public void setCloudRegion(ArrayList<CloudRegion> cloudRegion) {
+  public void setCloudRegion(List<CloudRegion> cloudRegion) {
     this.cloudRegion = cloudRegion;
   }
 }

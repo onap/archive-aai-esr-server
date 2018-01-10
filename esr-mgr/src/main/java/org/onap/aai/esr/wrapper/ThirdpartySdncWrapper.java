@@ -16,6 +16,7 @@
 package org.onap.aai.esr.wrapper;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.ws.rs.core.Response;
 
@@ -33,27 +34,26 @@ import org.slf4j.LoggerFactory;
 
 import com.google.gson.Gson;
 
-public class ThirdpatySdncWrapper {
+public class ThirdpartySdncWrapper {
 
-  private static ThirdpatySdncWrapper thirdpatySdncWrapper;
-  private static final Logger LOG = LoggerFactory.getLogger(ThirdpatySdncWrapper.class);
+  private static ThirdpartySdncWrapper thirdpatySdncWrapper;
+  private static final Logger LOG = LoggerFactory.getLogger(ThirdpartySdncWrapper.class);
   private static ThirdpartySdncManagerUtil thirdpartySdncManagerUtil = new ThirdpartySdncManagerUtil();
 
   /**
    * get ThirdpatySdncWrapper instance.
    * @return ThirdpatySdnc manager wrapper instance
    */
-  public static ThirdpatySdncWrapper getInstance() {
+  public static ThirdpartySdncWrapper getInstance() {
     if (thirdpatySdncWrapper == null) {
-      thirdpatySdncWrapper = new ThirdpatySdncWrapper();
+      thirdpatySdncWrapper = new ThirdpartySdncWrapper();
     }
     return thirdpatySdncWrapper;
   }
   
   public Response registerThirdpartySdnc(ThirdpartySdncRegisterInfo thirdpartySdnc) {
     CommonRegisterResponse result = new CommonRegisterResponse();
-    EsrThirdpartySdncDetail esrSdncDetail = new EsrThirdpartySdncDetail();
-    esrSdncDetail = thirdpartySdncManagerUtil.sdncRegisterInfo2EsrSdnc(thirdpartySdnc);
+    EsrThirdpartySdncDetail esrSdncDetail = thirdpartySdncManagerUtil.sdncRegisterInfo2EsrSdnc(thirdpartySdnc);
     String sdncId = esrSdncDetail.getThirdpartySdncId();
     try {
       ExternalSystemProxy.registerSdnc(sdncId, esrSdncDetail);
@@ -68,15 +68,12 @@ public class ThirdpatySdncWrapper {
 
   public Response updateThirdpartySdnc(ThirdpartySdncRegisterInfo thirdpartySdnc, String sdncId) {
     CommonRegisterResponse result = new CommonRegisterResponse();
-    EsrThirdpartySdncDetail esrSdncDetail = new EsrThirdpartySdncDetail();
-    EsrThirdpartySdncDetail originalEsrSdncDetail = new EsrThirdpartySdncDetail();
-    EsrSystemInfo originalEsrSystemInfo = new EsrSystemInfo();
-    originalEsrSdncDetail = queryEsrThirdpartySdncDetail(sdncId);
-    esrSdncDetail = thirdpartySdncManagerUtil.sdncRegisterInfo2EsrSdnc(thirdpartySdnc);
+    EsrThirdpartySdncDetail originalEsrSdncDetail = queryEsrThirdpartySdncDetail(sdncId);
+    EsrThirdpartySdncDetail esrSdncDetail = thirdpartySdncManagerUtil.sdncRegisterInfo2EsrSdnc(thirdpartySdnc);
     String resourceVersion = originalEsrSdncDetail.getResourceVersion();
     esrSdncDetail.setResourceVersion(resourceVersion);
     esrSdncDetail.setThirdpartySdncId(sdncId);
-    originalEsrSystemInfo = originalEsrSdncDetail.getEsrSystemInfoList().getEsrSystemInfo().get(0);
+    EsrSystemInfo originalEsrSystemInfo = originalEsrSdncDetail.getEsrSystemInfoList().getEsrSystemInfo().get(0);
     esrSdncDetail.getEsrSystemInfoList().getEsrSystemInfo().get(0)
         .setEsrSystemInfoId(originalEsrSystemInfo.getEsrSystemInfoId());
     esrSdncDetail.getEsrSystemInfoList().getEsrSystemInfo().get(0)
@@ -92,7 +89,7 @@ public class ThirdpatySdncWrapper {
   }
   
   public Response queryThirdpartySdncList() {
-    ArrayList<ThirdpartySdncRegisterInfo> sdncList = new ArrayList<ThirdpartySdncRegisterInfo>();
+    List<ThirdpartySdncRegisterInfo> sdncList = new ArrayList<>();
     EsrThirdpartySdncList esrSdnc = new EsrThirdpartySdncList();
     try {
       String esrSdncStr = ExternalSystemProxy.querySdncList();
@@ -106,14 +103,12 @@ public class ThirdpatySdncWrapper {
   }
   
   public Response queryThirdpartySdncById(String thirdpartySdncId) {
-    ThirdpartySdncRegisterInfo thirdpartySdnc = new ThirdpartySdncRegisterInfo();
-    thirdpartySdnc = querySdncDetail(thirdpartySdncId);
+    ThirdpartySdncRegisterInfo thirdpartySdnc = querySdncDetail(thirdpartySdncId);
     return Response.ok(thirdpartySdnc).build();
   }
   
   public Response delThirdpartySdnc(String thirdpartySdncId) {
-    EsrThirdpartySdncDetail thirdpartySdncDetail = new EsrThirdpartySdncDetail();
-    thirdpartySdncDetail = queryEsrThirdpartySdncDetail(thirdpartySdncId);
+    EsrThirdpartySdncDetail thirdpartySdncDetail = queryEsrThirdpartySdncDetail(thirdpartySdncId);
     String resourceVersion = thirdpartySdncDetail.getResourceVersion();
     try {
       ExternalSystemProxy.deleteThirdpartySdnc(thirdpartySdncId, resourceVersion);
@@ -140,12 +135,11 @@ public class ThirdpatySdncWrapper {
     }
   }
   
-  private ArrayList<ThirdpartySdncRegisterInfo> getSdncDetailList(EsrThirdpartySdncList esrThirdPartySdnc) {
-    ArrayList<ThirdpartySdncRegisterInfo> sdncInfoList = new ArrayList<ThirdpartySdncRegisterInfo>();
-    ThirdpartySdncRegisterInfo sdncInfo = new ThirdpartySdncRegisterInfo();
+  private List<ThirdpartySdncRegisterInfo> getSdncDetailList(EsrThirdpartySdncList esrThirdPartySdnc) {
+    List<ThirdpartySdncRegisterInfo> sdncInfoList = new ArrayList<>();
     for (int i = 0; i < esrThirdPartySdnc.getEsrThirdpartySdnc().size(); i++) {
       String sdncId = esrThirdPartySdnc.getEsrThirdpartySdnc().get(i).getThirdpartySdncId();
-      sdncInfo = querySdncDetail(sdncId);
+      ThirdpartySdncRegisterInfo sdncInfo = querySdncDetail(sdncId);
       if (sdncInfo != null) {
         sdncInfoList.add(sdncInfo);
       }

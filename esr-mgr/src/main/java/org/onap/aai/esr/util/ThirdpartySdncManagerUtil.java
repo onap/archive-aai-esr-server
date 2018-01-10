@@ -16,6 +16,7 @@
 package org.onap.aai.esr.util;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.onap.aai.esr.common.SystemType;
 import org.onap.aai.esr.entity.aai.EsrSystemInfo;
@@ -38,7 +39,7 @@ public class ThirdpartySdncManagerUtil {
   
   private EsrSystemInfoList getEsrSystemInfoList(ThirdpartySdncRegisterInfo sdncRegisterInfo) {
     EsrSystemInfoList esrSystemInfoList = new EsrSystemInfoList();
-    ArrayList<EsrSystemInfo> esrSystemInfo = new ArrayList<EsrSystemInfo>();
+    List<EsrSystemInfo> esrSystemInfo = new ArrayList<>();
     EsrSystemInfo authInfo = new EsrSystemInfo();
     authInfo.setEsrSystemInfoId(extsysUtil.generateId());
     authInfo.setVersion(sdncRegisterInfo.getVersion());

@@ -18,6 +18,7 @@ package org.onap.aai.esr.entity.aai;
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Test;
 
@@ -25,7 +26,7 @@ public class EsrThirdpartySdncListTest {
   @Test
   public void getterAndSetter4EsrThirdpartySdncList() {
     EsrThirdpartySdncList esrThirdpartySdncList = new EsrThirdpartySdncList();
-    ArrayList<EsrThirdpartySdnc> esrThirdpartySdncs = new ArrayList<EsrThirdpartySdnc>();
+    List<EsrThirdpartySdnc> esrThirdpartySdncs = new ArrayList<>();
     EsrThirdpartySdnc esrThirdpartySdnc = new EsrThirdpartySdnc();
     esrThirdpartySdnc.setThirdpartySdncId("123");
     esrThirdpartySdncs.add(esrThirdpartySdnc);

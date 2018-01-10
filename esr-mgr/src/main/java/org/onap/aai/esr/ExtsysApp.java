@@ -20,7 +20,7 @@ import org.onap.aai.esr.common.MsbConfig;
 import org.onap.aai.esr.externalservice.msb.MsbHelper;
 import org.onap.aai.esr.resource.EmsManager;
 import org.onap.aai.esr.resource.ServiceTest;
-import org.onap.aai.esr.resource.ThirdpatySdncManager;
+import org.onap.aai.esr.resource.ThirdpartySdncManager;
 import org.onap.aai.esr.resource.VimManager;
 import org.onap.aai.esr.resource.VnfmManager;
 import org.onap.msb.sdk.httpclient.msb.MSBServiceClient;
@@ -50,7 +50,7 @@ public class ExtsysApp extends Application<ExtsysAppConfiguration> {
     MsbConfig.setMsbDiscoveryIp(configuration.getMsbDiscoveryIp());
     MsbConfig.setMsbDiscoveryPort(configuration.getMsbDiscoveryPort());
     environment.jersey().register(new EmsManager());
-    environment.jersey().register(new ThirdpatySdncManager());
+    environment.jersey().register(new ThirdpartySdncManager());
     environment.jersey().register(new VimManager());
     environment.jersey().register(new VnfmManager());
     environment.jersey().register(new ServiceTest());

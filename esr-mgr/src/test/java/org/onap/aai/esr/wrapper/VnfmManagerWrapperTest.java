@@ -18,6 +18,7 @@ package org.onap.aai.esr.wrapper;
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.ws.rs.core.Response;
 
@@ -88,7 +89,7 @@ public class VnfmManagerWrapperTest {
   public void test_queryVnfmList() {
     ExternalSystemProxy.isTest = true;
     ExtsysUtil extsysUtil = new ExtsysUtil();
-    ArrayList<VnfmRegisterInfo> vnfmList = new ArrayList<VnfmRegisterInfo>();
+    List<VnfmRegisterInfo> vnfmList = new ArrayList<>();
     VnfmRegisterInfo vnfmRegisterInfo = new VnfmRegisterInfo();
     vnfmRegisterInfo.setVimId("987654");
     vnfmRegisterInfo.setVersion("v1");

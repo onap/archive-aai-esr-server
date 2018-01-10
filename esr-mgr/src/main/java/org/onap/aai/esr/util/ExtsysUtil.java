@@ -18,6 +18,7 @@ package org.onap.aai.esr.util;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 import org.onap.aai.esr.entity.aai.EsrSystemInfo;
 import org.onap.aai.esr.entity.aai.EsrSystemInfoList;
@@ -42,13 +43,13 @@ public class ExtsysUtil {
 
   public EsrSystemInfoList getEsrSystemInfoListFromAuthInfo(EsrSystemInfo esrSystemInfoObj) {
     EsrSystemInfoList esrSystemInfoList = new EsrSystemInfoList();
-    ArrayList<EsrSystemInfo> esrSystemInfo = new ArrayList<EsrSystemInfo>();
+    List<EsrSystemInfo> esrSystemInfo = new ArrayList<>();
     esrSystemInfo.add(esrSystemInfoObj);
     esrSystemInfoList.setEsrSystemInfo(esrSystemInfo);
     return esrSystemInfoList;
   }
   
-  public EsrSystemInfoList getEsrSystemInfoListFromAuthInfoList(ArrayList<EsrSystemInfo> esrSystemInfo) {
+  public EsrSystemInfoList getEsrSystemInfoListFromAuthInfoList(List<EsrSystemInfo> esrSystemInfo) {
     EsrSystemInfoList esrSystemInfoList = new EsrSystemInfoList();
     esrSystemInfoList.setEsrSystemInfo(esrSystemInfo);;
     return esrSystemInfoList;
