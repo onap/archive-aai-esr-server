@@ -18,6 +18,7 @@ package org.onap.aai.esr.util;
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Test;
 import org.onap.aai.esr.entity.aai.EsrSystemInfo;
@@ -88,7 +89,7 @@ public class ExtsysUtilTest {
   
   @Test
   public void getEsrSystemInfoListFromAuthInfoListTest() {
-    ArrayList<EsrSystemInfo> esrSystemInfos = new ArrayList<EsrSystemInfo>();
+    List<EsrSystemInfo> esrSystemInfos = new ArrayList<>();
     EsrSystemInfoList esrSystemInfoList = new EsrSystemInfoList();
     EsrSystemInfo esrSystemInfoObj = new EsrSystemInfo();
     ExtsysUtil extsysUtil = new ExtsysUtil();

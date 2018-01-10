@@ -18,6 +18,7 @@ package org.onap.aai.esr.entity.aai;
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Test;
 
@@ -26,7 +27,7 @@ public class CloudRegionListTest {
   @Test
   public void getterAndSetter4cloudRegion() {
     CloudRegionList cloudRegionList = new CloudRegionList();
-    ArrayList<CloudRegion> cloudRegions = new ArrayList<CloudRegion>();
+    List<CloudRegion> cloudRegions = new ArrayList<>();
     CloudRegion cloudRegion = new CloudRegion();
     cloudRegion.setCloudOwner("owner");
     cloudRegion.setCloudRegionId("regionId");

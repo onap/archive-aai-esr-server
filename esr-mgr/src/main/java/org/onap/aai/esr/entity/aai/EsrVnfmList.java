@@ -16,7 +16,7 @@
 package org.onap.aai.esr.entity.aai;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -25,13 +25,13 @@ public class EsrVnfmList implements Serializable {
   public static final long serialVersionUID = 1L;
   
   @SerializedName("esr-vnfm")
-  private ArrayList<EsrVnfm> esrVnfm;
+  private List<EsrVnfm> esrVnfm;
 
-  public ArrayList<EsrVnfm> getEsrVnfm() {
+  public List<EsrVnfm> getEsrVnfm() {
     return esrVnfm;
   }
 
-  public void setEsrVnfm(ArrayList<EsrVnfm> esrVnfm) {
+  public void setEsrVnfm(List<EsrVnfm> esrVnfm) {
     this.esrVnfm = esrVnfm;
   }
 

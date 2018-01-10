@@ -18,6 +18,7 @@ package org.onap.aai.esr.util;
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Test;
 import org.onap.aai.esr.entity.aai.CloudRegionDetail;
@@ -33,7 +34,7 @@ public class VimManagerUtilTest {
     VimManagerUtil vimManagerUtil = new VimManagerUtil();
     CloudRegionDetail cloudRegionDetail = new CloudRegionDetail();
     VimRegisterInfo vimRegisterInfo = new VimRegisterInfo();
-    ArrayList<VimAuthInfo> vimAuthInfos = new ArrayList<VimAuthInfo>();
+    List<VimAuthInfo> vimAuthInfos = new ArrayList<>();
     VimAuthInfo vimAuthInfo = new VimAuthInfo();
     vimAuthInfo.setAuthUrl("http://10.11.22.33:5000/v3");
     vimAuthInfo.setCloudDomain("default");

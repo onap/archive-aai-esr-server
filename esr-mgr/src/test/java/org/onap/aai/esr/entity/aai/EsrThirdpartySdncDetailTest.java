@@ -18,6 +18,7 @@ package org.onap.aai.esr.entity.aai;
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Test;
 
@@ -57,7 +58,7 @@ public class EsrThirdpartySdncDetailTest {
   @Test
   public void getterAndSetter4esrSystemInfoList(){
     final EsrSystemInfoList esrSystemInfoList = new EsrSystemInfoList();
-    ArrayList<EsrSystemInfo> esrSystemInfo = new ArrayList<EsrSystemInfo>();
+    List<EsrSystemInfo> esrSystemInfo = new ArrayList<>();
     EsrSystemInfo esrSystemInfoObj = new EsrSystemInfo();
     esrSystemInfoObj.setEsrSystemInfoId("123");
     esrSystemInfo.add(esrSystemInfoObj );

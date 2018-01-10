@@ -16,6 +16,7 @@
 package org.onap.aai.esr.wrapper;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.ws.rs.core.Response;
 
@@ -79,7 +80,7 @@ public class EmsManagerWrapper {
   }
   
   public Response queryEmsList() {
-    ArrayList<EmsRegisterInfo> emsList = new ArrayList<EmsRegisterInfo>();
+    List<EmsRegisterInfo> emsList = new ArrayList<>();
     EsrEmsList esrEms = new EsrEmsList();
     try {
       String esrEmsStr = ExternalSystemProxy.queryEmsList();
@@ -132,8 +133,8 @@ public class EmsManagerWrapper {
     return emsRegisterInfo;
   }
   
-  private ArrayList<EmsRegisterInfo> getEmsDetailList(EsrEmsList esrEms) {
-    ArrayList<EmsRegisterInfo> emsInfoList = new ArrayList<EmsRegisterInfo>();
+  private List<EmsRegisterInfo> getEmsDetailList(EsrEmsList esrEms) {
+    List<EmsRegisterInfo> emsInfoList = new ArrayList<>();
     EmsRegisterInfo emsInfo = new EmsRegisterInfo();
     for (int i = 0; i < esrEms.getEsrEms().size(); i++) {
       String emsId = esrEms.getEsrEms().get(i).getEmsId();
@@ -159,10 +160,10 @@ public class EmsManagerWrapper {
   
   private EsrEmsDetail getNewEsrEmsDetail(EmsRegisterInfo emsRegisterInfo, String emsId) {
     EsrEmsDetail esrEmsDetail = new EsrEmsDetail();
-    ArrayList<EsrSystemInfo> newEsrSysInfoList = new ArrayList<EsrSystemInfo>();
+    List<EsrSystemInfo> newEsrSysInfoList = new ArrayList<>();
     EsrSystemInfo newEsrSystemInfo = new EsrSystemInfo();
     EsrEmsDetail oriEsrEmsDetail = new EsrEmsDetail();
-    ArrayList<EsrSystemInfo> oriEsrSysInfoList = new ArrayList<EsrSystemInfo>();
+    List<EsrSystemInfo> oriEsrSysInfoList = new ArrayList<>();
     EsrSystemInfo originalEsrSystemInfo = new EsrSystemInfo();
     
     oriEsrEmsDetail = queryEsrEmsDetail(emsId);

@@ -106,18 +106,38 @@ public class ExternalSystemProxy {
   }
   
   public static void registerSdnc(String thirdpartySdncId, EsrThirdpartySdncDetail esrSdncDetail) throws ExtsysException {
-    ClientConfig config = new ClientConfig(new ThirdpartySdncRegisterProvider());
-    IExternalSystem registerSdncServiceproxy = ConsumerFactory
-        .createConsumer(MsbConfig.getExternalSystemAddr(), config, IExternalSystem.class);
-    try {
-      registerSdncServiceproxy.registerThirdpartySdnc(transactionId, fromAppId, authorization, thirdpartySdncId,
-          esrSdncDetail);
-    } catch (Exception e) {
-      throw new ExtsysException("PUT thirdparty SDNC to A&AI failed.", e);
+    if(!isTest) {
+      ClientConfig config = new ClientConfig(new ThirdpartySdncRegisterProvider());
+      IExternalSystem registerSdncServiceproxy = ConsumerFactory
+          .createConsumer(MsbConfig.getExternalSystemAddr(), config, IExternalSystem.class);
+      try {
+        registerSdncServiceproxy.registerThirdpartySdnc(transactionId, fromAppId, authorization, thirdpartySdncId,
+            esrSdncDetail);
+      } catch (Exception e) {
+        throw new ExtsysException("PUT thirdparty SDNC to A&AI failed.", e);
+      }
     }
   }
   
   public static String queryThirdpartySdncDetail(String thirdpartySdncId) throws ExtsysException {
+    if(isTest) {
+      String sdncDetail = "{\"thirdparty-sdnc-id\":\"123456\","
+        + "\"location\":\"edge\","
+        + "\"product-name\":\"thirdparty SDNC\","
+        + "\"esr-system-info-list\":{"
+        + "\"esr-system-info\":"
+        + "[{\"esr-system-info-id\":\"987654\","
+        + "\"system-name\":\"SDNC_TEST\","
+        + "\"type\":\"SDNC\","
+        + "\"vendor\":\"zte\","
+        + "\"version\":\"v1\","
+        + "\"service-url\":\"http://127.0.0.1:8000\","
+        + "\"user-name\":\"nancy\","
+        + "\"password\":\"123987\","
+        + "\"system-type\":\"thirdparty_SDNC\","
+        + "\"protocol\":\"protocol\"}]}}";
+      return sdncDetail;
+    }
     try {
       return externalSystemproxy.queryThirdpartySdncDetail(transactionId, fromAppId, authorization, thirdpartySdncId);
     } catch (Exception e) {
@@ -126,6 +146,14 @@ public class ExternalSystemProxy {
   }
   
   public static String querySdncList() throws ExtsysException {
+    if(isTest) {
+      String sdncList = "{\"esr-thirdparty-sdnc\": "
+          + "[{\"thirdparty-sdnc-id\": \"123456\","
+          + "\"location\": \"edge\","
+          + "\"product-name\": \"thirdparty SDNC\","
+          + "\"resource-version\": \"1\"}]}";
+      return sdncList;
+    }
     try {
       return externalSystemproxy.queryThirdpartySdncList(transactionId, fromAppId, authorization);
     } catch (Exception e) {
@@ -134,10 +162,12 @@ public class ExternalSystemProxy {
   }
   
   public static void deleteThirdpartySdnc(String sdncId, String resourceVersion) throws ExtsysException {
-    try {
-      externalSystemproxy.deleteThirdpartySdnc(transactionId, fromAppId, authorization, sdncId, resourceVersion);
-    } catch (Exception e) {
-      throw new ExtsysException("Delete thirdparty SDNC from A&AI failed.", e);
+    if(!isTest) {
+      try {
+        externalSystemproxy.deleteThirdpartySdnc(transactionId, fromAppId, authorization, sdncId, resourceVersion);
+      } catch (Exception e) {
+        throw new ExtsysException("Delete thirdparty SDNC from A&AI failed.", e);
+      }
     }
   }
   

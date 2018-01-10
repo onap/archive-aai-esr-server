@@ -16,6 +16,7 @@
 package org.onap.aai.esr.wrapper;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.ws.rs.core.Response;
 
@@ -88,7 +89,7 @@ public class VnfmManagerWrapper {
   }
 
   public Response queryVnfmList() {
-    ArrayList<VnfmRegisterInfo> vnfmList = new ArrayList<VnfmRegisterInfo>();
+    List<VnfmRegisterInfo> vnfmList = new ArrayList<>();
     EsrVnfmList esrVnfm = new EsrVnfmList();
     try {
       String esrVnfmStr = ExternalSystemProxy.queryVnfmList();
@@ -138,8 +139,8 @@ public class VnfmManagerWrapper {
     return vnfm;
   }
 
-  private ArrayList<VnfmRegisterInfo> getVnfmDetailList(EsrVnfmList esrVnfm) {
-    ArrayList<VnfmRegisterInfo> vnfmInfoList = new ArrayList<VnfmRegisterInfo>();
+  private List<VnfmRegisterInfo> getVnfmDetailList(EsrVnfmList esrVnfm) {
+    List<VnfmRegisterInfo> vnfmInfoList = new ArrayList<>();
     for (int i = 0; i < esrVnfm.getEsrVnfm().size(); i++) {
       String vnfmId = esrVnfm.getEsrVnfm().get(i).getVnfmId();
       VnfmRegisterInfo vnfmInfo = queryVnfmDetail(vnfmId);

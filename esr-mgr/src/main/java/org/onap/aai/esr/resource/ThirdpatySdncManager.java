@@ -26,7 +26,7 @@ import io.swagger.annotations.SwaggerDefinition;
 import org.eclipse.jetty.http.HttpStatus;
 import org.onap.aai.esr.entity.rest.ThirdpartySdncRegisterInfo;
 import org.onap.aai.esr.util.ExtsysUtil;
-import org.onap.aai.esr.wrapper.ThirdpatySdncWrapper;
+import org.onap.aai.esr.wrapper.ThirdpartySdncWrapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -65,7 +65,7 @@ public class ThirdpatySdncManager {
   @Timed
   public Response queryThirdpartySdncList() {
     LOGGER.info("start query all thirdParty sdnc!");
-    return ThirdpatySdncWrapper.getInstance().queryThirdpartySdncList();
+    return ThirdpartySdncWrapper.getInstance().queryThirdpartySdncList();
   }
   
   /**
@@ -85,7 +85,7 @@ public class ThirdpatySdncManager {
   @Timed
   public Response queryThirdpartySdncById(@ApiParam(value = "thirdparty sdnc id") @PathParam("thirdPartySdncId") String thirdPartySdncId) {
     LOGGER.info("start query thirdparty sdnc by id." + thirdPartySdncId);
-    return ThirdpatySdncWrapper.getInstance().queryThirdpartySdncById(thirdPartySdncId);
+    return ThirdpartySdncWrapper.getInstance().queryThirdpartySdncById(thirdPartySdncId);
   }
   
   /**
@@ -104,7 +104,7 @@ public class ThirdpatySdncManager {
   @Timed
   public Response delThirdpartySdnc(@ApiParam(value = "thirdparty sdnc id") @PathParam("thirdPartySdncId") String thirdPartySdncId) {
     LOGGER.info("start delete thirdparty sdnc .id:" + thirdPartySdncId);
-    return ThirdpatySdncWrapper.getInstance().delThirdpartySdnc(thirdPartySdncId);
+    return ThirdpartySdncWrapper.getInstance().delThirdpartySdnc(thirdPartySdncId);
   }
   
   /**
@@ -126,7 +126,7 @@ public class ThirdpatySdncManager {
   public Response updateThirdpartySdnc(@ApiParam(value = "thirdpartySdnc", required = true) ThirdpartySdncRegisterInfo thirdPartySdnc,
       @ApiParam(value = "sdnc id", required = true) @PathParam("thirdPartySdncId") String thirdPartySdncId) {
     LOGGER.info("start update sdnc .id:" + thirdPartySdncId + " info:" + extsysUtil.objectToString(thirdPartySdnc));
-    return ThirdpatySdncWrapper.getInstance().updateThirdpartySdnc(thirdPartySdnc, thirdPartySdncId);
+    return ThirdpartySdncWrapper.getInstance().updateThirdpartySdnc(thirdPartySdnc, thirdPartySdncId);
   }
   
   /**
@@ -146,6 +146,6 @@ public class ThirdpatySdncManager {
   @Timed
   public Response registerThirdpatySdnc(@ApiParam(value = "thirdPartySdnc", required = true) ThirdpartySdncRegisterInfo thirdPartySdnc) {
     LOGGER.info("start register sdnc" + " info:" + extsysUtil.objectToString(thirdPartySdnc));
-    return ThirdpatySdncWrapper.getInstance().registerThirdpartySdnc(thirdPartySdnc);
+    return ThirdpartySdncWrapper.getInstance().registerThirdpartySdnc(thirdPartySdnc);
   }
 }

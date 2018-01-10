@@ -18,6 +18,7 @@ package org.onap.aai.esr.entity.aai;
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Test;
 
@@ -25,7 +26,7 @@ public class EsrVnfmListTest {
   @Test
   public void getterAndSetter4EsrVnfmList() {
     EsrVnfmList esrVnfmList = new EsrVnfmList();
-    ArrayList<EsrVnfm> esrVnfms = new ArrayList<EsrVnfm>();
+    List<EsrVnfm> esrVnfms = new ArrayList<>();
     EsrVnfm esrVnfm = new EsrVnfm();
     esrVnfm.setVnfmId("fadasf");
     esrVnfms.add(esrVnfm);
