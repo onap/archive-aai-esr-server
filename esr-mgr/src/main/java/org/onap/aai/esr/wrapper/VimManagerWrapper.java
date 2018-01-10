@@ -16,6 +16,7 @@
 package org.onap.aai.esr.wrapper;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.ws.rs.core.Response;
 
@@ -104,7 +105,7 @@ public class VimManagerWrapper {
   }
 
   public Response queryVimListDetails() {
-    ArrayList<VimRegisterInfo> vimRegisterInfos = new ArrayList<VimRegisterInfo>();
+    List<VimRegisterInfo> vimRegisterInfos = new ArrayList<>();
     CloudRegionList cloudRegionList = new CloudRegionList();
     try {
       String aaiVimList = cloudRegionProxy.qureyVimList();
@@ -134,8 +135,8 @@ public class VimManagerWrapper {
 
   }
 
-  private ArrayList<VimRegisterInfo> getVimDetailList(CloudRegionList cloudRegionList) {
-    ArrayList<VimRegisterInfo> vimRegisterInfos = new ArrayList<VimRegisterInfo>();
+  private List<VimRegisterInfo> getVimDetailList(CloudRegionList cloudRegionList) {
+    List<VimRegisterInfo> vimRegisterInfos = new ArrayList<>();
     VimRegisterInfo vimRegisterInfo = new VimRegisterInfo();
     int cloudRegionNum = cloudRegionList.getCloudRegion().size();
     for (int i = 0; i < cloudRegionNum; i++) {

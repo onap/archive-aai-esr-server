@@ -18,6 +18,7 @@ package org.onap.aai.esr.entity.aai;
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Test;
 
@@ -25,7 +26,7 @@ public class EsrEmsListTest {
   @Test
   public void getterAndSetter4EsrEmsList() {
     EsrEmsList esrEmsList = new EsrEmsList();
-    ArrayList<EsrEms> esrEmses = new ArrayList<EsrEms>();
+    List<EsrEms> esrEmses = new ArrayList<>();
     EsrEms esrEms = new EsrEms();
     esrEms.setEmsId("123");
     esrEmses.add(esrEms);

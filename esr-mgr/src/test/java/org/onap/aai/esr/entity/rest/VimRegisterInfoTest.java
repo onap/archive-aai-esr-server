@@ -18,6 +18,7 @@ package org.onap.aai.esr.entity.rest;
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Test;
 
@@ -96,7 +97,7 @@ public class VimRegisterInfoTest {
   
   @Test
   public void getterAndSetter4vimAuthInfos(){
-      final ArrayList<VimAuthInfo> vimAuthInfos = new ArrayList<VimAuthInfo>();
+      final List<VimAuthInfo> vimAuthInfos = new ArrayList<>();
       VimRegisterInfo vimRegisterInfo = new VimRegisterInfo();
       vimRegisterInfo.setVimAuthInfos(vimAuthInfos);
       assertEquals(vimRegisterInfo.getVimAuthInfos(), vimAuthInfos);

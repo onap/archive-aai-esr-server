@@ -16,6 +16,7 @@
 package org.onap.aai.esr.util;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.onap.aai.esr.common.SystemType;
 import org.onap.aai.esr.entity.aai.EsrSystemInfo;
@@ -30,20 +31,16 @@ public class EmsManagerUtil {
   public EsrEmsDetail emsRegisterInfo2EsrEms(EmsRegisterInfo emsRegisterInfo) {
     EsrEmsDetail esrEms = new EsrEmsDetail();
     esrEms.setEmsId(extsysUtil.generateId());
-    ArrayList<EsrSystemInfo> authInfos = new ArrayList<EsrSystemInfo>();
-    authInfos = getAuthInfosFromRegisterData(emsRegisterInfo);
+     List<EsrSystemInfo> authInfos = getAuthInfosFromRegisterData(emsRegisterInfo);
     esrEms.setEsrSystemInfoList(extsysUtil.getEsrSystemInfoListFromAuthInfoList(authInfos));
     return esrEms;
   }
 
-  private ArrayList<EsrSystemInfo> getAuthInfosFromRegisterData(EmsRegisterInfo emsRegisterInfo) {
-    ArrayList<EsrSystemInfo> authInfos = new ArrayList<EsrSystemInfo>();
-    EsrSystemInfo resouceAuthInfo = new EsrSystemInfo();
-    EsrSystemInfo performanceAuthInfo = new EsrSystemInfo();
-    EsrSystemInfo alarmAuthInfo = new EsrSystemInfo();
-    resouceAuthInfo = getAuthInfoFromFtpAddr(emsRegisterInfo, SystemType.EMS_RESOUCE.toString());
-    performanceAuthInfo = getAuthInfoFromFtpAddr(emsRegisterInfo, SystemType.EMS_PERFORMANCE.toString());
-    alarmAuthInfo = getAuthInfoFromAlarmAddr(emsRegisterInfo);
+  private List<EsrSystemInfo> getAuthInfosFromRegisterData(EmsRegisterInfo emsRegisterInfo) {
+    List<EsrSystemInfo> authInfos = new ArrayList<>();
+    EsrSystemInfo resouceAuthInfo = getAuthInfoFromFtpAddr(emsRegisterInfo, SystemType.EMS_RESOUCE.toString());
+    EsrSystemInfo performanceAuthInfo = getAuthInfoFromFtpAddr(emsRegisterInfo, SystemType.EMS_PERFORMANCE.toString());
+    EsrSystemInfo alarmAuthInfo = getAuthInfoFromAlarmAddr(emsRegisterInfo);
     authInfos.add(resouceAuthInfo);
     authInfos.add(performanceAuthInfo);
     authInfos.add(alarmAuthInfo);
@@ -75,8 +72,7 @@ public class EmsManagerUtil {
   
   private EsrSystemInfo getAuthInfoFromAlarmAddr(EmsRegisterInfo emsRegisterInfo) {
     EsrSystemInfo authInfo = new EsrSystemInfo();
-    AlarmAddr alarmAddr = new AlarmAddr();
-    alarmAddr = emsRegisterInfo.getAlarmAddr();
+    AlarmAddr alarmAddr = emsRegisterInfo.getAlarmAddr();
     authInfo.setEsrSystemInfoId(extsysUtil.generateId());
     authInfo.setIpAddress(alarmAddr.getIp());
     authInfo.setPort(alarmAddr.getPort());
@@ -91,9 +87,8 @@ public class EmsManagerUtil {
   
   public EmsRegisterInfo EsrEms2EmsRegisterInfo(EsrEmsDetail esrEms) {
     EmsRegisterInfo emsRegisterInfo = new EmsRegisterInfo();
-    ArrayList<EsrSystemInfo> esrSystemInfo = new ArrayList<EsrSystemInfo>();
     EsrSystemInfo authInfo = new EsrSystemInfo();
-    esrSystemInfo = esrEms.getEsrSystemInfoList().getEsrSystemInfo();
+    List<EsrSystemInfo> esrSystemInfo = esrEms.getEsrSystemInfoList().getEsrSystemInfo();
     emsRegisterInfo.setEmsId(esrEms.getEmsId());
     
     for(int i=0; i<esrSystemInfo.size(); i++) {

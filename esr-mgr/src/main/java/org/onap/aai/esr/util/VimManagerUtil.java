@@ -17,6 +17,7 @@ package org.onap.aai.esr.util;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.onap.aai.esr.common.SystemType;
 import org.onap.aai.esr.entity.aai.EsrSystemInfo;
@@ -30,8 +31,6 @@ public class VimManagerUtil {
   
   public CloudRegionDetail vimRegisterInfo2CloudRegion(VimRegisterInfo vimRegisterInfo) {
     CloudRegionDetail cloudRegion = new CloudRegionDetail();
-    EsrSystemInfoList esrSystemInfoList = new EsrSystemInfoList();
-    EsrSystemInfo esrSystemInfoObj = new EsrSystemInfo();
     
     cloudRegion.setCloudOwner(vimRegisterInfo.getCloudOwner());
     cloudRegion.setCloudRegionId(vimRegisterInfo.getCloudRegionId());
@@ -42,17 +41,16 @@ public class VimManagerUtil {
     cloudRegion.setOwnerDefinedType(vimRegisterInfo.getOwnerDefinedType());
     cloudRegion.setCloudExtraInfo(vimRegisterInfo.getCloudExtraInfo());
     
-    esrSystemInfoObj = vimAuthInfo2EsrSystemInfoObj(vimRegisterInfo.getVimAuthInfos());
+    EsrSystemInfo esrSystemInfoObj = vimAuthInfo2EsrSystemInfoObj(vimRegisterInfo.getVimAuthInfos());
     esrSystemInfoObj.setSystemStatus(vimRegisterInfo.getStatus());
-    esrSystemInfoList = extsysUtil.getEsrSystemInfoListFromAuthInfo(esrSystemInfoObj);
+    EsrSystemInfoList esrSystemInfoList = extsysUtil.getEsrSystemInfoListFromAuthInfo(esrSystemInfoObj);
     cloudRegion.setEsrSystemInfoList(esrSystemInfoList);
     return cloudRegion;
   }
 
-  private EsrSystemInfo vimAuthInfo2EsrSystemInfoObj(ArrayList<VimAuthInfo> vimAuthInfos) {
+  private EsrSystemInfo vimAuthInfo2EsrSystemInfoObj(List<VimAuthInfo> vimAuthInfos) {
     EsrSystemInfo esrSystemInfoObj = new EsrSystemInfo();
-    VimAuthInfo vimAuthInfo = new VimAuthInfo();
-    vimAuthInfo = vimAuthInfos.get(0);
+    VimAuthInfo vimAuthInfo = vimAuthInfos.get(0);
     esrSystemInfoObj.setCloudDomain(vimAuthInfo.getCloudDomain());
     esrSystemInfoObj.setUserName(vimAuthInfo.getUserName());
     esrSystemInfoObj.setPassword(vimAuthInfo.getPassword());
@@ -80,13 +78,12 @@ public class VimManagerUtil {
   
   public VimRegisterInfo cloudRegion2VimRegisterInfo(CloudRegionDetail cloudRegion) {
     VimRegisterInfo vimRegisterInfo = new VimRegisterInfo();
-    VimAuthInfo vimAuthInfo = new VimAuthInfo();
-    ArrayList<VimAuthInfo> vimAuthInfos = new ArrayList<VimAuthInfo>();
+    List<VimAuthInfo> vimAuthInfos = new ArrayList<>();
     if(cloudRegion.getEsrSystemInfoList()!=null){
-      vimAuthInfo = authInfo2VimAuthInfo(cloudRegion.getEsrSystemInfoList().getEsrSystemInfo().get(0));
+      VimAuthInfo vimAuthInfo = authInfo2VimAuthInfo(cloudRegion.getEsrSystemInfoList().getEsrSystemInfo().get(0));
+      vimAuthInfos.add(vimAuthInfo);
       vimRegisterInfo.setStatus(cloudRegion.getEsrSystemInfoList().getEsrSystemInfo().get(0).getSystemStatus());
     }
-    vimAuthInfos.add(vimAuthInfo);
     vimRegisterInfo.setVimAuthInfos(vimAuthInfos);
     vimRegisterInfo.setCloudExtraInfo(cloudRegion.getCloudExtraInfo());
     vimRegisterInfo.setCloudOwner(cloudRegion.getCloudOwner());

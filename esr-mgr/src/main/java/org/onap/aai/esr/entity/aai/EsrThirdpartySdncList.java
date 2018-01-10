@@ -16,7 +16,7 @@
 package org.onap.aai.esr.entity.aai;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -25,13 +25,13 @@ public class EsrThirdpartySdncList implements Serializable {
   public static final long serialVersionUID = 1L;
   
   @SerializedName("esr-thirdparty-sdnc")
-  private ArrayList<EsrThirdpartySdnc> esrThirdpartySdnc;
+  private List<EsrThirdpartySdnc> esrThirdpartySdnc;
 
-  public ArrayList<EsrThirdpartySdnc> getEsrThirdpartySdnc() {
+  public List<EsrThirdpartySdnc> getEsrThirdpartySdnc() {
     return esrThirdpartySdnc;
   }
 
-  public void setEsrThirdpartySdnc(ArrayList<EsrThirdpartySdnc> esrThirdpartySdnc) {
+  public void setEsrThirdpartySdnc(List<EsrThirdpartySdnc> esrThirdpartySdnc) {
     this.esrThirdpartySdnc = esrThirdpartySdnc;
   }
 }
