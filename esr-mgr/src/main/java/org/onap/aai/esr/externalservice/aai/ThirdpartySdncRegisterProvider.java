@@ -46,7 +46,7 @@ public class ThirdpartySdncRegisterProvider implements MessageBodyWriter<EsrThir
     @Override
     public void writeTo(EsrThirdpartySdncDetail t, Class<?> type, Type genericType, Annotation[] annotations,
             MediaType mediaType, MultivaluedMap<String, Object> httpHeaders, OutputStream entityStream)
-            throws IOException, WebApplicationException {
+            throws IOException{
         String json = new Gson().toJson(t, EsrThirdpartySdncDetail.class);
         logger.info("the param to register VIM input is:" + json);
         entityStream.write(json.getBytes("UTF-8"));
