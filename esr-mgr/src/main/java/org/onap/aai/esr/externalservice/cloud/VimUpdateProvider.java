@@ -49,7 +49,7 @@ public class VimUpdateProvider implements MessageBodyWriter<Tenant>{
   @Override
   public void writeTo(Tenant t, Class<?> type, Type genericType,
       Annotation[] annotations, MediaType mediaType, MultivaluedMap<String, Object> httpHeaders,
-      OutputStream entityStream) throws IOException, WebApplicationException {
+      OutputStream entityStream) throws IOException {
     String json = new Gson().toJson(t, Tenant.class);
     logger.info("the param to update VIM input is:" + json);
     entityStream.write(json.getBytes("UTF-8"));
