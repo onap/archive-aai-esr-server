@@ -21,14 +21,14 @@ import javax.ws.rs.core.Response;
 
 public class ExceptionUtil {
 
-  private static final int EXCEPTION_CODE = 498;
+    private static final int EXCEPTION_CODE = 498;
 
-  private ExceptionUtil() {
+    private ExceptionUtil() {
 
-  }
+    }
 
-  public static WebApplicationException buildExceptionResponse(String message) {
-      Response response = Response.status(EXCEPTION_CODE).entity(message).type(MediaType.TEXT_PLAIN).build();
-      return new WebApplicationException(response);
-  }
+    public static WebApplicationException buildExceptionResponse(String message) {
+        Response response = Response.status(EXCEPTION_CODE).entity(message).type(MediaType.TEXT_PLAIN).build();
+        return new WebApplicationException(response);
+    }
 }

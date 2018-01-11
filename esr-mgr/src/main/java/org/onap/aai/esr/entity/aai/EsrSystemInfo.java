@@ -16,231 +16,230 @@
 package org.onap.aai.esr.entity.aai;
 
 import java.io.Serializable;
-
 import com.google.gson.annotations.SerializedName;
 
 public class EsrSystemInfo implements Serializable {
-  
-  public static final long serialVersionUID = 1L;
-  
-  @SerializedName("esr-system-info-id")
-  private String esrSystemInfoId;
-  
-  @SerializedName("system-name")
-  private String systemName;
-  
-  @SerializedName("type")
-  private String type;
-  
-  @SerializedName("vendor")
-  private String vendor;
-  
-  @SerializedName("version")
-  private String version;
-  
-  @SerializedName("service-url")
-  private String serviceUrl;
-  
-  @SerializedName("user-name")
-  private String userName;
-  
-  @SerializedName("password")
-  private String password;
-  
-  @SerializedName("system-type")
-  private String systemType;
-  
-  @SerializedName("protocol")
-  private String protocol;
-  
-  @SerializedName("ssl-cassert")
-  private String sslCassert;
-  
-  @SerializedName("ssl-insecure")
-  private Boolean sslInsecure;
-  
-  @SerializedName("ip-address")
-  private String ipAddress;
-  
-  @SerializedName("port")
-  private String port;
-  
-  @SerializedName("cloud-domain")
-  private String cloudDomain;
-  
-  @SerializedName("default-tenant")
-  private String defaultTenant;
-  
-  @SerializedName("passive")
-  private Boolean passive;
-  
-  @SerializedName("remote-path")
-  private String remotePath;
-  
-  @SerializedName("system-status")
-  private String systemStatus;
-  
-  @SerializedName("resource-version")
-  private String resourceVersion;
 
-  public String getEsrSystemInfoId() {
-    return esrSystemInfoId;
-  }
+    public static final long serialVersionUID = 1L;
 
-  public void setEsrSystemInfoId(String esrSystemInfoId) {
-    this.esrSystemInfoId = esrSystemInfoId;
-  }
+    @SerializedName("esr-system-info-id")
+    private String esrSystemInfoId;
 
-  public String getSystemName() {
-    return systemName;
-  }
+    @SerializedName("system-name")
+    private String systemName;
 
-  public void setSystemName(String systemName) {
-    this.systemName = systemName;
-  }
+    @SerializedName("type")
+    private String type;
 
-  public String getType() {
-    return type;
-  }
+    @SerializedName("vendor")
+    private String vendor;
 
-  public void setType(String type) {
-    this.type = type;
-  }
+    @SerializedName("version")
+    private String version;
 
-  public String getVendor() {
-    return vendor;
-  }
+    @SerializedName("service-url")
+    private String serviceUrl;
 
-  public void setVendor(String vendor) {
-    this.vendor = vendor;
-  }
+    @SerializedName("user-name")
+    private String userName;
 
-  public String getVersion() {
-    return version;
-  }
+    @SerializedName("password")
+    private String password;
 
-  public void setVersion(String version) {
-    this.version = version;
-  }
+    @SerializedName("system-type")
+    private String systemType;
 
-  public String getServiceUrl() {
-    return serviceUrl;
-  }
+    @SerializedName("protocol")
+    private String protocol;
 
-  public void setServiceUrl(String serviceUrl) {
-    this.serviceUrl = serviceUrl;
-  }
+    @SerializedName("ssl-cassert")
+    private String sslCassert;
 
-  public String getUserName() {
-    return userName;
-  }
+    @SerializedName("ssl-insecure")
+    private Boolean sslInsecure;
 
-  public void setUserName(String userName) {
-    this.userName = userName;
-  }
+    @SerializedName("ip-address")
+    private String ipAddress;
 
-  public String getPassword() {
-    return password;
-  }
+    @SerializedName("port")
+    private String port;
 
-  public void setPassword(String password) {
-    this.password = password;
-  }
+    @SerializedName("cloud-domain")
+    private String cloudDomain;
 
-  public String getSystemType() {
-    return systemType;
-  }
+    @SerializedName("default-tenant")
+    private String defaultTenant;
 
-  public void setSystemType(String systemType) {
-    this.systemType = systemType;
-  }
+    @SerializedName("passive")
+    private Boolean passive;
 
-  public String getProtocol() {
-    return protocol;
-  }
+    @SerializedName("remote-path")
+    private String remotePath;
 
-  public void setProtocol(String protocol) {
-    this.protocol = protocol;
-  }
+    @SerializedName("system-status")
+    private String systemStatus;
 
-  public String getSslCassert() {
-    return sslCassert;
-  }
+    @SerializedName("resource-version")
+    private String resourceVersion;
 
-  public void setSslCassert(String sslCassert) {
-    this.sslCassert = sslCassert;
-  }
+    public String getEsrSystemInfoId() {
+        return esrSystemInfoId;
+    }
 
-  public Boolean getSslInsecure() {
-    return sslInsecure;
-  }
+    public void setEsrSystemInfoId(String esrSystemInfoId) {
+        this.esrSystemInfoId = esrSystemInfoId;
+    }
 
-  public void setSslInsecure(Boolean sslInsecure) {
-    this.sslInsecure = sslInsecure;
-  }
+    public String getSystemName() {
+        return systemName;
+    }
 
-  public String getIpAddress() {
-    return ipAddress;
-  }
+    public void setSystemName(String systemName) {
+        this.systemName = systemName;
+    }
 
-  public void setIpAddress(String ipAddress) {
-    this.ipAddress = ipAddress;
-  }
+    public String getType() {
+        return type;
+    }
 
-  public String getPort() {
-    return port;
-  }
+    public void setType(String type) {
+        this.type = type;
+    }
 
-  public void setPort(String port) {
-    this.port = port;
-  }
+    public String getVendor() {
+        return vendor;
+    }
 
-  public String getCloudDomain() {
-    return cloudDomain;
-  }
+    public void setVendor(String vendor) {
+        this.vendor = vendor;
+    }
 
-  public void setCloudDomain(String cloudDomain) {
-    this.cloudDomain = cloudDomain;
-  }
+    public String getVersion() {
+        return version;
+    }
 
-  public String getDefaultTenant() {
-    return defaultTenant;
-  }
+    public void setVersion(String version) {
+        this.version = version;
+    }
 
-  public void setDefaultTenant(String defaultTenant) {
-    this.defaultTenant = defaultTenant;
-  }
+    public String getServiceUrl() {
+        return serviceUrl;
+    }
 
-  public Boolean getPassive() {
-    return passive;
-  }
+    public void setServiceUrl(String serviceUrl) {
+        this.serviceUrl = serviceUrl;
+    }
 
-  public void setPassive(Boolean passive) {
-    this.passive = passive;
-  }
+    public String getUserName() {
+        return userName;
+    }
 
-  public String getRemotePath() {
-    return remotePath;
-  }
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
-  public void setRemotePath(String remotePath) {
-    this.remotePath = remotePath;
-  }
+    public String getPassword() {
+        return password;
+    }
 
-  public String getSystemStatus() {
-    return systemStatus;
-  }
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-  public void setSystemStatus(String systemStatus) {
-    this.systemStatus = systemStatus;
-  }
+    public String getSystemType() {
+        return systemType;
+    }
 
-  public String getResouceVersion() {
-    return resourceVersion;
-  }
+    public void setSystemType(String systemType) {
+        this.systemType = systemType;
+    }
 
-  public void setResouceVersion(String resouceVersion) {
-    this.resourceVersion = resouceVersion;
-  }
+    public String getProtocol() {
+        return protocol;
+    }
+
+    public void setProtocol(String protocol) {
+        this.protocol = protocol;
+    }
+
+    public String getSslCassert() {
+        return sslCassert;
+    }
+
+    public void setSslCassert(String sslCassert) {
+        this.sslCassert = sslCassert;
+    }
+
+    public Boolean getSslInsecure() {
+        return sslInsecure;
+    }
+
+    public void setSslInsecure(Boolean sslInsecure) {
+        this.sslInsecure = sslInsecure;
+    }
+
+    public String getIpAddress() {
+        return ipAddress;
+    }
+
+    public void setIpAddress(String ipAddress) {
+        this.ipAddress = ipAddress;
+    }
+
+    public String getPort() {
+        return port;
+    }
+
+    public void setPort(String port) {
+        this.port = port;
+    }
+
+    public String getCloudDomain() {
+        return cloudDomain;
+    }
+
+    public void setCloudDomain(String cloudDomain) {
+        this.cloudDomain = cloudDomain;
+    }
+
+    public String getDefaultTenant() {
+        return defaultTenant;
+    }
+
+    public void setDefaultTenant(String defaultTenant) {
+        this.defaultTenant = defaultTenant;
+    }
+
+    public Boolean getPassive() {
+        return passive;
+    }
+
+    public void setPassive(Boolean passive) {
+        this.passive = passive;
+    }
+
+    public String getRemotePath() {
+        return remotePath;
+    }
+
+    public void setRemotePath(String remotePath) {
+        this.remotePath = remotePath;
+    }
+
+    public String getSystemStatus() {
+        return systemStatus;
+    }
+
+    public void setSystemStatus(String systemStatus) {
+        this.systemStatus = systemStatus;
+    }
+
+    public String getResouceVersion() {
+        return resourceVersion;
+    }
+
+    public void setResouceVersion(String resouceVersion) {
+        this.resourceVersion = resouceVersion;
+    }
 
 }

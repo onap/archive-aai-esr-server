@@ -22,14 +22,12 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import io.swagger.annotations.SwaggerDefinition;
-
 import org.eclipse.jetty.http.HttpStatus;
 import org.onap.aai.esr.entity.rest.EmsRegisterInfo;
 import org.onap.aai.esr.util.ExtsysUtil;
 import org.onap.aai.esr.wrapper.EmsManagerWrapper;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;  
-
+import org.slf4j.LoggerFactory;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -46,107 +44,102 @@ import javax.ws.rs.core.Response;
 @Api(tags = {" ems Management "})
 public class EmsManager {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(EmsManager.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(EmsManager.class);
 
-  private static ExtsysUtil extsysUtil = new ExtsysUtil();
-  
-  /**
-   * query all ems.
-   */
-  @GET
-  @ApiOperation(value = "get  all ems ")
-  @Produces(MediaType.APPLICATION_JSON)
-  @ApiResponses(value = {
-      @ApiResponse(code = HttpStatus.NOT_FOUND_404, message = "microservice not found",
-          response = String.class),
-      @ApiResponse(code = HttpStatus.UNSUPPORTED_MEDIA_TYPE_415,
-          message = "Unprocessable MicroServiceInfo Entity ", response = String.class),
-      @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
-          response = String.class)})
-  @Timed
-  public Response queryEmsList() {
-    LOGGER.info("start query all ems!");
-    return EmsManagerWrapper.getInstance().queryEmsList();
-  }
-  
-  /**
-   * query  ems info by id.
-   */
-  @Path("/{emsId}")
-  @GET
-  @ApiOperation(value = "get ems by id")
-  @Produces(MediaType.APPLICATION_JSON)
-  @ApiResponses(value = {
-      @ApiResponse(code = HttpStatus.NOT_FOUND_404, message = "microservice not found",
-          response = String.class),
-      @ApiResponse(code = HttpStatus.UNSUPPORTED_MEDIA_TYPE_415,
-          message = "Unprocessable MicroServiceInfo Entity ", response = String.class),
-      @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
-          response = String.class)})
-  @Timed
-  public Response queryemsById(@ApiParam(value = "ems id") @PathParam("emsId") String emsId) {
-    LOGGER.info("start query  ems by id." + emsId);
-    return EmsManagerWrapper.getInstance().queryEmsById(emsId);
-  }
-  
-  /**
-   * delete ems by id.
-   */
-  @Path("/{emsId}")
-  @DELETE
-  @ApiOperation(value = "delete a ems")
-  @ApiResponses(value = {
-      @ApiResponse(code = HttpStatus.NOT_FOUND_404, message = "microservice not found",
-          response = String.class),
-      @ApiResponse(code = HttpStatus.UNSUPPORTED_MEDIA_TYPE_415,
-          message = "Unprocessable MicroServiceInfo Entity ", response = String.class),
-      @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
-          response = String.class)})
-  @Timed
-  public Response delems(@ApiParam(value = "ems id") @PathParam("emsId") String emsId) {
-    LOGGER.info("start delete ems .id:" + emsId);
-    return EmsManagerWrapper.getInstance().delEms(emsId);
-  }
-  
-  /**
-   * update ems by id.
-   */
-  @PUT
-  @Path("/{emsId}")
-  @Consumes(MediaType.APPLICATION_JSON)
-  @Produces({MediaType.TEXT_PLAIN, MediaType.APPLICATION_JSON})
-  @ApiOperation(value = "update a ems")
-  @ApiResponses(value = {
-      @ApiResponse(code = HttpStatus.NOT_FOUND_404, message = "microservice not found",
-          response = String.class),
-      @ApiResponse(code = HttpStatus.UNSUPPORTED_MEDIA_TYPE_415,
-          message = "Unprocessable MicroServiceInfo Entity ", response = String.class),
-      @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
-          response = String.class)})
-  @Timed
-  public Response updateEms(@ApiParam(value = "ems", required = true) EmsRegisterInfo ems,
-      @ApiParam(value = "ems id", required = true) @PathParam("emsId") String emsId) {
-    LOGGER.info("start update ems .id:" + emsId + " info:" + extsysUtil.objectToString(ems));
-    return EmsManagerWrapper.getInstance().updateEms(ems, emsId);
-  }
-  
-  /**
-   * register ems.
-   */
-  @POST
-  @Consumes(MediaType.APPLICATION_JSON)
-  @Produces({MediaType.TEXT_PLAIN, MediaType.APPLICATION_JSON})
-  @ApiOperation(value = "create a ems")
-  @ApiResponses(value = {
-      @ApiResponse(code = HttpStatus.NOT_FOUND_404, message = "microservice not found",
-          response = String.class),
-      @ApiResponse(code = HttpStatus.UNSUPPORTED_MEDIA_TYPE_415,
-          message = "Unprocessable MicroServiceInfo Entity ", response = String.class),
-      @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
-          response = String.class)})
-  @Timed
-  public Response registerEms(@ApiParam(value = "ems", required = true) EmsRegisterInfo ems) {
-    LOGGER.info("start add ems" + " info:" + extsysUtil.objectToString(ems));
-    return EmsManagerWrapper.getInstance().registerEms(ems);
-  }
+    private static ExtsysUtil extsysUtil = new ExtsysUtil();
+
+    /**
+     * query all ems.
+     */
+    @GET
+    @ApiOperation(value = "get  all ems ")
+    @Produces(MediaType.APPLICATION_JSON)
+    @ApiResponses(value = {
+            @ApiResponse(code = HttpStatus.NOT_FOUND_404, message = "microservice not found", response = String.class),
+            @ApiResponse(code = HttpStatus.UNSUPPORTED_MEDIA_TYPE_415,
+                    message = "Unprocessable MicroServiceInfo Entity ", response = String.class),
+            @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
+                    response = String.class)})
+    @Timed
+    public Response queryEmsList() {
+        LOGGER.info("start query all ems!");
+        return EmsManagerWrapper.getInstance().queryEmsList();
+    }
+
+    /**
+     * query ems info by id.
+     */
+    @Path("/{emsId}")
+    @GET
+    @ApiOperation(value = "get ems by id")
+    @Produces(MediaType.APPLICATION_JSON)
+    @ApiResponses(value = {
+            @ApiResponse(code = HttpStatus.NOT_FOUND_404, message = "microservice not found", response = String.class),
+            @ApiResponse(code = HttpStatus.UNSUPPORTED_MEDIA_TYPE_415,
+                    message = "Unprocessable MicroServiceInfo Entity ", response = String.class),
+            @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
+                    response = String.class)})
+    @Timed
+    public Response queryemsById(@ApiParam(value = "ems id") @PathParam("emsId") String emsId) {
+        LOGGER.info("start query  ems by id." + emsId);
+        return EmsManagerWrapper.getInstance().queryEmsById(emsId);
+    }
+
+    /**
+     * delete ems by id.
+     */
+    @Path("/{emsId}")
+    @DELETE
+    @ApiOperation(value = "delete a ems")
+    @ApiResponses(value = {
+            @ApiResponse(code = HttpStatus.NOT_FOUND_404, message = "microservice not found", response = String.class),
+            @ApiResponse(code = HttpStatus.UNSUPPORTED_MEDIA_TYPE_415,
+                    message = "Unprocessable MicroServiceInfo Entity ", response = String.class),
+            @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
+                    response = String.class)})
+    @Timed
+    public Response delems(@ApiParam(value = "ems id") @PathParam("emsId") String emsId) {
+        LOGGER.info("start delete ems .id:" + emsId);
+        return EmsManagerWrapper.getInstance().delEms(emsId);
+    }
+
+    /**
+     * update ems by id.
+     */
+    @PUT
+    @Path("/{emsId}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces({MediaType.TEXT_PLAIN, MediaType.APPLICATION_JSON})
+    @ApiOperation(value = "update a ems")
+    @ApiResponses(value = {
+            @ApiResponse(code = HttpStatus.NOT_FOUND_404, message = "microservice not found", response = String.class),
+            @ApiResponse(code = HttpStatus.UNSUPPORTED_MEDIA_TYPE_415,
+                    message = "Unprocessable MicroServiceInfo Entity ", response = String.class),
+            @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
+                    response = String.class)})
+    @Timed
+    public Response updateEms(@ApiParam(value = "ems", required = true) EmsRegisterInfo ems,
+            @ApiParam(value = "ems id", required = true) @PathParam("emsId") String emsId) {
+        LOGGER.info("start update ems .id:" + emsId + " info:" + extsysUtil.objectToString(ems));
+        return EmsManagerWrapper.getInstance().updateEms(ems, emsId);
+    }
+
+    /**
+     * register ems.
+     */
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces({MediaType.TEXT_PLAIN, MediaType.APPLICATION_JSON})
+    @ApiOperation(value = "create a ems")
+    @ApiResponses(value = {
+            @ApiResponse(code = HttpStatus.NOT_FOUND_404, message = "microservice not found", response = String.class),
+            @ApiResponse(code = HttpStatus.UNSUPPORTED_MEDIA_TYPE_415,
+                    message = "Unprocessable MicroServiceInfo Entity ", response = String.class),
+            @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
+                    response = String.class)})
+    @Timed
+    public Response registerEms(@ApiParam(value = "ems", required = true) EmsRegisterInfo ems) {
+        LOGGER.info("start add ems" + " info:" + extsysUtil.objectToString(ems));
+        return EmsManagerWrapper.getInstance().registerEms(ems);
+    }
 }

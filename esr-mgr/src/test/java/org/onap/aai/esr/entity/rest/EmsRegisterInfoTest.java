@@ -16,66 +16,65 @@
 package org.onap.aai.esr.entity.rest;
 
 import static org.junit.Assert.assertEquals;
-
 import org.junit.Test;
 
 public class EmsRegisterInfoTest {
-  @Test
-  public void getterAndSetter4emsId(){
-      final String emsId = "dafadf";
-      EmsRegisterInfo emsRegisterInfo = new EmsRegisterInfo();
-      emsRegisterInfo.setEmsId(emsId);
-      assertEquals(emsRegisterInfo.getEmsId(), emsId);
-  }
-  
-  @Test
-  public void getterAndSetter4name() {
-      final String name = "dafadf";
-      EmsRegisterInfo emsRegisterInfo = new EmsRegisterInfo();
-      emsRegisterInfo.setName(name);
-      assertEquals(emsRegisterInfo.getName(), name);
-  }
-  
-  @Test
-  public void getterAndSetter4vendor(){
-      final String vendor = "dafadf";
-      EmsRegisterInfo emsRegisterInfo = new EmsRegisterInfo();
-      emsRegisterInfo.setVendor(vendor);
-      assertEquals(emsRegisterInfo.getVendor(), vendor);
-  }
-  
-  @Test
-  public void getterAndSetter4version(){
-      final String version = "dafadf";
-      EmsRegisterInfo emsRegisterInfo = new EmsRegisterInfo();
-      emsRegisterInfo.setVersion(version);
-      assertEquals(emsRegisterInfo.getVersion(), version);
-  }
-  
-  @Test
-  public void getterAndSetter4resouceAddr(){
-    EmsRegisterInfo emsRegisterInfo = new EmsRegisterInfo();
-      final FtpAddr resourceAddr = new FtpAddr();
-      resourceAddr.setFtptype("sftp");
-      emsRegisterInfo.setResourceAddr(resourceAddr);
-      assertEquals(emsRegisterInfo.getResourceAddr(), resourceAddr);
-  }
-  
-  @Test
-  public void getterAndSetter4performanceAddr(){
-    EmsRegisterInfo emsRegisterInfo = new EmsRegisterInfo();
-      final FtpAddr performanceAddr = new FtpAddr();
-      performanceAddr.setFtptype("sftp");
-      emsRegisterInfo.setPerformanceAddr(performanceAddr);
-      assertEquals(emsRegisterInfo.getPerformanceAddr(), performanceAddr);
-  }
-  
-  @Test
-  public void getterAndSetter4alarmAddr(){
-    EmsRegisterInfo emsRegisterInfo = new EmsRegisterInfo();
-      final AlarmAddr alarmAddr = new AlarmAddr();
-      alarmAddr.setIp("127.0.0.1");
-      emsRegisterInfo.setAlarmAddr(alarmAddr);
-      assertEquals(emsRegisterInfo.getAlarmAddr(), alarmAddr);
-  }
+    @Test
+    public void getterAndSetter4emsId() {
+        final String emsId = "dafadf";
+        EmsRegisterInfo emsRegisterInfo = new EmsRegisterInfo();
+        emsRegisterInfo.setEmsId(emsId);
+        assertEquals(emsRegisterInfo.getEmsId(), emsId);
+    }
+
+    @Test
+    public void getterAndSetter4name() {
+        final String name = "dafadf";
+        EmsRegisterInfo emsRegisterInfo = new EmsRegisterInfo();
+        emsRegisterInfo.setName(name);
+        assertEquals(emsRegisterInfo.getName(), name);
+    }
+
+    @Test
+    public void getterAndSetter4vendor() {
+        final String vendor = "dafadf";
+        EmsRegisterInfo emsRegisterInfo = new EmsRegisterInfo();
+        emsRegisterInfo.setVendor(vendor);
+        assertEquals(emsRegisterInfo.getVendor(), vendor);
+    }
+
+    @Test
+    public void getterAndSetter4version() {
+        final String version = "dafadf";
+        EmsRegisterInfo emsRegisterInfo = new EmsRegisterInfo();
+        emsRegisterInfo.setVersion(version);
+        assertEquals(emsRegisterInfo.getVersion(), version);
+    }
+
+    @Test
+    public void getterAndSetter4resouceAddr() {
+        EmsRegisterInfo emsRegisterInfo = new EmsRegisterInfo();
+        final FtpAddr resourceAddr = new FtpAddr();
+        resourceAddr.setFtptype("sftp");
+        emsRegisterInfo.setResourceAddr(resourceAddr);
+        assertEquals(emsRegisterInfo.getResourceAddr(), resourceAddr);
+    }
+
+    @Test
+    public void getterAndSetter4performanceAddr() {
+        EmsRegisterInfo emsRegisterInfo = new EmsRegisterInfo();
+        final FtpAddr performanceAddr = new FtpAddr();
+        performanceAddr.setFtptype("sftp");
+        emsRegisterInfo.setPerformanceAddr(performanceAddr);
+        assertEquals(emsRegisterInfo.getPerformanceAddr(), performanceAddr);
+    }
+
+    @Test
+    public void getterAndSetter4alarmAddr() {
+        EmsRegisterInfo emsRegisterInfo = new EmsRegisterInfo();
+        final AlarmAddr alarmAddr = new AlarmAddr();
+        alarmAddr.setIp("127.0.0.1");
+        emsRegisterInfo.setAlarmAddr(alarmAddr);
+        assertEquals(emsRegisterInfo.getAlarmAddr(), alarmAddr);
+    }
 }

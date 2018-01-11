@@ -17,5 +17,5 @@
 package org.onap.aai.esr.common;
 
 public enum SystemType {
-  VNFM,EMS_RESOUCE,EMS_PERFORMANCE,EMS_ALARM,thirdparty_SDNC,VIM
+    VNFM, EMS_RESOUCE, EMS_PERFORMANCE, EMS_ALARM, thirdparty_SDNC, VIM
 }

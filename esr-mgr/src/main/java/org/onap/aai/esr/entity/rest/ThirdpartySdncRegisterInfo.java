@@ -17,118 +17,118 @@ package org.onap.aai.esr.entity.rest;
 
 public class ThirdpartySdncRegisterInfo {
 
-  private String thirdpartySdncId;
-  
-  private String name;
-  
-  private String vendor;
-  
-  private String version;
-  
-  private String type;
-  
-  private String location;
-  
-  private String url;
-  
-  private String userName;
-  
-  private String password;
-  
-  private String productName;
-  
-  private String protocol;
+    private String thirdpartySdncId;
+
+    private String name;
+
+    private String vendor;
+
+    private String version;
+
+    private String type;
+
+    private String location;
+
+    private String url;
+
+    private String userName;
+
+    private String password;
+
+    private String productName;
+
+    private String protocol;
 
 
-  public String getUrl() {
-    return url;
-  }
+    public String getUrl() {
+        return url;
+    }
 
-  public void setUrl(String url) {
-    this.url = url;
-  }
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
-  public String getUserName() {
-    return userName;
-  }
+    public String getUserName() {
+        return userName;
+    }
 
-  public void setUserName(String userName) {
-    this.userName = userName;
-  }
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
-  public String getPassword() {
-    return password;
-  }
+    public String getPassword() {
+        return password;
+    }
 
-  public void setPassword(String password) {
-    this.password = password;
-  }
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-  public String getProductName() {
-    return productName;
-  }
+    public String getProductName() {
+        return productName;
+    }
 
-  public void setProductName(String productName) {
-    this.productName = productName;
-  }
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
 
-  public String getProtocol() {
-    return protocol;
-  }
+    public String getProtocol() {
+        return protocol;
+    }
 
-  public void setProtocol(String protocol) {
-    this.protocol = protocol;
-  }
-  
-  public ThirdpartySdncRegisterInfo() {
+    public void setProtocol(String protocol) {
+        this.protocol = protocol;
+    }
 
-  }
+    public ThirdpartySdncRegisterInfo() {
 
-  public String getThirdpartySdncId() {
-    return thirdpartySdncId;
-  }
+    }
 
-  public void setThirdpartySdncId(String thirdpartySdncId) {
-    this.thirdpartySdncId = thirdpartySdncId;
-  }
+    public String getThirdpartySdncId() {
+        return thirdpartySdncId;
+    }
 
-  public String getName() {
-    return name;
-  }
+    public void setThirdpartySdncId(String thirdpartySdncId) {
+        this.thirdpartySdncId = thirdpartySdncId;
+    }
 
-  public void setName(String name) {
-    this.name = name;
-  }
+    public String getName() {
+        return name;
+    }
 
-  public String getVendor() {
-    return vendor;
-  }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-  public void setVendor(String vendor) {
-    this.vendor = vendor;
-  }
+    public String getVendor() {
+        return vendor;
+    }
 
-  public String getVersion() {
-    return version;
-  }
+    public void setVendor(String vendor) {
+        this.vendor = vendor;
+    }
 
-  public void setVersion(String version) {
-    this.version = version;
-  }
+    public String getVersion() {
+        return version;
+    }
 
-  public String getType() {
-    return type;
-  }
+    public void setVersion(String version) {
+        this.version = version;
+    }
 
-  public void setType(String type) {
-    this.type = type;
-  }
+    public String getType() {
+        return type;
+    }
 
-  public String getLocation() {
-    return location;
-  }
+    public void setType(String type) {
+        this.type = type;
+    }
 
-  public void setLocation(String location) {
-    this.location = location;
-  }
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
 }

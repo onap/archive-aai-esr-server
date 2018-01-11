@@ -26,47 +26,46 @@ import org.onap.aai.esr.resource.VnfmManager;
 import org.onap.msb.sdk.httpclient.msb.MSBServiceClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import io.dropwizard.Application;
 import io.dropwizard.setup.Environment;
 
 public class ExtsysApp extends Application<ExtsysAppConfiguration> {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(ExtsysApp.class);
-  
-  public static void main(String[] args) throws Exception {
-    new ExtsysApp().run(args);
-  }
+    private static final Logger LOGGER = LoggerFactory.getLogger(ExtsysApp.class);
 
-  @Override
-  public String getName() {
-    return "ONAP-ESR";
-  }
-
-  @Override
-  public void run(ExtsysAppConfiguration configuration, Environment environment) {
-    LOGGER.info("Start to initialize esr.");
-    MsbConfig.setMsbServerAddr(configuration.getMsbServerAddr());
-    MsbConfig.setMsbDiscoveryIp(configuration.getMsbDiscoveryIp());
-    MsbConfig.setMsbDiscoveryPort(configuration.getMsbDiscoveryPort());
-    environment.jersey().register(new EmsManager());
-    environment.jersey().register(new ThirdpartySdncManager());
-    environment.jersey().register(new VimManager());
-    environment.jersey().register(new VnfmManager());
-    environment.jersey().register(new ServiceTest());
-    if (configuration.getRegistByHand().equals("true")){
-      String MSB_IP=configuration.getMsbDiscoveryIp();
-      Integer MSB_Port= Integer.valueOf(configuration.getMsbDiscoveryPort());
-      MSBServiceClient msbClient = new MSBServiceClient(MSB_IP, MSB_Port);
-      MsbHelper helper = new MsbHelper(msbClient);
-      try {
-        helper.registerMsb();
-        LOGGER.info("Register esr-server to msb by java-sdk finished");
-      } catch (Exception e) {
-        LOGGER.error("Register esr-server to msb by java-sdk failed", e);
-      }
+    public static void main(String[] args) throws Exception {
+        new ExtsysApp().run(args);
     }
-    LOGGER.info("Initialize extsys finished.");
-  }
+
+    @Override
+    public String getName() {
+        return "ONAP-ESR";
+    }
+
+    @Override
+    public void run(ExtsysAppConfiguration configuration, Environment environment) {
+        LOGGER.info("Start to initialize esr.");
+        MsbConfig.setMsbServerAddr(configuration.getMsbServerAddr());
+        MsbConfig.setMsbDiscoveryIp(configuration.getMsbDiscoveryIp());
+        MsbConfig.setMsbDiscoveryPort(configuration.getMsbDiscoveryPort());
+        environment.jersey().register(new EmsManager());
+        environment.jersey().register(new ThirdpartySdncManager());
+        environment.jersey().register(new VimManager());
+        environment.jersey().register(new VnfmManager());
+        environment.jersey().register(new ServiceTest());
+        if (configuration.getRegistByHand().equals("true")) {
+            String MSB_IP = configuration.getMsbDiscoveryIp();
+            Integer MSB_Port = Integer.valueOf(configuration.getMsbDiscoveryPort());
+            MSBServiceClient msbClient = new MSBServiceClient(MSB_IP, MSB_Port);
+            MsbHelper helper = new MsbHelper(msbClient);
+            try {
+                helper.registerMsb();
+                LOGGER.info("Register esr-server to msb by java-sdk finished");
+            } catch (Exception e) {
+                LOGGER.error("Register esr-server to msb by java-sdk failed", e);
+            }
+        }
+        LOGGER.info("Initialize extsys finished.");
+    }
 
 }

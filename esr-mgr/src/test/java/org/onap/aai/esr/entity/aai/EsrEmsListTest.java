@@ -16,21 +16,19 @@
 package org.onap.aai.esr.entity.aai;
 
 import static org.junit.Assert.assertEquals;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import org.junit.Test;
 
 public class EsrEmsListTest {
-  @Test
-  public void getterAndSetter4EsrEmsList() {
-    EsrEmsList esrEmsList = new EsrEmsList();
-    List<EsrEms> esrEmses = new ArrayList<>();
-    EsrEms esrEms = new EsrEms();
-    esrEms.setEmsId("123");
-    esrEmses.add(esrEms);
-    esrEmsList.setEsrEms(esrEmses);
-    assertEquals(esrEmsList.getEsrEms(), esrEmses);
-  }
+    @Test
+    public void getterAndSetter4EsrEmsList() {
+        EsrEmsList esrEmsList = new EsrEmsList();
+        List<EsrEms> esrEmses = new ArrayList<>();
+        EsrEms esrEms = new EsrEms();
+        esrEms.setEmsId("123");
+        esrEmses.add(esrEms);
+        esrEmsList.setEsrEms(esrEmses);
+        assertEquals(esrEmsList.getEsrEms(), esrEmses);
+    }
 }

@@ -22,54 +22,54 @@ import org.onap.aai.esr.entity.aai.EsrVnfmDetail;
 import org.onap.aai.esr.entity.rest.VnfmRegisterInfo;
 
 public class VnfmManagerUtil {
-  private static ExtsysUtil extsysUtil = new ExtsysUtil();
-  
-  public EsrVnfmDetail vnfmRegisterInfo2EsrVnfm(VnfmRegisterInfo vnfmRegisterInfo) {
-    EsrVnfmDetail esrVnfm = new EsrVnfmDetail();
-    EsrSystemInfoList esrSystemInfo = new EsrSystemInfoList();
-    EsrSystemInfo authInfo = new EsrSystemInfo();
-    esrVnfm.setCertificateUrl(vnfmRegisterInfo.getCertificateUrl());
-    esrVnfm.setVimId(vnfmRegisterInfo.getVimId());
-    esrVnfm.setVnfmId(extsysUtil.generateId());
-    authInfo = getAuthInfoFromVnfmRegisterInfo(vnfmRegisterInfo);
-    esrSystemInfo = extsysUtil.getEsrSystemInfoListFromAuthInfo(authInfo);
-    esrVnfm.setEsrSystemInfoList(esrSystemInfo);
-    return esrVnfm;
-  }
+    private static ExtsysUtil extsysUtil = new ExtsysUtil();
 
-  /**
-   * @param vnfmRegisterInfo vnfm register informantion from portal
-   * @return
-   */
-  private EsrSystemInfo getAuthInfoFromVnfmRegisterInfo(VnfmRegisterInfo vnfmRegisterInfo) {
-    EsrSystemInfo authInfo = new EsrSystemInfo();
-    authInfo.setEsrSystemInfoId(extsysUtil.generateId());
-    authInfo.setSystemName(vnfmRegisterInfo.getName());
-    authInfo.setType(vnfmRegisterInfo.getType());
-    authInfo.setVendor(vnfmRegisterInfo.getVendor());
-    authInfo.setVersion(vnfmRegisterInfo.getVersion());
-    authInfo.setServiceUrl(vnfmRegisterInfo.getUrl());
-    authInfo.setUserName(vnfmRegisterInfo.getUserName());
-    authInfo.setPassword(vnfmRegisterInfo.getPassword());
-    authInfo.setSystemType(SystemType.VNFM.toString());
-    return authInfo;
-  }
-  
-  public VnfmRegisterInfo esrVnfm2VnfmRegisterInfo(EsrVnfmDetail esrVnfm) {
-    VnfmRegisterInfo vnfmRegisterInfo = new VnfmRegisterInfo();
-    EsrSystemInfo authInfo = new EsrSystemInfo();
-    vnfmRegisterInfo.setVnfmId(esrVnfm.getVnfmId());
-    vnfmRegisterInfo.setCertificateUrl(esrVnfm.getCertificateUrl());
-    vnfmRegisterInfo.setVimId(esrVnfm.getVimId());
-    authInfo = esrVnfm.getEsrSystemInfoList().getEsrSystemInfo().get(0);
-    vnfmRegisterInfo.setName(authInfo.getSystemName());
-    vnfmRegisterInfo.setPassword(authInfo.getPassword());
-    vnfmRegisterInfo.setType(authInfo.getType());
-    vnfmRegisterInfo.setUrl(authInfo.getServiceUrl());
-    vnfmRegisterInfo.setUserName(authInfo.getUserName());
-    vnfmRegisterInfo.setVendor(authInfo.getVendor());
-    vnfmRegisterInfo.setVersion(authInfo.getVersion());
-    return vnfmRegisterInfo;
-  }
+    public EsrVnfmDetail vnfmRegisterInfo2EsrVnfm(VnfmRegisterInfo vnfmRegisterInfo) {
+        EsrVnfmDetail esrVnfm = new EsrVnfmDetail();
+        EsrSystemInfoList esrSystemInfo = new EsrSystemInfoList();
+        EsrSystemInfo authInfo = new EsrSystemInfo();
+        esrVnfm.setCertificateUrl(vnfmRegisterInfo.getCertificateUrl());
+        esrVnfm.setVimId(vnfmRegisterInfo.getVimId());
+        esrVnfm.setVnfmId(extsysUtil.generateId());
+        authInfo = getAuthInfoFromVnfmRegisterInfo(vnfmRegisterInfo);
+        esrSystemInfo = extsysUtil.getEsrSystemInfoListFromAuthInfo(authInfo);
+        esrVnfm.setEsrSystemInfoList(esrSystemInfo);
+        return esrVnfm;
+    }
+
+    /**
+     * @param vnfmRegisterInfo vnfm register informantion from portal
+     * @return
+     */
+    private EsrSystemInfo getAuthInfoFromVnfmRegisterInfo(VnfmRegisterInfo vnfmRegisterInfo) {
+        EsrSystemInfo authInfo = new EsrSystemInfo();
+        authInfo.setEsrSystemInfoId(extsysUtil.generateId());
+        authInfo.setSystemName(vnfmRegisterInfo.getName());
+        authInfo.setType(vnfmRegisterInfo.getType());
+        authInfo.setVendor(vnfmRegisterInfo.getVendor());
+        authInfo.setVersion(vnfmRegisterInfo.getVersion());
+        authInfo.setServiceUrl(vnfmRegisterInfo.getUrl());
+        authInfo.setUserName(vnfmRegisterInfo.getUserName());
+        authInfo.setPassword(vnfmRegisterInfo.getPassword());
+        authInfo.setSystemType(SystemType.VNFM.toString());
+        return authInfo;
+    }
+
+    public VnfmRegisterInfo esrVnfm2VnfmRegisterInfo(EsrVnfmDetail esrVnfm) {
+        VnfmRegisterInfo vnfmRegisterInfo = new VnfmRegisterInfo();
+        EsrSystemInfo authInfo = new EsrSystemInfo();
+        vnfmRegisterInfo.setVnfmId(esrVnfm.getVnfmId());
+        vnfmRegisterInfo.setCertificateUrl(esrVnfm.getCertificateUrl());
+        vnfmRegisterInfo.setVimId(esrVnfm.getVimId());
+        authInfo = esrVnfm.getEsrSystemInfoList().getEsrSystemInfo().get(0);
+        vnfmRegisterInfo.setName(authInfo.getSystemName());
+        vnfmRegisterInfo.setPassword(authInfo.getPassword());
+        vnfmRegisterInfo.setType(authInfo.getType());
+        vnfmRegisterInfo.setUrl(authInfo.getServiceUrl());
+        vnfmRegisterInfo.setUserName(authInfo.getUserName());
+        vnfmRegisterInfo.setVendor(authInfo.getVendor());
+        vnfmRegisterInfo.setVersion(authInfo.getVersion());
+        return vnfmRegisterInfo;
+    }
 
 }

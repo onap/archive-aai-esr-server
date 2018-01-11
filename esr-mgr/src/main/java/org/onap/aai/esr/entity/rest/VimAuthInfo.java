@@ -16,75 +16,75 @@
 package org.onap.aai.esr.entity.rest;
 
 public class VimAuthInfo {
-  
-  private String cloudDomain;
-  
-  private String userName;
-  
-  private String password;
-  
-  private String authUrl;
-  
-  private String defaultTenant;
-  
-  private String sslCacert;
 
-  private Boolean sslInsecure;
+    private String cloudDomain;
 
-  public String getCloudDomain() {
-    return cloudDomain;
-  }
+    private String userName;
 
-  public void setCloudDomain(String cloudDomain) {
-    this.cloudDomain = cloudDomain;
-  }
+    private String password;
 
-  public String getUserName() {
-    return userName;
-  }
+    private String authUrl;
 
-  public void setUserName(String userName) {
-    this.userName = userName;
-  }
+    private String defaultTenant;
 
-  public String getPassword() {
-    return password;
-  }
+    private String sslCacert;
 
-  public void setPassword(String password) {
-    this.password = password;
-  }
+    private Boolean sslInsecure;
 
-  public String getAuthUrl() {
-    return authUrl;
-  }
+    public String getCloudDomain() {
+        return cloudDomain;
+    }
 
-  public void setAuthUrl(String authUrl) {
-    this.authUrl = authUrl;
-  }
+    public void setCloudDomain(String cloudDomain) {
+        this.cloudDomain = cloudDomain;
+    }
 
-  public String getSslCacert() {
-    return sslCacert;
-  }
+    public String getUserName() {
+        return userName;
+    }
 
-  public void setSslCacert(String sslCacert) {
-    this.sslCacert = sslCacert;
-  }
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
-  public Boolean getSslInsecure() {
-    return sslInsecure;
-  }
+    public String getPassword() {
+        return password;
+    }
 
-  public void setSslInsecure(Boolean sslInsecure) {
-    this.sslInsecure = sslInsecure;
-  }
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-  public String getDefaultTenant() {
-    return defaultTenant;
-  }
+    public String getAuthUrl() {
+        return authUrl;
+    }
 
-  public void setDefaultTenant(String defaultTenant) {
-    this.defaultTenant = defaultTenant;
-  }
+    public void setAuthUrl(String authUrl) {
+        this.authUrl = authUrl;
+    }
+
+    public String getSslCacert() {
+        return sslCacert;
+    }
+
+    public void setSslCacert(String sslCacert) {
+        this.sslCacert = sslCacert;
+    }
+
+    public Boolean getSslInsecure() {
+        return sslInsecure;
+    }
+
+    public void setSslInsecure(Boolean sslInsecure) {
+        this.sslInsecure = sslInsecure;
+    }
+
+    public String getDefaultTenant() {
+        return defaultTenant;
+    }
+
+    public void setDefaultTenant(String defaultTenant) {
+        this.defaultTenant = defaultTenant;
+    }
 
 }

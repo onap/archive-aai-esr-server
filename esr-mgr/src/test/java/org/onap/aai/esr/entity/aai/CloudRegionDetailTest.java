@@ -16,87 +16,85 @@
 package org.onap.aai.esr.entity.aai;
 
 import static org.junit.Assert.assertEquals;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import org.junit.Test;
 
 public class CloudRegionDetailTest {
-  @Test
-  public void getterAndSetter4CloudOwner(){
-      final String cloudOwner = "cloud-owner-test";
-      CloudRegionDetail cloudRegion = new CloudRegionDetail();
-      cloudRegion.setCloudOwner(cloudOwner);
-      assertEquals(cloudRegion.getCloudOwner(), cloudOwner);
-  }
-  
-  @Test
-  public void getterAndSetter4CloudRegionId(){
-      final String cloudRegionId = "cloud-region-id-test";
-      CloudRegionDetail cloudRegion = new CloudRegionDetail();
-      cloudRegion.setCloudRegionId(cloudRegionId);
-      assertEquals(cloudRegion.getCloudRegionId(), cloudRegionId);
-  }
-  
-  @Test
-  public void getterAndSetter4CloudType(){
-      final String cloudType = "cloud-type-test";
-      CloudRegionDetail cloudRegion = new CloudRegionDetail();
-      cloudRegion.setCloudType(cloudType);
-      assertEquals(cloudRegion.getCloudType(), cloudType);
-  }
-  
-  @Test
-  public void getterAndSetter4cloudRegionVersion(){
-      final String cloudRegionVersion = "cloud-region-version-test";
-      CloudRegionDetail cloudRegion = new CloudRegionDetail();
-      cloudRegion.setCloudRegionVersion(cloudRegionVersion);
-      assertEquals(cloudRegion.getCloudRegionVersion(), cloudRegionVersion);
-  }
-  
-  @Test
-  public void getterAndSetter4ownerDefinedType(){
-      final String ownerDefinedType = "owner-defined-type-test";
-      CloudRegionDetail cloudRegion = new CloudRegionDetail();
-      cloudRegion.setOwnerDefinedType(ownerDefinedType);
-      assertEquals(cloudRegion.getOwnerDefinedType(), ownerDefinedType);
-  }
-  
-  @Test
-  public void getterAndSetter4cloudZone(){
-      final String cloudZone = "cloudZone-test";
-      CloudRegionDetail cloudRegion = new CloudRegionDetail();
-      cloudRegion.setCloudZone(cloudZone);
-      assertEquals(cloudRegion.getCloudZone(), cloudZone);
-  }
-  
-  @Test
-  public void getterAndSetter4complexName(){
-      final String complexName = "complexName-test";
-      CloudRegionDetail cloudRegion = new CloudRegionDetail();
-      cloudRegion.setComplexName(complexName);
-      assertEquals(cloudRegion.getComplexName(), complexName);
-  }
-  
-  @Test
-  public void getterAndSetter4cloudExtraInfo(){
-      final String cloudExtraInfo = "cloudExtraInfo-test";
-      CloudRegionDetail cloudRegion = new CloudRegionDetail();
-      cloudRegion.setCloudExtraInfo(cloudExtraInfo);
-      assertEquals(cloudRegion.getCloudExtraInfo(), cloudExtraInfo);
-  }
-  
-  @Test
-  public void getterAndSetter4esrSystemInfoList(){
-      final EsrSystemInfoList esrSystemInfoList = new EsrSystemInfoList();
-      List<EsrSystemInfo> esrSystemInfo = new ArrayList<>();
-      EsrSystemInfo esrSystemInfoObj = new EsrSystemInfo();
-      esrSystemInfoObj.setEsrSystemInfoId("123");
-      esrSystemInfo.add(esrSystemInfoObj );
-      esrSystemInfoList.setEsrSystemInfo(esrSystemInfo);
-      CloudRegionDetail cloudRegion = new CloudRegionDetail();
-      cloudRegion.setEsrSystemInfoList(esrSystemInfoList);
-      assertEquals(cloudRegion.getEsrSystemInfoList(), esrSystemInfoList);
-  }
+    @Test
+    public void getterAndSetter4CloudOwner() {
+        final String cloudOwner = "cloud-owner-test";
+        CloudRegionDetail cloudRegion = new CloudRegionDetail();
+        cloudRegion.setCloudOwner(cloudOwner);
+        assertEquals(cloudRegion.getCloudOwner(), cloudOwner);
+    }
+
+    @Test
+    public void getterAndSetter4CloudRegionId() {
+        final String cloudRegionId = "cloud-region-id-test";
+        CloudRegionDetail cloudRegion = new CloudRegionDetail();
+        cloudRegion.setCloudRegionId(cloudRegionId);
+        assertEquals(cloudRegion.getCloudRegionId(), cloudRegionId);
+    }
+
+    @Test
+    public void getterAndSetter4CloudType() {
+        final String cloudType = "cloud-type-test";
+        CloudRegionDetail cloudRegion = new CloudRegionDetail();
+        cloudRegion.setCloudType(cloudType);
+        assertEquals(cloudRegion.getCloudType(), cloudType);
+    }
+
+    @Test
+    public void getterAndSetter4cloudRegionVersion() {
+        final String cloudRegionVersion = "cloud-region-version-test";
+        CloudRegionDetail cloudRegion = new CloudRegionDetail();
+        cloudRegion.setCloudRegionVersion(cloudRegionVersion);
+        assertEquals(cloudRegion.getCloudRegionVersion(), cloudRegionVersion);
+    }
+
+    @Test
+    public void getterAndSetter4ownerDefinedType() {
+        final String ownerDefinedType = "owner-defined-type-test";
+        CloudRegionDetail cloudRegion = new CloudRegionDetail();
+        cloudRegion.setOwnerDefinedType(ownerDefinedType);
+        assertEquals(cloudRegion.getOwnerDefinedType(), ownerDefinedType);
+    }
+
+    @Test
+    public void getterAndSetter4cloudZone() {
+        final String cloudZone = "cloudZone-test";
+        CloudRegionDetail cloudRegion = new CloudRegionDetail();
+        cloudRegion.setCloudZone(cloudZone);
+        assertEquals(cloudRegion.getCloudZone(), cloudZone);
+    }
+
+    @Test
+    public void getterAndSetter4complexName() {
+        final String complexName = "complexName-test";
+        CloudRegionDetail cloudRegion = new CloudRegionDetail();
+        cloudRegion.setComplexName(complexName);
+        assertEquals(cloudRegion.getComplexName(), complexName);
+    }
+
+    @Test
+    public void getterAndSetter4cloudExtraInfo() {
+        final String cloudExtraInfo = "cloudExtraInfo-test";
+        CloudRegionDetail cloudRegion = new CloudRegionDetail();
+        cloudRegion.setCloudExtraInfo(cloudExtraInfo);
+        assertEquals(cloudRegion.getCloudExtraInfo(), cloudExtraInfo);
+    }
+
+    @Test
+    public void getterAndSetter4esrSystemInfoList() {
+        final EsrSystemInfoList esrSystemInfoList = new EsrSystemInfoList();
+        List<EsrSystemInfo> esrSystemInfo = new ArrayList<>();
+        EsrSystemInfo esrSystemInfoObj = new EsrSystemInfo();
+        esrSystemInfoObj.setEsrSystemInfoId("123");
+        esrSystemInfo.add(esrSystemInfoObj);
+        esrSystemInfoList.setEsrSystemInfo(esrSystemInfo);
+        CloudRegionDetail cloudRegion = new CloudRegionDetail();
+        cloudRegion.setEsrSystemInfoList(esrSystemInfoList);
+        assertEquals(cloudRegion.getEsrSystemInfoList(), esrSystemInfoList);
+    }
 }

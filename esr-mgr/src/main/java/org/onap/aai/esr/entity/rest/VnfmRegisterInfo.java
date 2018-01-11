@@ -15,106 +15,106 @@
  */
 package org.onap.aai.esr.entity.rest;
 
-public class VnfmRegisterInfo{
+public class VnfmRegisterInfo {
 
-  private String vnfmId;
-  
-  private String name;
-  
-  private String type;
-  
-  private String vimId;
-  
-  private String vendor;
-  
-  private String version;
-  
-  private String certificateUrl;
-  
-  private String url;
+    private String vnfmId;
 
-  private String userName;
-  
-  private String password;
+    private String name;
 
-  public String getVnfmId() {
-    return vnfmId;
-  }
+    private String type;
 
-  public void setVnfmId(String vnfmId) {
-    this.vnfmId = vnfmId;
-  }
+    private String vimId;
 
-  public String getName() {
-    return name;
-  }
+    private String vendor;
 
-  public void setName(String name) {
-    this.name = name;
-  }
+    private String version;
 
-  public String getType() {
-    return type;
-  }
+    private String certificateUrl;
 
-  public void setType(String type) {
-    this.type = type;
-  }
+    private String url;
 
-  public String getVimId() {
-    return vimId;
-  }
+    private String userName;
 
-  public void setVimId(String vimId) {
-    this.vimId = vimId;
-  }
+    private String password;
 
-  public String getVendor() {
-    return vendor;
-  }
+    public String getVnfmId() {
+        return vnfmId;
+    }
 
-  public void setVendor(String vendor) {
-    this.vendor = vendor;
-  }
+    public void setVnfmId(String vnfmId) {
+        this.vnfmId = vnfmId;
+    }
 
-  public String getVersion() {
-    return version;
-  }
+    public String getName() {
+        return name;
+    }
 
-  public void setVersion(String version) {
-    this.version = version;
-  }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-  public String getCertificateUrl() {
-    return certificateUrl;
-  }
+    public String getType() {
+        return type;
+    }
 
-  public void setCertificateUrl(String certificateUrl) {
-    this.certificateUrl = certificateUrl;
-  }
+    public void setType(String type) {
+        this.type = type;
+    }
 
-  public String getUrl() {
-    return url;
-  }
+    public String getVimId() {
+        return vimId;
+    }
 
-  public void setUrl(String url) {
-    this.url = url;
-  }
+    public void setVimId(String vimId) {
+        this.vimId = vimId;
+    }
 
-  public String getUserName() {
-    return userName;
-  }
+    public String getVendor() {
+        return vendor;
+    }
 
-  public void setUserName(String userName) {
-    this.userName = userName;
-  }
+    public void setVendor(String vendor) {
+        this.vendor = vendor;
+    }
 
-  public String getPassword() {
-    return password;
-  }
+    public String getVersion() {
+        return version;
+    }
 
-  public void setPassword(String password) {
-    this.password = password;
-  }
-  
+    public void setVersion(String version) {
+        this.version = version;
+    }
+
+    public String getCertificateUrl() {
+        return certificateUrl;
+    }
+
+    public void setCertificateUrl(String certificateUrl) {
+        this.certificateUrl = certificateUrl;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
 }

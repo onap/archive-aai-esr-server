@@ -17,13 +17,12 @@ package org.onap.aai.esr.exception;
 
 import org.junit.Assert;
 import org.junit.Test;
-
 import javax.ws.rs.WebApplicationException;
 
 public class ExceptionUtilTest {
 
     @Test
-    public void testBuildExceptionResponse(){
+    public void testBuildExceptionResponse() {
         WebApplicationException exp = ExceptionUtil.buildExceptionResponse("Exception from JUnit");
         Assert.assertNotNull(exp);
         Assert.assertNotNull(exp.getResponse());

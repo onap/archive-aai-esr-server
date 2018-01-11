@@ -16,74 +16,74 @@
 package org.onap.aai.esr.entity.rest;
 
 public class FtpAddr {
-  
-  private String ftptype;
-  
-  private String ip;
-  
-  private String port;
-  
-  private String user;
 
-  private String password;
-  
-  private String remotepath;
-  
-  private Boolean passive;
+    private String ftptype;
 
-  public String getFtptype() {
-    return ftptype;
-  }
+    private String ip;
 
-  public void setFtptype(String ftptype) {
-    this.ftptype = ftptype;
-  }
+    private String port;
 
-  public String getIp() {
-    return ip;
-  }
+    private String user;
 
-  public void setIp(String ip) {
-    this.ip = ip;
-  }
+    private String password;
 
-  public String getPort() {
-    return port;
-  }
+    private String remotepath;
 
-  public void setPort(String port) {
-    this.port = port;
-  }
+    private Boolean passive;
 
-  public String getUser() {
-    return user;
-  }
+    public String getFtptype() {
+        return ftptype;
+    }
 
-  public void setUser(String user) {
-    this.user = user;
-  }
+    public void setFtptype(String ftptype) {
+        this.ftptype = ftptype;
+    }
 
-  public String getPassword() {
-    return password;
-  }
+    public String getIp() {
+        return ip;
+    }
 
-  public void setPassword(String password) {
-    this.password = password;
-  }
+    public void setIp(String ip) {
+        this.ip = ip;
+    }
 
-  public String getRemotepath() {
-    return remotepath;
-  }
+    public String getPort() {
+        return port;
+    }
 
-  public void setRemotepath(String remotepath) {
-    this.remotepath = remotepath;
-  }
+    public void setPort(String port) {
+        this.port = port;
+    }
 
-  public Boolean getPassive() {
-    return passive;
-  }
+    public String getUser() {
+        return user;
+    }
 
-  public void setPassive(Boolean passive) {
-    this.passive = passive;
-  }
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getRemotepath() {
+        return remotepath;
+    }
+
+    public void setRemotepath(String remotepath) {
+        this.remotepath = remotepath;
+    }
+
+    public Boolean getPassive() {
+        return passive;
+    }
+
+    public void setPassive(Boolean passive) {
+        this.passive = passive;
+    }
 }

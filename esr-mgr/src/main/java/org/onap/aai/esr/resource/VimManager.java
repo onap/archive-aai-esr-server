@@ -21,14 +21,12 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import io.swagger.annotations.SwaggerDefinition;
-
 import org.eclipse.jetty.http.HttpStatus;
 import org.onap.aai.esr.entity.rest.VimRegisterInfo;
 import org.onap.aai.esr.util.ExtsysUtil;
 import org.onap.aai.esr.wrapper.VimManagerWrapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -45,105 +43,103 @@ import javax.ws.rs.core.Response;
 @Api(tags = {" vim Management "})
 public class VimManager {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(VimManager.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(VimManager.class);
 
-  private static ExtsysUtil extsysUtil = new ExtsysUtil();
-  
-  /**
-   * query all VIM.
-   */
-  @GET
-  @ApiOperation(value = "get  all vim ")
-  @Produces(MediaType.APPLICATION_JSON)
-  @ApiResponses(value = {
-      @ApiResponse(code = HttpStatus.NOT_FOUND_404, message = "microservice not found",
-          response = String.class),
-      @ApiResponse(code = HttpStatus.UNSUPPORTED_MEDIA_TYPE_415,
-          message = "Unprocessable MicroServiceInfo Entity ", response = String.class),
-      @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
-          response = String.class)})
-  @Timed
-  public Response queryVimList() {
-    return VimManagerWrapper.getInstance().queryVimListDetails();
-  }
+    private static ExtsysUtil extsysUtil = new ExtsysUtil();
 
-  /**
-   * query vim by id.
-   */
-  @Path("/{cloudOwner}/{cloudRegionId}")
-  @GET
-  @ApiOperation(value = "get vim by id")
-  @Produces(MediaType.APPLICATION_JSON)
-  @ApiResponses(value = {
-      @ApiResponse(code = HttpStatus.NOT_FOUND_404, message = "microservice not found",
-          response = String.class),
-      @ApiResponse(code = HttpStatus.UNSUPPORTED_MEDIA_TYPE_415,
-          message = "Unprocessable MicroServiceInfo Entity ", response = String.class),
-      @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
-          response = String.class)})
-  @Timed
-  public Response queryVimById(@PathParam("cloudOwner") String cloudOwner, @PathParam("cloudRegionId") String cloudRegionId) {
-    LOGGER.info("start query vim by cloud owner and cloud region id." + cloudOwner +"," + cloudRegionId);
-    return VimManagerWrapper.getInstance().queryVimById(cloudOwner, cloudRegionId);
-  }
-  
-  /**
-   * delete vim by id.
-   */
-  @Path("/{cloudOwner}/{cloudRegionId}")
-  @DELETE
-  @ApiOperation(value = "delete a vim")
-  @ApiResponses(value = {
-      @ApiResponse(code = HttpStatus.NOT_FOUND_404, message = "microservice not found",
-          response = String.class),
-      @ApiResponse(code = HttpStatus.UNSUPPORTED_MEDIA_TYPE_415,
-          message = "Unprocessable MicroServiceInfo Entity ", response = String.class),
-      @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
-          response = String.class)})
-  @Timed
-  public Response delvim(@PathParam("cloudOwner") String cloudOwner,@PathParam("cloudRegionId") String cloudRegionId) {
-    LOGGER.info("start delete cloud-owner :" + cloudOwner +", cloud-region-id: " + cloudRegionId);
-    return VimManagerWrapper.getInstance().delVim(cloudOwner, cloudRegionId);
-  }
-  
-  /**
-   * update vim by id.
-   */
-  @PUT
-  @Path("/{cloudOwner}/{cloudRegionId}")
-  @Consumes(MediaType.APPLICATION_JSON)
-  @Produces(MediaType.APPLICATION_JSON)
-  @ApiOperation(value = "update a vim")
-  @ApiResponses(value = {
-      @ApiResponse(code = HttpStatus.NOT_FOUND_404, message = "microservice not found",
-          response = String.class),
-      @ApiResponse(code = HttpStatus.UNSUPPORTED_MEDIA_TYPE_415,
-          message = "Unprocessable MicroServiceInfo Entity ", response = String.class),
-      @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
-          response = String.class)})
-  @Timed
-  public Response updatevims(@PathParam("cloudOwner") String cloudOwner, @PathParam("cloudRegionId") String cloudRegionId, VimRegisterInfo vim) {
-    LOGGER.info("start update vim info:" + extsysUtil.objectToString(vim));
-    return VimManagerWrapper.getInstance().updateVim(cloudOwner, cloudRegionId, vim);
-  }
-  
-  /**
-   * register vim .
-   */
-  @POST
-  @Consumes(MediaType.APPLICATION_JSON)
-  @Produces({MediaType.TEXT_PLAIN, MediaType.APPLICATION_JSON})
-  @ApiOperation(value = "create a vim")
-  @ApiResponses(value = {
-      @ApiResponse(code = HttpStatus.NOT_FOUND_404, message = "microservice not found",
-          response = String.class),
-      @ApiResponse(code = HttpStatus.UNSUPPORTED_MEDIA_TYPE_415,
-          message = "Unprocessable MicroServiceInfo Entity ", response = String.class),
-      @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
-          response = String.class)})
-  @Timed
-  public Response registerVims(VimRegisterInfo vim) {
-    LOGGER.info("start add vim" + " info:" + extsysUtil.objectToString(vim));
-    return VimManagerWrapper.getInstance().registerVim(vim);
-  }
+    /**
+     * query all VIM.
+     */
+    @GET
+    @ApiOperation(value = "get  all vim ")
+    @Produces(MediaType.APPLICATION_JSON)
+    @ApiResponses(value = {
+            @ApiResponse(code = HttpStatus.NOT_FOUND_404, message = "microservice not found", response = String.class),
+            @ApiResponse(code = HttpStatus.UNSUPPORTED_MEDIA_TYPE_415,
+                    message = "Unprocessable MicroServiceInfo Entity ", response = String.class),
+            @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
+                    response = String.class)})
+    @Timed
+    public Response queryVimList() {
+        return VimManagerWrapper.getInstance().queryVimListDetails();
+    }
+
+    /**
+     * query vim by id.
+     */
+    @Path("/{cloudOwner}/{cloudRegionId}")
+    @GET
+    @ApiOperation(value = "get vim by id")
+    @Produces(MediaType.APPLICATION_JSON)
+    @ApiResponses(value = {
+            @ApiResponse(code = HttpStatus.NOT_FOUND_404, message = "microservice not found", response = String.class),
+            @ApiResponse(code = HttpStatus.UNSUPPORTED_MEDIA_TYPE_415,
+                    message = "Unprocessable MicroServiceInfo Entity ", response = String.class),
+            @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
+                    response = String.class)})
+    @Timed
+    public Response queryVimById(@PathParam("cloudOwner") String cloudOwner,
+            @PathParam("cloudRegionId") String cloudRegionId) {
+        LOGGER.info("start query vim by cloud owner and cloud region id." + cloudOwner + "," + cloudRegionId);
+        return VimManagerWrapper.getInstance().queryVimById(cloudOwner, cloudRegionId);
+    }
+
+    /**
+     * delete vim by id.
+     */
+    @Path("/{cloudOwner}/{cloudRegionId}")
+    @DELETE
+    @ApiOperation(value = "delete a vim")
+    @ApiResponses(value = {
+            @ApiResponse(code = HttpStatus.NOT_FOUND_404, message = "microservice not found", response = String.class),
+            @ApiResponse(code = HttpStatus.UNSUPPORTED_MEDIA_TYPE_415,
+                    message = "Unprocessable MicroServiceInfo Entity ", response = String.class),
+            @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
+                    response = String.class)})
+    @Timed
+    public Response delvim(@PathParam("cloudOwner") String cloudOwner,
+            @PathParam("cloudRegionId") String cloudRegionId) {
+        LOGGER.info("start delete cloud-owner :" + cloudOwner + ", cloud-region-id: " + cloudRegionId);
+        return VimManagerWrapper.getInstance().delVim(cloudOwner, cloudRegionId);
+    }
+
+    /**
+     * update vim by id.
+     */
+    @PUT
+    @Path("/{cloudOwner}/{cloudRegionId}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @ApiOperation(value = "update a vim")
+    @ApiResponses(value = {
+            @ApiResponse(code = HttpStatus.NOT_FOUND_404, message = "microservice not found", response = String.class),
+            @ApiResponse(code = HttpStatus.UNSUPPORTED_MEDIA_TYPE_415,
+                    message = "Unprocessable MicroServiceInfo Entity ", response = String.class),
+            @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
+                    response = String.class)})
+    @Timed
+    public Response updatevims(@PathParam("cloudOwner") String cloudOwner,
+            @PathParam("cloudRegionId") String cloudRegionId, VimRegisterInfo vim) {
+        LOGGER.info("start update vim info:" + extsysUtil.objectToString(vim));
+        return VimManagerWrapper.getInstance().updateVim(cloudOwner, cloudRegionId, vim);
+    }
+
+    /**
+     * register vim .
+     */
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces({MediaType.TEXT_PLAIN, MediaType.APPLICATION_JSON})
+    @ApiOperation(value = "create a vim")
+    @ApiResponses(value = {
+            @ApiResponse(code = HttpStatus.NOT_FOUND_404, message = "microservice not found", response = String.class),
+            @ApiResponse(code = HttpStatus.UNSUPPORTED_MEDIA_TYPE_415,
+                    message = "Unprocessable MicroServiceInfo Entity ", response = String.class),
+            @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
+                    response = String.class)})
+    @Timed
+    public Response registerVims(VimRegisterInfo vim) {
+        LOGGER.info("start add vim" + " info:" + extsysUtil.objectToString(vim));
+        return VimManagerWrapper.getInstance().registerVim(vim);
+    }
 }

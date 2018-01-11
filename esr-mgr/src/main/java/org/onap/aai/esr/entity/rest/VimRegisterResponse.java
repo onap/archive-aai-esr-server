@@ -16,25 +16,25 @@
 package org.onap.aai.esr.entity.rest;
 
 public class VimRegisterResponse {
-  
-  private String cloudOwner;
-  
-  private String cloudRegionId;
 
-  public String getCloudOwner() {
-    return cloudOwner;
-  }
+    private String cloudOwner;
 
-  public void setCloudOwner(String cloudOwner) {
-    this.cloudOwner = cloudOwner;
-  }
+    private String cloudRegionId;
 
-  public String getCloudRegionId() {
-    return cloudRegionId;
-  }
+    public String getCloudOwner() {
+        return cloudOwner;
+    }
 
-  public void setCloudRegionId(String cloudRegionId) {
-    this.cloudRegionId = cloudRegionId;
-  }
+    public void setCloudOwner(String cloudOwner) {
+        this.cloudOwner = cloudOwner;
+    }
+
+    public String getCloudRegionId() {
+        return cloudRegionId;
+    }
+
+    public void setCloudRegionId(String cloudRegionId) {
+        this.cloudRegionId = cloudRegionId;
+    }
 
 }

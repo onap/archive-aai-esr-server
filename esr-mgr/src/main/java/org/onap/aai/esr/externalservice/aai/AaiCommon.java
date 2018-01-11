@@ -17,13 +17,12 @@ package org.onap.aai.esr.externalservice.aai;
 
 public class AaiCommon {
 
-  private static String AAI_AUTHENTICATION_USER = "AAI";
-  private static String AAI_AUTHENTICATION_PAASWORD = "AAI";
-  
-  public static String getAuthenticationCredentials() {
-    String usernameAndPassword = AAI_AUTHENTICATION_USER + ":"
-        + AAI_AUTHENTICATION_PAASWORD;
-    return "Basic " + java.util.Base64.getEncoder().encodeToString(usernameAndPassword.getBytes());
-  }
-  
+    private static String AAI_AUTHENTICATION_USER = "AAI";
+    private static String AAI_AUTHENTICATION_PAASWORD = "AAI";
+
+    public static String getAuthenticationCredentials() {
+        String usernameAndPassword = AAI_AUTHENTICATION_USER + ":" + AAI_AUTHENTICATION_PAASWORD;
+        return "Basic " + java.util.Base64.getEncoder().encodeToString(usernameAndPassword.getBytes());
+    }
+
 }

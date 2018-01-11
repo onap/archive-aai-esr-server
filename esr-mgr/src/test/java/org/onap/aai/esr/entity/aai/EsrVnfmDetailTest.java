@@ -16,55 +16,53 @@
 package org.onap.aai.esr.entity.aai;
 
 import static org.junit.Assert.assertEquals;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import org.junit.Test;
 
 public class EsrVnfmDetailTest {
-  @Test
-  public void getterAndSetter4vnfmId(){
-      final String vnfmId = "vnfmId-test";
-      EsrVnfmDetail esrVnfm = new EsrVnfmDetail();
-      esrVnfm.setVnfmId(vnfmId);
-      assertEquals(esrVnfm.getVnfmId(), vnfmId);
-  }
-  
-  @Test
-  public void getterAndSetter4resourceVersion(){
-      final String resourceVersion = "resourceVersion-test";
-      EsrVnfmDetail esrVnfm = new EsrVnfmDetail();
-      esrVnfm.setResourceVersion(resourceVersion);
-      assertEquals(esrVnfm.getResourceVersion(), resourceVersion);
-  }
-  
-  @Test
-  public void getterAndSetter4vimId(){
-      final String vimId = "vimId-test";
-      EsrVnfmDetail esrVnfm = new EsrVnfmDetail();
-      esrVnfm.setVimId(vimId);
-      assertEquals(esrVnfm.getVimId(), vimId);
-  }
-  
-  @Test
-  public void getterAndSetter4certificateUrl(){
-      final String certificateUrl = "certificateUrl-test";
-      EsrVnfmDetail esrVnfm = new EsrVnfmDetail();
-      esrVnfm.setCertificateUrl(certificateUrl);
-      assertEquals(esrVnfm.getCertificateUrl(), certificateUrl);
-  }
-  
-  @Test
-  public void getterAndSetter4esrSystemInfoList(){
-    final EsrSystemInfoList esrSystemInfoList = new EsrSystemInfoList();
-    List<EsrSystemInfo> esrSystemInfo = new ArrayList<>();
-    EsrSystemInfo esrSystemInfoObj = new EsrSystemInfo();
-    esrSystemInfoObj.setEsrSystemInfoId("123");
-    esrSystemInfo.add(esrSystemInfoObj );
-    esrSystemInfoList.setEsrSystemInfo(esrSystemInfo);
-    EsrVnfmDetail esrVnfmDetail = new EsrVnfmDetail();
-    esrVnfmDetail.setEsrSystemInfoList(esrSystemInfoList);
-    assertEquals(esrVnfmDetail.getEsrSystemInfoList(), esrSystemInfoList);
-  }
+    @Test
+    public void getterAndSetter4vnfmId() {
+        final String vnfmId = "vnfmId-test";
+        EsrVnfmDetail esrVnfm = new EsrVnfmDetail();
+        esrVnfm.setVnfmId(vnfmId);
+        assertEquals(esrVnfm.getVnfmId(), vnfmId);
+    }
+
+    @Test
+    public void getterAndSetter4resourceVersion() {
+        final String resourceVersion = "resourceVersion-test";
+        EsrVnfmDetail esrVnfm = new EsrVnfmDetail();
+        esrVnfm.setResourceVersion(resourceVersion);
+        assertEquals(esrVnfm.getResourceVersion(), resourceVersion);
+    }
+
+    @Test
+    public void getterAndSetter4vimId() {
+        final String vimId = "vimId-test";
+        EsrVnfmDetail esrVnfm = new EsrVnfmDetail();
+        esrVnfm.setVimId(vimId);
+        assertEquals(esrVnfm.getVimId(), vimId);
+    }
+
+    @Test
+    public void getterAndSetter4certificateUrl() {
+        final String certificateUrl = "certificateUrl-test";
+        EsrVnfmDetail esrVnfm = new EsrVnfmDetail();
+        esrVnfm.setCertificateUrl(certificateUrl);
+        assertEquals(esrVnfm.getCertificateUrl(), certificateUrl);
+    }
+
+    @Test
+    public void getterAndSetter4esrSystemInfoList() {
+        final EsrSystemInfoList esrSystemInfoList = new EsrSystemInfoList();
+        List<EsrSystemInfo> esrSystemInfo = new ArrayList<>();
+        EsrSystemInfo esrSystemInfoObj = new EsrSystemInfo();
+        esrSystemInfoObj.setEsrSystemInfoId("123");
+        esrSystemInfo.add(esrSystemInfoObj);
+        esrSystemInfoList.setEsrSystemInfo(esrSystemInfo);
+        EsrVnfmDetail esrVnfmDetail = new EsrVnfmDetail();
+        esrVnfmDetail.setEsrSystemInfoList(esrSystemInfoList);
+        assertEquals(esrVnfmDetail.getEsrSystemInfoList(), esrSystemInfoList);
+    }
 }

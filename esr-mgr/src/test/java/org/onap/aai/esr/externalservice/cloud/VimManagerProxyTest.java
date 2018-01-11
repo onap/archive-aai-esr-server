@@ -32,7 +32,7 @@ public class VimManagerProxyTest {
     }
 
     @Test(expected = ExtsysException.class)
-    public void testUpdateVim() throws ExtsysException{
+    public void testUpdateVim() throws ExtsysException {
         Tenant tenant = new Tenant();
         tenant.setDefaultTenant("defaultTenant");
         Assert.assertEquals(tenant.getDefaultTenant(), "defaultTenant");

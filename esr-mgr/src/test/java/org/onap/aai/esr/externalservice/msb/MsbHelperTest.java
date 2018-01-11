@@ -35,17 +35,17 @@ public class MsbHelperTest {
     MicroServiceFullInfo serviceInfo;
 
     @Before
-    public void init(){
+    public void init() {
         MockitoAnnotations.initMocks(this);
         helper = new MsbHelper(client);
     }
 
     @Test
     public void testRegisterMsb() throws Exception {
-        Mockito.when(client.registerMicroServiceInfo(Mockito.any(MicroServiceInfo.class),
-                Mockito.anyBoolean())).thenReturn(serviceInfo);
+        Mockito.when(client.registerMicroServiceInfo(Mockito.any(MicroServiceInfo.class), Mockito.anyBoolean()))
+                .thenReturn(serviceInfo);
         helper.registerMsb();
-        Mockito.verify(client, Mockito.times(1)).
-                registerMicroServiceInfo(Mockito.any(MicroServiceInfo.class), Mockito.anyBoolean());
+        Mockito.verify(client, Mockito.times(1)).registerMicroServiceInfo(Mockito.any(MicroServiceInfo.class),
+                Mockito.anyBoolean());
     }
 }

@@ -20,104 +20,104 @@ import java.util.List;
 
 public class VimRegisterInfo {
 
-  private String cloudOwner;
+    private String cloudOwner;
 
-  private String cloudRegionId;
+    private String cloudRegionId;
 
-  private String cloudType;
+    private String cloudType;
 
-  private String cloudRegionVersion;
+    private String cloudRegionVersion;
 
-  private String ownerDefinedType;
+    private String ownerDefinedType;
 
-  private String cloudZone;
-  
-  private String complexName;
-  
-  private String cloudExtraInfo;
-  
-  private String status;
-  
-  private List<VimAuthInfo> vimAuthInfos;
+    private String cloudZone;
 
-  public String getCloudOwner() {
-    return cloudOwner;
-  }
+    private String complexName;
 
-  public void setCloudOwner(String cloudOwner) {
-    this.cloudOwner = cloudOwner;
-  }
+    private String cloudExtraInfo;
 
-  public String getCloudRegionId() {
-    return cloudRegionId;
-  }
+    private String status;
 
-  public void setCloudRegionId(String cloudRegionId) {
-    this.cloudRegionId = cloudRegionId;
-  }
+    private List<VimAuthInfo> vimAuthInfos;
 
-  public String getCloudType() {
-    return cloudType;
-  }
+    public String getCloudOwner() {
+        return cloudOwner;
+    }
 
-  public void setCloudType(String cloudType) {
-    this.cloudType = cloudType;
-  }
+    public void setCloudOwner(String cloudOwner) {
+        this.cloudOwner = cloudOwner;
+    }
 
-  public String getCloudRegionVersion() {
-    return cloudRegionVersion;
-  }
+    public String getCloudRegionId() {
+        return cloudRegionId;
+    }
 
-  public void setCloudRegionVersion(String cloudRegionVersion) {
-    this.cloudRegionVersion = cloudRegionVersion;
-  }
+    public void setCloudRegionId(String cloudRegionId) {
+        this.cloudRegionId = cloudRegionId;
+    }
 
-  public String getOwnerDefinedType() {
-    return ownerDefinedType;
-  }
+    public String getCloudType() {
+        return cloudType;
+    }
 
-  public void setOwnerDefinedType(String ownerDefinedType) {
-    this.ownerDefinedType = ownerDefinedType;
-  }
+    public void setCloudType(String cloudType) {
+        this.cloudType = cloudType;
+    }
 
-  public String getCloudZone() {
-    return cloudZone;
-  }
+    public String getCloudRegionVersion() {
+        return cloudRegionVersion;
+    }
 
-  public void setCloudZone(String cloudZone) {
-    this.cloudZone = cloudZone;
-  }
+    public void setCloudRegionVersion(String cloudRegionVersion) {
+        this.cloudRegionVersion = cloudRegionVersion;
+    }
 
-  public String getComplexName() {
-    return complexName;
-  }
+    public String getOwnerDefinedType() {
+        return ownerDefinedType;
+    }
 
-  public void setComplexName(String complexName) {
-    this.complexName = complexName;
-  }
+    public void setOwnerDefinedType(String ownerDefinedType) {
+        this.ownerDefinedType = ownerDefinedType;
+    }
 
-  public String getCloudExtraInfo() {
-    return cloudExtraInfo;
-  }
+    public String getCloudZone() {
+        return cloudZone;
+    }
 
-  public void setCloudExtraInfo(String cloudExtraInfo) {
-    this.cloudExtraInfo = cloudExtraInfo;
-  }
+    public void setCloudZone(String cloudZone) {
+        this.cloudZone = cloudZone;
+    }
 
-  public List<VimAuthInfo> getVimAuthInfos() {
-    return vimAuthInfos;
-  }
+    public String getComplexName() {
+        return complexName;
+    }
 
-  public void setVimAuthInfos(List<VimAuthInfo> vimAuthInfos) {
-    this.vimAuthInfos = vimAuthInfos;
-  }
+    public void setComplexName(String complexName) {
+        this.complexName = complexName;
+    }
 
-  public String getStatus() {
-    return status;
-  }
+    public String getCloudExtraInfo() {
+        return cloudExtraInfo;
+    }
 
-  public void setStatus(String status) {
-    this.status = status;
-  }
+    public void setCloudExtraInfo(String cloudExtraInfo) {
+        this.cloudExtraInfo = cloudExtraInfo;
+    }
+
+    public List<VimAuthInfo> getVimAuthInfos() {
+        return vimAuthInfos;
+    }
+
+    public void setVimAuthInfos(List<VimAuthInfo> vimAuthInfos) {
+        this.vimAuthInfos = vimAuthInfos;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
 }

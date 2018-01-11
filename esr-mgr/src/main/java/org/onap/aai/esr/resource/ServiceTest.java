@@ -20,11 +20,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-
 import org.eclipse.jetty.http.HttpStatus;
-
 import com.codahale.metrics.annotation.Timed;
-
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -34,18 +31,17 @@ import io.swagger.annotations.ApiResponses;
 @Api(tags = {" service test "})
 public class ServiceTest {
 
-  @GET
-  @ApiOperation(value = " service test ")
-  @Produces(MediaType.APPLICATION_JSON)
-  @ApiResponses(value = {
-      @ApiResponse(code = HttpStatus.NOT_FOUND_404, message = "microservice not found",
-          response = String.class),
-      @ApiResponse(code = HttpStatus.UNSUPPORTED_MEDIA_TYPE_415,
-          message = "Unprocessable MicroServiceInfo Entity ", response = String.class),
-      @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
-          response = String.class)})
-  @Timed
-  public Response queryEmsList() {
-    return Response.ok("hello world !").build();
-  }
+    @GET
+    @ApiOperation(value = " service test ")
+    @Produces(MediaType.APPLICATION_JSON)
+    @ApiResponses(value = {
+            @ApiResponse(code = HttpStatus.NOT_FOUND_404, message = "microservice not found", response = String.class),
+            @ApiResponse(code = HttpStatus.UNSUPPORTED_MEDIA_TYPE_415,
+                    message = "Unprocessable MicroServiceInfo Entity ", response = String.class),
+            @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
+                    response = String.class)})
+    @Timed
+    public Response queryEmsList() {
+        return Response.ok("hello world !").build();
+    }
 }

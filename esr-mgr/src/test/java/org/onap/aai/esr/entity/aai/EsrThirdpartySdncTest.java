@@ -16,39 +16,38 @@
 package org.onap.aai.esr.entity.aai;
 
 import static org.junit.Assert.assertEquals;
-
 import org.junit.Test;
 
 public class EsrThirdpartySdncTest {
-  @Test
-  public void getterAndSetter4thirdpartySdncId(){
-      final String thirdpartySdncId = "thirdpartySdncId-test";
-      EsrThirdpartySdnc esrThirdpartySdnc = new EsrThirdpartySdnc();
-      esrThirdpartySdnc.setThirdpartySdncId(thirdpartySdncId);
-      assertEquals(esrThirdpartySdnc.getThirdpartySdncId(), thirdpartySdncId);
-  }
-  
-  @Test
-  public void getterAndSetter4resourceVersion(){
-      final String resourceVersion = "resourceVersion-test";
-      EsrThirdpartySdnc esrThirdpartySdnc = new EsrThirdpartySdnc();
-      esrThirdpartySdnc.setResourceVersion(resourceVersion);
-      assertEquals(esrThirdpartySdnc.getResourceVersion(), resourceVersion);
-  }
-  
-  @Test
-  public void getterAndSetter4location(){
-      final String location = "location-test";
-      EsrThirdpartySdnc esrThirdpartySdnc = new EsrThirdpartySdnc();
-      esrThirdpartySdnc.setLocation(location);
-      assertEquals(esrThirdpartySdnc.getLocation(), location);
-  }
-  
-  @Test
-  public void getterAndSetter4productName(){
-      final String productName = "productName-test";
-      EsrThirdpartySdnc esrThirdpartySdnc = new EsrThirdpartySdnc();
-      esrThirdpartySdnc.setProductName(productName);
-      assertEquals(esrThirdpartySdnc.getProductName(), productName);
-  }
+    @Test
+    public void getterAndSetter4thirdpartySdncId() {
+        final String thirdpartySdncId = "thirdpartySdncId-test";
+        EsrThirdpartySdnc esrThirdpartySdnc = new EsrThirdpartySdnc();
+        esrThirdpartySdnc.setThirdpartySdncId(thirdpartySdncId);
+        assertEquals(esrThirdpartySdnc.getThirdpartySdncId(), thirdpartySdncId);
+    }
+
+    @Test
+    public void getterAndSetter4resourceVersion() {
+        final String resourceVersion = "resourceVersion-test";
+        EsrThirdpartySdnc esrThirdpartySdnc = new EsrThirdpartySdnc();
+        esrThirdpartySdnc.setResourceVersion(resourceVersion);
+        assertEquals(esrThirdpartySdnc.getResourceVersion(), resourceVersion);
+    }
+
+    @Test
+    public void getterAndSetter4location() {
+        final String location = "location-test";
+        EsrThirdpartySdnc esrThirdpartySdnc = new EsrThirdpartySdnc();
+        esrThirdpartySdnc.setLocation(location);
+        assertEquals(esrThirdpartySdnc.getLocation(), location);
+    }
+
+    @Test
+    public void getterAndSetter4productName() {
+        final String productName = "productName-test";
+        EsrThirdpartySdnc esrThirdpartySdnc = new EsrThirdpartySdnc();
+        esrThirdpartySdnc.setProductName(productName);
+        assertEquals(esrThirdpartySdnc.getProductName(), productName);
+    }
 }

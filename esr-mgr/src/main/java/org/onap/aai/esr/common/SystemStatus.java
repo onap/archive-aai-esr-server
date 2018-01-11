@@ -16,5 +16,5 @@
 package org.onap.aai.esr.common;
 
 public enum SystemStatus {
-  normal,abnormal
+    normal, abnormal
 }

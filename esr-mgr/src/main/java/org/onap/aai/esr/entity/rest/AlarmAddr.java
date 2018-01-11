@@ -17,43 +17,43 @@ package org.onap.aai.esr.entity.rest;
 
 public class AlarmAddr {
 
-  private String ip;
-  
-  private String port;
-  
-  private String user;
-  
-  private String password;
+    private String ip;
 
-  public String getIp() {
-    return ip;
-  }
+    private String port;
 
-  public void setIp(String ip) {
-    this.ip = ip;
-  }
+    private String user;
 
-  public String getPort() {
-    return port;
-  }
+    private String password;
 
-  public void setPort(String port) {
-    this.port = port;
-  }
+    public String getIp() {
+        return ip;
+    }
 
-  public String getUser() {
-    return user;
-  }
+    public void setIp(String ip) {
+        this.ip = ip;
+    }
 
-  public void setUser(String user) {
-    this.user = user;
-  }
+    public String getPort() {
+        return port;
+    }
 
-  public String getPassword() {
-    return password;
-  }
+    public void setPort(String port) {
+        this.port = port;
+    }
 
-  public void setPassword(String password) {
-    this.password = password;
-  }
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }

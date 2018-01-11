@@ -16,19 +16,18 @@
 package org.onap.aai.esr;
 
 import static org.junit.Assert.assertEquals;
-
 import org.junit.Test;
 import org.onap.aai.esr.common.Config;
 
 public class ExtsysAppTest {
-  static {
-    ExtsysAppConfiguration configuration = new ExtsysAppConfiguration();
-    Config.setConfigration(configuration);
-  }
-  
-  @Test
-  public void getName() throws Exception {
-    ExtsysApp app = new ExtsysApp();
-    assertEquals(app.getName(),"ONAP-ESR");
-  }
+    static {
+        ExtsysAppConfiguration configuration = new ExtsysAppConfiguration();
+        Config.setConfigration(configuration);
+    }
+
+    @Test
+    public void getName() throws Exception {
+        ExtsysApp app = new ExtsysApp();
+        assertEquals(app.getName(), "ONAP-ESR");
+    }
 }

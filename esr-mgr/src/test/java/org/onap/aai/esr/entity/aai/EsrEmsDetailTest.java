@@ -16,40 +16,38 @@
 package org.onap.aai.esr.entity.aai;
 
 import static org.junit.Assert.assertEquals;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import org.junit.Test;
 
 public class EsrEmsDetailTest {
 
-  @Test
-  public void getterAndSetter4emsId(){
-      final String emsId = "emsId-test";
-      EsrEmsDetail esrEmsDetail = new EsrEmsDetail();
-      esrEmsDetail.setEmsId(emsId);
-      assertEquals(esrEmsDetail.getEmsId(), emsId);
-  }
-  
-  @Test
-  public void getterAndSetter4resourceVersion(){
-      final String resourceVersion = "resourceVersion-test";
-      EsrEmsDetail esrEmsDetail = new EsrEmsDetail();
-      esrEmsDetail.setResourceVersion(resourceVersion);
-      assertEquals(esrEmsDetail.getResourceVersion(), resourceVersion);
-  }
-  
-  @Test
-  public void getterAndSetter4esrSystemInfoList(){
-    final EsrSystemInfoList esrSystemInfoList = new EsrSystemInfoList();
-    List<EsrSystemInfo> esrSystemInfo = new ArrayList<>();
-    EsrSystemInfo esrSystemInfoObj = new EsrSystemInfo();
-    esrSystemInfoObj.setEsrSystemInfoId("123");
-    esrSystemInfo.add(esrSystemInfoObj );
-    esrSystemInfoList.setEsrSystemInfo(esrSystemInfo);
-    EsrEmsDetail esrEmsDetail = new EsrEmsDetail();
-    esrEmsDetail.setEsrSystemInfoList(esrSystemInfoList);
-    assertEquals(esrEmsDetail.getEsrSystemInfoList(), esrSystemInfoList);
-  }
+    @Test
+    public void getterAndSetter4emsId() {
+        final String emsId = "emsId-test";
+        EsrEmsDetail esrEmsDetail = new EsrEmsDetail();
+        esrEmsDetail.setEmsId(emsId);
+        assertEquals(esrEmsDetail.getEmsId(), emsId);
+    }
+
+    @Test
+    public void getterAndSetter4resourceVersion() {
+        final String resourceVersion = "resourceVersion-test";
+        EsrEmsDetail esrEmsDetail = new EsrEmsDetail();
+        esrEmsDetail.setResourceVersion(resourceVersion);
+        assertEquals(esrEmsDetail.getResourceVersion(), resourceVersion);
+    }
+
+    @Test
+    public void getterAndSetter4esrSystemInfoList() {
+        final EsrSystemInfoList esrSystemInfoList = new EsrSystemInfoList();
+        List<EsrSystemInfo> esrSystemInfo = new ArrayList<>();
+        EsrSystemInfo esrSystemInfoObj = new EsrSystemInfo();
+        esrSystemInfoObj.setEsrSystemInfoId("123");
+        esrSystemInfo.add(esrSystemInfoObj);
+        esrSystemInfoList.setEsrSystemInfo(esrSystemInfo);
+        EsrEmsDetail esrEmsDetail = new EsrEmsDetail();
+        esrEmsDetail.setEsrSystemInfoList(esrSystemInfoList);
+        assertEquals(esrEmsDetail.getEsrSystemInfoList(), esrSystemInfoList);
+    }
 }

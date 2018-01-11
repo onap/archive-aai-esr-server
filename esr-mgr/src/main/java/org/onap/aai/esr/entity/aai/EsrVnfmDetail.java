@@ -16,66 +16,65 @@
 package org.onap.aai.esr.entity.aai;
 
 import java.io.Serializable;
-
 import com.google.gson.annotations.SerializedName;
 
 public class EsrVnfmDetail implements Serializable {
-  
-  public static final long serialVersionUID = 1L;
-  
-  @SerializedName("vnfm-id")
-  private String vnfmId;
-  
-  @SerializedName("vim-id")
-  private String vimId;
-  
-  @SerializedName("certificate-url")
-  private String certificateUrl;
-  
-  @SerializedName("resource-version")
-  private String resourceVersion;
-  
-  @SerializedName("esr-system-info-list")
-  private EsrSystemInfoList esrSystemInfoList;
 
-  public String getVnfmId() {
-    return vnfmId;
-  }
+    public static final long serialVersionUID = 1L;
 
-  public void setVnfmId(String vnfmId) {
-    this.vnfmId = vnfmId;
-  }
+    @SerializedName("vnfm-id")
+    private String vnfmId;
 
-  public String getVimId() {
-    return vimId;
-  }
+    @SerializedName("vim-id")
+    private String vimId;
 
-  public void setVimId(String vimId) {
-    this.vimId = vimId;
-  }
+    @SerializedName("certificate-url")
+    private String certificateUrl;
 
-  public String getCertificateUrl() {
-    return certificateUrl;
-  }
+    @SerializedName("resource-version")
+    private String resourceVersion;
 
-  public void setCertificateUrl(String certificateUrl) {
-    this.certificateUrl = certificateUrl;
-  }
+    @SerializedName("esr-system-info-list")
+    private EsrSystemInfoList esrSystemInfoList;
 
-  public EsrSystemInfoList getEsrSystemInfoList() {
-    return esrSystemInfoList;
-  }
+    public String getVnfmId() {
+        return vnfmId;
+    }
 
-  public void setEsrSystemInfoList(EsrSystemInfoList esrSystemInfoList) {
-    this.esrSystemInfoList = esrSystemInfoList;
-  }
+    public void setVnfmId(String vnfmId) {
+        this.vnfmId = vnfmId;
+    }
 
-  public String getResourceVersion() {
-    return resourceVersion;
-  }
+    public String getVimId() {
+        return vimId;
+    }
 
-  public void setResourceVersion(String resourceVersion) {
-    this.resourceVersion = resourceVersion;
-  }
+    public void setVimId(String vimId) {
+        this.vimId = vimId;
+    }
+
+    public String getCertificateUrl() {
+        return certificateUrl;
+    }
+
+    public void setCertificateUrl(String certificateUrl) {
+        this.certificateUrl = certificateUrl;
+    }
+
+    public EsrSystemInfoList getEsrSystemInfoList() {
+        return esrSystemInfoList;
+    }
+
+    public void setEsrSystemInfoList(EsrSystemInfoList esrSystemInfoList) {
+        this.esrSystemInfoList = esrSystemInfoList;
+    }
+
+    public String getResourceVersion() {
+        return resourceVersion;
+    }
+
+    public void setResourceVersion(String resourceVersion) {
+        this.resourceVersion = resourceVersion;
+    }
 
 }

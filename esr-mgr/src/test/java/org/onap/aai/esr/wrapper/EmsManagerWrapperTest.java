@@ -1,5 +1,5 @@
 /**
- * Copyright 2017 ZTE Corporation.
+ * Copyright 2018 ZTE Corporation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,22 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.onap.aai.esr.entity.aai;
+package org.onap.aai.esr.wrapper;
 
-import static org.junit.Assert.assertEquals;
-import java.util.ArrayList;
-import java.util.List;
+import org.junit.Before;
 import org.junit.Test;
+import org.onap.aai.esr.common.MsbConfig;
 
-public class EsrVnfmListTest {
+public class EmsManagerWrapperTest {
+    private static EmsManagerWrapper emsManagerWrapper;
+    static {
+        MsbConfig.setMsbServerAddr("http://127.0.0.1:80");
+    }
+
+    @Before
+    public void setUp() throws Exception {
+        emsManagerWrapper = EmsManagerWrapper.getInstance();
+    }
+
     @Test
-    public void getterAndSetter4EsrVnfmList() {
-        EsrVnfmList esrVnfmList = new EsrVnfmList();
-        List<EsrVnfm> esrVnfms = new ArrayList<>();
-        EsrVnfm esrVnfm = new EsrVnfm();
-        esrVnfm.setVnfmId("fadasf");
-        esrVnfms.add(esrVnfm);
-        esrVnfmList.setEsrVnfm(esrVnfms);
-        assertEquals(esrVnfmList.getEsrVnfm(), esrVnfms);
+    public void test_registerEms() {
+
     }
 }

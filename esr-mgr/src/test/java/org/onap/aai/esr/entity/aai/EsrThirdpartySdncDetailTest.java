@@ -16,55 +16,53 @@
 package org.onap.aai.esr.entity.aai;
 
 import static org.junit.Assert.assertEquals;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import org.junit.Test;
 
 public class EsrThirdpartySdncDetailTest {
-  @Test
-  public void getterAndSetter4thirdpartySdncId(){
-      final String thirdpartySdncId = "thirdpartySdncId-test";
-      EsrThirdpartySdncDetail esrThirdpartySdncDetail = new EsrThirdpartySdncDetail();
-      esrThirdpartySdncDetail.setThirdpartySdncId(thirdpartySdncId);
-      assertEquals(esrThirdpartySdncDetail.getThirdpartySdncId(), thirdpartySdncId);
-  }
-  
-  @Test
-  public void getterAndSetter4resourceVersion(){
-      final String resourceVersion = "resourceVersion-test";
-      EsrThirdpartySdncDetail esrThirdpartySdncDetail = new EsrThirdpartySdncDetail();
-      esrThirdpartySdncDetail.setResourceVersion(resourceVersion);
-      assertEquals(esrThirdpartySdncDetail.getResourceVersion(), resourceVersion);
-  }
-  
-  @Test
-  public void getterAndSetter4location(){
-      final String location = "location-test";
-      EsrThirdpartySdncDetail esrThirdpartySdncDetail = new EsrThirdpartySdncDetail();
-      esrThirdpartySdncDetail.setLocation(location);
-      assertEquals(esrThirdpartySdncDetail.getLocation(), location);
-  }
-  
-  @Test
-  public void getterAndSetter4productName(){
-      final String productName = "productName-test";
-      EsrThirdpartySdncDetail esrThirdpartySdncDetail = new EsrThirdpartySdncDetail();
-      esrThirdpartySdncDetail.setProductName(productName);
-      assertEquals(esrThirdpartySdncDetail.getProductName(), productName);
-  }
-  
-  @Test
-  public void getterAndSetter4esrSystemInfoList(){
-    final EsrSystemInfoList esrSystemInfoList = new EsrSystemInfoList();
-    List<EsrSystemInfo> esrSystemInfo = new ArrayList<>();
-    EsrSystemInfo esrSystemInfoObj = new EsrSystemInfo();
-    esrSystemInfoObj.setEsrSystemInfoId("123");
-    esrSystemInfo.add(esrSystemInfoObj );
-    esrSystemInfoList.setEsrSystemInfo(esrSystemInfo);
-    EsrThirdpartySdncDetail esrThirdpartySdncDetail = new EsrThirdpartySdncDetail();
-    esrThirdpartySdncDetail.setEsrSystemInfoList(esrSystemInfoList);
-    assertEquals(esrThirdpartySdncDetail.getEsrSystemInfoList(), esrSystemInfoList);
-  }
+    @Test
+    public void getterAndSetter4thirdpartySdncId() {
+        final String thirdpartySdncId = "thirdpartySdncId-test";
+        EsrThirdpartySdncDetail esrThirdpartySdncDetail = new EsrThirdpartySdncDetail();
+        esrThirdpartySdncDetail.setThirdpartySdncId(thirdpartySdncId);
+        assertEquals(esrThirdpartySdncDetail.getThirdpartySdncId(), thirdpartySdncId);
+    }
+
+    @Test
+    public void getterAndSetter4resourceVersion() {
+        final String resourceVersion = "resourceVersion-test";
+        EsrThirdpartySdncDetail esrThirdpartySdncDetail = new EsrThirdpartySdncDetail();
+        esrThirdpartySdncDetail.setResourceVersion(resourceVersion);
+        assertEquals(esrThirdpartySdncDetail.getResourceVersion(), resourceVersion);
+    }
+
+    @Test
+    public void getterAndSetter4location() {
+        final String location = "location-test";
+        EsrThirdpartySdncDetail esrThirdpartySdncDetail = new EsrThirdpartySdncDetail();
+        esrThirdpartySdncDetail.setLocation(location);
+        assertEquals(esrThirdpartySdncDetail.getLocation(), location);
+    }
+
+    @Test
+    public void getterAndSetter4productName() {
+        final String productName = "productName-test";
+        EsrThirdpartySdncDetail esrThirdpartySdncDetail = new EsrThirdpartySdncDetail();
+        esrThirdpartySdncDetail.setProductName(productName);
+        assertEquals(esrThirdpartySdncDetail.getProductName(), productName);
+    }
+
+    @Test
+    public void getterAndSetter4esrSystemInfoList() {
+        final EsrSystemInfoList esrSystemInfoList = new EsrSystemInfoList();
+        List<EsrSystemInfo> esrSystemInfo = new ArrayList<>();
+        EsrSystemInfo esrSystemInfoObj = new EsrSystemInfo();
+        esrSystemInfoObj.setEsrSystemInfoId("123");
+        esrSystemInfo.add(esrSystemInfoObj);
+        esrSystemInfoList.setEsrSystemInfo(esrSystemInfo);
+        EsrThirdpartySdncDetail esrThirdpartySdncDetail = new EsrThirdpartySdncDetail();
+        esrThirdpartySdncDetail.setEsrSystemInfoList(esrSystemInfoList);
+        assertEquals(esrThirdpartySdncDetail.getEsrSystemInfoList(), esrSystemInfoList);
+    }
 }

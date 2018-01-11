@@ -26,7 +26,7 @@ public class CloudRegionProxyTest {
     CloudRegionProxy proxy;
 
     @Before
-    public void init(){
+    public void init() {
         MsbConfig.setMsbServerAddr("http://msb-server");
         proxy = new CloudRegionProxy();
     }
@@ -43,12 +43,12 @@ public class CloudRegionProxyTest {
     }
 
     @Test(expected = ExtsysException.class)
-    public void testQueryVimList() throws ExtsysException{
+    public void testQueryVimList() throws ExtsysException {
         proxy.qureyVimList();
     }
 
     @Test(expected = ExtsysException.class)
-    public void testDeleteVim() throws ExtsysException{
+    public void testDeleteVim() throws ExtsysException {
         proxy.deleteVim("owner-1", "region-1", "version-1");
     }
 }

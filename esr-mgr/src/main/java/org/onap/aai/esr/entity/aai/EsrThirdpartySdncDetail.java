@@ -16,65 +16,64 @@
 package org.onap.aai.esr.entity.aai;
 
 import java.io.Serializable;
-
 import com.google.gson.annotations.SerializedName;
 
 public class EsrThirdpartySdncDetail implements Serializable {
 
-  public static final long serialVersionUID = 1L;
-  
-  @SerializedName("thirdparty-sdnc-id")
-  private String thirdpartySdncId;
-  
-  @SerializedName("location")
-  private String location;
-  
-  @SerializedName("product-name")
-  private String productName;
-  
-  @SerializedName("resource-version")
-  private String resourceVersion;
-  
-  @SerializedName("esr-system-info-list")
-  private EsrSystemInfoList esrSystemInfoList;
+    public static final long serialVersionUID = 1L;
 
-  public String getThirdpartySdncId() {
-    return thirdpartySdncId;
-  }
+    @SerializedName("thirdparty-sdnc-id")
+    private String thirdpartySdncId;
 
-  public void setThirdpartySdncId(String thirdpartySdncId) {
-    this.thirdpartySdncId = thirdpartySdncId;
-  }
+    @SerializedName("location")
+    private String location;
 
-  public String getLocation() {
-    return location;
-  }
+    @SerializedName("product-name")
+    private String productName;
 
-  public void setLocation(String location) {
-    this.location = location;
-  }
+    @SerializedName("resource-version")
+    private String resourceVersion;
 
-  public String getProductName() {
-    return productName;
-  }
+    @SerializedName("esr-system-info-list")
+    private EsrSystemInfoList esrSystemInfoList;
 
-  public void setProductName(String productName) {
-    this.productName = productName;
-  }
+    public String getThirdpartySdncId() {
+        return thirdpartySdncId;
+    }
 
-  public EsrSystemInfoList getEsrSystemInfoList() {
-    return esrSystemInfoList;
-  }
+    public void setThirdpartySdncId(String thirdpartySdncId) {
+        this.thirdpartySdncId = thirdpartySdncId;
+    }
 
-  public void setEsrSystemInfoList(EsrSystemInfoList esrSystemInfoList) {
-    this.esrSystemInfoList = esrSystemInfoList;
-  }
+    public String getLocation() {
+        return location;
+    }
 
-  public String getResourceVersion() {
-    return resourceVersion;
-  }
+    public void setLocation(String location) {
+        this.location = location;
+    }
 
-  public void setResourceVersion(String resourceVersion) {
-    this.resourceVersion = resourceVersion;
-  }
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public EsrSystemInfoList getEsrSystemInfoList() {
+        return esrSystemInfoList;
+    }
+
+    public void setEsrSystemInfoList(EsrSystemInfoList esrSystemInfoList) {
+        this.esrSystemInfoList = esrSystemInfoList;
+    }
+
+    public String getResourceVersion() {
+        return resourceVersion;
+    }
+
+    public void setResourceVersion(String resourceVersion) {
+        this.resourceVersion = resourceVersion;
+    }
 }

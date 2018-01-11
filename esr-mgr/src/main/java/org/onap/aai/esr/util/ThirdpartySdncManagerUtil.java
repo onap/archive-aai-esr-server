@@ -17,7 +17,6 @@ package org.onap.aai.esr.util;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.onap.aai.esr.common.SystemType;
 import org.onap.aai.esr.entity.aai.EsrSystemInfo;
 import org.onap.aai.esr.entity.aai.EsrSystemInfoList;
@@ -25,51 +24,51 @@ import org.onap.aai.esr.entity.aai.EsrThirdpartySdncDetail;
 import org.onap.aai.esr.entity.rest.ThirdpartySdncRegisterInfo;
 
 public class ThirdpartySdncManagerUtil {
-  private static ExtsysUtil extsysUtil = new ExtsysUtil();
-  
-  public EsrThirdpartySdncDetail sdncRegisterInfo2EsrSdnc(ThirdpartySdncRegisterInfo sdncRegisterInfo) {
-    EsrThirdpartySdncDetail esrThirdpartySdnc = new EsrThirdpartySdncDetail();
-    sdncRegisterInfo.setThirdpartySdncId(extsysUtil.generateId());
-    esrThirdpartySdnc.setThirdpartySdncId(sdncRegisterInfo.getThirdpartySdncId());
-    esrThirdpartySdnc.setLocation(sdncRegisterInfo.getLocation());
-    esrThirdpartySdnc.setProductName(sdncRegisterInfo.getProductName());
-    esrThirdpartySdnc.setEsrSystemInfoList(getEsrSystemInfoList(sdncRegisterInfo));
-    return esrThirdpartySdnc;
-  }
-  
-  private EsrSystemInfoList getEsrSystemInfoList(ThirdpartySdncRegisterInfo sdncRegisterInfo) {
-    EsrSystemInfoList esrSystemInfoList = new EsrSystemInfoList();
-    List<EsrSystemInfo> esrSystemInfo = new ArrayList<>();
-    EsrSystemInfo authInfo = new EsrSystemInfo();
-    authInfo.setEsrSystemInfoId(extsysUtil.generateId());
-    authInfo.setVersion(sdncRegisterInfo.getVersion());
-    authInfo.setSystemName(sdncRegisterInfo.getName());
-    authInfo.setServiceUrl(sdncRegisterInfo.getUrl());
-    authInfo.setVendor(sdncRegisterInfo.getVendor());
-    authInfo.setType(sdncRegisterInfo.getType());
-    authInfo.setUserName(sdncRegisterInfo.getUserName());
-    authInfo.setPassword(sdncRegisterInfo.getPassword());
-    authInfo.setProtocol(sdncRegisterInfo.getProtocol());
-    authInfo.setSystemType(SystemType.thirdparty_SDNC.toString());
-    esrSystemInfo.add(authInfo);
-    esrSystemInfoList.setEsrSystemInfo(esrSystemInfo);
-    return esrSystemInfoList;
-  }
+    private static ExtsysUtil extsysUtil = new ExtsysUtil();
 
-  public ThirdpartySdncRegisterInfo esrSdnc2SdncRegisterInfo(EsrThirdpartySdncDetail esrSdnc) {
-    ThirdpartySdncRegisterInfo registerSdncInfo = new ThirdpartySdncRegisterInfo();
-    EsrSystemInfo esrSystemInfo = esrSdnc.getEsrSystemInfoList().getEsrSystemInfo().get(0);
-    registerSdncInfo.setThirdpartySdncId(esrSdnc.getThirdpartySdncId());
-    registerSdncInfo.setLocation(esrSdnc.getLocation());
-    registerSdncInfo.setProductName(esrSdnc.getProductName());
-    registerSdncInfo.setName(esrSystemInfo.getSystemName());
-    registerSdncInfo.setPassword(esrSystemInfo.getPassword());
-    registerSdncInfo.setProtocol(esrSystemInfo.getProtocol());
-    registerSdncInfo.setType(esrSystemInfo.getType());
-    registerSdncInfo.setUrl(esrSystemInfo.getServiceUrl());
-    registerSdncInfo.setUserName(esrSystemInfo.getUserName());
-    registerSdncInfo.setVendor(esrSystemInfo.getVendor());
-    registerSdncInfo.setVersion(esrSystemInfo.getVersion());
-    return registerSdncInfo;
-  }
+    public EsrThirdpartySdncDetail sdncRegisterInfo2EsrSdnc(ThirdpartySdncRegisterInfo sdncRegisterInfo) {
+        EsrThirdpartySdncDetail esrThirdpartySdnc = new EsrThirdpartySdncDetail();
+        sdncRegisterInfo.setThirdpartySdncId(extsysUtil.generateId());
+        esrThirdpartySdnc.setThirdpartySdncId(sdncRegisterInfo.getThirdpartySdncId());
+        esrThirdpartySdnc.setLocation(sdncRegisterInfo.getLocation());
+        esrThirdpartySdnc.setProductName(sdncRegisterInfo.getProductName());
+        esrThirdpartySdnc.setEsrSystemInfoList(getEsrSystemInfoList(sdncRegisterInfo));
+        return esrThirdpartySdnc;
+    }
+
+    private EsrSystemInfoList getEsrSystemInfoList(ThirdpartySdncRegisterInfo sdncRegisterInfo) {
+        EsrSystemInfoList esrSystemInfoList = new EsrSystemInfoList();
+        List<EsrSystemInfo> esrSystemInfo = new ArrayList<>();
+        EsrSystemInfo authInfo = new EsrSystemInfo();
+        authInfo.setEsrSystemInfoId(extsysUtil.generateId());
+        authInfo.setVersion(sdncRegisterInfo.getVersion());
+        authInfo.setSystemName(sdncRegisterInfo.getName());
+        authInfo.setServiceUrl(sdncRegisterInfo.getUrl());
+        authInfo.setVendor(sdncRegisterInfo.getVendor());
+        authInfo.setType(sdncRegisterInfo.getType());
+        authInfo.setUserName(sdncRegisterInfo.getUserName());
+        authInfo.setPassword(sdncRegisterInfo.getPassword());
+        authInfo.setProtocol(sdncRegisterInfo.getProtocol());
+        authInfo.setSystemType(SystemType.thirdparty_SDNC.toString());
+        esrSystemInfo.add(authInfo);
+        esrSystemInfoList.setEsrSystemInfo(esrSystemInfo);
+        return esrSystemInfoList;
+    }
+
+    public ThirdpartySdncRegisterInfo esrSdnc2SdncRegisterInfo(EsrThirdpartySdncDetail esrSdnc) {
+        ThirdpartySdncRegisterInfo registerSdncInfo = new ThirdpartySdncRegisterInfo();
+        EsrSystemInfo esrSystemInfo = esrSdnc.getEsrSystemInfoList().getEsrSystemInfo().get(0);
+        registerSdncInfo.setThirdpartySdncId(esrSdnc.getThirdpartySdncId());
+        registerSdncInfo.setLocation(esrSdnc.getLocation());
+        registerSdncInfo.setProductName(esrSdnc.getProductName());
+        registerSdncInfo.setName(esrSystemInfo.getSystemName());
+        registerSdncInfo.setPassword(esrSystemInfo.getPassword());
+        registerSdncInfo.setProtocol(esrSystemInfo.getProtocol());
+        registerSdncInfo.setType(esrSystemInfo.getType());
+        registerSdncInfo.setUrl(esrSystemInfo.getServiceUrl());
+        registerSdncInfo.setUserName(esrSystemInfo.getUserName());
+        registerSdncInfo.setVendor(esrSystemInfo.getVendor());
+        registerSdncInfo.setVersion(esrSystemInfo.getVersion());
+        return registerSdncInfo;
+    }
 }

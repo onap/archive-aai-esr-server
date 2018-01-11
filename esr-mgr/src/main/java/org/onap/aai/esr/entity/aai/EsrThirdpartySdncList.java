@@ -17,21 +17,20 @@ package org.onap.aai.esr.entity.aai;
 
 import java.io.Serializable;
 import java.util.List;
-
 import com.google.gson.annotations.SerializedName;
 
 public class EsrThirdpartySdncList implements Serializable {
 
-  public static final long serialVersionUID = 1L;
-  
-  @SerializedName("esr-thirdparty-sdnc")
-  private List<EsrThirdpartySdnc> esrThirdpartySdnc;
+    public static final long serialVersionUID = 1L;
 
-  public List<EsrThirdpartySdnc> getEsrThirdpartySdnc() {
-    return esrThirdpartySdnc;
-  }
+    @SerializedName("esr-thirdparty-sdnc")
+    private List<EsrThirdpartySdnc> esrThirdpartySdnc;
 
-  public void setEsrThirdpartySdnc(List<EsrThirdpartySdnc> esrThirdpartySdnc) {
-    this.esrThirdpartySdnc = esrThirdpartySdnc;
-  }
+    public List<EsrThirdpartySdnc> getEsrThirdpartySdnc() {
+        return esrThirdpartySdnc;
+    }
+
+    public void setEsrThirdpartySdnc(List<EsrThirdpartySdnc> esrThirdpartySdnc) {
+        this.esrThirdpartySdnc = esrThirdpartySdnc;
+    }
 }

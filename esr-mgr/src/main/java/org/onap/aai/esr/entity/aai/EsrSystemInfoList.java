@@ -17,21 +17,20 @@ package org.onap.aai.esr.entity.aai;
 
 import java.io.Serializable;
 import java.util.List;
-
 import com.google.gson.annotations.SerializedName;
 
 public class EsrSystemInfoList implements Serializable {
 
-  public static final long serialVersionUID = 1L;
-  
-  @SerializedName("esr-system-info")
-  private List<EsrSystemInfo> esrSystemInfo;
+    public static final long serialVersionUID = 1L;
 
-  public List<EsrSystemInfo> getEsrSystemInfo() {
-    return esrSystemInfo;
-  }
+    @SerializedName("esr-system-info")
+    private List<EsrSystemInfo> esrSystemInfo;
 
-  public void setEsrSystemInfo(List<EsrSystemInfo> esrSystemInfo) {
-    this.esrSystemInfo = esrSystemInfo;
-  }
+    public List<EsrSystemInfo> getEsrSystemInfo() {
+        return esrSystemInfo;
+    }
+
+    public void setEsrSystemInfo(List<EsrSystemInfo> esrSystemInfo) {
+        this.esrSystemInfo = esrSystemInfo;
+    }
 }

@@ -22,7 +22,7 @@ import org.onap.aai.esr.ExtsysAppConfiguration;
 public class MsbConfigTest {
 
     @Test
-    public void testAllMethods(){
+    public void testAllMethods() {
         MsbConfig.setMsbServerAddr("msb-server");
         Assert.assertEquals(MsbConfig.getMsbServerAddr(), "msb-server");
 
@@ -46,7 +46,7 @@ public class MsbConfigTest {
     }
 
     @Test
-    public void testConfigClass(){
+    public void testConfigClass() {
         ExtsysAppConfiguration configur = new ExtsysAppConfiguration();
         Config.setConfigration(configur);
         Assert.assertEquals(Config.getConfigration(), configur);

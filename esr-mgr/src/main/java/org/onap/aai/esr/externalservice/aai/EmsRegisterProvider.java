@@ -19,40 +19,36 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
-
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.ext.MessageBodyWriter;
-
 import org.onap.aai.esr.entity.aai.EsrEmsDetail;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import com.google.gson.Gson;
 
-public class EmsRegisterProvider implements MessageBodyWriter<EsrEmsDetail>{
+public class EmsRegisterProvider implements MessageBodyWriter<EsrEmsDetail> {
 
-  private static final Logger logger = LoggerFactory.getLogger(EmsRegisterProvider.class);
+    private static final Logger logger = LoggerFactory.getLogger(EmsRegisterProvider.class);
 
-  @Override
-  public boolean isWriteable(Class<?> type, Type genericType, Annotation[] annotations,
-      MediaType mediaType) {
-    return EsrEmsDetail.class.isAssignableFrom(type);
-  }
+    @Override
+    public boolean isWriteable(Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType) {
+        return EsrEmsDetail.class.isAssignableFrom(type);
+    }
 
-  @Override
-  public long getSize(EsrEmsDetail t, Class<?> type, Type genericType,
-      Annotation[] annotations, MediaType mediaType) {
-    return -1;
-  }
+    @Override
+    public long getSize(EsrEmsDetail t, Class<?> type, Type genericType, Annotation[] annotations,
+            MediaType mediaType) {
+        return -1;
+    }
 
-  @Override
-  public void writeTo(EsrEmsDetail t, Class<?> type, Type genericType,
-      Annotation[] annotations, MediaType mediaType, MultivaluedMap<String, Object> httpHeaders,
-      OutputStream entityStream) throws IOException, WebApplicationException {
-    String json = new Gson().toJson(t, EsrEmsDetail.class);
-    logger.info("the param to register EMS input is:" + json);
-    entityStream.write(json.getBytes("UTF-8"));
-  }
+    @Override
+    public void writeTo(EsrEmsDetail t, Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType,
+            MultivaluedMap<String, Object> httpHeaders, OutputStream entityStream)
+            throws IOException, WebApplicationException {
+        String json = new Gson().toJson(t, EsrEmsDetail.class);
+        logger.info("the param to register EMS input is:" + json);
+        entityStream.write(json.getBytes("UTF-8"));
+    }
 }

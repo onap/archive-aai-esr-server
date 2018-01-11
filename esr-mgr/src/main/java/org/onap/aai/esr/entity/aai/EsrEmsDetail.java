@@ -16,43 +16,42 @@
 package org.onap.aai.esr.entity.aai;
 
 import java.io.Serializable;
-
 import com.google.gson.annotations.SerializedName;
 
 public class EsrEmsDetail implements Serializable {
 
-  public static final long serialVersionUID = 1L;
-  
-  @SerializedName("ems-id")
-  private String emsId;
-  
-  @SerializedName("resource-version")
-  private String resourceVersion;
-  
-  @SerializedName("esr-system-info-list")
-  private EsrSystemInfoList esrSystemInfoList;
+    public static final long serialVersionUID = 1L;
 
-  public String getEmsId() {
-    return emsId;
-  }
+    @SerializedName("ems-id")
+    private String emsId;
 
-  public void setEmsId(String emsId) {
-    this.emsId = emsId;
-  }
+    @SerializedName("resource-version")
+    private String resourceVersion;
 
-  public EsrSystemInfoList getEsrSystemInfoList() {
-    return esrSystemInfoList;
-  }
+    @SerializedName("esr-system-info-list")
+    private EsrSystemInfoList esrSystemInfoList;
 
-  public void setEsrSystemInfoList(EsrSystemInfoList esrSystemInfoList) {
-    this.esrSystemInfoList = esrSystemInfoList;
-  }
+    public String getEmsId() {
+        return emsId;
+    }
 
-  public String getResourceVersion() {
-    return resourceVersion;
-  }
+    public void setEmsId(String emsId) {
+        this.emsId = emsId;
+    }
 
-  public void setResourceVersion(String resourceVersion) {
-    this.resourceVersion = resourceVersion;
-  }
+    public EsrSystemInfoList getEsrSystemInfoList() {
+        return esrSystemInfoList;
+    }
+
+    public void setEsrSystemInfoList(EsrSystemInfoList esrSystemInfoList) {
+        this.esrSystemInfoList = esrSystemInfoList;
+    }
+
+    public String getResourceVersion() {
+        return resourceVersion;
+    }
+
+    public void setResourceVersion(String resourceVersion) {
+        this.resourceVersion = resourceVersion;
+    }
 }

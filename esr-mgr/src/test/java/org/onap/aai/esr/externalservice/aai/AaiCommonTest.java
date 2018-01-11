@@ -21,7 +21,7 @@ import org.junit.Test;
 public class AaiCommonTest {
 
     @Test
-    public void testGetAuthenticationCredentials(){
+    public void testGetAuthenticationCredentials() {
         String cred = AaiCommon.getAuthenticationCredentials();
         Assert.assertNotNull(cred);
         Assert.assertTrue(cred.contains("Basic"));

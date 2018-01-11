@@ -25,7 +25,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
-
 import org.onap.aai.esr.entity.aai.CloudRegionDetail;
 import org.onap.aai.esr.exception.ExtsysException;
 
@@ -33,41 +32,37 @@ import org.onap.aai.esr.exception.ExtsysException;
 @Path("/cloud-regions")
 public interface ICloudRegion {
 
-  @PUT
-  @Path("/cloud-region/{cloud_owner}/{cloud_region_id}")
-  @Consumes(MediaType.APPLICATION_JSON)
-  @Produces(MediaType.APPLICATION_JSON)
-  public void registerVIMService(@HeaderParam("X-TransactionId") String transactionId,
-      @HeaderParam("X-FromAppId") String fromApp,
-      @HeaderParam("Authorization") String authorization,
-      @PathParam("cloud_owner") String cloud_owner,
-      @PathParam("cloud_region_id") String cloud_region_id, CloudRegionDetail cloudRegion) throws ExtsysException;
+    @PUT
+    @Path("/cloud-region/{cloud_owner}/{cloud_region_id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public void registerVIMService(@HeaderParam("X-TransactionId") String transactionId,
+            @HeaderParam("X-FromAppId") String fromApp, @HeaderParam("Authorization") String authorization,
+            @PathParam("cloud_owner") String cloud_owner, @PathParam("cloud_region_id") String cloud_region_id,
+            CloudRegionDetail cloudRegion) throws ExtsysException;
 
-  @GET
-  @Path("/cloud-region/{cloud_owner}/{cloud_region_id}?depth=all")
-  @Consumes(MediaType.APPLICATION_JSON)
-  @Produces(MediaType.APPLICATION_JSON)
-  public String queryVIMDetail(@HeaderParam("X-TransactionId") String transactionId,
-      @HeaderParam("X-FromAppId") String fromApp,
-      @HeaderParam("Authorization") String authorization,
-      @PathParam("cloud_owner") String cloud_owner,
-      @PathParam("cloud_region_id") String cloud_region_id) throws ExtsysException;
-  
-  @GET
-  @Consumes(MediaType.APPLICATION_JSON)
-  @Produces(MediaType.APPLICATION_JSON)
-  public String queryVIMList(@HeaderParam("X-TransactionId") String transactionId,
-      @HeaderParam("X-FromAppId") String fromApp,
-      @HeaderParam("Authorization") String authorization) throws ExtsysException;
+    @GET
+    @Path("/cloud-region/{cloud_owner}/{cloud_region_id}?depth=all")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public String queryVIMDetail(@HeaderParam("X-TransactionId") String transactionId,
+            @HeaderParam("X-FromAppId") String fromApp, @HeaderParam("Authorization") String authorization,
+            @PathParam("cloud_owner") String cloud_owner, @PathParam("cloud_region_id") String cloud_region_id)
+            throws ExtsysException;
 
-  @DELETE
-  @Path("/cloud-region/{cloud_owner}/{cloud_region_id}")
-  @Consumes(MediaType.APPLICATION_JSON)
-  @Produces(MediaType.APPLICATION_JSON)
-  public void deleteVim(@HeaderParam("X-TransactionId") String transactionId,
-      @HeaderParam("X-FromAppId") String fromApp,
-      @HeaderParam("Authorization") String authorization,
-      @PathParam("cloud_owner") String cloud_owner,
-      @PathParam("cloud_region_id") String cloud_region_id,
-      @QueryParam("resource-version") String resourceVersion) throws ExtsysException;
+    @GET
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public String queryVIMList(@HeaderParam("X-TransactionId") String transactionId,
+            @HeaderParam("X-FromAppId") String fromApp, @HeaderParam("Authorization") String authorization)
+            throws ExtsysException;
+
+    @DELETE
+    @Path("/cloud-region/{cloud_owner}/{cloud_region_id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public void deleteVim(@HeaderParam("X-TransactionId") String transactionId,
+            @HeaderParam("X-FromAppId") String fromApp, @HeaderParam("Authorization") String authorization,
+            @PathParam("cloud_owner") String cloud_owner, @PathParam("cloud_region_id") String cloud_region_id,
+            @QueryParam("resource-version") String resourceVersion) throws ExtsysException;
 }

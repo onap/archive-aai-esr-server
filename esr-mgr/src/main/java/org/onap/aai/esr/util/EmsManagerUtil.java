@@ -17,7 +17,6 @@ package org.onap.aai.esr.util;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.onap.aai.esr.common.SystemType;
 import org.onap.aai.esr.entity.aai.EsrSystemInfo;
 import org.onap.aai.esr.entity.aai.EsrEmsDetail;
@@ -26,111 +25,112 @@ import org.onap.aai.esr.entity.rest.EmsRegisterInfo;
 import org.onap.aai.esr.entity.rest.FtpAddr;
 
 public class EmsManagerUtil {
-  private static ExtsysUtil extsysUtil = new ExtsysUtil();
-  
-  public EsrEmsDetail emsRegisterInfo2EsrEms(EmsRegisterInfo emsRegisterInfo) {
-    EsrEmsDetail esrEms = new EsrEmsDetail();
-    esrEms.setEmsId(extsysUtil.generateId());
-     List<EsrSystemInfo> authInfos = getAuthInfosFromRegisterData(emsRegisterInfo);
-    esrEms.setEsrSystemInfoList(extsysUtil.getEsrSystemInfoListFromAuthInfoList(authInfos));
-    return esrEms;
-  }
+    private static ExtsysUtil extsysUtil = new ExtsysUtil();
 
-  private List<EsrSystemInfo> getAuthInfosFromRegisterData(EmsRegisterInfo emsRegisterInfo) {
-    List<EsrSystemInfo> authInfos = new ArrayList<>();
-    EsrSystemInfo resouceAuthInfo = getAuthInfoFromFtpAddr(emsRegisterInfo, SystemType.EMS_RESOUCE.toString());
-    EsrSystemInfo performanceAuthInfo = getAuthInfoFromFtpAddr(emsRegisterInfo, SystemType.EMS_PERFORMANCE.toString());
-    EsrSystemInfo alarmAuthInfo = getAuthInfoFromAlarmAddr(emsRegisterInfo);
-    authInfos.add(resouceAuthInfo);
-    authInfos.add(performanceAuthInfo);
-    authInfos.add(alarmAuthInfo);
-    return authInfos;
-  }
-  
-  private EsrSystemInfo getAuthInfoFromFtpAddr(EmsRegisterInfo emsRegisterInfo, String systemType) {
-    EsrSystemInfo authInfo = new EsrSystemInfo();
-    FtpAddr ftpAddr = new FtpAddr();
-    if(systemType.equals(SystemType.EMS_RESOUCE.toString())) {
-      ftpAddr = emsRegisterInfo.getResourceAddr();
-    } else if(systemType.equals(SystemType.EMS_PERFORMANCE.toString())) {
-      ftpAddr = emsRegisterInfo.getPerformanceAddr();
+    public EsrEmsDetail emsRegisterInfo2EsrEms(EmsRegisterInfo emsRegisterInfo) {
+        EsrEmsDetail esrEms = new EsrEmsDetail();
+        esrEms.setEmsId(extsysUtil.generateId());
+        List<EsrSystemInfo> authInfos = getAuthInfosFromRegisterData(emsRegisterInfo);
+        esrEms.setEsrSystemInfoList(extsysUtil.getEsrSystemInfoListFromAuthInfoList(authInfos));
+        return esrEms;
     }
-    authInfo.setType(ftpAddr.getFtptype());
-    authInfo.setIpAddress(ftpAddr.getIp());
-    authInfo.setPort(ftpAddr.getPort());
-    authInfo.setUserName(ftpAddr.getUser());
-    authInfo.setPassword(ftpAddr.getPassword());
-    authInfo.setRemotePath(ftpAddr.getRemotepath());
-    authInfo.setPassive(ftpAddr.getPassive());
-    authInfo.setEsrSystemInfoId(extsysUtil.generateId());
-    authInfo.setSystemType(systemType);
-    authInfo.setSystemName(emsRegisterInfo.getName());
-    authInfo.setVendor(emsRegisterInfo.getVendor());
-    authInfo.setVersion(emsRegisterInfo.getVersion());
-    return authInfo;
-  }
-  
-  private EsrSystemInfo getAuthInfoFromAlarmAddr(EmsRegisterInfo emsRegisterInfo) {
-    EsrSystemInfo authInfo = new EsrSystemInfo();
-    AlarmAddr alarmAddr = emsRegisterInfo.getAlarmAddr();
-    authInfo.setEsrSystemInfoId(extsysUtil.generateId());
-    authInfo.setIpAddress(alarmAddr.getIp());
-    authInfo.setPort(alarmAddr.getPort());
-    authInfo.setUserName(alarmAddr.getUser());
-    authInfo.setPassword(alarmAddr.getPassword());
-    authInfo.setSystemType(SystemType.EMS_ALARM.toString());
-    authInfo.setSystemName(emsRegisterInfo.getName());
-    authInfo.setVendor(emsRegisterInfo.getVendor());
-    authInfo.setVersion(emsRegisterInfo.getVersion());
-    return authInfo;
-  }
-  
-  public EmsRegisterInfo EsrEms2EmsRegisterInfo(EsrEmsDetail esrEms) {
-    EmsRegisterInfo emsRegisterInfo = new EmsRegisterInfo();
-    EsrSystemInfo authInfo = new EsrSystemInfo();
-    List<EsrSystemInfo> esrSystemInfo = esrEms.getEsrSystemInfoList().getEsrSystemInfo();
-    emsRegisterInfo.setEmsId(esrEms.getEmsId());
-    
-    for(int i=0; i<esrSystemInfo.size(); i++) {
-      authInfo = esrSystemInfo.get(i);
-      if(authInfo.getSystemType().equals(SystemType.EMS_RESOUCE.toString())){
-        FtpAddr resourceAddr = new FtpAddr();
-        resourceAddr = getFtpAddrFromAuthInfo(authInfo);
-        emsRegisterInfo.setResourceAddr(resourceAddr);
-      } else if(authInfo.getSystemType().equals(SystemType.EMS_PERFORMANCE.toString())) {
-        FtpAddr performanceAddr = new FtpAddr();
-        performanceAddr = getFtpAddrFromAuthInfo(authInfo);
-        emsRegisterInfo.setPerformanceAddr(performanceAddr);
-      } else if(authInfo.getSystemType().equals(SystemType.EMS_ALARM.toString())) {
+
+    private List<EsrSystemInfo> getAuthInfosFromRegisterData(EmsRegisterInfo emsRegisterInfo) {
+        List<EsrSystemInfo> authInfos = new ArrayList<>();
+        EsrSystemInfo resouceAuthInfo = getAuthInfoFromFtpAddr(emsRegisterInfo, SystemType.EMS_RESOUCE.toString());
+        EsrSystemInfo performanceAuthInfo =
+                getAuthInfoFromFtpAddr(emsRegisterInfo, SystemType.EMS_PERFORMANCE.toString());
+        EsrSystemInfo alarmAuthInfo = getAuthInfoFromAlarmAddr(emsRegisterInfo);
+        authInfos.add(resouceAuthInfo);
+        authInfos.add(performanceAuthInfo);
+        authInfos.add(alarmAuthInfo);
+        return authInfos;
+    }
+
+    private EsrSystemInfo getAuthInfoFromFtpAddr(EmsRegisterInfo emsRegisterInfo, String systemType) {
+        EsrSystemInfo authInfo = new EsrSystemInfo();
+        FtpAddr ftpAddr = new FtpAddr();
+        if (systemType.equals(SystemType.EMS_RESOUCE.toString())) {
+            ftpAddr = emsRegisterInfo.getResourceAddr();
+        } else if (systemType.equals(SystemType.EMS_PERFORMANCE.toString())) {
+            ftpAddr = emsRegisterInfo.getPerformanceAddr();
+        }
+        authInfo.setType(ftpAddr.getFtptype());
+        authInfo.setIpAddress(ftpAddr.getIp());
+        authInfo.setPort(ftpAddr.getPort());
+        authInfo.setUserName(ftpAddr.getUser());
+        authInfo.setPassword(ftpAddr.getPassword());
+        authInfo.setRemotePath(ftpAddr.getRemotepath());
+        authInfo.setPassive(ftpAddr.getPassive());
+        authInfo.setEsrSystemInfoId(extsysUtil.generateId());
+        authInfo.setSystemType(systemType);
+        authInfo.setSystemName(emsRegisterInfo.getName());
+        authInfo.setVendor(emsRegisterInfo.getVendor());
+        authInfo.setVersion(emsRegisterInfo.getVersion());
+        return authInfo;
+    }
+
+    private EsrSystemInfo getAuthInfoFromAlarmAddr(EmsRegisterInfo emsRegisterInfo) {
+        EsrSystemInfo authInfo = new EsrSystemInfo();
+        AlarmAddr alarmAddr = emsRegisterInfo.getAlarmAddr();
+        authInfo.setEsrSystemInfoId(extsysUtil.generateId());
+        authInfo.setIpAddress(alarmAddr.getIp());
+        authInfo.setPort(alarmAddr.getPort());
+        authInfo.setUserName(alarmAddr.getUser());
+        authInfo.setPassword(alarmAddr.getPassword());
+        authInfo.setSystemType(SystemType.EMS_ALARM.toString());
+        authInfo.setSystemName(emsRegisterInfo.getName());
+        authInfo.setVendor(emsRegisterInfo.getVendor());
+        authInfo.setVersion(emsRegisterInfo.getVersion());
+        return authInfo;
+    }
+
+    public EmsRegisterInfo EsrEms2EmsRegisterInfo(EsrEmsDetail esrEms) {
+        EmsRegisterInfo emsRegisterInfo = new EmsRegisterInfo();
+        EsrSystemInfo authInfo = new EsrSystemInfo();
+        List<EsrSystemInfo> esrSystemInfo = esrEms.getEsrSystemInfoList().getEsrSystemInfo();
+        emsRegisterInfo.setEmsId(esrEms.getEmsId());
+
+        for (int i = 0; i < esrSystemInfo.size(); i++) {
+            authInfo = esrSystemInfo.get(i);
+            if (authInfo.getSystemType().equals(SystemType.EMS_RESOUCE.toString())) {
+                FtpAddr resourceAddr = new FtpAddr();
+                resourceAddr = getFtpAddrFromAuthInfo(authInfo);
+                emsRegisterInfo.setResourceAddr(resourceAddr);
+            } else if (authInfo.getSystemType().equals(SystemType.EMS_PERFORMANCE.toString())) {
+                FtpAddr performanceAddr = new FtpAddr();
+                performanceAddr = getFtpAddrFromAuthInfo(authInfo);
+                emsRegisterInfo.setPerformanceAddr(performanceAddr);
+            } else if (authInfo.getSystemType().equals(SystemType.EMS_ALARM.toString())) {
+                AlarmAddr alarmAddr = new AlarmAddr();
+                alarmAddr = getAlarmAddrFromAuthInfo(authInfo);
+                emsRegisterInfo.setAlarmAddr(alarmAddr);
+            }
+        }
+        emsRegisterInfo.setName(authInfo.getSystemName());
+        emsRegisterInfo.setVendor(authInfo.getVendor());
+        emsRegisterInfo.setVersion(authInfo.getVersion());
+        return emsRegisterInfo;
+    }
+
+    private FtpAddr getFtpAddrFromAuthInfo(EsrSystemInfo authInfo) {
+        FtpAddr ftpAddr = new FtpAddr();
+        ftpAddr.setFtptype(authInfo.getType());
+        ftpAddr.setIp(authInfo.getIpAddress());
+        ftpAddr.setPassive(authInfo.getPassive());
+        ftpAddr.setPassword(authInfo.getPassword());
+        ftpAddr.setPort(authInfo.getPort());
+        ftpAddr.setRemotepath(authInfo.getRemotePath());
+        ftpAddr.setUser(authInfo.getUserName());
+        return ftpAddr;
+    }
+
+    private AlarmAddr getAlarmAddrFromAuthInfo(EsrSystemInfo authInfo) {
         AlarmAddr alarmAddr = new AlarmAddr();
-        alarmAddr = getAlarmAddrFromAuthInfo(authInfo);
-        emsRegisterInfo.setAlarmAddr(alarmAddr);
-      }
+        alarmAddr.setIp(authInfo.getIpAddress());
+        alarmAddr.setPassword(authInfo.getPassword());
+        alarmAddr.setPort(authInfo.getPort());
+        alarmAddr.setUser(authInfo.getUserName());
+        return alarmAddr;
     }
-    emsRegisterInfo.setName(authInfo.getSystemName());
-    emsRegisterInfo.setVendor(authInfo.getVendor());
-    emsRegisterInfo.setVersion(authInfo.getVersion());
-    return emsRegisterInfo;
-  }
-  
-  private FtpAddr getFtpAddrFromAuthInfo(EsrSystemInfo authInfo) {
-    FtpAddr ftpAddr = new FtpAddr();
-    ftpAddr.setFtptype(authInfo.getType());
-    ftpAddr.setIp(authInfo.getIpAddress());
-    ftpAddr.setPassive(authInfo.getPassive());
-    ftpAddr.setPassword(authInfo.getPassword());
-    ftpAddr.setPort(authInfo.getPort());
-    ftpAddr.setRemotepath(authInfo.getRemotePath());
-    ftpAddr.setUser(authInfo.getUserName());
-    return ftpAddr;
-  }
-  
-  private AlarmAddr getAlarmAddrFromAuthInfo(EsrSystemInfo authInfo) {
-    AlarmAddr alarmAddr = new AlarmAddr();
-    alarmAddr.setIp(authInfo.getIpAddress());
-    alarmAddr.setPassword(authInfo.getPassword());
-    alarmAddr.setPort(authInfo.getPort());
-    alarmAddr.setUser(authInfo.getUserName());
-    return alarmAddr;
-  }
 }

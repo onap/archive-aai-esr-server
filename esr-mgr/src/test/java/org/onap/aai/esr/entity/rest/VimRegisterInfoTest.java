@@ -16,91 +16,89 @@
 package org.onap.aai.esr.entity.rest;
 
 import static org.junit.Assert.assertEquals;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import org.junit.Test;
 
 public class VimRegisterInfoTest {
-  @Test
-  public void getterAndSetter4cloudOwner(){
-      final String cloudOwner = "zte";
-      VimRegisterInfo vimRegisterInfo = new VimRegisterInfo();
-      vimRegisterInfo.setCloudOwner(cloudOwner);
-      assertEquals(vimRegisterInfo.getCloudOwner(), cloudOwner);
-  }
-  
-  @Test
-  public void getterAndSetter4cloudRegionId(){
-      final String cloudRegionId = "region-one";
-      VimRegisterInfo vimRegisterInfo = new VimRegisterInfo();
-      vimRegisterInfo.setCloudRegionId(cloudRegionId);
-      assertEquals(vimRegisterInfo.getCloudRegionId(), cloudRegionId);
-  }
-  
-  @Test
-  public void getterAndSetter4cloudType(){
-      final String cloudType = "openstack";
-      VimRegisterInfo vimRegisterInfo = new VimRegisterInfo();
-      vimRegisterInfo.setCloudType(cloudType);
-      assertEquals(vimRegisterInfo.getCloudType(), cloudType);
-  }
-  
-  @Test
-  public void getterAndSetter4cloudRegionVersion(){
-      final String cloudRegionVersion = "v1.0";
-      VimRegisterInfo vimRegisterInfo = new VimRegisterInfo();
-      vimRegisterInfo.setCloudRegionVersion(cloudRegionVersion);
-      assertEquals(vimRegisterInfo.getCloudRegionVersion(), cloudRegionVersion);
-  }
-  
-  @Test
-  public void getterAndSetter4ownerDefinedType(){
-      final String ownerDefinedType = "test";
-      VimRegisterInfo vimRegisterInfo = new VimRegisterInfo();
-      vimRegisterInfo.setOwnerDefinedType(ownerDefinedType);
-      assertEquals(vimRegisterInfo.getOwnerDefinedType(), ownerDefinedType);
-  }
-  
-  @Test
-  public void getterAndSetter4cloudZone(){
-      final String cloudZone = "zone1";
-      VimRegisterInfo vimRegisterInfo = new VimRegisterInfo();
-      vimRegisterInfo.setCloudZone(cloudZone);
-      assertEquals(vimRegisterInfo.getCloudZone(), cloudZone);
-  }
-  
-  @Test
-  public void getterAndSetter4complexName(){
-      final String complexName = "test";
-      VimRegisterInfo vimRegisterInfo = new VimRegisterInfo();
-      vimRegisterInfo.setComplexName(complexName);
-      assertEquals(vimRegisterInfo.getComplexName(), complexName);
-  }
-  
-  @Test
-  public void getterAndSetter4cloudExtraInfo(){
-      final String cloudExtraInfo = "test";
-      VimRegisterInfo vimRegisterInfo = new VimRegisterInfo();
-      vimRegisterInfo.setCloudExtraInfo(cloudExtraInfo);
-      assertEquals(vimRegisterInfo.getCloudExtraInfo(), cloudExtraInfo);
-  }
-  
-  @Test
-  public void getterAndSetter4status(){
-      final String status = "normal";
-      VimRegisterInfo vimRegisterInfo = new VimRegisterInfo();
-      vimRegisterInfo.setStatus(status);
-      assertEquals(vimRegisterInfo.getStatus(), status);
-  }
-  
-  @Test
-  public void getterAndSetter4vimAuthInfos(){
-      final List<VimAuthInfo> vimAuthInfos = new ArrayList<>();
-      VimRegisterInfo vimRegisterInfo = new VimRegisterInfo();
-      vimRegisterInfo.setVimAuthInfos(vimAuthInfos);
-      assertEquals(vimRegisterInfo.getVimAuthInfos(), vimAuthInfos);
-  }
-  
+    @Test
+    public void getterAndSetter4cloudOwner() {
+        final String cloudOwner = "zte";
+        VimRegisterInfo vimRegisterInfo = new VimRegisterInfo();
+        vimRegisterInfo.setCloudOwner(cloudOwner);
+        assertEquals(vimRegisterInfo.getCloudOwner(), cloudOwner);
+    }
+
+    @Test
+    public void getterAndSetter4cloudRegionId() {
+        final String cloudRegionId = "region-one";
+        VimRegisterInfo vimRegisterInfo = new VimRegisterInfo();
+        vimRegisterInfo.setCloudRegionId(cloudRegionId);
+        assertEquals(vimRegisterInfo.getCloudRegionId(), cloudRegionId);
+    }
+
+    @Test
+    public void getterAndSetter4cloudType() {
+        final String cloudType = "openstack";
+        VimRegisterInfo vimRegisterInfo = new VimRegisterInfo();
+        vimRegisterInfo.setCloudType(cloudType);
+        assertEquals(vimRegisterInfo.getCloudType(), cloudType);
+    }
+
+    @Test
+    public void getterAndSetter4cloudRegionVersion() {
+        final String cloudRegionVersion = "v1.0";
+        VimRegisterInfo vimRegisterInfo = new VimRegisterInfo();
+        vimRegisterInfo.setCloudRegionVersion(cloudRegionVersion);
+        assertEquals(vimRegisterInfo.getCloudRegionVersion(), cloudRegionVersion);
+    }
+
+    @Test
+    public void getterAndSetter4ownerDefinedType() {
+        final String ownerDefinedType = "test";
+        VimRegisterInfo vimRegisterInfo = new VimRegisterInfo();
+        vimRegisterInfo.setOwnerDefinedType(ownerDefinedType);
+        assertEquals(vimRegisterInfo.getOwnerDefinedType(), ownerDefinedType);
+    }
+
+    @Test
+    public void getterAndSetter4cloudZone() {
+        final String cloudZone = "zone1";
+        VimRegisterInfo vimRegisterInfo = new VimRegisterInfo();
+        vimRegisterInfo.setCloudZone(cloudZone);
+        assertEquals(vimRegisterInfo.getCloudZone(), cloudZone);
+    }
+
+    @Test
+    public void getterAndSetter4complexName() {
+        final String complexName = "test";
+        VimRegisterInfo vimRegisterInfo = new VimRegisterInfo();
+        vimRegisterInfo.setComplexName(complexName);
+        assertEquals(vimRegisterInfo.getComplexName(), complexName);
+    }
+
+    @Test
+    public void getterAndSetter4cloudExtraInfo() {
+        final String cloudExtraInfo = "test";
+        VimRegisterInfo vimRegisterInfo = new VimRegisterInfo();
+        vimRegisterInfo.setCloudExtraInfo(cloudExtraInfo);
+        assertEquals(vimRegisterInfo.getCloudExtraInfo(), cloudExtraInfo);
+    }
+
+    @Test
+    public void getterAndSetter4status() {
+        final String status = "normal";
+        VimRegisterInfo vimRegisterInfo = new VimRegisterInfo();
+        vimRegisterInfo.setStatus(status);
+        assertEquals(vimRegisterInfo.getStatus(), status);
+    }
+
+    @Test
+    public void getterAndSetter4vimAuthInfos() {
+        final List<VimAuthInfo> vimAuthInfos = new ArrayList<>();
+        VimRegisterInfo vimRegisterInfo = new VimRegisterInfo();
+        vimRegisterInfo.setVimAuthInfos(vimAuthInfos);
+        assertEquals(vimRegisterInfo.getVimAuthInfos(), vimAuthInfos);
+    }
+
 }

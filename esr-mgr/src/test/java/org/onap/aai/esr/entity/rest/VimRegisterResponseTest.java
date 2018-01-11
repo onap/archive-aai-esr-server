@@ -16,24 +16,23 @@
 package org.onap.aai.esr.entity.rest;
 
 import static org.junit.Assert.assertEquals;
-
 import org.junit.Test;
 
 public class VimRegisterResponseTest {
 
-  @Test
-  public void getterAndSetter4cloudOwner(){
-      final String cloudOwner = "zte";
-      VimRegisterResponse vimRegisterResponse = new VimRegisterResponse();
-      vimRegisterResponse.setCloudOwner(cloudOwner);
-      assertEquals(vimRegisterResponse.getCloudOwner(), cloudOwner);
-  }
-  
-  @Test
-  public void getterAndSetter4cloudRegionId(){
-      final String cloudRegionId = "region-one";
-      VimRegisterResponse vimRegisterResponse = new VimRegisterResponse();
-      vimRegisterResponse.setCloudRegionId(cloudRegionId);
-      assertEquals(vimRegisterResponse.getCloudRegionId(), cloudRegionId);
-  }
+    @Test
+    public void getterAndSetter4cloudOwner() {
+        final String cloudOwner = "zte";
+        VimRegisterResponse vimRegisterResponse = new VimRegisterResponse();
+        vimRegisterResponse.setCloudOwner(cloudOwner);
+        assertEquals(vimRegisterResponse.getCloudOwner(), cloudOwner);
+    }
+
+    @Test
+    public void getterAndSetter4cloudRegionId() {
+        final String cloudRegionId = "region-one";
+        VimRegisterResponse vimRegisterResponse = new VimRegisterResponse();
+        vimRegisterResponse.setCloudRegionId(cloudRegionId);
+        assertEquals(vimRegisterResponse.getCloudRegionId(), cloudRegionId);
+    }
 }

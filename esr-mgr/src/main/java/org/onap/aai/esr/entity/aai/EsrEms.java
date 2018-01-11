@@ -16,32 +16,31 @@
 package org.onap.aai.esr.entity.aai;
 
 import java.io.Serializable;
-
 import com.google.gson.annotations.SerializedName;
 
 public class EsrEms implements Serializable {
-  
-public static final long serialVersionUID = 1L;
-  
-  @SerializedName("ems-id")
-  private String emsId;
-  
-  @SerializedName("resource-version")
-  private String resourceVersion;
 
-  public String getEmsId() {
-    return emsId;
-  }
+    public static final long serialVersionUID = 1L;
 
-  public void setEmsId(String emsId) {
-    this.emsId = emsId;
-  }
+    @SerializedName("ems-id")
+    private String emsId;
 
-  public String getResourceVersion() {
-    return resourceVersion;
-  }
+    @SerializedName("resource-version")
+    private String resourceVersion;
 
-  public void setResourceVersion(String resourceVersion) {
-    this.resourceVersion = resourceVersion;
-  }
+    public String getEmsId() {
+        return emsId;
+    }
+
+    public void setEmsId(String emsId) {
+        this.emsId = emsId;
+    }
+
+    public String getResourceVersion() {
+        return resourceVersion;
+    }
+
+    public void setResourceVersion(String resourceVersion) {
+        this.resourceVersion = resourceVersion;
+    }
 }

@@ -19,39 +19,35 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
-
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.ext.MessageBodyWriter;
-
 import org.onap.aai.esr.entity.aai.CloudRegionDetail;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import com.google.gson.Gson;
 
-public class VimRegisterProvider implements MessageBodyWriter<CloudRegionDetail>{
-  private static final Logger logger = LoggerFactory.getLogger(VimRegisterProvider.class);
+public class VimRegisterProvider implements MessageBodyWriter<CloudRegionDetail> {
+    private static final Logger logger = LoggerFactory.getLogger(VimRegisterProvider.class);
 
-  @Override
-  public boolean isWriteable(Class<?> type, Type genericType, Annotation[] annotations,
-      MediaType mediaType) {
-    return CloudRegionDetail.class.isAssignableFrom(type);
-  }
+    @Override
+    public boolean isWriteable(Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType) {
+        return CloudRegionDetail.class.isAssignableFrom(type);
+    }
 
-  @Override
-  public long getSize(CloudRegionDetail t, Class<?> type, Type genericType,
-      Annotation[] annotations, MediaType mediaType) {
-    return -1;
-  }
+    @Override
+    public long getSize(CloudRegionDetail t, Class<?> type, Type genericType, Annotation[] annotations,
+            MediaType mediaType) {
+        return -1;
+    }
 
-  @Override
-  public void writeTo(CloudRegionDetail t, Class<?> type, Type genericType,
-      Annotation[] annotations, MediaType mediaType, MultivaluedMap<String, Object> httpHeaders,
-      OutputStream entityStream) throws IOException, WebApplicationException {
-    String json = new Gson().toJson(t, CloudRegionDetail.class);
-    logger.info("the param to register VIM input is:" + json);
-    entityStream.write(json.getBytes("UTF-8"));
-  }
+    @Override
+    public void writeTo(CloudRegionDetail t, Class<?> type, Type genericType, Annotation[] annotations,
+            MediaType mediaType, MultivaluedMap<String, Object> httpHeaders, OutputStream entityStream)
+            throws IOException, WebApplicationException {
+        String json = new Gson().toJson(t, CloudRegionDetail.class);
+        logger.info("the param to register VIM input is:" + json);
+        entityStream.write(json.getBytes("UTF-8"));
+    }
 }

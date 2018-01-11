@@ -21,7 +21,7 @@ import org.junit.Test;
 public class ExtsysExceptionTest {
 
     @Test
-    public void testAllMethods(){
+    public void testAllMethods() {
         ExtsysException esExp = new ExtsysException();
         esExp.setErrorCode("498");
         Assert.assertEquals(esExp.getErrorCode(), "498");

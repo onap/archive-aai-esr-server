@@ -16,53 +16,52 @@
 package org.onap.aai.esr.entity.aai;
 
 import java.io.Serializable;
-
 import com.google.gson.annotations.SerializedName;
 
 public class EsrThirdpartySdnc implements Serializable {
-public static final long serialVersionUID = 1L;
-  
-  @SerializedName("thirdparty-sdnc-id")
-  private String thirdpartySdncId;
-  
-  @SerializedName("location")
-  private String location;
+    public static final long serialVersionUID = 1L;
 
-  @SerializedName("product-name")
-  private String productName;
-  
-  @SerializedName("resource-version")
-  private String resourceVersion;
+    @SerializedName("thirdparty-sdnc-id")
+    private String thirdpartySdncId;
 
-  public String getThirdpartySdncId() {
-    return thirdpartySdncId;
-  }
+    @SerializedName("location")
+    private String location;
 
-  public void setThirdpartySdncId(String thirdpartySdncId) {
-    this.thirdpartySdncId = thirdpartySdncId;
-  }
+    @SerializedName("product-name")
+    private String productName;
 
-  public String getLocation() {
-    return location;
-  }
+    @SerializedName("resource-version")
+    private String resourceVersion;
 
-  public void setLocation(String location) {
-    this.location = location;
-  }
+    public String getThirdpartySdncId() {
+        return thirdpartySdncId;
+    }
 
-  public String getProductName() {
-    return productName;
-  }
+    public void setThirdpartySdncId(String thirdpartySdncId) {
+        this.thirdpartySdncId = thirdpartySdncId;
+    }
 
-  public void setProductName(String productName) {
-    this.productName = productName;
-  }
+    public String getLocation() {
+        return location;
+    }
 
-  public String getResourceVersion() {
-    return resourceVersion;
-  }
+    public void setLocation(String location) {
+        this.location = location;
+    }
 
-  public void setResourceVersion(String resourceVersion) {
-    this.resourceVersion = resourceVersion;
-  }
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public String getResourceVersion() {
+        return resourceVersion;
+    }
+
+    public void setResourceVersion(String resourceVersion) {
+        this.resourceVersion = resourceVersion;
+    }
 }

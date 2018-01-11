@@ -16,15 +16,14 @@
 package org.onap.aai.esr.entity.rest;
 
 import static org.junit.Assert.assertEquals;
-
 import org.junit.Test;
 
 public class CommonRegisterResponseTest {
-  @Test
-  public void getterAndSetter4id(){
-      final String id = "312erqdfa";
-      CommonRegisterResponse commonRegisterResponse = new CommonRegisterResponse();
-      commonRegisterResponse.setId(id);
-      assertEquals(commonRegisterResponse.getId(), id);
-  }
+    @Test
+    public void getterAndSetter4id() {
+        final String id = "312erqdfa";
+        CommonRegisterResponse commonRegisterResponse = new CommonRegisterResponse();
+        commonRegisterResponse.setId(id);
+        assertEquals(commonRegisterResponse.getId(), id);
+    }
 }

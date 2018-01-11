@@ -16,21 +16,19 @@
 package org.onap.aai.esr.entity.aai;
 
 import static org.junit.Assert.assertEquals;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import org.junit.Test;
 
 public class EsrSystemInfoListTest {
-  @Test
-  public void getterAndSetter4cloudRegion() {
-    EsrSystemInfoList esrSystemInfoList = new EsrSystemInfoList();
-    List<EsrSystemInfo> esrSystemInfos = new ArrayList<>();
-    EsrSystemInfo esrSystemInfo = new EsrSystemInfo();
-    esrSystemInfo.setEsrSystemInfoId("123");
-    esrSystemInfos.add(esrSystemInfo);
-    esrSystemInfoList.setEsrSystemInfo(esrSystemInfos);
-    assertEquals(esrSystemInfoList.getEsrSystemInfo(), esrSystemInfos);
-  }
+    @Test
+    public void getterAndSetter4cloudRegion() {
+        EsrSystemInfoList esrSystemInfoList = new EsrSystemInfoList();
+        List<EsrSystemInfo> esrSystemInfos = new ArrayList<>();
+        EsrSystemInfo esrSystemInfo = new EsrSystemInfo();
+        esrSystemInfo.setEsrSystemInfoId("123");
+        esrSystemInfos.add(esrSystemInfo);
+        esrSystemInfoList.setEsrSystemInfo(esrSystemInfos);
+        assertEquals(esrSystemInfoList.getEsrSystemInfo(), esrSystemInfos);
+    }
 }

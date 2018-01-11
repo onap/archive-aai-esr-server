@@ -16,20 +16,19 @@
 package org.onap.aai.esr.externalservice.cloud;
 
 import java.io.Serializable;
-
 import com.google.gson.annotations.SerializedName;
 
 public class Tenant implements Serializable {
-  public static final long serialVersionUID = 1L;
+    public static final long serialVersionUID = 1L;
 
-  @SerializedName("defaultTenant")
-  private String defaultTenant;
+    @SerializedName("defaultTenant")
+    private String defaultTenant;
 
-  public String getDefaultTenant() {
-    return defaultTenant;
-  }
+    public String getDefaultTenant() {
+        return defaultTenant;
+    }
 
-  public void setDefaultTenant(String defaultTenant) {
-    this.defaultTenant = defaultTenant;
-  }
+    public void setDefaultTenant(String defaultTenant) {
+        this.defaultTenant = defaultTenant;
+    }
 }

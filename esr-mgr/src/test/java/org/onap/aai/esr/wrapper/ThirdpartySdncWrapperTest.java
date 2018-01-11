@@ -1,5 +1,5 @@
 /**
- * Copyright 2017 ZTE Corporation.
+ * Copyright 2018 ZTE Corporation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,12 +16,9 @@
 package org.onap.aai.esr.wrapper;
 
 import static org.junit.Assert.assertEquals;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.ws.rs.core.Response;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -32,117 +29,117 @@ import org.onap.aai.esr.util.ExtsysUtil;
 
 public class ThirdpartySdncWrapperTest {
 
-  private static ThirdpartySdncWrapper thirdpartySdncWrapper;
-  static {
-    MsbConfig.setMsbServerAddr("http://127.0.0.1:80");
-  }
-  
-  @Before
-  public void setUp() throws Exception {
-    thirdpartySdncWrapper = ThirdpartySdncWrapper.getInstance();
-  }
-  
-  @Test
-  public void test_registerThirdpartySdnc() {
-    ExternalSystemProxy.isTest = true;
-    ThirdpartySdncRegisterInfo sdncRegisterInfo = new ThirdpartySdncRegisterInfo();
-    sdncRegisterInfo.setLocation("edge");
-    sdncRegisterInfo.setName("SDNC_TEST");
-    sdncRegisterInfo.setPassword("123987");
-    sdncRegisterInfo.setProductName("thirdparty SDNC");
-    sdncRegisterInfo.setProtocol("protocol");
-    sdncRegisterInfo.setThirdpartySdncId("123456");
-    sdncRegisterInfo.setType("SDNC");
-    sdncRegisterInfo.setUrl("http://127.0.0.1:8000");
-    sdncRegisterInfo.setUserName("nancy");
-    sdncRegisterInfo.setVendor("zte");
-    sdncRegisterInfo.setVersion("v1");
-    Response response = thirdpartySdncWrapper.registerThirdpartySdnc(sdncRegisterInfo);
-    if (response != null) {
-      Assert.assertTrue(response.getStatus() == 200);
+    private static ThirdpartySdncWrapper thirdpartySdncWrapper;
+    static {
+        MsbConfig.setMsbServerAddr("http://127.0.0.1:80");
     }
-    ExternalSystemProxy.isTest = false;
-  }
-  
-  @Test
-  public void test_delThirdpartySdnc() {
-    ExternalSystemProxy.isTest = true;
-    Response response = thirdpartySdncWrapper.delThirdpartySdnc("123456");
-    if (response != null) {
-      Assert.assertTrue(response.getStatus() == 204);
+
+    @Before
+    public void setUp() throws Exception {
+        thirdpartySdncWrapper = ThirdpartySdncWrapper.getInstance();
     }
-    ExternalSystemProxy.isTest = false;
-  }
-  
-  @Test
-  public void test_queryThirdpartySdncById() {
-    ExternalSystemProxy.isTest = true;
-    ExtsysUtil extsysUtil = new ExtsysUtil();
-    ThirdpartySdncRegisterInfo sdncRegisterInfo = new ThirdpartySdncRegisterInfo();
-    sdncRegisterInfo.setLocation("edge");
-    sdncRegisterInfo.setName("SDNC_TEST");
-    sdncRegisterInfo.setPassword("123987");
-    sdncRegisterInfo.setProductName("thirdparty SDNC");
-    sdncRegisterInfo.setProtocol("protocol");
-    sdncRegisterInfo.setThirdpartySdncId("123456");
-    sdncRegisterInfo.setType("SDNC");
-    sdncRegisterInfo.setUrl("http://127.0.0.1:8000");
-    sdncRegisterInfo.setUserName("nancy");
-    sdncRegisterInfo.setVendor("zte");
-    sdncRegisterInfo.setVersion("v1");
-    Response response = thirdpartySdncWrapper.queryThirdpartySdncById("123456");
-    if (response != null) {
-      Assert.assertTrue(response.getStatus() == 200);
-      assertEquals(extsysUtil.objectToString(sdncRegisterInfo), extsysUtil.objectToString(response.getEntity()));
+
+    @Test
+    public void test_registerThirdpartySdnc() {
+        ExternalSystemProxy.isTest = true;
+        ThirdpartySdncRegisterInfo sdncRegisterInfo = new ThirdpartySdncRegisterInfo();
+        sdncRegisterInfo.setLocation("edge");
+        sdncRegisterInfo.setName("SDNC_TEST");
+        sdncRegisterInfo.setPassword("123987");
+        sdncRegisterInfo.setProductName("thirdparty SDNC");
+        sdncRegisterInfo.setProtocol("protocol");
+        sdncRegisterInfo.setThirdpartySdncId("123456");
+        sdncRegisterInfo.setType("SDNC");
+        sdncRegisterInfo.setUrl("http://127.0.0.1:8000");
+        sdncRegisterInfo.setUserName("nancy");
+        sdncRegisterInfo.setVendor("zte");
+        sdncRegisterInfo.setVersion("v1");
+        Response response = thirdpartySdncWrapper.registerThirdpartySdnc(sdncRegisterInfo);
+        if (response != null) {
+            Assert.assertTrue(response.getStatus() == 200);
+        }
+        ExternalSystemProxy.isTest = false;
     }
-    ExternalSystemProxy.isTest = false;
-  }
-  
-  @Test
-  public void test_queryThirdpartySdncList() {
-    ExternalSystemProxy.isTest = true;
-    ExtsysUtil extsysUtil = new ExtsysUtil();
-    List<ThirdpartySdncRegisterInfo> sdncList = new ArrayList<>();
-    ThirdpartySdncRegisterInfo sdncRegisterInfo = new ThirdpartySdncRegisterInfo();
-    sdncRegisterInfo.setLocation("edge");
-    sdncRegisterInfo.setName("SDNC_TEST");
-    sdncRegisterInfo.setPassword("123987");
-    sdncRegisterInfo.setProductName("thirdparty SDNC");
-    sdncRegisterInfo.setProtocol("protocol");
-    sdncRegisterInfo.setThirdpartySdncId("123456");
-    sdncRegisterInfo.setType("SDNC");
-    sdncRegisterInfo.setUrl("http://127.0.0.1:8000");
-    sdncRegisterInfo.setUserName("nancy");
-    sdncRegisterInfo.setVendor("zte");
-    sdncRegisterInfo.setVersion("v1");
-    sdncList.add(sdncRegisterInfo);
-    Response response = thirdpartySdncWrapper.queryThirdpartySdncList();
-    if (response != null) {
-      Assert.assertTrue(response.getStatus() == 200);
-      assertEquals(extsysUtil.objectToString(sdncList), extsysUtil.objectToString(response.getEntity()));
+
+    @Test
+    public void test_delThirdpartySdnc() {
+        ExternalSystemProxy.isTest = true;
+        Response response = thirdpartySdncWrapper.delThirdpartySdnc("123456");
+        if (response != null) {
+            Assert.assertTrue(response.getStatus() == 204);
+        }
+        ExternalSystemProxy.isTest = false;
     }
-    ExternalSystemProxy.isTest = false;
-  }
-  
-  @Test
-  public void test_updateThirdpartySdnc() {
-    ExternalSystemProxy.isTest = true;
-    ThirdpartySdncRegisterInfo sdncRegisterInfo = new ThirdpartySdncRegisterInfo();
-    sdncRegisterInfo.setLocation("edge");
-    sdncRegisterInfo.setName("SDNC_TEST");
-    sdncRegisterInfo.setPassword("123987");
-    sdncRegisterInfo.setProductName("thirdparty SDNC");
-    sdncRegisterInfo.setProtocol("protocol");
-    sdncRegisterInfo.setThirdpartySdncId("123456");
-    sdncRegisterInfo.setType("SDNC");
-    sdncRegisterInfo.setUrl("http://127.0.0.1:8000");
-    sdncRegisterInfo.setUserName("nancy");
-    sdncRegisterInfo.setVendor("zte");
-    sdncRegisterInfo.setVersion("v1");
-    Response response = thirdpartySdncWrapper.updateThirdpartySdnc(sdncRegisterInfo, "123456");
-    if (response != null) {
-      Assert.assertTrue(response.getStatus() == 200);
+
+    @Test
+    public void test_queryThirdpartySdncById() {
+        ExternalSystemProxy.isTest = true;
+        ExtsysUtil extsysUtil = new ExtsysUtil();
+        ThirdpartySdncRegisterInfo sdncRegisterInfo = new ThirdpartySdncRegisterInfo();
+        sdncRegisterInfo.setLocation("edge");
+        sdncRegisterInfo.setName("SDNC_TEST");
+        sdncRegisterInfo.setPassword("123987");
+        sdncRegisterInfo.setProductName("thirdparty SDNC");
+        sdncRegisterInfo.setProtocol("protocol");
+        sdncRegisterInfo.setThirdpartySdncId("123456");
+        sdncRegisterInfo.setType("SDNC");
+        sdncRegisterInfo.setUrl("http://127.0.0.1:8000");
+        sdncRegisterInfo.setUserName("nancy");
+        sdncRegisterInfo.setVendor("zte");
+        sdncRegisterInfo.setVersion("v1");
+        Response response = thirdpartySdncWrapper.queryThirdpartySdncById("123456");
+        if (response != null) {
+            Assert.assertTrue(response.getStatus() == 200);
+            assertEquals(extsysUtil.objectToString(sdncRegisterInfo), extsysUtil.objectToString(response.getEntity()));
+        }
+        ExternalSystemProxy.isTest = false;
     }
-    ExternalSystemProxy.isTest = false;
-  }
+
+    @Test
+    public void test_queryThirdpartySdncList() {
+        ExternalSystemProxy.isTest = true;
+        ExtsysUtil extsysUtil = new ExtsysUtil();
+        List<ThirdpartySdncRegisterInfo> sdncList = new ArrayList<>();
+        ThirdpartySdncRegisterInfo sdncRegisterInfo = new ThirdpartySdncRegisterInfo();
+        sdncRegisterInfo.setLocation("edge");
+        sdncRegisterInfo.setName("SDNC_TEST");
+        sdncRegisterInfo.setPassword("123987");
+        sdncRegisterInfo.setProductName("thirdparty SDNC");
+        sdncRegisterInfo.setProtocol("protocol");
+        sdncRegisterInfo.setThirdpartySdncId("123456");
+        sdncRegisterInfo.setType("SDNC");
+        sdncRegisterInfo.setUrl("http://127.0.0.1:8000");
+        sdncRegisterInfo.setUserName("nancy");
+        sdncRegisterInfo.setVendor("zte");
+        sdncRegisterInfo.setVersion("v1");
+        sdncList.add(sdncRegisterInfo);
+        Response response = thirdpartySdncWrapper.queryThirdpartySdncList();
+        if (response != null) {
+            Assert.assertTrue(response.getStatus() == 200);
+            assertEquals(extsysUtil.objectToString(sdncList), extsysUtil.objectToString(response.getEntity()));
+        }
+        ExternalSystemProxy.isTest = false;
+    }
+
+    @Test
+    public void test_updateThirdpartySdnc() {
+        ExternalSystemProxy.isTest = true;
+        ThirdpartySdncRegisterInfo sdncRegisterInfo = new ThirdpartySdncRegisterInfo();
+        sdncRegisterInfo.setLocation("edge");
+        sdncRegisterInfo.setName("SDNC_TEST");
+        sdncRegisterInfo.setPassword("123987");
+        sdncRegisterInfo.setProductName("thirdparty SDNC");
+        sdncRegisterInfo.setProtocol("protocol");
+        sdncRegisterInfo.setThirdpartySdncId("123456");
+        sdncRegisterInfo.setType("SDNC");
+        sdncRegisterInfo.setUrl("http://127.0.0.1:8000");
+        sdncRegisterInfo.setUserName("nancy");
+        sdncRegisterInfo.setVendor("zte");
+        sdncRegisterInfo.setVersion("v1");
+        Response response = thirdpartySdncWrapper.updateThirdpartySdnc(sdncRegisterInfo, "123456");
+        if (response != null) {
+            Assert.assertTrue(response.getStatus() == 200);
+        }
+        ExternalSystemProxy.isTest = false;
+    }
 }

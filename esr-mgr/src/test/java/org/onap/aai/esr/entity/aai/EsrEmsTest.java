@@ -16,23 +16,22 @@
 package org.onap.aai.esr.entity.aai;
 
 import static org.junit.Assert.assertEquals;
-
 import org.junit.Test;
 
 public class EsrEmsTest {
-  @Test
-  public void getterAndSetter4emsId(){
-      final String emsId = "emsId-test";
-      EsrEms esrEms = new EsrEms();
-      esrEms.setEmsId(emsId);
-      assertEquals(esrEms.getEmsId(), emsId);
-  }
-  
-  @Test
-  public void getterAndSetter4resourceVersion(){
-      final String resourceVersion = "resourceVersion-test";
-      EsrEms esrEms = new EsrEms();
-      esrEms.setResourceVersion(resourceVersion);
-      assertEquals(esrEms.getResourceVersion(), resourceVersion);
-  }
+    @Test
+    public void getterAndSetter4emsId() {
+        final String emsId = "emsId-test";
+        EsrEms esrEms = new EsrEms();
+        esrEms.setEmsId(emsId);
+        assertEquals(esrEms.getEmsId(), emsId);
+    }
+
+    @Test
+    public void getterAndSetter4resourceVersion() {
+        final String resourceVersion = "resourceVersion-test";
+        EsrEms esrEms = new EsrEms();
+        esrEms.setResourceVersion(resourceVersion);
+        assertEquals(esrEms.getResourceVersion(), resourceVersion);
+    }
 }

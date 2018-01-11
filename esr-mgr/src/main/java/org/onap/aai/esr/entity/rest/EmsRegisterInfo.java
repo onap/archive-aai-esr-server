@@ -18,74 +18,74 @@ package org.onap.aai.esr.entity.rest;
 
 public class EmsRegisterInfo {
 
-  private String emsId;
-  
-  private String name;
-  
-  private String vendor;
-  
-  private String version;
-  
-  private FtpAddr resourceAddr;
-  
-  private FtpAddr performanceAddr;
-  
-  private AlarmAddr alarmAddr;
+    private String emsId;
 
-  public String getEmsId() {
-    return emsId;
-  }
+    private String name;
 
-  public void setEmsId(String emsId) {
-    this.emsId = emsId;
-  }
+    private String vendor;
 
-  public String getName() {
-    return name;
-  }
+    private String version;
 
-  public void setName(String name) {
-    this.name = name;
-  }
+    private FtpAddr resourceAddr;
 
-  public String getVendor() {
-    return vendor;
-  }
+    private FtpAddr performanceAddr;
 
-  public void setVendor(String vendor) {
-    this.vendor = vendor;
-  }
+    private AlarmAddr alarmAddr;
 
-  public String getVersion() {
-    return version;
-  }
+    public String getEmsId() {
+        return emsId;
+    }
 
-  public void setVersion(String version) {
-    this.version = version;
-  }
+    public void setEmsId(String emsId) {
+        this.emsId = emsId;
+    }
 
-  public FtpAddr getResourceAddr() {
-    return resourceAddr;
-  }
+    public String getName() {
+        return name;
+    }
 
-  public void setResourceAddr(FtpAddr resourceAddr) {
-    this.resourceAddr = resourceAddr;
-  }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-  public FtpAddr getPerformanceAddr() {
-    return performanceAddr;
-  }
+    public String getVendor() {
+        return vendor;
+    }
 
-  public void setPerformanceAddr(FtpAddr performanceAddr) {
-    this.performanceAddr = performanceAddr;
-  }
+    public void setVendor(String vendor) {
+        this.vendor = vendor;
+    }
 
-  public AlarmAddr getAlarmAddr() {
-    return alarmAddr;
-  }
+    public String getVersion() {
+        return version;
+    }
 
-  public void setAlarmAddr(AlarmAddr alarmAddr) {
-    this.alarmAddr = alarmAddr;
-  }
+    public void setVersion(String version) {
+        this.version = version;
+    }
+
+    public FtpAddr getResourceAddr() {
+        return resourceAddr;
+    }
+
+    public void setResourceAddr(FtpAddr resourceAddr) {
+        this.resourceAddr = resourceAddr;
+    }
+
+    public FtpAddr getPerformanceAddr() {
+        return performanceAddr;
+    }
+
+    public void setPerformanceAddr(FtpAddr performanceAddr) {
+        this.performanceAddr = performanceAddr;
+    }
+
+    public AlarmAddr getAlarmAddr() {
+        return alarmAddr;
+    }
+
+    public void setAlarmAddr(AlarmAddr alarmAddr) {
+        this.alarmAddr = alarmAddr;
+    }
 
 }

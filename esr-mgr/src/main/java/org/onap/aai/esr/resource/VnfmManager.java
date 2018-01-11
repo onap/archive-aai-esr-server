@@ -22,14 +22,12 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import io.swagger.annotations.SwaggerDefinition;
-
 import org.eclipse.jetty.http.HttpStatus;
 import org.onap.aai.esr.entity.rest.VnfmRegisterInfo;
 import org.onap.aai.esr.util.ExtsysUtil;
 import org.onap.aai.esr.wrapper.VnfmManagerWrapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -46,106 +44,101 @@ import javax.ws.rs.core.Response;
 @Api(tags = {" vnfm Management "})
 public class VnfmManager {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(VnfmManager.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(VnfmManager.class);
 
-  private static ExtsysUtil extsysUtil = new ExtsysUtil();
-  
-  /**
-   * query all vnfm.
-   */
-  @GET
-  @ApiOperation(value = "get  all vnfm ")
-  @Produces(MediaType.APPLICATION_JSON)
-  @ApiResponses(value = {
-      @ApiResponse(code = HttpStatus.NOT_FOUND_404, message = "microservice not found",
-          response = String.class),
-      @ApiResponse(code = HttpStatus.UNSUPPORTED_MEDIA_TYPE_415,
-          message = "Unprocessable MicroServiceInfo Entity ", response = String.class),
-      @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
-          response = String.class)})
-  @Timed
-  public Response queryVnfmList() {
-    LOGGER.info("start query all vnfm!");
-    return VnfmManagerWrapper.getInstance().queryVnfmList();
-  }
-  
-  /**
-   * query  vnfm by id.
-   */
-  @Path("/{vnfmId}")
-  @GET
-  @ApiOperation(value = "get vnfm by id")
-  @Produces(MediaType.APPLICATION_JSON)
-  @ApiResponses(value = {
-      @ApiResponse(code = HttpStatus.NOT_FOUND_404, message = "microservice not found",
-          response = String.class),
-      @ApiResponse(code = HttpStatus.UNSUPPORTED_MEDIA_TYPE_415,
-          message = "Unprocessable MicroServiceInfo Entity ", response = String.class),
-      @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
-          response = String.class)})
-  @Timed
-  public Response queryVnfmById(@ApiParam(value = "vnfm id") @PathParam("vnfmId") String vnfmId) {
-    LOGGER.info("start query  vnfm by id." + vnfmId);
-    return VnfmManagerWrapper.getInstance().queryVnfmById(vnfmId);
-  }
-  
-  /**
-   * delete  vnfm by id.
-   */
-  @Path("/{vnfmId}")
-  @DELETE
-  @ApiOperation(value = "delete a vnfm")
-  @ApiResponses(value = {
-      @ApiResponse(code = HttpStatus.NOT_FOUND_404, message = "microservice not found",
-          response = String.class),
-      @ApiResponse(code = HttpStatus.UNSUPPORTED_MEDIA_TYPE_415,
-          message = "Unprocessable MicroServiceInfo Entity ", response = String.class),
-      @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
-          response = String.class)})
-  @Timed
-  public Response delVnfm(@ApiParam(value = "vnfm id") @PathParam("vnfmId") String vnfmId) {
-    LOGGER.info("start delete vnfm .id:" + vnfmId);
-    return VnfmManagerWrapper.getInstance().delVnfm(vnfmId);
-  }
-  
-  /**
-   * update  vnfm by id.
-   */
-  @PUT
-  @Path("/{vnfmId}")
-  @Consumes(MediaType.APPLICATION_JSON)
-  @Produces({MediaType.TEXT_PLAIN, MediaType.APPLICATION_JSON})
-  @ApiOperation(value = "update a vnfm")
-  @ApiResponses(value = {
-      @ApiResponse(code = HttpStatus.NOT_FOUND_404, message = "microservice not found",
-          response = String.class),
-      @ApiResponse(code = HttpStatus.UNSUPPORTED_MEDIA_TYPE_415,
-          message = "Unprocessable MicroServiceInfo Entity ", response = String.class),
-      @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
-          response = String.class)})
-  @Timed
-  public Response updateVnfm(@ApiParam(value = "vnfm", required = true) VnfmRegisterInfo vnfm,
-      @ApiParam(value = "vnfm id", required = true) @PathParam("vnfmId") String vnfmId) {
-    LOGGER.info("start update vnfm .id:" + vnfmId + " info:" + extsysUtil.objectToString(vnfm));
-    return VnfmManagerWrapper.getInstance().updateVnfm(vnfm, vnfmId);
-  }
-  
-  /**
-   * add  vnfm .
-   */
-  @POST
-  @Consumes(MediaType.APPLICATION_JSON)
-  @Produces({MediaType.TEXT_PLAIN, MediaType.APPLICATION_JSON})
-  @ApiOperation(value = "create a vnfm")
-  @ApiResponses(value = {
-      @ApiResponse(code = HttpStatus.NOT_FOUND_404, message = "microservice not found",
-          response = String.class),
-      @ApiResponse(code = HttpStatus.UNSUPPORTED_MEDIA_TYPE_415,
-          message = "Unprocessable MicroServiceInfo Entity ", response = String.class),
-      @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
-          response = String.class)})
-  @Timed
-  public Response registerVnfm(@ApiParam(value = "vnfm", required = true) VnfmRegisterInfo vnfm) {
-    return VnfmManagerWrapper.getInstance().registerVnfm(vnfm);
-  }
+    private static ExtsysUtil extsysUtil = new ExtsysUtil();
+
+    /**
+     * query all vnfm.
+     */
+    @GET
+    @ApiOperation(value = "get  all vnfm ")
+    @Produces(MediaType.APPLICATION_JSON)
+    @ApiResponses(value = {
+            @ApiResponse(code = HttpStatus.NOT_FOUND_404, message = "microservice not found", response = String.class),
+            @ApiResponse(code = HttpStatus.UNSUPPORTED_MEDIA_TYPE_415,
+                    message = "Unprocessable MicroServiceInfo Entity ", response = String.class),
+            @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
+                    response = String.class)})
+    @Timed
+    public Response queryVnfmList() {
+        LOGGER.info("start query all vnfm!");
+        return VnfmManagerWrapper.getInstance().queryVnfmList();
+    }
+
+    /**
+     * query vnfm by id.
+     */
+    @Path("/{vnfmId}")
+    @GET
+    @ApiOperation(value = "get vnfm by id")
+    @Produces(MediaType.APPLICATION_JSON)
+    @ApiResponses(value = {
+            @ApiResponse(code = HttpStatus.NOT_FOUND_404, message = "microservice not found", response = String.class),
+            @ApiResponse(code = HttpStatus.UNSUPPORTED_MEDIA_TYPE_415,
+                    message = "Unprocessable MicroServiceInfo Entity ", response = String.class),
+            @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
+                    response = String.class)})
+    @Timed
+    public Response queryVnfmById(@ApiParam(value = "vnfm id") @PathParam("vnfmId") String vnfmId) {
+        LOGGER.info("start query  vnfm by id." + vnfmId);
+        return VnfmManagerWrapper.getInstance().queryVnfmById(vnfmId);
+    }
+
+    /**
+     * delete vnfm by id.
+     */
+    @Path("/{vnfmId}")
+    @DELETE
+    @ApiOperation(value = "delete a vnfm")
+    @ApiResponses(value = {
+            @ApiResponse(code = HttpStatus.NOT_FOUND_404, message = "microservice not found", response = String.class),
+            @ApiResponse(code = HttpStatus.UNSUPPORTED_MEDIA_TYPE_415,
+                    message = "Unprocessable MicroServiceInfo Entity ", response = String.class),
+            @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
+                    response = String.class)})
+    @Timed
+    public Response delVnfm(@ApiParam(value = "vnfm id") @PathParam("vnfmId") String vnfmId) {
+        LOGGER.info("start delete vnfm .id:" + vnfmId);
+        return VnfmManagerWrapper.getInstance().delVnfm(vnfmId);
+    }
+
+    /**
+     * update vnfm by id.
+     */
+    @PUT
+    @Path("/{vnfmId}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces({MediaType.TEXT_PLAIN, MediaType.APPLICATION_JSON})
+    @ApiOperation(value = "update a vnfm")
+    @ApiResponses(value = {
+            @ApiResponse(code = HttpStatus.NOT_FOUND_404, message = "microservice not found", response = String.class),
+            @ApiResponse(code = HttpStatus.UNSUPPORTED_MEDIA_TYPE_415,
+                    message = "Unprocessable MicroServiceInfo Entity ", response = String.class),
+            @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
+                    response = String.class)})
+    @Timed
+    public Response updateVnfm(@ApiParam(value = "vnfm", required = true) VnfmRegisterInfo vnfm,
+            @ApiParam(value = "vnfm id", required = true) @PathParam("vnfmId") String vnfmId) {
+        LOGGER.info("start update vnfm .id:" + vnfmId + " info:" + extsysUtil.objectToString(vnfm));
+        return VnfmManagerWrapper.getInstance().updateVnfm(vnfm, vnfmId);
+    }
+
+    /**
+     * add vnfm .
+     */
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces({MediaType.TEXT_PLAIN, MediaType.APPLICATION_JSON})
+    @ApiOperation(value = "create a vnfm")
+    @ApiResponses(value = {
+            @ApiResponse(code = HttpStatus.NOT_FOUND_404, message = "microservice not found", response = String.class),
+            @ApiResponse(code = HttpStatus.UNSUPPORTED_MEDIA_TYPE_415,
+                    message = "Unprocessable MicroServiceInfo Entity ", response = String.class),
+            @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
+                    response = String.class)})
+    @Timed
+    public Response registerVnfm(@ApiParam(value = "vnfm", required = true) VnfmRegisterInfo vnfm) {
+        return VnfmManagerWrapper.getInstance().registerVnfm(vnfm);
+    }
 }

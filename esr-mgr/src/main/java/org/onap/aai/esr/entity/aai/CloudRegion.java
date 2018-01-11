@@ -16,114 +16,113 @@
 package org.onap.aai.esr.entity.aai;
 
 import java.io.Serializable;
-
 import com.google.gson.annotations.SerializedName;
 
 public class CloudRegion implements Serializable {
-  
-  public static final long serialVersionUID = 1L;
 
-  @SerializedName("cloud-owner")
-  private String cloudOwner;
-  
-  @SerializedName("cloud-region-id")
-  private String cloudRegionId;
-  
-  @SerializedName("cloud-type")
-  private String cloudType;
-  
-  @SerializedName("cloud-region-version")
-  private String cloudRegionVersion;
-  
-  @SerializedName("owner-defined-type")
-  private String ownerDefinedType;
-  
-  @SerializedName("cloud-zone")
-  private String cloudZone;
-  
-  @SerializedName("complex-name")
-  private String complexName;
-  
-  @SerializedName("cloud-extra-info")
-  private String cloudExtraInfo;
-  
-  @SerializedName("resource-version")
-  private String resourceVersion;
+    public static final long serialVersionUID = 1L;
 
-  public String getCloudOwner() {
-    return cloudOwner;
-  }
+    @SerializedName("cloud-owner")
+    private String cloudOwner;
 
-  public void setCloudOwner(String cloudOwner) {
-    this.cloudOwner = cloudOwner;
-  }
+    @SerializedName("cloud-region-id")
+    private String cloudRegionId;
 
-  public String getCloudRegionId() {
-    return cloudRegionId;
-  }
+    @SerializedName("cloud-type")
+    private String cloudType;
 
-  public void setCloudRegionId(String cloudRegionId) {
-    this.cloudRegionId = cloudRegionId;
-  }
+    @SerializedName("cloud-region-version")
+    private String cloudRegionVersion;
 
-  public String getCloudType() {
-    return cloudType;
-  }
+    @SerializedName("owner-defined-type")
+    private String ownerDefinedType;
 
-  public void setCloudType(String cloudType) {
-    this.cloudType = cloudType;
-  }
+    @SerializedName("cloud-zone")
+    private String cloudZone;
 
-  public String getCloudRegionVersion() {
-    return cloudRegionVersion;
-  }
+    @SerializedName("complex-name")
+    private String complexName;
 
-  public void setCloudRegionVersion(String cloudRegionVersion) {
-    this.cloudRegionVersion = cloudRegionVersion;
-  }
+    @SerializedName("cloud-extra-info")
+    private String cloudExtraInfo;
 
-  public String getOwnerDefinedType() {
-    return ownerDefinedType;
-  }
+    @SerializedName("resource-version")
+    private String resourceVersion;
 
-  public void setOwnerDefinedType(String ownerDefinedType) {
-    this.ownerDefinedType = ownerDefinedType;
-  }
+    public String getCloudOwner() {
+        return cloudOwner;
+    }
 
-  public String getCloudZone() {
-    return cloudZone;
-  }
+    public void setCloudOwner(String cloudOwner) {
+        this.cloudOwner = cloudOwner;
+    }
 
-  public void setCloudZone(String cloudZone) {
-    this.cloudZone = cloudZone;
-  }
+    public String getCloudRegionId() {
+        return cloudRegionId;
+    }
 
-  public String getComplexName() {
-    return complexName;
-  }
+    public void setCloudRegionId(String cloudRegionId) {
+        this.cloudRegionId = cloudRegionId;
+    }
 
-  public void setComplexName(String complexName) {
-    this.complexName = complexName;
-  }
+    public String getCloudType() {
+        return cloudType;
+    }
 
-  public String getCloudExtraInfo() {
-    return cloudExtraInfo;
-  }
+    public void setCloudType(String cloudType) {
+        this.cloudType = cloudType;
+    }
 
-  public void setCloudExtraInfo(String cloudExtraInfo) {
-    this.cloudExtraInfo = cloudExtraInfo;
-  }
+    public String getCloudRegionVersion() {
+        return cloudRegionVersion;
+    }
 
-  public String getResourceVersion() {
-    return resourceVersion;
-  }
+    public void setCloudRegionVersion(String cloudRegionVersion) {
+        this.cloudRegionVersion = cloudRegionVersion;
+    }
 
-  public void setResourceVersion(String resourceVersion) {
-    this.resourceVersion = resourceVersion;
-  }
+    public String getOwnerDefinedType() {
+        return ownerDefinedType;
+    }
 
-  public static long getSerialversionuid() {
-    return serialVersionUID;
-  }
+    public void setOwnerDefinedType(String ownerDefinedType) {
+        this.ownerDefinedType = ownerDefinedType;
+    }
+
+    public String getCloudZone() {
+        return cloudZone;
+    }
+
+    public void setCloudZone(String cloudZone) {
+        this.cloudZone = cloudZone;
+    }
+
+    public String getComplexName() {
+        return complexName;
+    }
+
+    public void setComplexName(String complexName) {
+        this.complexName = complexName;
+    }
+
+    public String getCloudExtraInfo() {
+        return cloudExtraInfo;
+    }
+
+    public void setCloudExtraInfo(String cloudExtraInfo) {
+        this.cloudExtraInfo = cloudExtraInfo;
+    }
+
+    public String getResourceVersion() {
+        return resourceVersion;
+    }
+
+    public void setResourceVersion(String resourceVersion) {
+        this.resourceVersion = resourceVersion;
+    }
+
+    public static long getSerialversionuid() {
+        return serialVersionUID;
+    }
 
 }

@@ -17,22 +17,21 @@ package org.onap.aai.esr.entity.aai;
 
 import java.io.Serializable;
 import java.util.List;
-
 import com.google.gson.annotations.SerializedName;
 
 public class EsrVnfmList implements Serializable {
 
-  public static final long serialVersionUID = 1L;
-  
-  @SerializedName("esr-vnfm")
-  private List<EsrVnfm> esrVnfm;
+    public static final long serialVersionUID = 1L;
 
-  public List<EsrVnfm> getEsrVnfm() {
-    return esrVnfm;
-  }
+    @SerializedName("esr-vnfm")
+    private List<EsrVnfm> esrVnfm;
 
-  public void setEsrVnfm(List<EsrVnfm> esrVnfm) {
-    this.esrVnfm = esrVnfm;
-  }
+    public List<EsrVnfm> getEsrVnfm() {
+        return esrVnfm;
+    }
+
+    public void setEsrVnfm(List<EsrVnfm> esrVnfm) {
+        this.esrVnfm = esrVnfm;
+    }
 
 }

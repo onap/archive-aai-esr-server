@@ -16,121 +16,120 @@
 package org.onap.aai.esr.entity.aai;
 
 import java.io.Serializable;
-
 import com.google.gson.annotations.SerializedName;
 
 public class CloudRegionDetail implements Serializable {
-  
-  public static final long serialVersionUID = 1L;
 
-  @SerializedName("cloud-owner")
-  private String cloudOwner;
-  
-  @SerializedName("cloud-region-id")
-  private String cloudRegionId;
-  
-  @SerializedName("cloud-type")
-  private String cloudType;
-  
-  @SerializedName("cloud-region-version")
-  private String cloudRegionVersion;
-  
-  @SerializedName("owner-defined-type")
-  private String ownerDefinedType;
-  
-  @SerializedName("cloud-zone")
-  private String cloudZone;
-  
-  @SerializedName("complex-name")
-  private String complexName;
-  
-  @SerializedName("cloud-extra-info")
-  private String cloudExtraInfo;
-  
-  @SerializedName("resource-version")
-  private String resourceVersion;
-  
-  @SerializedName("esr-system-info-list")
-  private EsrSystemInfoList esrSystemInfoList;
+    public static final long serialVersionUID = 1L;
 
-  public String getCloudOwner() {
-    return cloudOwner;
-  }
+    @SerializedName("cloud-owner")
+    private String cloudOwner;
 
-  public void setCloudOwner(String cloudOwner) {
-    this.cloudOwner = cloudOwner;
-  }
+    @SerializedName("cloud-region-id")
+    private String cloudRegionId;
 
-  public String getCloudRegionId() {
-    return cloudRegionId;
-  }
+    @SerializedName("cloud-type")
+    private String cloudType;
 
-  public void setCloudRegionId(String cloudRegionId) {
-    this.cloudRegionId = cloudRegionId;
-  }
+    @SerializedName("cloud-region-version")
+    private String cloudRegionVersion;
 
-  public String getCloudType() {
-    return cloudType;
-  }
+    @SerializedName("owner-defined-type")
+    private String ownerDefinedType;
 
-  public void setCloudType(String cloudType) {
-    this.cloudType = cloudType;
-  }
+    @SerializedName("cloud-zone")
+    private String cloudZone;
 
-  public String getCloudRegionVersion() {
-    return cloudRegionVersion;
-  }
+    @SerializedName("complex-name")
+    private String complexName;
 
-  public void setCloudRegionVersion(String cloudRegionVersion) {
-    this.cloudRegionVersion = cloudRegionVersion;
-  }
+    @SerializedName("cloud-extra-info")
+    private String cloudExtraInfo;
 
-  public String getOwnerDefinedType() {
-    return ownerDefinedType;
-  }
+    @SerializedName("resource-version")
+    private String resourceVersion;
 
-  public void setOwnerDefinedType(String ownerDefinedType) {
-    this.ownerDefinedType = ownerDefinedType;
-  }
+    @SerializedName("esr-system-info-list")
+    private EsrSystemInfoList esrSystemInfoList;
 
-  public String getCloudZone() {
-    return cloudZone;
-  }
+    public String getCloudOwner() {
+        return cloudOwner;
+    }
 
-  public void setCloudZone(String cloudZone) {
-    this.cloudZone = cloudZone;
-  }
+    public void setCloudOwner(String cloudOwner) {
+        this.cloudOwner = cloudOwner;
+    }
 
-  public String getComplexName() {
-    return complexName;
-  }
+    public String getCloudRegionId() {
+        return cloudRegionId;
+    }
 
-  public void setComplexName(String complexName) {
-    this.complexName = complexName;
-  }
+    public void setCloudRegionId(String cloudRegionId) {
+        this.cloudRegionId = cloudRegionId;
+    }
 
-  public String getCloudExtraInfo() {
-    return cloudExtraInfo;
-  }
+    public String getCloudType() {
+        return cloudType;
+    }
 
-  public void setCloudExtraInfo(String cloudExtraInfo) {
-    this.cloudExtraInfo = cloudExtraInfo;
-  }
+    public void setCloudType(String cloudType) {
+        this.cloudType = cloudType;
+    }
 
-  public String getResourceVersion() {
-    return resourceVersion;
-  }
+    public String getCloudRegionVersion() {
+        return cloudRegionVersion;
+    }
 
-  public void setResourceVersion(String resourceVersion) {
-    this.resourceVersion = resourceVersion;
-  }
+    public void setCloudRegionVersion(String cloudRegionVersion) {
+        this.cloudRegionVersion = cloudRegionVersion;
+    }
 
-  public EsrSystemInfoList getEsrSystemInfoList() {
-    return esrSystemInfoList;
-  }
+    public String getOwnerDefinedType() {
+        return ownerDefinedType;
+    }
 
-  public void setEsrSystemInfoList(EsrSystemInfoList esrSystemInfoList) {
-    this.esrSystemInfoList = esrSystemInfoList;
-  }
+    public void setOwnerDefinedType(String ownerDefinedType) {
+        this.ownerDefinedType = ownerDefinedType;
+    }
+
+    public String getCloudZone() {
+        return cloudZone;
+    }
+
+    public void setCloudZone(String cloudZone) {
+        this.cloudZone = cloudZone;
+    }
+
+    public String getComplexName() {
+        return complexName;
+    }
+
+    public void setComplexName(String complexName) {
+        this.complexName = complexName;
+    }
+
+    public String getCloudExtraInfo() {
+        return cloudExtraInfo;
+    }
+
+    public void setCloudExtraInfo(String cloudExtraInfo) {
+        this.cloudExtraInfo = cloudExtraInfo;
+    }
+
+    public String getResourceVersion() {
+        return resourceVersion;
+    }
+
+    public void setResourceVersion(String resourceVersion) {
+        this.resourceVersion = resourceVersion;
+    }
+
+    public EsrSystemInfoList getEsrSystemInfoList() {
+        return esrSystemInfoList;
+    }
+
+    public void setEsrSystemInfoList(EsrSystemInfoList esrSystemInfoList) {
+        this.esrSystemInfoList = esrSystemInfoList;
+    }
 
 }

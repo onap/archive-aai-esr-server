@@ -22,14 +22,12 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import io.swagger.annotations.SwaggerDefinition;
-
 import org.eclipse.jetty.http.HttpStatus;
 import org.onap.aai.esr.entity.rest.ThirdpartySdncRegisterInfo;
 import org.onap.aai.esr.util.ExtsysUtil;
 import org.onap.aai.esr.wrapper.ThirdpartySdncWrapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -46,106 +44,106 @@ import javax.ws.rs.core.Response;
 @Api(tags = {"ThirdParty sdnc Management     "})
 public class ThirdpartySdncManager {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(ThirdpartySdncManager.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ThirdpartySdncManager.class);
 
-  private static ExtsysUtil extsysUtil = new ExtsysUtil();
-  /**
-   *query all thirdParty sdnc.
-   */
-  @GET
-  @ApiOperation(value = "get all thirdParty sdnc ")
-  @Produces(MediaType.APPLICATION_JSON)
-  @ApiResponses(value = {
-      @ApiResponse(code = HttpStatus.NOT_FOUND_404, message = "microservice not found",
-          response = String.class),
-      @ApiResponse(code = HttpStatus.UNSUPPORTED_MEDIA_TYPE_415,
-          message = "Unprocessable MicroServiceInfo Entity ", response = String.class),
-      @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
-          response = String.class)})
-  @Timed
-  public Response queryThirdpartySdncList() {
-    LOGGER.info("start query all thirdParty sdnc!");
-    return ThirdpartySdncWrapper.getInstance().queryThirdpartySdncList();
-  }
-  
-  /**
-   *query thirdParty sdnc by id.
-   */
-  @Path("/{thirdPartySdncId}")
-  @GET
-  @ApiOperation(value = "get thirdParty sdnc by id")
-  @Produces(MediaType.APPLICATION_JSON)
-  @ApiResponses(value = {
-      @ApiResponse(code = HttpStatus.NOT_FOUND_404, message = "microservice not found",
-          response = String.class),
-      @ApiResponse(code = HttpStatus.UNSUPPORTED_MEDIA_TYPE_415,
-          message = "Unprocessable MicroServiceInfo Entity ", response = String.class),
-      @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
-          response = String.class)})
-  @Timed
-  public Response queryThirdpartySdncById(@ApiParam(value = "thirdparty sdnc id") @PathParam("thirdPartySdncId") String thirdPartySdncId) {
-    LOGGER.info("start query thirdparty sdnc by id." + thirdPartySdncId);
-    return ThirdpartySdncWrapper.getInstance().queryThirdpartySdncById(thirdPartySdncId);
-  }
-  
-  /**
-   *delete thirdparty sdnc by id.
-   */
-  @Path("/{thirdPartySdncId}")
-  @DELETE
-  @ApiOperation(value = "delete a thirdparty sdnc")
-  @ApiResponses(value = {
-      @ApiResponse(code = HttpStatus.NOT_FOUND_404, message = "microservice not found",
-          response = String.class),
-      @ApiResponse(code = HttpStatus.UNSUPPORTED_MEDIA_TYPE_415,
-          message = "Unprocessable MicroServiceInfo Entity ", response = String.class),
-      @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
-          response = String.class)})
-  @Timed
-  public Response delThirdpartySdnc(@ApiParam(value = "thirdparty sdnc id") @PathParam("thirdPartySdncId") String thirdPartySdncId) {
-    LOGGER.info("start delete thirdparty sdnc .id:" + thirdPartySdncId);
-    return ThirdpartySdncWrapper.getInstance().delThirdpartySdnc(thirdPartySdncId);
-  }
-  
-  /**
-   *update thirdParty sdnc by id.
-   */
-  @PUT
-  @Path("/{thirdPartySdncId}")
-  @Consumes(MediaType.APPLICATION_JSON)
-  @Produces({MediaType.TEXT_PLAIN, MediaType.APPLICATION_JSON})
-  @ApiOperation(value = "update a thirdParty Sdnc")
-  @ApiResponses(value = {
-      @ApiResponse(code = HttpStatus.NOT_FOUND_404, message = "microservice not found",
-          response = String.class),
-      @ApiResponse(code = HttpStatus.UNSUPPORTED_MEDIA_TYPE_415,
-          message = "Unprocessable MicroServiceInfo Entity ", response = String.class),
-      @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
-          response = String.class)})
-  @Timed
-  public Response updateThirdpartySdnc(@ApiParam(value = "thirdpartySdnc", required = true) ThirdpartySdncRegisterInfo thirdPartySdnc,
-      @ApiParam(value = "sdnc id", required = true) @PathParam("thirdPartySdncId") String thirdPartySdncId) {
-    LOGGER.info("start update sdnc .id:" + thirdPartySdncId + " info:" + extsysUtil.objectToString(thirdPartySdnc));
-    return ThirdpartySdncWrapper.getInstance().updateThirdpartySdnc(thirdPartySdnc, thirdPartySdncId);
-  }
-  
-  /**
-   *thirdParty sdnc register.
-   */
-  @POST
-  @Consumes(MediaType.APPLICATION_JSON)
-  @Produces({MediaType.TEXT_PLAIN, MediaType.APPLICATION_JSON})
-  @ApiOperation(value = "register a thirdparty sdnc")
-  @ApiResponses(value = {
-      @ApiResponse(code = HttpStatus.NOT_FOUND_404, message = "microservice not found",
-          response = String.class),
-      @ApiResponse(code = HttpStatus.UNSUPPORTED_MEDIA_TYPE_415,
-          message = "Unprocessable MicroServiceInfo Entity ", response = String.class),
-      @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
-          response = String.class)})
-  @Timed
-  public Response registerThirdpatySdnc(@ApiParam(value = "thirdPartySdnc", required = true) ThirdpartySdncRegisterInfo thirdPartySdnc) {
-    LOGGER.info("start register sdnc" + " info:" + extsysUtil.objectToString(thirdPartySdnc));
-    return ThirdpartySdncWrapper.getInstance().registerThirdpartySdnc(thirdPartySdnc);
-  }
+    private static ExtsysUtil extsysUtil = new ExtsysUtil();
+
+    /**
+     * query all thirdParty sdnc.
+     */
+    @GET
+    @ApiOperation(value = "get all thirdParty sdnc ")
+    @Produces(MediaType.APPLICATION_JSON)
+    @ApiResponses(value = {
+            @ApiResponse(code = HttpStatus.NOT_FOUND_404, message = "microservice not found", response = String.class),
+            @ApiResponse(code = HttpStatus.UNSUPPORTED_MEDIA_TYPE_415,
+                    message = "Unprocessable MicroServiceInfo Entity ", response = String.class),
+            @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
+                    response = String.class)})
+    @Timed
+    public Response queryThirdpartySdncList() {
+        LOGGER.info("start query all thirdParty sdnc!");
+        return ThirdpartySdncWrapper.getInstance().queryThirdpartySdncList();
+    }
+
+    /**
+     * query thirdParty sdnc by id.
+     */
+    @Path("/{thirdPartySdncId}")
+    @GET
+    @ApiOperation(value = "get thirdParty sdnc by id")
+    @Produces(MediaType.APPLICATION_JSON)
+    @ApiResponses(value = {
+            @ApiResponse(code = HttpStatus.NOT_FOUND_404, message = "microservice not found", response = String.class),
+            @ApiResponse(code = HttpStatus.UNSUPPORTED_MEDIA_TYPE_415,
+                    message = "Unprocessable MicroServiceInfo Entity ", response = String.class),
+            @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
+                    response = String.class)})
+    @Timed
+    public Response queryThirdpartySdncById(
+            @ApiParam(value = "thirdparty sdnc id") @PathParam("thirdPartySdncId") String thirdPartySdncId) {
+        LOGGER.info("start query thirdparty sdnc by id." + thirdPartySdncId);
+        return ThirdpartySdncWrapper.getInstance().queryThirdpartySdncById(thirdPartySdncId);
+    }
+
+    /**
+     * delete thirdparty sdnc by id.
+     */
+    @Path("/{thirdPartySdncId}")
+    @DELETE
+    @ApiOperation(value = "delete a thirdparty sdnc")
+    @ApiResponses(value = {
+            @ApiResponse(code = HttpStatus.NOT_FOUND_404, message = "microservice not found", response = String.class),
+            @ApiResponse(code = HttpStatus.UNSUPPORTED_MEDIA_TYPE_415,
+                    message = "Unprocessable MicroServiceInfo Entity ", response = String.class),
+            @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
+                    response = String.class)})
+    @Timed
+    public Response delThirdpartySdnc(
+            @ApiParam(value = "thirdparty sdnc id") @PathParam("thirdPartySdncId") String thirdPartySdncId) {
+        LOGGER.info("start delete thirdparty sdnc .id:" + thirdPartySdncId);
+        return ThirdpartySdncWrapper.getInstance().delThirdpartySdnc(thirdPartySdncId);
+    }
+
+    /**
+     * update thirdParty sdnc by id.
+     */
+    @PUT
+    @Path("/{thirdPartySdncId}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces({MediaType.TEXT_PLAIN, MediaType.APPLICATION_JSON})
+    @ApiOperation(value = "update a thirdParty Sdnc")
+    @ApiResponses(value = {
+            @ApiResponse(code = HttpStatus.NOT_FOUND_404, message = "microservice not found", response = String.class),
+            @ApiResponse(code = HttpStatus.UNSUPPORTED_MEDIA_TYPE_415,
+                    message = "Unprocessable MicroServiceInfo Entity ", response = String.class),
+            @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
+                    response = String.class)})
+    @Timed
+    public Response updateThirdpartySdnc(
+            @ApiParam(value = "thirdpartySdnc", required = true) ThirdpartySdncRegisterInfo thirdPartySdnc,
+            @ApiParam(value = "sdnc id", required = true) @PathParam("thirdPartySdncId") String thirdPartySdncId) {
+        LOGGER.info("start update sdnc .id:" + thirdPartySdncId + " info:" + extsysUtil.objectToString(thirdPartySdnc));
+        return ThirdpartySdncWrapper.getInstance().updateThirdpartySdnc(thirdPartySdnc, thirdPartySdncId);
+    }
+
+    /**
+     * thirdParty sdnc register.
+     */
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces({MediaType.TEXT_PLAIN, MediaType.APPLICATION_JSON})
+    @ApiOperation(value = "register a thirdparty sdnc")
+    @ApiResponses(value = {
+            @ApiResponse(code = HttpStatus.NOT_FOUND_404, message = "microservice not found", response = String.class),
+            @ApiResponse(code = HttpStatus.UNSUPPORTED_MEDIA_TYPE_415,
+                    message = "Unprocessable MicroServiceInfo Entity ", response = String.class),
+            @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
+                    response = String.class)})
+    @Timed
+    public Response registerThirdpatySdnc(
+            @ApiParam(value = "thirdPartySdnc", required = true) ThirdpartySdncRegisterInfo thirdPartySdnc) {
+        LOGGER.info("start register sdnc" + " info:" + extsysUtil.objectToString(thirdPartySdnc));
+        return ThirdpartySdncWrapper.getInstance().registerThirdpartySdnc(thirdPartySdnc);
+    }
 }

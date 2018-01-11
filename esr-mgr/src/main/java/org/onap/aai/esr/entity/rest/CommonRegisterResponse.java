@@ -16,15 +16,15 @@
 package org.onap.aai.esr.entity.rest;
 
 public class CommonRegisterResponse {
-  
-  private String id;
 
-  public String getId() {
-    return id;
-  }
+    private String id;
 
-  public void setId(String id) {
-    this.id = id;
-  }
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
 }
