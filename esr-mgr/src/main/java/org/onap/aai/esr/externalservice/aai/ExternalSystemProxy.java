@@ -37,9 +37,7 @@ public class ExternalSystemProxy {
     }
 
     public static void registerVnfm(String vnfmId, EsrVnfmDetail esrVnfmDetail) throws ExtsysException {
-        if (isTest) {
-
-        } else {
+        if (!isTest){
             ClientConfig config = new ClientConfig(new VnfmRegisterProvider());
             IExternalSystem registerVnfmServiceproxy =
                     ConsumerFactory.createConsumer(MsbConfig.getExternalSystemAddr(), config, IExternalSystem.class);

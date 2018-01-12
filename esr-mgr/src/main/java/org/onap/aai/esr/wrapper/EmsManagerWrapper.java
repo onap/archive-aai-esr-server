@@ -50,8 +50,7 @@ public class EmsManagerWrapper {
 
     public Response registerEms(EmsRegisterInfo emsRegisterInfo) {
         CommonRegisterResponse result = new CommonRegisterResponse();
-        EsrEmsDetail esrEmsDetail = new EsrEmsDetail();
-        esrEmsDetail = emsManagerUtil.emsRegisterInfo2EsrEms(emsRegisterInfo);
+        EsrEmsDetail esrEmsDetail = emsManagerUtil.emsRegisterInfo2EsrEms(emsRegisterInfo);
         String emsId = esrEmsDetail.getEmsId();
         try {
             ExternalSystemProxy.registerEms(emsId, esrEmsDetail);
@@ -65,8 +64,7 @@ public class EmsManagerWrapper {
 
     public Response updateEms(EmsRegisterInfo emsRegisterInfo, String emsId) {
         CommonRegisterResponse result = new CommonRegisterResponse();
-        EsrEmsDetail esrEmsDetail = new EsrEmsDetail();
-        esrEmsDetail = getNewEsrEmsDetail(emsRegisterInfo, emsId);
+        EsrEmsDetail esrEmsDetail = getNewEsrEmsDetail(emsRegisterInfo, emsId);
         try {
             ExternalSystemProxy.registerEms(emsId, esrEmsDetail);
             result.setId(emsId);
@@ -102,8 +100,7 @@ public class EmsManagerWrapper {
     }
 
     public Response delEms(String emsId) {
-        EsrEmsDetail esrEmsDetail = new EsrEmsDetail();
-        esrEmsDetail = queryEsrEmsDetail(emsId);
+        EsrEmsDetail esrEmsDetail = queryEsrEmsDetail(emsId);
         String resourceVersion = esrEmsDetail.getResourceVersion();
         try {
             ExternalSystemProxy.deleteEms(emsId, resourceVersion);
@@ -130,10 +127,9 @@ public class EmsManagerWrapper {
 
     private List<EmsRegisterInfo> getEmsDetailList(EsrEmsList esrEms) {
         List<EmsRegisterInfo> emsInfoList = new ArrayList<>();
-        EmsRegisterInfo emsInfo = new EmsRegisterInfo();
         for (int i = 0; i < esrEms.getEsrEms().size(); i++) {
             String emsId = esrEms.getEsrEms().get(i).getEmsId();
-            emsInfo = queryEmsDetail(emsId);
+            EmsRegisterInfo emsInfo = queryEmsDetail(emsId);
             if (emsInfo != null) {
                 emsInfoList.add(emsInfo);
             }
@@ -154,24 +150,17 @@ public class EmsManagerWrapper {
     }
 
     private EsrEmsDetail getNewEsrEmsDetail(EmsRegisterInfo emsRegisterInfo, String emsId) {
-        EsrEmsDetail esrEmsDetail = new EsrEmsDetail();
-        List<EsrSystemInfo> newEsrSysInfoList = new ArrayList<>();
-        EsrSystemInfo newEsrSystemInfo = new EsrSystemInfo();
-        EsrEmsDetail oriEsrEmsDetail = new EsrEmsDetail();
-        List<EsrSystemInfo> oriEsrSysInfoList = new ArrayList<>();
-        EsrSystemInfo originalEsrSystemInfo = new EsrSystemInfo();
-
-        oriEsrEmsDetail = queryEsrEmsDetail(emsId);
-        esrEmsDetail = emsManagerUtil.emsRegisterInfo2EsrEms(emsRegisterInfo);
+        EsrEmsDetail oriEsrEmsDetail = queryEsrEmsDetail(emsId);
+        EsrEmsDetail esrEmsDetail = emsManagerUtil.emsRegisterInfo2EsrEms(emsRegisterInfo);
         String emsResourceVersion = oriEsrEmsDetail.getResourceVersion();
         esrEmsDetail.setResourceVersion(emsResourceVersion);
         esrEmsDetail.setEmsId(emsId);
-        newEsrSysInfoList = esrEmsDetail.getEsrSystemInfoList().getEsrSystemInfo();
-        oriEsrSysInfoList = oriEsrEmsDetail.getEsrSystemInfoList().getEsrSystemInfo();
+        List<EsrSystemInfo> newEsrSysInfoList = esrEmsDetail.getEsrSystemInfoList().getEsrSystemInfo();
+        List<EsrSystemInfo> oriEsrSysInfoList = oriEsrEmsDetail.getEsrSystemInfoList().getEsrSystemInfo();
         for (int i = 0; i < oriEsrSysInfoList.size(); i++) {
-            originalEsrSystemInfo = oriEsrSysInfoList.get(i);
+            EsrSystemInfo originalEsrSystemInfo = oriEsrSysInfoList.get(i);
             for (int j = 0; j < newEsrSysInfoList.size(); j++) {
-                newEsrSystemInfo = newEsrSysInfoList.get(j);
+                EsrSystemInfo newEsrSystemInfo = newEsrSysInfoList.get(j);
                 if (originalEsrSystemInfo.getSystemType().equals(newEsrSystemInfo.getSystemType())) {
                     esrEmsDetail.getEsrSystemInfoList().getEsrSystemInfo().get(j)
                             .setResouceVersion(originalEsrSystemInfo.getResouceVersion());

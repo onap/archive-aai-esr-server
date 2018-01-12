@@ -60,9 +60,8 @@ public class VimManagerWrapper {
 
     public Response registerVim(VimRegisterInfo vimRegisterInfo) {
         LOG.info("Start register VIM, input VIM info is: " + extsysUtil.objectToString(vimRegisterInfo));
-        CloudRegionDetail cloudRegion = new CloudRegionDetail();
         VimRegisterResponse result = new VimRegisterResponse();
-        cloudRegion = vimManagerUtil.vimRegisterInfo2CloudRegion(vimRegisterInfo);
+        CloudRegionDetail cloudRegion = vimManagerUtil.vimRegisterInfo2CloudRegion(vimRegisterInfo);
         String cloudOwner = vimRegisterInfo.getCloudOwner();
         String cloudRegionId = vimRegisterInfo.getCloudRegionId();
         try {
@@ -85,10 +84,9 @@ public class VimManagerWrapper {
 
     public Response updateVim(String cloudOwner, String cloudRegionId, VimRegisterInfo vimRegisterInfo) {
         LOG.info("Start update VIM, input VIM info is: " + extsysUtil.objectToString(vimRegisterInfo));
-        CloudRegionDetail cloudRegionDetail = new CloudRegionDetail();
         VimRegisterResponse result = new VimRegisterResponse();
 
-        cloudRegionDetail = getVimUpdateInfo(vimRegisterInfo);
+        CloudRegionDetail cloudRegionDetail = getVimUpdateInfo(vimRegisterInfo);
         try {
             cloudRegionProxy.registerVim(cloudOwner, cloudRegionId, cloudRegionDetail);
             result.setCloudOwner(cloudOwner);
@@ -133,12 +131,11 @@ public class VimManagerWrapper {
 
     private List<VimRegisterInfo> getVimDetailList(CloudRegionList cloudRegionList) {
         List<VimRegisterInfo> vimRegisterInfos = new ArrayList<>();
-        VimRegisterInfo vimRegisterInfo = new VimRegisterInfo();
         int cloudRegionNum = cloudRegionList.getCloudRegion().size();
         for (int i = 0; i < cloudRegionNum; i++) {
             String cloudOwner = cloudRegionList.getCloudRegion().get(i).getCloudOwner();
             String cloudRegionId = cloudRegionList.getCloudRegion().get(i).getCloudRegionId();
-            vimRegisterInfo = getVimDetail(cloudOwner, cloudRegionId);
+            VimRegisterInfo vimRegisterInfo = getVimDetail(cloudOwner, cloudRegionId);
             vimRegisterInfos.add(vimRegisterInfo);
         }
         return vimRegisterInfos;
@@ -172,17 +169,14 @@ public class VimManagerWrapper {
     }
 
     private CloudRegionDetail getVimUpdateInfo(VimRegisterInfo vimRegisterInfo) {
-        CloudRegionDetail cloudRegionDetail = new CloudRegionDetail();
-        CloudRegionDetail originalCloudRegionDetail = new CloudRegionDetail();
-        EsrSystemInfo originalSystemInfo = new EsrSystemInfo();
         String cloudOwner = vimRegisterInfo.getCloudOwner();
         String cloudRegionId = vimRegisterInfo.getCloudRegionId();
-        originalCloudRegionDetail = getOriginalCloudRegion(cloudOwner, cloudRegionId);
+        CloudRegionDetail originalCloudRegionDetail = getOriginalCloudRegion(cloudOwner, cloudRegionId);
         String resourceVersion = originalCloudRegionDetail.getResourceVersion();
-        cloudRegionDetail = vimManagerUtil.vimRegisterInfo2CloudRegion(vimRegisterInfo);
+        CloudRegionDetail cloudRegionDetail = vimManagerUtil.vimRegisterInfo2CloudRegion(vimRegisterInfo);
         if (resourceVersion != null) {
             cloudRegionDetail.setResourceVersion(resourceVersion);
-            originalSystemInfo = originalCloudRegionDetail.getEsrSystemInfoList().getEsrSystemInfo().get(0);
+            EsrSystemInfo originalSystemInfo = originalCloudRegionDetail.getEsrSystemInfoList().getEsrSystemInfo().get(0);
             cloudRegionDetail.getEsrSystemInfoList().getEsrSystemInfo().get(0)
                     .setEsrSystemInfoId(originalSystemInfo.getEsrSystemInfoId());
             cloudRegionDetail.getEsrSystemInfoList().getEsrSystemInfo().get(0)
@@ -192,8 +186,7 @@ public class VimManagerWrapper {
     }
 
     public Response delVim(String cloudOwner, String cloudRegionId) {
-        CloudRegionDetail cloudRegionDetail = new CloudRegionDetail();
-        cloudRegionDetail = queryCloudRegionDetail(cloudOwner, cloudRegionId);
+        CloudRegionDetail cloudRegionDetail = queryCloudRegionDetail(cloudOwner, cloudRegionId);
         String resourceVersion = cloudRegionDetail.getResourceVersion();
         try {
             cloudRegionProxy.deleteVim(cloudOwner, cloudRegionId, resourceVersion);
