@@ -150,17 +150,34 @@ public class ExternalSystemProxy {
     }
 
     public static void registerEms(String emsId, EsrEmsDetail emsDetail) throws ExtsysException {
-        ClientConfig config = new ClientConfig(new EmsRegisterProvider());
-        IExternalSystem registerEmsServiceproxy =
-                ConsumerFactory.createConsumer(MsbConfig.getExternalSystemAddr(), config, IExternalSystem.class);
-        try {
-            registerEmsServiceproxy.registerEMS(transactionId, fromAppId, authorization, emsId, emsDetail);
-        } catch (Exception e) {
-            throw new ExtsysException("PUT EMS to A&AI failed.", e);
+        if (!isTest) {
+            ClientConfig config = new ClientConfig(new EmsRegisterProvider());
+            IExternalSystem registerEmsServiceproxy =
+                    ConsumerFactory.createConsumer(MsbConfig.getExternalSystemAddr(), config, IExternalSystem.class);
+            try {
+                registerEmsServiceproxy.registerEMS(transactionId, fromAppId, authorization, emsId, emsDetail);
+            } catch (Exception e) {
+                throw new ExtsysException("PUT EMS to A&AI failed.", e);
+            }
         }
     }
 
     public static String queryEmsDetail(String emsId) throws ExtsysException {
+        if (isTest) {
+            String emsDetailStr = "{\"ems-id\":\"123456\"," + "\"esr-system-info-list\":" + "{\"esr-system-info\":"
+                    + "[{\"esr-system-info-id\":\"234567\"," + "\"system-name\":\"EMS_TEST\"," + "\"type\":\"sftp\","
+                    + "\"vendor\":\"ZTE\"," + "\"version\":\"V1\"," + "\"user-name\":\"nancy\"," + "\"password\":\"asdf\","
+                    + "\"system-type\":\"EMS_RESOUCE\"," + "\"ip-address\":\"127.0.0.1\"," + "\"port\":\"5000\","
+                    + "\"passive\":true," + "\"remote-path\":\"/home/per\"}," + "{\"esr-system-info-id\":\"345678\","
+                    + "\"system-name\":\"EMS_TEST\"," + "\"type\":\"sftp\"," + "\"vendor\":\"ZTE\"," + "\"version\":\"V1\","
+                    + "\"user-name\":\"nancy\"," + "\"password\":\"asdf\"," + "\"system-type\":\"EMS_PERFORMANCE\","
+                    + "\"ip-address\":\"127.0.0.1\"," + "\"port\":\"5000\"," + "\"passive\":true,"
+                    + "\"remote-path\":\"/home/per\"}," + "{\"esr-system-info-id\":\"456789\","
+                    + "\"system-name\":\"EMS_TEST\"," + "\"vendor\":\"ZTE\"," + "\"version\":\"V1\","
+                    + "\"user-name\":\"nancy\"," + "\"password\":\"987654\"," + "\"system-type\":\"EMS_ALARM\","
+                    + "\"ip-address\":\"127.0.0.1\"," + "\"port\":\"5000\"}]}}";
+            return emsDetailStr;
+        }
         try {
             return externalSystemproxy.queryEMSDetail(transactionId, fromAppId, authorization, emsId);
         } catch (Exception e) {
@@ -169,6 +186,9 @@ public class ExternalSystemProxy {
     }
 
     public static String queryEmsList() throws ExtsysException {
+        if (isTest) {
+            return "{\"esr-ems\": [ {\"ems-id\": \"123456\",\"resource-version\": \"1\"}]}";
+        }
         try {
             return externalSystemproxy.queryEMSList(transactionId, fromAppId, authorization);
         } catch (Exception e) {
@@ -177,10 +197,12 @@ public class ExternalSystemProxy {
     }
 
     public static void deleteEms(String emsId, String resourceVersion) throws ExtsysException {
-        try {
-            externalSystemproxy.deleteEMS(transactionId, fromAppId, authorization, emsId, resourceVersion);
-        } catch (Exception e) {
-            throw new ExtsysException("Delete EMS from A&AI failed.", e);
+        if (!isTest) {
+            try {
+                externalSystemproxy.deleteEMS(transactionId, fromAppId, authorization, emsId, resourceVersion);
+            } catch (Exception e) {
+                throw new ExtsysException("Delete EMS from A&AI failed.", e);
+            }
         }
     }
 }

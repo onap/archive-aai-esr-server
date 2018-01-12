@@ -19,8 +19,10 @@ import static org.junit.Assert.assertEquals;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ws.rs.core.Response;
+import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.onap.aai.esr.common.MsbConfig;
 import org.onap.aai.esr.entity.rest.ThirdpartySdncRegisterInfo;
@@ -34,6 +36,16 @@ public class ThirdpartySdncWrapperTest {
         MsbConfig.setMsbServerAddr("http://127.0.0.1:80");
     }
 
+    @BeforeClass  
+    public static void beforeClass() {  
+        ExternalSystemProxy.isTest = true;
+    };  
+    
+    @AfterClass  
+    public static void afterClass() {  
+        ExternalSystemProxy.isTest = false;
+    };
+    
     @Before
     public void setUp() throws Exception {
         thirdpartySdncWrapper = ThirdpartySdncWrapper.getInstance();
@@ -41,7 +53,6 @@ public class ThirdpartySdncWrapperTest {
 
     @Test
     public void test_registerThirdpartySdnc() {
-        ExternalSystemProxy.isTest = true;
         ThirdpartySdncRegisterInfo sdncRegisterInfo = new ThirdpartySdncRegisterInfo();
         sdncRegisterInfo.setLocation("edge");
         sdncRegisterInfo.setName("SDNC_TEST");
@@ -58,22 +69,18 @@ public class ThirdpartySdncWrapperTest {
         if (response != null) {
             Assert.assertTrue(response.getStatus() == 200);
         }
-        ExternalSystemProxy.isTest = false;
     }
 
     @Test
     public void test_delThirdpartySdnc() {
-        ExternalSystemProxy.isTest = true;
         Response response = thirdpartySdncWrapper.delThirdpartySdnc("123456");
         if (response != null) {
             Assert.assertTrue(response.getStatus() == 204);
         }
-        ExternalSystemProxy.isTest = false;
     }
 
     @Test
     public void test_queryThirdpartySdncById() {
-        ExternalSystemProxy.isTest = true;
         ExtsysUtil extsysUtil = new ExtsysUtil();
         ThirdpartySdncRegisterInfo sdncRegisterInfo = new ThirdpartySdncRegisterInfo();
         sdncRegisterInfo.setLocation("edge");
@@ -92,12 +99,10 @@ public class ThirdpartySdncWrapperTest {
             Assert.assertTrue(response.getStatus() == 200);
             assertEquals(extsysUtil.objectToString(sdncRegisterInfo), extsysUtil.objectToString(response.getEntity()));
         }
-        ExternalSystemProxy.isTest = false;
     }
 
     @Test
     public void test_queryThirdpartySdncList() {
-        ExternalSystemProxy.isTest = true;
         ExtsysUtil extsysUtil = new ExtsysUtil();
         List<ThirdpartySdncRegisterInfo> sdncList = new ArrayList<>();
         ThirdpartySdncRegisterInfo sdncRegisterInfo = new ThirdpartySdncRegisterInfo();
@@ -118,12 +123,10 @@ public class ThirdpartySdncWrapperTest {
             Assert.assertTrue(response.getStatus() == 200);
             assertEquals(extsysUtil.objectToString(sdncList), extsysUtil.objectToString(response.getEntity()));
         }
-        ExternalSystemProxy.isTest = false;
     }
 
     @Test
     public void test_updateThirdpartySdnc() {
-        ExternalSystemProxy.isTest = true;
         ThirdpartySdncRegisterInfo sdncRegisterInfo = new ThirdpartySdncRegisterInfo();
         sdncRegisterInfo.setLocation("edge");
         sdncRegisterInfo.setName("SDNC_TEST");
@@ -140,6 +143,5 @@ public class ThirdpartySdncWrapperTest {
         if (response != null) {
             Assert.assertTrue(response.getStatus() == 200);
         }
-        ExternalSystemProxy.isTest = false;
     }
 }

@@ -93,8 +93,7 @@ public class EmsManagerWrapper {
     }
 
     public Response queryEmsById(String emsId) {
-        EmsRegisterInfo ems;
-        ems = queryEmsDetail(emsId);
+        EmsRegisterInfo ems = queryEmsDetail(emsId);
         if (ems != null) {
             return Response.ok(ems).build();
         } else {

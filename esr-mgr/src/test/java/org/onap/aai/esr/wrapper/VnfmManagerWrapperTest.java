@@ -19,8 +19,10 @@ import static org.junit.Assert.assertEquals;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ws.rs.core.Response;
+import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.onap.aai.esr.common.MsbConfig;
 import org.onap.aai.esr.entity.rest.VnfmRegisterInfo;
@@ -34,6 +36,16 @@ public class VnfmManagerWrapperTest {
         MsbConfig.setMsbServerAddr("http://127.0.0.1:80");
     }
 
+    @BeforeClass  
+    public static void beforeClass() {  
+        ExternalSystemProxy.isTest = true;
+    };  
+    
+    @AfterClass  
+    public static void afterClass() {  
+        ExternalSystemProxy.isTest = false;
+    };
+    
     @Before
     public void setUp() throws Exception {
         vnfmManagerWrapper = VnfmManagerWrapper.getInstance();
@@ -41,7 +53,6 @@ public class VnfmManagerWrapperTest {
 
     @Test
     public void test_registerVnfm() {
-        ExternalSystemProxy.isTest = true;
         VnfmRegisterInfo vnfmRegisterInfo = new VnfmRegisterInfo();
         vnfmRegisterInfo.setVimId("987654");
         vnfmRegisterInfo.setVersion("v1");
@@ -56,12 +67,10 @@ public class VnfmManagerWrapperTest {
         if (response != null) {
             Assert.assertTrue(response.getStatus() == 200);
         }
-        ExternalSystemProxy.isTest = false;
     }
 
     @Test
     public void test_queryVnfmById() {
-        ExternalSystemProxy.isTest = true;
         ExtsysUtil extsysUtil = new ExtsysUtil();
         VnfmRegisterInfo vnfmRegisterInfo = new VnfmRegisterInfo();
         vnfmRegisterInfo.setVimId("987654");
@@ -79,12 +88,10 @@ public class VnfmManagerWrapperTest {
             Assert.assertTrue(response.getStatus() == 200);
             assertEquals(extsysUtil.objectToString(vnfmRegisterInfo), extsysUtil.objectToString(response.getEntity()));
         }
-        ExternalSystemProxy.isTest = false;
     }
 
     @Test
     public void test_queryVnfmList() {
-        ExternalSystemProxy.isTest = true;
         ExtsysUtil extsysUtil = new ExtsysUtil();
         List<VnfmRegisterInfo> vnfmList = new ArrayList<>();
         VnfmRegisterInfo vnfmRegisterInfo = new VnfmRegisterInfo();
@@ -104,22 +111,18 @@ public class VnfmManagerWrapperTest {
             Assert.assertTrue(response.getStatus() == 200);
             assertEquals(extsysUtil.objectToString(vnfmList), extsysUtil.objectToString(response.getEntity()));
         }
-        ExternalSystemProxy.isTest = false;
     }
 
     @Test
     public void test_delVnfm() {
-        ExternalSystemProxy.isTest = true;
         Response response = vnfmManagerWrapper.delVnfm("123456");
         if (response != null) {
             Assert.assertTrue(response.getStatus() == 204);
         }
-        ExternalSystemProxy.isTest = false;
     }
 
     @Test
     public void test_updateVnfm() {
-        ExternalSystemProxy.isTest = true;
         VnfmRegisterInfo vnfmRegisterInfo = new VnfmRegisterInfo();
         vnfmRegisterInfo.setVimId("987654");
         vnfmRegisterInfo.setVersion("v1");
@@ -135,6 +138,5 @@ public class VnfmManagerWrapperTest {
         if (response != null) {
             Assert.assertTrue(response.getStatus() == 200);
         }
-        ExternalSystemProxy.isTest = false;
     }
 }
