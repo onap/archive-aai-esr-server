@@ -58,11 +58,11 @@ public class VnfmManagerWrapperTest {
         vnfmRegisterInfo.setVersion("v1");
         vnfmRegisterInfo.setVendor("zte");
         vnfmRegisterInfo.setUserName("onap");
-        vnfmRegisterInfo.setUrl("http://10.11.22.33:8000");
+        vnfmRegisterInfo.setUrl("http://ip:8000");
         vnfmRegisterInfo.setType("vnfm");
         vnfmRegisterInfo.setPassword("987654");
         vnfmRegisterInfo.setName("ONAP VNFM");
-        vnfmRegisterInfo.setCertificateUrl("http://11.22.33.44:5000/v3");
+        vnfmRegisterInfo.setCertificateUrl("http://ip:5000/v3");
         Response response = vnfmManagerWrapper.registerVnfm(vnfmRegisterInfo);
         if (response != null) {
             Assert.assertTrue(response.getStatus() == 200);
@@ -77,11 +77,11 @@ public class VnfmManagerWrapperTest {
         vnfmRegisterInfo.setVersion("v1");
         vnfmRegisterInfo.setVendor("zte");
         vnfmRegisterInfo.setUserName("onap");
-        vnfmRegisterInfo.setUrl("http://10.11.22.33:8000");
+        vnfmRegisterInfo.setUrl("http://ip:8000");
         vnfmRegisterInfo.setType("vnfm");
         vnfmRegisterInfo.setPassword("987654");
         vnfmRegisterInfo.setName("ONAP VNFM");
-        vnfmRegisterInfo.setCertificateUrl("http://11.22.33.44:5000/v3");
+        vnfmRegisterInfo.setCertificateUrl("http://ip:5000/v3");
         vnfmRegisterInfo.setVnfmId("123456");
         Response response = vnfmManagerWrapper.queryVnfmById("123456");
         if (response != null) {
@@ -99,11 +99,11 @@ public class VnfmManagerWrapperTest {
         vnfmRegisterInfo.setVersion("v1");
         vnfmRegisterInfo.setVendor("zte");
         vnfmRegisterInfo.setUserName("onap");
-        vnfmRegisterInfo.setUrl("http://10.11.22.33:8000");
+        vnfmRegisterInfo.setUrl("http://ip:8000");
         vnfmRegisterInfo.setType("vnfm");
         vnfmRegisterInfo.setPassword("987654");
         vnfmRegisterInfo.setName("ONAP VNFM");
-        vnfmRegisterInfo.setCertificateUrl("http://11.22.33.44:5000/v3");
+        vnfmRegisterInfo.setCertificateUrl("http://ip:5000/v3");
         vnfmRegisterInfo.setVnfmId("123456");
         vnfmList.add(vnfmRegisterInfo);
         Response response = vnfmManagerWrapper.queryVnfmList();
@@ -128,11 +128,11 @@ public class VnfmManagerWrapperTest {
         vnfmRegisterInfo.setVersion("v1");
         vnfmRegisterInfo.setVendor("zte");
         vnfmRegisterInfo.setUserName("onap");
-        vnfmRegisterInfo.setUrl("http://10.11.22.33:8000");
+        vnfmRegisterInfo.setUrl("http://ip:8000");
         vnfmRegisterInfo.setType("vnfm");
         vnfmRegisterInfo.setPassword("987654");
         vnfmRegisterInfo.setName("ONAP VNFM");
-        vnfmRegisterInfo.setCertificateUrl("http://11.22.33.44:5000/v3");
+        vnfmRegisterInfo.setCertificateUrl("http://ip:5000/v3");
         vnfmRegisterInfo.setVnfmId("123456");
         Response response = vnfmManagerWrapper.updateVnfm(vnfmRegisterInfo, "123456");
         if (response != null) {

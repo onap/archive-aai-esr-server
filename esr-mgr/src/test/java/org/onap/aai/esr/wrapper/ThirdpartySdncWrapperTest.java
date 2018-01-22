@@ -61,7 +61,7 @@ public class ThirdpartySdncWrapperTest {
         sdncRegisterInfo.setProtocol("protocol");
         sdncRegisterInfo.setThirdpartySdncId("123456");
         sdncRegisterInfo.setType("SDNC");
-        sdncRegisterInfo.setUrl("http://127.0.0.1:8000");
+        sdncRegisterInfo.setUrl("http://ip:8000");
         sdncRegisterInfo.setUserName("nancy");
         sdncRegisterInfo.setVendor("zte");
         sdncRegisterInfo.setVersion("v1");
@@ -90,7 +90,7 @@ public class ThirdpartySdncWrapperTest {
         sdncRegisterInfo.setProtocol("protocol");
         sdncRegisterInfo.setThirdpartySdncId("123456");
         sdncRegisterInfo.setType("SDNC");
-        sdncRegisterInfo.setUrl("http://127.0.0.1:8000");
+        sdncRegisterInfo.setUrl("http://ip:8000");
         sdncRegisterInfo.setUserName("nancy");
         sdncRegisterInfo.setVendor("zte");
         sdncRegisterInfo.setVersion("v1");
@@ -113,7 +113,7 @@ public class ThirdpartySdncWrapperTest {
         sdncRegisterInfo.setProtocol("protocol");
         sdncRegisterInfo.setThirdpartySdncId("123456");
         sdncRegisterInfo.setType("SDNC");
-        sdncRegisterInfo.setUrl("http://127.0.0.1:8000");
+        sdncRegisterInfo.setUrl("http://ip:8000");
         sdncRegisterInfo.setUserName("nancy");
         sdncRegisterInfo.setVendor("zte");
         sdncRegisterInfo.setVersion("v1");
@@ -135,7 +135,7 @@ public class ThirdpartySdncWrapperTest {
         sdncRegisterInfo.setProtocol("protocol");
         sdncRegisterInfo.setThirdpartySdncId("123456");
         sdncRegisterInfo.setType("SDNC");
-        sdncRegisterInfo.setUrl("http://127.0.0.1:8000");
+        sdncRegisterInfo.setUrl("http://ip:8000");
         sdncRegisterInfo.setUserName("nancy");
         sdncRegisterInfo.setVendor("zte");
         sdncRegisterInfo.setVersion("v1");

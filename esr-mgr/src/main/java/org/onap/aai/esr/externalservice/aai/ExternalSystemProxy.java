@@ -51,12 +51,12 @@ public class ExternalSystemProxy {
 
     public static String queryVnfmDetail(String vnfmId) throws ExtsysException {
         if (isTest) {
-            String esrVnfmDetailStr = "{\"vnfm-id\":\"123456\"," + "\"vim-id\":\"987654\","
-                    + "\"certificate-url\":\"http://11.22.33.44:5000/v3\"," + "\"esr-system-info-list\":{"
-                    + "\"esr-system-info\":[{" + "\"esr-system-info-id\":\"qwerty\"," + "\"system-name\":\"ONAP VNFM\","
-                    + "\"type\":\"vnfm\"," + "\"vendor\":\"zte\"," + "\"version\":\"v1\","
-                    + "\"service-url\":\"http://10.11.22.33:8000\"," + "\"user-name\":\"onap\","
-                    + "\"password\":\"987654\"," + "\"system-type\":\"VNFM\"}]}}";
+            String esrVnfmDetailStr = "{\"vnfm-id\":\"123456\",\"vim-id\":\"987654\","
+                    + "\"certificate-url\":\"http://ip:5000/v3\",\"esr-system-info-list\":{"
+                    + "\"esr-system-info\":[{\"esr-system-info-id\":\"qwerty\",\"system-name\":\"ONAP VNFM\","
+                    + "\"type\":\"vnfm\",\"vendor\":\"zte\",\"version\":\"v1\","
+                    + "\"service-url\":\"http://ip:8000\",\"user-name\":\"onap\","
+                    + "\"password\":\"987654\",\"system-type\":\"VNFM\"}]}}";
             return esrVnfmDetailStr;
         }
         try {
@@ -68,8 +68,8 @@ public class ExternalSystemProxy {
 
     public static String queryVnfmList() throws ExtsysException {
         if (isTest) {
-            String vnfmListStr = "{\"esr-vnfm\": " + "[{\"vnfm-id\": \"123456\"," + "\"vim-id\": \"987654\","
-                    + "\"certificate-url\": \"http://11.22.33.44:5000/v3\"," + "\"resource-version\": \"1\"}]}";
+            String vnfmListStr = "{\"esr-vnfm\": [{\"vnfm-id\": \"123456\",\"vim-id\": \"987654\","
+                    + "\"certificate-url\": \"http://ip:5000/v3\",\"resource-version\": \"1\"}]}";
             return vnfmListStr;
         }
         try {
@@ -106,11 +106,11 @@ public class ExternalSystemProxy {
 
     public static String queryThirdpartySdncDetail(String thirdpartySdncId) throws ExtsysException {
         if (isTest) {
-            String sdncDetail = "{\"thirdparty-sdnc-id\":\"123456\"," + "\"location\":\"edge\","
-                    + "\"product-name\":\"thirdparty SDNC\"," + "\"esr-system-info-list\":{" + "\"esr-system-info\":"
-                    + "[{\"esr-system-info-id\":\"987654\"," + "\"system-name\":\"SDNC_TEST\"," + "\"type\":\"SDNC\","
-                    + "\"vendor\":\"zte\"," + "\"version\":\"v1\"," + "\"service-url\":\"http://127.0.0.1:8000\","
-                    + "\"user-name\":\"nancy\"," + "\"password\":\"123987\"," + "\"system-type\":\"thirdparty_SDNC\","
+            String sdncDetail = "{\"thirdparty-sdnc-id\":\"123456\",\"location\":\"edge\","
+                    + "\"product-name\":\"thirdparty SDNC\",\"esr-system-info-list\":{\"esr-system-info\":"
+                    + "[{\"esr-system-info-id\":\"987654\",\"system-name\":\"SDNC_TEST\",\"type\":\"SDNC\","
+                    + "\"vendor\":\"zte\",\"version\":\"v1\",\"service-url\":\"http://ip:8000\","
+                    + "\"user-name\":\"nancy\",\"password\":\"123987\",\"system-type\":\"thirdparty_SDNC\","
                     + "\"protocol\":\"protocol\"}]}}";
             return sdncDetail;
         }
@@ -125,8 +125,8 @@ public class ExternalSystemProxy {
     public static String querySdncList() throws ExtsysException {
         if (isTest) {
             String sdncList =
-                    "{\"esr-thirdparty-sdnc\": " + "[{\"thirdparty-sdnc-id\": \"123456\"," + "\"location\": \"edge\","
-                            + "\"product-name\": \"thirdparty SDNC\"," + "\"resource-version\": \"1\"}]}";
+                    "{\"esr-thirdparty-sdnc\": [{\"thirdparty-sdnc-id\": \"123456\",\"location\": \"edge\","
+                            + "\"product-name\": \"thirdparty SDNC\",\"resource-version\": \"1\"}]}";
             return sdncList;
         }
         try {
@@ -162,18 +162,18 @@ public class ExternalSystemProxy {
 
     public static String queryEmsDetail(String emsId) throws ExtsysException {
         if (isTest) {
-            String emsDetailStr = "{\"ems-id\":\"123456\"," + "\"esr-system-info-list\":" + "{\"esr-system-info\":"
-                    + "[{\"esr-system-info-id\":\"234567\"," + "\"system-name\":\"EMS_TEST\"," + "\"type\":\"sftp\","
-                    + "\"vendor\":\"ZTE\"," + "\"version\":\"V1\"," + "\"user-name\":\"nancy\"," + "\"password\":\"asdf\","
-                    + "\"system-type\":\"EMS_RESOUCE\"," + "\"ip-address\":\"127.0.0.1\"," + "\"port\":\"5000\","
-                    + "\"passive\":true," + "\"remote-path\":\"/home/per\"}," + "{\"esr-system-info-id\":\"345678\","
-                    + "\"system-name\":\"EMS_TEST\"," + "\"type\":\"sftp\"," + "\"vendor\":\"ZTE\"," + "\"version\":\"V1\","
-                    + "\"user-name\":\"nancy\"," + "\"password\":\"asdf\"," + "\"system-type\":\"EMS_PERFORMANCE\","
-                    + "\"ip-address\":\"127.0.0.1\"," + "\"port\":\"5000\"," + "\"passive\":true,"
-                    + "\"remote-path\":\"/home/per\"}," + "{\"esr-system-info-id\":\"456789\","
-                    + "\"system-name\":\"EMS_TEST\"," + "\"vendor\":\"ZTE\"," + "\"version\":\"V1\","
-                    + "\"user-name\":\"nancy\"," + "\"password\":\"987654\"," + "\"system-type\":\"EMS_ALARM\","
-                    + "\"ip-address\":\"127.0.0.1\"," + "\"port\":\"5000\"}]}}";
+            String emsDetailStr = "{\"ems-id\":\"123456\",\"esr-system-info-list\":{\"esr-system-info\":"
+                    + "[{\"esr-system-info-id\":\"234567\",\"system-name\":\"EMS_TEST\",\"type\":\"sftp\","
+                    + "\"vendor\":\"ZTE\",\"version\":\"V1\",\"user-name\":\"nancy\",\"password\":\"asdf\","
+                    + "\"system-type\":\"EMS_RESOUCE\",\"ip-address\":\"ip\",\"port\":\"5000\","
+                    + "\"passive\":true,\"remote-path\":\"/home/per\"},{\"esr-system-info-id\":\"345678\","
+                    + "\"system-name\":\"EMS_TEST\",\"type\":\"sftp\",\"vendor\":\"ZTE\",\"version\":\"V1\","
+                    + "\"user-name\":\"nancy\",\"password\":\"asdf\",\"system-type\":\"EMS_PERFORMANCE\","
+                    + "\"ip-address\":\"ip\",\"port\":\"5000\",\"passive\":true,"
+                    + "\"remote-path\":\"/home/per\"},{\"esr-system-info-id\":\"456789\","
+                    + "\"system-name\":\"EMS_TEST\",\"vendor\":\"ZTE\",\"version\":\"V1\","
+                    + "\"user-name\":\"nancy\",\"password\":\"987654\",\"system-type\":\"EMS_ALARM\","
+                    + "\"ip-address\":\"ip\",\"port\":\"5000\"}]}}";
             return emsDetailStr;
         }
         try {
