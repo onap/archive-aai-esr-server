@@ -16,6 +16,7 @@
 package org.onap.aai.esr.externalservice.aai;
 
 import org.glassfish.jersey.client.ClientConfig;
+import org.onap.aai.esr.common.IsTest;
 import org.onap.aai.esr.common.MsbConfig;
 import org.onap.aai.esr.entity.aai.EsrEmsDetail;
 import org.onap.aai.esr.entity.aai.EsrThirdpartySdncDetail;
@@ -25,7 +26,6 @@ import com.eclipsesource.jaxrs.consumer.ConsumerFactory;
 
 public class ExternalSystemProxy {
 
-    public static boolean isTest = false;
     private static IExternalSystem externalSystemproxy;
     private static String transactionId = "9999";
     private static String fromAppId = "esr-server";
@@ -35,9 +35,11 @@ public class ExternalSystemProxy {
         externalSystemproxy =
                 ConsumerFactory.createConsumer(MsbConfig.getExternalSystemAddr(), config, IExternalSystem.class);
     }
+    
+    public static IsTest test = new IsTest(false);
 
     public static void registerVnfm(String vnfmId, EsrVnfmDetail esrVnfmDetail) throws ExtsysException {
-        if (!isTest){
+        if (!test.getIsTest()){
             ClientConfig config = new ClientConfig(new VnfmRegisterProvider());
             IExternalSystem registerVnfmServiceproxy =
                     ConsumerFactory.createConsumer(MsbConfig.getExternalSystemAddr(), config, IExternalSystem.class);
@@ -50,7 +52,7 @@ public class ExternalSystemProxy {
     }
 
     public static String queryVnfmDetail(String vnfmId) throws ExtsysException {
-        if (isTest) {
+        if (test.getIsTest()) {
             String esrVnfmDetailStr = "{\"vnfm-id\":\"123456\",\"vim-id\":\"987654\","
                     + "\"certificate-url\":\"http://ip:5000/v3\",\"esr-system-info-list\":{"
                     + "\"esr-system-info\":[{\"esr-system-info-id\":\"qwerty\",\"system-name\":\"ONAP VNFM\","
@@ -67,7 +69,7 @@ public class ExternalSystemProxy {
     }
 
     public static String queryVnfmList() throws ExtsysException {
-        if (isTest) {
+        if (test.getIsTest()) {
             String vnfmListStr = "{\"esr-vnfm\": [{\"vnfm-id\": \"123456\",\"vim-id\": \"987654\","
                     + "\"certificate-url\": \"http://ip:5000/v3\",\"resource-version\": \"1\"}]}";
             return vnfmListStr;
@@ -80,7 +82,7 @@ public class ExternalSystemProxy {
     }
 
     public static void deleteVnfm(String vnfmId, String resourceVersion) throws ExtsysException {
-        if (!isTest) {
+        if (!test.getIsTest()) {
             try {
                 externalSystemproxy.deleteVNFM(transactionId, fromAppId, authorization, vnfmId, resourceVersion);
             } catch (Exception e) {
@@ -91,7 +93,7 @@ public class ExternalSystemProxy {
 
     public static void registerSdnc(String thirdpartySdncId, EsrThirdpartySdncDetail esrSdncDetail)
             throws ExtsysException {
-        if (!isTest) {
+        if (!test.getIsTest()) {
             ClientConfig config = new ClientConfig(new ThirdpartySdncRegisterProvider());
             IExternalSystem registerSdncServiceproxy =
                     ConsumerFactory.createConsumer(MsbConfig.getExternalSystemAddr(), config, IExternalSystem.class);
@@ -105,7 +107,7 @@ public class ExternalSystemProxy {
     }
 
     public static String queryThirdpartySdncDetail(String thirdpartySdncId) throws ExtsysException {
-        if (isTest) {
+        if (test.getIsTest()) {
             String sdncDetail = "{\"thirdparty-sdnc-id\":\"123456\",\"location\":\"edge\","
                     + "\"product-name\":\"thirdparty SDNC\",\"esr-system-info-list\":{\"esr-system-info\":"
                     + "[{\"esr-system-info-id\":\"987654\",\"system-name\":\"SDNC_TEST\",\"type\":\"SDNC\","
@@ -123,7 +125,7 @@ public class ExternalSystemProxy {
     }
 
     public static String querySdncList() throws ExtsysException {
-        if (isTest) {
+        if (test.getIsTest()) {
             String sdncList =
                     "{\"esr-thirdparty-sdnc\": [{\"thirdparty-sdnc-id\": \"123456\",\"location\": \"edge\","
                             + "\"product-name\": \"thirdparty SDNC\",\"resource-version\": \"1\"}]}";
@@ -137,7 +139,7 @@ public class ExternalSystemProxy {
     }
 
     public static void deleteThirdpartySdnc(String sdncId, String resourceVersion) throws ExtsysException {
-        if (!isTest) {
+        if (!test.getIsTest()) {
             try {
                 externalSystemproxy.deleteThirdpartySdnc(transactionId, fromAppId, authorization, sdncId,
                         resourceVersion);
@@ -148,7 +150,7 @@ public class ExternalSystemProxy {
     }
 
     public static void registerEms(String emsId, EsrEmsDetail emsDetail) throws ExtsysException {
-        if (!isTest) {
+        if (!test.getIsTest()) {
             ClientConfig config = new ClientConfig(new EmsRegisterProvider());
             IExternalSystem registerEmsServiceproxy =
                     ConsumerFactory.createConsumer(MsbConfig.getExternalSystemAddr(), config, IExternalSystem.class);
@@ -161,7 +163,7 @@ public class ExternalSystemProxy {
     }
 
     public static String queryEmsDetail(String emsId) throws ExtsysException {
-        if (isTest) {
+        if (test.getIsTest()) {
             String emsDetailStr = "{\"ems-id\":\"123456\",\"esr-system-info-list\":{\"esr-system-info\":"
                     + "[{\"esr-system-info-id\":\"234567\",\"system-name\":\"EMS_TEST\",\"type\":\"sftp\","
                     + "\"vendor\":\"ZTE\",\"version\":\"V1\",\"user-name\":\"nancy\",\"password\":\"asdf\","
@@ -184,7 +186,7 @@ public class ExternalSystemProxy {
     }
 
     public static String queryEmsList() throws ExtsysException {
-        if (isTest) {
+        if (test.getIsTest()) {
             return "{\"esr-ems\": [ {\"ems-id\": \"123456\",\"resource-version\": \"1\"}]}";
         }
         try {
@@ -195,7 +197,7 @@ public class ExternalSystemProxy {
     }
 
     public static void deleteEms(String emsId, String resourceVersion) throws ExtsysException {
-        if (!isTest) {
+        if (!test.getIsTest()) {
             try {
                 externalSystemproxy.deleteEMS(transactionId, fromAppId, authorization, emsId, resourceVersion);
             } catch (Exception e) {

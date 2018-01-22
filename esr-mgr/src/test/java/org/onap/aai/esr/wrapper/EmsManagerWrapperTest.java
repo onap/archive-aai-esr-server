@@ -24,6 +24,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.onap.aai.esr.common.IsTest;
 import org.onap.aai.esr.common.MsbConfig;
 import org.onap.aai.esr.entity.rest.AlarmAddr;
 import org.onap.aai.esr.entity.rest.EmsRegisterInfo;
@@ -39,12 +40,12 @@ public class EmsManagerWrapperTest {
 
     @BeforeClass  
     public static void beforeClass() {  
-        ExternalSystemProxy.isTest = true;
+        ExternalSystemProxy.test = new IsTest(true);
     };  
     
     @AfterClass  
     public static void afterClass() {  
-        ExternalSystemProxy.isTest = false;
+        ExternalSystemProxy.test = new IsTest(false);
     };
     
     @Before
