@@ -15,7 +15,7 @@
  */
 package org.onap.aai.esr.entity.rest;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 public class VimRegisterInfo {
