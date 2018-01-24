@@ -201,12 +201,12 @@
             <version>1.6.5</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
+        <!--<dependency>
             <groupId>org.powermock</groupId>
             <artifactId>powermock-classloading-xstream</artifactId>
-            <version>1.6.5</version>
+            <version>1.7.3</version>
             <scope>test</scope>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest-library</artifactId>
