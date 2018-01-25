@@ -19,41 +19,24 @@ import static org.junit.Assert.assertEquals;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ws.rs.core.Response;
-import org.junit.AfterClass;
 import org.junit.Assert;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
-import org.onap.aai.esr.common.IsTest;
+import org.mockito.Mockito;
 import org.onap.aai.esr.common.MsbConfig;
+import org.onap.aai.esr.entity.aai.EsrVnfmDetail;
 import org.onap.aai.esr.entity.rest.VnfmRegisterInfo;
+import org.onap.aai.esr.exception.ExtsysException;
 import org.onap.aai.esr.externalservice.aai.ExternalSystemProxy;
 import org.onap.aai.esr.util.ExtsysUtil;
 
 public class VnfmManagerWrapperTest {
 
-    private static VnfmManagerWrapper vnfmManagerWrapper;
     static {
         MsbConfig.setMsbServerAddr("http://127.0.0.1:80");
     }
 
-    @BeforeClass  
-    public static void beforeClass() {  
-        ExternalSystemProxy.test = new IsTest(true);
-    };  
-    
-    @AfterClass  
-    public static void afterClass() {  
-        ExternalSystemProxy.test = new IsTest(false);
-    };
-    
-    @Before
-    public void setUp() throws Exception {
-        vnfmManagerWrapper = VnfmManagerWrapper.getInstance();
-    }
-
     @Test
-    public void test_registerVnfm() {
+    public void test_registerVnfm() throws ExtsysException {
         VnfmRegisterInfo vnfmRegisterInfo = new VnfmRegisterInfo();
         vnfmRegisterInfo.setVimId("987654");
         vnfmRegisterInfo.setVersion("v1");
@@ -64,6 +47,9 @@ public class VnfmManagerWrapperTest {
         vnfmRegisterInfo.setPassword("987654");
         vnfmRegisterInfo.setName("ONAP VNFM");
         vnfmRegisterInfo.setCertificateUrl("http://ip:5000/v3");
+        ExternalSystemProxy mockExternalSystemProxy = Mockito.mock(ExternalSystemProxy.class);
+        Mockito.doNothing().when(mockExternalSystemProxy).registerVnfm(Mockito.anyString(), (EsrVnfmDetail)Mockito.anyObject());
+        VnfmManagerWrapper vnfmManagerWrapper = new VnfmManagerWrapper(mockExternalSystemProxy);
         Response response = vnfmManagerWrapper.registerVnfm(vnfmRegisterInfo);
         if (response != null) {
             Assert.assertTrue(response.getStatus() == 200);
@@ -71,7 +57,7 @@ public class VnfmManagerWrapperTest {
     }
 
     @Test
-    public void test_queryVnfmById() {
+    public void test_queryVnfmById() throws ExtsysException {
         ExtsysUtil extsysUtil = new ExtsysUtil();
         VnfmRegisterInfo vnfmRegisterInfo = new VnfmRegisterInfo();
         vnfmRegisterInfo.setVimId("987654");
@@ -84,6 +70,15 @@ public class VnfmManagerWrapperTest {
         vnfmRegisterInfo.setName("ONAP VNFM");
         vnfmRegisterInfo.setCertificateUrl("http://ip:5000/v3");
         vnfmRegisterInfo.setVnfmId("123456");
+        String esrVnfmDetailStr = "{\"vnfm-id\":\"123456\",\"vim-id\":\"987654\","
+                + "\"certificate-url\":\"http://ip:5000/v3\",\"esr-system-info-list\":{"
+                + "\"esr-system-info\":[{\"esr-system-info-id\":\"qwerty\",\"system-name\":\"ONAP VNFM\","
+                + "\"type\":\"vnfm\",\"vendor\":\"zte\",\"version\":\"v1\","
+                + "\"service-url\":\"http://ip:8000\",\"user-name\":\"onap\","
+                + "\"password\":\"987654\",\"system-type\":\"VNFM\"}]}}";
+        ExternalSystemProxy mockExternalSystemProxy = Mockito.mock(ExternalSystemProxy.class);
+        Mockito.when(mockExternalSystemProxy.queryVnfmDetail(Mockito.anyString())).thenReturn(esrVnfmDetailStr);
+        VnfmManagerWrapper vnfmManagerWrapper = new VnfmManagerWrapper(mockExternalSystemProxy);
         Response response = vnfmManagerWrapper.queryVnfmById("123456");
         if (response != null) {
             Assert.assertTrue(response.getStatus() == 200);
@@ -92,7 +87,7 @@ public class VnfmManagerWrapperTest {
     }
 
     @Test
-    public void test_queryVnfmList() {
+    public void test_queryVnfmList() throws ExtsysException {
         ExtsysUtil extsysUtil = new ExtsysUtil();
         List<VnfmRegisterInfo> vnfmList = new ArrayList<>();
         VnfmRegisterInfo vnfmRegisterInfo = new VnfmRegisterInfo();
@@ -107,6 +102,18 @@ public class VnfmManagerWrapperTest {
         vnfmRegisterInfo.setCertificateUrl("http://ip:5000/v3");
         vnfmRegisterInfo.setVnfmId("123456");
         vnfmList.add(vnfmRegisterInfo);
+        String vnfmListStr = "{\"esr-vnfm\": [{\"vnfm-id\": \"123456\",\"vim-id\": \"987654\","
+                + "\"certificate-url\": \"http://ip:5000/v3\",\"resource-version\": \"1\"}]}";
+        String esrVnfmDetailStr = "{\"vnfm-id\":\"123456\",\"vim-id\":\"987654\","
+                + "\"certificate-url\":\"http://ip:5000/v3\",\"esr-system-info-list\":{"
+                + "\"esr-system-info\":[{\"esr-system-info-id\":\"qwerty\",\"system-name\":\"ONAP VNFM\","
+                + "\"type\":\"vnfm\",\"vendor\":\"zte\",\"version\":\"v1\","
+                + "\"service-url\":\"http://ip:8000\",\"user-name\":\"onap\","
+                + "\"password\":\"987654\",\"system-type\":\"VNFM\"}]}}";
+        ExternalSystemProxy mockExternalSystemProxy = Mockito.mock(ExternalSystemProxy.class);
+        Mockito.when(mockExternalSystemProxy.queryVnfmList()).thenReturn(vnfmListStr);
+        Mockito.when(mockExternalSystemProxy.queryVnfmDetail(Mockito.anyString())).thenReturn(esrVnfmDetailStr);
+        VnfmManagerWrapper vnfmManagerWrapper = new VnfmManagerWrapper(mockExternalSystemProxy);
         Response response = vnfmManagerWrapper.queryVnfmList();
         if (response != null) {
             Assert.assertTrue(response.getStatus() == 200);
@@ -115,7 +122,10 @@ public class VnfmManagerWrapperTest {
     }
 
     @Test
-    public void test_delVnfm() {
+    public void test_delVnfm() throws ExtsysException {
+        ExternalSystemProxy mockExternalSystemProxy = Mockito.mock(ExternalSystemProxy.class);
+        Mockito.doNothing().when(mockExternalSystemProxy).deleteVnfm(Mockito.anyString(), Mockito.anyString());
+        VnfmManagerWrapper vnfmManagerWrapper = new VnfmManagerWrapper(mockExternalSystemProxy);
         Response response = vnfmManagerWrapper.delVnfm("123456");
         if (response != null) {
             Assert.assertTrue(response.getStatus() == 204);
@@ -123,7 +133,7 @@ public class VnfmManagerWrapperTest {
     }
 
     @Test
-    public void test_updateVnfm() {
+    public void test_updateVnfm() throws ExtsysException {
         VnfmRegisterInfo vnfmRegisterInfo = new VnfmRegisterInfo();
         vnfmRegisterInfo.setVimId("987654");
         vnfmRegisterInfo.setVersion("v1");
@@ -135,6 +145,16 @@ public class VnfmManagerWrapperTest {
         vnfmRegisterInfo.setName("ONAP VNFM");
         vnfmRegisterInfo.setCertificateUrl("http://ip:5000/v3");
         vnfmRegisterInfo.setVnfmId("123456");
+        String esrVnfmDetailStr = "{\"vnfm-id\":\"123456\",\"vim-id\":\"987654\","
+                + "\"certificate-url\":\"http://ip:5000/v3\",\"esr-system-info-list\":{"
+                + "\"esr-system-info\":[{\"esr-system-info-id\":\"qwerty\",\"system-name\":\"ONAP VNFM\","
+                + "\"type\":\"vnfm\",\"vendor\":\"zte\",\"version\":\"v1\","
+                + "\"service-url\":\"http://ip:8000\",\"user-name\":\"onap\","
+                + "\"password\":\"987654\",\"system-type\":\"VNFM\"}]}}";
+        ExternalSystemProxy mockExternalSystemProxy = Mockito.mock(ExternalSystemProxy.class);
+        Mockito.doNothing().when(mockExternalSystemProxy).registerVnfm(Mockito.anyString(), (EsrVnfmDetail)Mockito.anyObject());
+        Mockito.when(mockExternalSystemProxy.queryVnfmDetail(Mockito.anyString())).thenReturn(esrVnfmDetailStr);
+        VnfmManagerWrapper vnfmManagerWrapper = new VnfmManagerWrapper(mockExternalSystemProxy);
         Response response = vnfmManagerWrapper.updateVnfm(vnfmRegisterInfo, "123456");
         if (response != null) {
             Assert.assertTrue(response.getStatus() == 200);
