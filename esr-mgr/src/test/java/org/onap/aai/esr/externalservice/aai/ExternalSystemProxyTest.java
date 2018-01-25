@@ -36,63 +36,63 @@ public class ExternalSystemProxyTest {
     @Test(expected = ExtsysException.class)
     public void testRegisterVnfm() throws ExtsysException {
         EsrVnfmDetail detail = new EsrVnfmDetail();
-        ExternalSystemProxy.registerVnfm("vnfm-1", detail);
+        externalSystemProxy.registerVnfm("vnfm-1", detail);
     }
 
     @Test(expected = ExtsysException.class)
     public void testQueryVnfmDetail() throws ExtsysException {
-        ExternalSystemProxy.queryVnfmDetail("vnfm-1");
+        externalSystemProxy.queryVnfmDetail("vnfm-1");
     }
 
     @Test(expected = ExtsysException.class)
     public void testQueryVnfmList() throws ExtsysException {
-        ExternalSystemProxy.queryVnfmList();
+        externalSystemProxy.queryVnfmList();
     }
 
     @Test(expected = ExtsysException.class)
     public void testDeleteVnfm() throws ExtsysException {
-        ExternalSystemProxy.deleteVnfm("vnfm-1", "version-1");
+        externalSystemProxy.deleteVnfm("vnfm-1", "version-1");
     }
 
     @Test(expected = ExtsysException.class)
     public void testRegisterSdnc() throws ExtsysException {
         EsrThirdpartySdncDetail detail = new EsrThirdpartySdncDetail();
-        ExternalSystemProxy.registerSdnc("sdnc-1", detail);
+        externalSystemProxy.registerSdnc("sdnc-1", detail);
     }
 
     @Test(expected = ExtsysException.class)
     public void testQueryThirdpartySdncDetail() throws ExtsysException {
-        ExternalSystemProxy.queryThirdpartySdncDetail("sdnc-1");
+        externalSystemProxy.queryThirdpartySdncDetail("sdnc-1");
     }
 
     @Test(expected = ExtsysException.class)
     public void testQuerySdncList() throws ExtsysException {
-        ExternalSystemProxy.querySdncList();
+        externalSystemProxy.querySdncList();
     }
 
     @Test(expected = ExtsysException.class)
     public void testDeleteThirdpartySdnc() throws ExtsysException {
-        ExternalSystemProxy.deleteThirdpartySdnc("sdnc-1", "version-1");
+        externalSystemProxy.deleteThirdpartySdnc("sdnc-1", "version-1");
     }
 
     @Test(expected = ExtsysException.class)
     public void testRegisterEms() throws ExtsysException {
         EsrEmsDetail detail = new EsrEmsDetail();
-        ExternalSystemProxy.registerEms("ems-1", detail);
+        externalSystemProxy.registerEms("ems-1", detail);
     }
 
     @Test(expected = ExtsysException.class)
     public void testQueryEmsDetail() throws ExtsysException {
-        ExternalSystemProxy.queryEmsDetail("ems-1");
+        externalSystemProxy.queryEmsDetail("ems-1");
     }
 
     @Test(expected = ExtsysException.class)
     public void testQueryEmsList() throws ExtsysException {
-        ExternalSystemProxy.queryEmsList();
+        externalSystemProxy.queryEmsList();
     }
 
     @Test(expected = ExtsysException.class)
     public void testDeleteEms() throws ExtsysException {
-        ExternalSystemProxy.deleteEms("ems-1", "version-1");
+        externalSystemProxy.deleteEms("ems-1", "version-1");
     }
 }

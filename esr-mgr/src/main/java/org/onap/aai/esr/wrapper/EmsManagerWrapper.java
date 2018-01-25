@@ -35,7 +35,7 @@ public class EmsManagerWrapper {
     private static EmsManagerWrapper emsManagerWrapper;
     private static final Logger LOG = LoggerFactory.getLogger(EmsManagerWrapper.class);
     private static EmsManagerUtil emsManagerUtil = new EmsManagerUtil();
-
+    private static ExternalSystemProxy externalSystemProxy = new ExternalSystemProxy();
     /**
      * get VnfmManagerWrapper instance.
      * 
@@ -43,9 +43,13 @@ public class EmsManagerWrapper {
      */
     public static EmsManagerWrapper getInstance() {
         if (emsManagerWrapper == null) {
-            emsManagerWrapper = new EmsManagerWrapper();
+            emsManagerWrapper = new EmsManagerWrapper(externalSystemProxy);
         }
         return emsManagerWrapper;
+    }
+    
+    public EmsManagerWrapper(ExternalSystemProxy externalSystemProxy){
+        EmsManagerWrapper.externalSystemProxy = externalSystemProxy;
     }
 
     public Response registerEms(EmsRegisterInfo emsRegisterInfo) {
@@ -53,7 +57,7 @@ public class EmsManagerWrapper {
         EsrEmsDetail esrEmsDetail = emsManagerUtil.emsRegisterInfo2EsrEms(emsRegisterInfo);
         String emsId = esrEmsDetail.getEmsId();
         try {
-            ExternalSystemProxy.registerEms(emsId, esrEmsDetail);
+            externalSystemProxy.registerEms(emsId, esrEmsDetail);
             result.setId(emsId);
             return Response.ok(result).build();
         } catch (ExtsysException e) {
@@ -66,7 +70,7 @@ public class EmsManagerWrapper {
         CommonRegisterResponse result = new CommonRegisterResponse();
         EsrEmsDetail esrEmsDetail = getNewEsrEmsDetail(emsRegisterInfo, emsId);
         try {
-            ExternalSystemProxy.registerEms(emsId, esrEmsDetail);
+            externalSystemProxy.registerEms(emsId, esrEmsDetail);
             result.setId(emsId);
             return Response.ok(result).build();
         } catch (ExtsysException e) {
@@ -79,7 +83,7 @@ public class EmsManagerWrapper {
         List<EmsRegisterInfo> emsList = new ArrayList<>();
         EsrEmsList esrEms = new EsrEmsList();
         try {
-            String esrEmsStr = ExternalSystemProxy.queryEmsList();
+            String esrEmsStr = externalSystemProxy.queryEmsList();
             esrEms = new Gson().fromJson(esrEmsStr, EsrEmsList.class);
             LOG.info("Response from AAI by query EMS list: " + esrEms);
             emsList = getEmsDetailList(esrEms);
@@ -103,7 +107,7 @@ public class EmsManagerWrapper {
         EsrEmsDetail esrEmsDetail = queryEsrEmsDetail(emsId);
         String resourceVersion = esrEmsDetail.getResourceVersion();
         try {
-            ExternalSystemProxy.deleteEms(emsId, resourceVersion);
+            externalSystemProxy.deleteEms(emsId, resourceVersion);
             return Response.noContent().build();
         } catch (ExtsysException e) {
             LOG.error("Delete EMS from A&AI failed! EMS ID: " + emsId + "resouce-version:" + resourceVersion, e);
@@ -115,7 +119,7 @@ public class EmsManagerWrapper {
         EmsRegisterInfo emsRegisterInfo = new EmsRegisterInfo();
         EsrEmsDetail esrEmsDetail = new EsrEmsDetail();
         try {
-            String esrEmsStr = ExternalSystemProxy.queryEmsDetail(emsId);
+            String esrEmsStr = externalSystemProxy.queryEmsDetail(emsId);
             LOG.info("Response from AAI by query EMS: " + esrEmsStr);
             esrEmsDetail = new Gson().fromJson(esrEmsStr, EsrEmsDetail.class);
             emsRegisterInfo = emsManagerUtil.EsrEms2EmsRegisterInfo(esrEmsDetail);
@@ -140,7 +144,7 @@ public class EmsManagerWrapper {
     private EsrEmsDetail queryEsrEmsDetail(String emsId) {
         EsrEmsDetail esrEmsDetail = new EsrEmsDetail();
         try {
-            String esrEmsStr = ExternalSystemProxy.queryEmsDetail(emsId);
+            String esrEmsStr = externalSystemProxy.queryEmsDetail(emsId);
             LOG.info("Response from AAI by query EMS: " + esrEmsStr);
             esrEmsDetail = new Gson().fromJson(esrEmsStr, EsrEmsDetail.class);
         } catch (ExtsysException e) {

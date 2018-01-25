@@ -36,6 +36,7 @@ public class VnfmManagerWrapper {
     private static final Logger LOG = LoggerFactory.getLogger(VnfmManagerWrapper.class);
 
     private static VnfmManagerUtil vnfmManagerUtil = new VnfmManagerUtil();
+    private static ExternalSystemProxy externalSystemProxy = new ExternalSystemProxy();
 
     /**
      * get VnfmManagerWrapper instance.
@@ -44,9 +45,13 @@ public class VnfmManagerWrapper {
      */
     public static VnfmManagerWrapper getInstance() {
         if (vnfmManagerWrapper == null) {
-            vnfmManagerWrapper = new VnfmManagerWrapper();
+            vnfmManagerWrapper = new VnfmManagerWrapper(externalSystemProxy);
         }
         return vnfmManagerWrapper;
+    }
+    
+    public VnfmManagerWrapper(ExternalSystemProxy externalSystemProxy){
+        VnfmManagerWrapper.externalSystemProxy = externalSystemProxy;
     }
 
     public Response registerVnfm(VnfmRegisterInfo vnfm) {
@@ -54,7 +59,7 @@ public class VnfmManagerWrapper {
         EsrVnfmDetail esrVnfmDetail = vnfmManagerUtil.vnfmRegisterInfo2EsrVnfm(vnfm);
         String vnfmId = esrVnfmDetail.getVnfmId();
         try {
-            ExternalSystemProxy.registerVnfm(vnfmId, esrVnfmDetail);
+            externalSystemProxy.registerVnfm(vnfmId, esrVnfmDetail);
             result.setId(vnfmId);
             return Response.ok(result).build();
         } catch (ExtsysException e) {
@@ -76,7 +81,7 @@ public class VnfmManagerWrapper {
         esrVnfmDetail.getEsrSystemInfoList().getEsrSystemInfo().get(0)
                 .setResouceVersion(originalEsrSystemInfo.getResouceVersion());
         try {
-            ExternalSystemProxy.registerVnfm(vnfmId, esrVnfmDetail);
+            externalSystemProxy.registerVnfm(vnfmId, esrVnfmDetail);
             result.setId(vnfmId);
             return Response.ok(result).build();
         } catch (ExtsysException e) {
@@ -89,7 +94,7 @@ public class VnfmManagerWrapper {
         List<VnfmRegisterInfo> vnfmList = new ArrayList<>();
         EsrVnfmList esrVnfm = new EsrVnfmList();
         try {
-            String esrVnfmStr = ExternalSystemProxy.queryVnfmList();
+            String esrVnfmStr = externalSystemProxy.queryVnfmList();
             esrVnfm = new Gson().fromJson(esrVnfmStr, EsrVnfmList.class);
             LOG.info("Response from AAI by query VNFM list: " + esrVnfm);
             vnfmList = getVnfmDetailList(esrVnfm);
@@ -112,7 +117,7 @@ public class VnfmManagerWrapper {
     public Response delVnfm(String vnfmId) {
         String resourceVersion = getResourceVersion(vnfmId);
         try {
-            ExternalSystemProxy.deleteVnfm(vnfmId, resourceVersion);
+            externalSystemProxy.deleteVnfm(vnfmId, resourceVersion);
             return Response.noContent().build();
         } catch (ExtsysException e) {
             LOG.error("Delete VNFM from A&AI failed! VNFM ID: " + vnfmId + "resouce-version:" + resourceVersion, e);
@@ -124,7 +129,7 @@ public class VnfmManagerWrapper {
         VnfmRegisterInfo vnfm = new VnfmRegisterInfo();
         EsrVnfmDetail esrVnfmDetail = new EsrVnfmDetail();
         try {
-            String esrVnfmstr = ExternalSystemProxy.queryVnfmDetail(vnfmId);
+            String esrVnfmstr = externalSystemProxy.queryVnfmDetail(vnfmId);
             LOG.info("Response from AAI by query VNFM: " + esrVnfmstr);
             esrVnfmDetail = new Gson().fromJson(esrVnfmstr, EsrVnfmDetail.class);
             vnfm = vnfmManagerUtil.esrVnfm2VnfmRegisterInfo(esrVnfmDetail);
@@ -158,7 +163,7 @@ public class VnfmManagerWrapper {
     private EsrVnfmDetail queryEsrVnfmDetail(String vnfmId) {
         EsrVnfmDetail esrVnfmDetail = new EsrVnfmDetail();
         try {
-            String esrVnfmstr = ExternalSystemProxy.queryVnfmDetail(vnfmId);
+            String esrVnfmstr = externalSystemProxy.queryVnfmDetail(vnfmId);
             LOG.info("Response from AAI by query VNFM: " + esrVnfmstr);
             esrVnfmDetail = new Gson().fromJson(esrVnfmstr, EsrVnfmDetail.class);
         } catch (ExtsysException e) {

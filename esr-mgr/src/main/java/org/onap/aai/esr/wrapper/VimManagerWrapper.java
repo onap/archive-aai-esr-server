@@ -52,10 +52,13 @@ public class VimManagerWrapper {
      */
     public static VimManagerWrapper getInstance() {
         if (vimManagerWrapper == null) {
-            vimManagerWrapper = new VimManagerWrapper();
+            vimManagerWrapper = new VimManagerWrapper(cloudRegionProxy);
         }
         return vimManagerWrapper;
-
+    }
+    
+    public VimManagerWrapper(CloudRegionProxy cloudRegionProxy) {
+        VimManagerWrapper.cloudRegionProxy = cloudRegionProxy;
     }
 
     public Response registerVim(VimRegisterInfo vimRegisterInfo) {

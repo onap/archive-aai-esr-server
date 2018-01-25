@@ -38,7 +38,7 @@ public class ExternalSystemProxy {
     
     public static IsTest test = new IsTest(false);
 
-    public static void registerVnfm(String vnfmId, EsrVnfmDetail esrVnfmDetail) throws ExtsysException {
+    public void registerVnfm(String vnfmId, EsrVnfmDetail esrVnfmDetail) throws ExtsysException {
         if (!test.getIsTest()){
             ClientConfig config = new ClientConfig(new VnfmRegisterProvider());
             IExternalSystem registerVnfmServiceproxy =
@@ -51,7 +51,7 @@ public class ExternalSystemProxy {
         }
     }
 
-    public static String queryVnfmDetail(String vnfmId) throws ExtsysException {
+    public String queryVnfmDetail(String vnfmId) throws ExtsysException {
         if (test.getIsTest()) {
             String esrVnfmDetailStr = "{\"vnfm-id\":\"123456\",\"vim-id\":\"987654\","
                     + "\"certificate-url\":\"http://ip:5000/v3\",\"esr-system-info-list\":{"
@@ -68,7 +68,7 @@ public class ExternalSystemProxy {
         }
     }
 
-    public static String queryVnfmList() throws ExtsysException {
+    public String queryVnfmList() throws ExtsysException {
         if (test.getIsTest()) {
             String vnfmListStr = "{\"esr-vnfm\": [{\"vnfm-id\": \"123456\",\"vim-id\": \"987654\","
                     + "\"certificate-url\": \"http://ip:5000/v3\",\"resource-version\": \"1\"}]}";
@@ -81,7 +81,7 @@ public class ExternalSystemProxy {
         }
     }
 
-    public static void deleteVnfm(String vnfmId, String resourceVersion) throws ExtsysException {
+    public void deleteVnfm(String vnfmId, String resourceVersion) throws ExtsysException {
         if (!test.getIsTest()) {
             try {
                 externalSystemproxy.deleteVNFM(transactionId, fromAppId, authorization, vnfmId, resourceVersion);
@@ -91,7 +91,7 @@ public class ExternalSystemProxy {
         }
     }
 
-    public static void registerSdnc(String thirdpartySdncId, EsrThirdpartySdncDetail esrSdncDetail)
+    public void registerSdnc(String thirdpartySdncId, EsrThirdpartySdncDetail esrSdncDetail)
             throws ExtsysException {
         if (!test.getIsTest()) {
             ClientConfig config = new ClientConfig(new ThirdpartySdncRegisterProvider());
@@ -106,7 +106,7 @@ public class ExternalSystemProxy {
         }
     }
 
-    public static String queryThirdpartySdncDetail(String thirdpartySdncId) throws ExtsysException {
+    public String queryThirdpartySdncDetail(String thirdpartySdncId) throws ExtsysException {
         if (test.getIsTest()) {
             String sdncDetail = "{\"thirdparty-sdnc-id\":\"123456\",\"location\":\"edge\","
                     + "\"product-name\":\"thirdparty SDNC\",\"esr-system-info-list\":{\"esr-system-info\":"
@@ -124,7 +124,7 @@ public class ExternalSystemProxy {
         }
     }
 
-    public static String querySdncList() throws ExtsysException {
+    public String querySdncList() throws ExtsysException {
         if (test.getIsTest()) {
             String sdncList =
                     "{\"esr-thirdparty-sdnc\": [{\"thirdparty-sdnc-id\": \"123456\",\"location\": \"edge\","
@@ -138,7 +138,7 @@ public class ExternalSystemProxy {
         }
     }
 
-    public static void deleteThirdpartySdnc(String sdncId, String resourceVersion) throws ExtsysException {
+    public void deleteThirdpartySdnc(String sdncId, String resourceVersion) throws ExtsysException {
         if (!test.getIsTest()) {
             try {
                 externalSystemproxy.deleteThirdpartySdnc(transactionId, fromAppId, authorization, sdncId,
@@ -149,7 +149,7 @@ public class ExternalSystemProxy {
         }
     }
 
-    public static void registerEms(String emsId, EsrEmsDetail emsDetail) throws ExtsysException {
+    public void registerEms(String emsId, EsrEmsDetail emsDetail) throws ExtsysException {
         if (!test.getIsTest()) {
             ClientConfig config = new ClientConfig(new EmsRegisterProvider());
             IExternalSystem registerEmsServiceproxy =
@@ -162,7 +162,7 @@ public class ExternalSystemProxy {
         }
     }
 
-    public static String queryEmsDetail(String emsId) throws ExtsysException {
+    public String queryEmsDetail(String emsId) throws ExtsysException {
         if (test.getIsTest()) {
             String emsDetailStr = "{\"ems-id\":\"123456\",\"esr-system-info-list\":{\"esr-system-info\":"
                     + "[{\"esr-system-info-id\":\"234567\",\"system-name\":\"EMS_TEST\",\"type\":\"sftp\","
@@ -185,7 +185,7 @@ public class ExternalSystemProxy {
         }
     }
 
-    public static String queryEmsList() throws ExtsysException {
+    public String queryEmsList() throws ExtsysException {
         if (test.getIsTest()) {
             return "{\"esr-ems\": [ {\"ems-id\": \"123456\",\"resource-version\": \"1\"}]}";
         }
@@ -196,7 +196,7 @@ public class ExternalSystemProxy {
         }
     }
 
-    public static void deleteEms(String emsId, String resourceVersion) throws ExtsysException {
+    public void deleteEms(String emsId, String resourceVersion) throws ExtsysException {
         if (!test.getIsTest()) {
             try {
                 externalSystemproxy.deleteEMS(transactionId, fromAppId, authorization, emsId, resourceVersion);

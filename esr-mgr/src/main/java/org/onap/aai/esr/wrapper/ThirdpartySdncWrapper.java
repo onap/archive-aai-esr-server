@@ -36,6 +36,7 @@ public class ThirdpartySdncWrapper {
     private static ThirdpartySdncWrapper thirdpatySdncWrapper;
     private static final Logger LOG = LoggerFactory.getLogger(ThirdpartySdncWrapper.class);
     private static ThirdpartySdncManagerUtil thirdpartySdncManagerUtil = new ThirdpartySdncManagerUtil();
+    private static ExternalSystemProxy externalSystemProxy = new ExternalSystemProxy();
 
     /**
      * get ThirdpatySdncWrapper instance.
@@ -44,9 +45,13 @@ public class ThirdpartySdncWrapper {
      */
     public static ThirdpartySdncWrapper getInstance() {
         if (thirdpatySdncWrapper == null) {
-            thirdpatySdncWrapper = new ThirdpartySdncWrapper();
+            thirdpatySdncWrapper = new ThirdpartySdncWrapper(externalSystemProxy);
         }
         return thirdpatySdncWrapper;
+    }
+    
+    public ThirdpartySdncWrapper(ExternalSystemProxy externalSystemProxy){
+        ThirdpartySdncWrapper.externalSystemProxy = externalSystemProxy;
     }
 
     public Response registerThirdpartySdnc(ThirdpartySdncRegisterInfo thirdpartySdnc) {
@@ -54,7 +59,7 @@ public class ThirdpartySdncWrapper {
         EsrThirdpartySdncDetail esrSdncDetail = thirdpartySdncManagerUtil.sdncRegisterInfo2EsrSdnc(thirdpartySdnc);
         String sdncId = esrSdncDetail.getThirdpartySdncId();
         try {
-            ExternalSystemProxy.registerSdnc(sdncId, esrSdncDetail);
+            externalSystemProxy.registerSdnc(sdncId, esrSdncDetail);
             result.setId(sdncId);
             return Response.ok(result).build();
         } catch (ExtsysException e) {
@@ -77,7 +82,7 @@ public class ThirdpartySdncWrapper {
         esrSdncDetail.getEsrSystemInfoList().getEsrSystemInfo().get(0)
                 .setResouceVersion(originalEsrSystemInfo.getResouceVersion());
         try {
-            ExternalSystemProxy.registerSdnc(sdncId, esrSdncDetail);
+            externalSystemProxy.registerSdnc(sdncId, esrSdncDetail);
             result.setId(sdncId);
             return Response.ok(result).build();
         } catch (ExtsysException e) {
@@ -90,7 +95,7 @@ public class ThirdpartySdncWrapper {
         List<ThirdpartySdncRegisterInfo> sdncList = new ArrayList<>();
         EsrThirdpartySdncList esrSdnc = new EsrThirdpartySdncList();
         try {
-            String esrSdncStr = ExternalSystemProxy.querySdncList();
+            String esrSdncStr = externalSystemProxy.querySdncList();
             esrSdnc = new Gson().fromJson(esrSdncStr, EsrThirdpartySdncList.class);
             LOG.info("Response from AAI by query thirdparty SDNC list: " + esrSdnc);
             sdncList = getSdncDetailList(esrSdnc);
@@ -109,7 +114,7 @@ public class ThirdpartySdncWrapper {
         EsrThirdpartySdncDetail thirdpartySdncDetail = queryEsrThirdpartySdncDetail(thirdpartySdncId);
         String resourceVersion = thirdpartySdncDetail.getResourceVersion();
         try {
-            ExternalSystemProxy.deleteThirdpartySdnc(thirdpartySdncId, resourceVersion);
+            externalSystemProxy.deleteThirdpartySdnc(thirdpartySdncId, resourceVersion);
             return Response.noContent().build();
         } catch (ExtsysException e) {
             LOG.error("Delete VNFM from A&AI failed! thirdparty SDNC ID: " + thirdpartySdncId + "resouce-version:"
@@ -122,7 +127,7 @@ public class ThirdpartySdncWrapper {
         ThirdpartySdncRegisterInfo sdncRegisterInfo = new ThirdpartySdncRegisterInfo();
         EsrThirdpartySdncDetail esrSdncDetail = new EsrThirdpartySdncDetail();
         try {
-            String esrSdncStr = ExternalSystemProxy.queryThirdpartySdncDetail(sdncId);
+            String esrSdncStr = externalSystemProxy.queryThirdpartySdncDetail(sdncId);
             LOG.info("Response from AAI by query thirdparty SDNC: " + esrSdncStr);
             esrSdncDetail = new Gson().fromJson(esrSdncStr, EsrThirdpartySdncDetail.class);
             sdncRegisterInfo = thirdpartySdncManagerUtil.esrSdnc2SdncRegisterInfo(esrSdncDetail);
@@ -148,7 +153,7 @@ public class ThirdpartySdncWrapper {
     private EsrThirdpartySdncDetail queryEsrThirdpartySdncDetail(String sdncId) {
         EsrThirdpartySdncDetail esrSdncDetail = new EsrThirdpartySdncDetail();
         try {
-            String esrThirdpartySdncStr = ExternalSystemProxy.queryThirdpartySdncDetail(sdncId);
+            String esrThirdpartySdncStr = externalSystemProxy.queryThirdpartySdncDetail(sdncId);
             LOG.info("Response from AAI by query thirdparty SDNC: " + esrThirdpartySdncStr);
             esrSdncDetail = new Gson().fromJson(esrThirdpartySdncStr, EsrThirdpartySdncDetail.class);
         } catch (ExtsysException e) {
