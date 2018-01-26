@@ -16,7 +16,6 @@
 package org.onap.aai.esr.externalservice.aai;
 
 import org.glassfish.jersey.client.ClientConfig;
-import org.onap.aai.esr.common.IsTest;
 import org.onap.aai.esr.common.MsbConfig;
 import org.onap.aai.esr.entity.aai.EsrEmsDetail;
 import org.onap.aai.esr.entity.aai.EsrThirdpartySdncDetail;
@@ -36,8 +35,6 @@ public class ExternalSystemProxy {
                 ConsumerFactory.createConsumer(MsbConfig.getExternalSystemAddr(), config, IExternalSystem.class);
     }
     
-    public static IsTest test = new IsTest(false);
-
     public void registerVnfm(String vnfmId, EsrVnfmDetail esrVnfmDetail) throws ExtsysException {
         ClientConfig config = new ClientConfig(new VnfmRegisterProvider());
         IExternalSystem registerVnfmServiceproxy =
@@ -73,31 +70,19 @@ public class ExternalSystemProxy {
         }
     }
 
-    public void registerSdnc(String thirdpartySdncId, EsrThirdpartySdncDetail esrSdncDetail)
-            throws ExtsysException {
-        if (!test.getIsTest()) {
-            ClientConfig config = new ClientConfig(new ThirdpartySdncRegisterProvider());
-            IExternalSystem registerSdncServiceproxy =
-                    ConsumerFactory.createConsumer(MsbConfig.getExternalSystemAddr(), config, IExternalSystem.class);
-            try {
-                registerSdncServiceproxy.registerThirdpartySdnc(transactionId, fromAppId, authorization,
-                        thirdpartySdncId, esrSdncDetail);
-            } catch (Exception e) {
-                throw new ExtsysException("PUT thirdparty SDNC to A&AI failed.", e);
-            }
+    public void registerSdnc(String thirdpartySdncId, EsrThirdpartySdncDetail esrSdncDetail) throws ExtsysException {
+        ClientConfig config = new ClientConfig(new ThirdpartySdncRegisterProvider());
+        IExternalSystem registerSdncServiceproxy =
+                ConsumerFactory.createConsumer(MsbConfig.getExternalSystemAddr(), config, IExternalSystem.class);
+        try {
+            registerSdncServiceproxy.registerThirdpartySdnc(transactionId, fromAppId, authorization, thirdpartySdncId,
+                    esrSdncDetail);
+        } catch (Exception e) {
+            throw new ExtsysException("PUT thirdparty SDNC to A&AI failed.", e);
         }
     }
 
     public String queryThirdpartySdncDetail(String thirdpartySdncId) throws ExtsysException {
-        if (test.getIsTest()) {
-            String sdncDetail = "{\"thirdparty-sdnc-id\":\"123456\",\"location\":\"edge\","
-                    + "\"product-name\":\"thirdparty SDNC\",\"esr-system-info-list\":{\"esr-system-info\":"
-                    + "[{\"esr-system-info-id\":\"987654\",\"system-name\":\"SDNC_TEST\",\"type\":\"SDNC\","
-                    + "\"vendor\":\"zte\",\"version\":\"v1\",\"service-url\":\"http://ip:8000\","
-                    + "\"user-name\":\"nancy\",\"password\":\"123987\",\"system-type\":\"thirdparty_SDNC\","
-                    + "\"protocol\":\"protocol\"}]}}";
-            return sdncDetail;
-        }
         try {
             return externalSystemproxy.queryThirdpartySdncDetail(transactionId, fromAppId, authorization,
                     thirdpartySdncId);
@@ -107,12 +92,6 @@ public class ExternalSystemProxy {
     }
 
     public String querySdncList() throws ExtsysException {
-        if (test.getIsTest()) {
-            String sdncList =
-                    "{\"esr-thirdparty-sdnc\": [{\"thirdparty-sdnc-id\": \"123456\",\"location\": \"edge\","
-                            + "\"product-name\": \"thirdparty SDNC\",\"resource-version\": \"1\"}]}";
-            return sdncList;
-        }
         try {
             return externalSystemproxy.queryThirdpartySdncList(transactionId, fromAppId, authorization);
         } catch (Exception e) {
@@ -121,13 +100,10 @@ public class ExternalSystemProxy {
     }
 
     public void deleteThirdpartySdnc(String sdncId, String resourceVersion) throws ExtsysException {
-        if (!test.getIsTest()) {
-            try {
-                externalSystemproxy.deleteThirdpartySdnc(transactionId, fromAppId, authorization, sdncId,
-                        resourceVersion);
-            } catch (Exception e) {
-                throw new ExtsysException("Delete thirdparty SDNC from A&AI failed.", e);
-            }
+        try {
+            externalSystemproxy.deleteThirdpartySdnc(transactionId, fromAppId, authorization, sdncId, resourceVersion);
+        } catch (Exception e) {
+            throw new ExtsysException("Delete thirdparty SDNC from A&AI failed.", e);
         }
     }
 
