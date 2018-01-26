@@ -107,7 +107,7 @@ public class VimManagerWrapperTest {
         Mockito.when(mockCloudRegionProxy.qureyVimList()).thenReturn(vimListStr);
 
         VimManagerWrapper vimManagerWrapper = new VimManagerWrapper(mockCloudRegionProxy);
-        Response response = vimManagerWrapper.queryVimById("zte", "RegionOne");
+        Response response = vimManagerWrapper.queryVimListDetails();
         if (response != null) {
             Assert.assertTrue(response.getStatus() == 200);
         }
