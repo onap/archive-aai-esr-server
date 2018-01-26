@@ -19,42 +19,26 @@ import static org.junit.Assert.assertEquals;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ws.rs.core.Response;
-import org.junit.AfterClass;
 import org.junit.Assert;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
-import org.onap.aai.esr.common.IsTest;
+import org.mockito.Mockito;
 import org.onap.aai.esr.common.MsbConfig;
+import org.onap.aai.esr.entity.aai.EsrEmsDetail;
 import org.onap.aai.esr.entity.rest.AlarmAddr;
 import org.onap.aai.esr.entity.rest.EmsRegisterInfo;
 import org.onap.aai.esr.entity.rest.FtpAddr;
+import org.onap.aai.esr.exception.ExtsysException;
 import org.onap.aai.esr.externalservice.aai.ExternalSystemProxy;
 import org.onap.aai.esr.util.ExtsysUtil;
 
 public class EmsManagerWrapperTest {
-    private static EmsManagerWrapper emsManagerWrapper;
+
     static {
         MsbConfig.setMsbServerAddr("http://127.0.0.1:80");
     }
 
-    @BeforeClass  
-    public static void beforeClass() {  
-        ExternalSystemProxy.test = new IsTest(true);
-    };  
-    
-    @AfterClass  
-    public static void afterClass() {  
-        ExternalSystemProxy.test = new IsTest(false);
-    };
-    
-    @Before
-    public void setUp() throws Exception {
-        emsManagerWrapper = EmsManagerWrapper.getInstance();
-    }
-
     @Test
-    public void test_registerEms() {
+    public void test_registerEms() throws ExtsysException {
         
         EmsRegisterInfo emsRegisterInfo = new EmsRegisterInfo();
         AlarmAddr alarmAddr = new AlarmAddr();
@@ -84,6 +68,9 @@ public class EmsManagerWrapperTest {
         emsRegisterInfo.setAlarmAddr(alarmAddr);
         emsRegisterInfo.setResourceAddr(resourceAddr);
         emsRegisterInfo.setPerformanceAddr(performanceAddr);
+        ExternalSystemProxy mockExternalSystemProxy = Mockito.mock(ExternalSystemProxy.class);
+        Mockito.doNothing().when(mockExternalSystemProxy).registerEms(Mockito.anyString(), (EsrEmsDetail)Mockito.anyObject());
+        EmsManagerWrapper emsManagerWrapper = new EmsManagerWrapper(mockExternalSystemProxy);
         Response response = emsManagerWrapper.registerEms(emsRegisterInfo);
         if (response != null) {
             Assert.assertTrue(response.getStatus() == 200);
@@ -91,7 +78,7 @@ public class EmsManagerWrapperTest {
     }
     
     @Test
-    public void test_queryEmsById() {
+    public void test_queryEmsById() throws ExtsysException {
         ExtsysUtil extsysUtil = new ExtsysUtil();
         EmsRegisterInfo emsRegisterInfo = new EmsRegisterInfo();
         AlarmAddr alarmAddr = new AlarmAddr();
@@ -122,6 +109,22 @@ public class EmsManagerWrapperTest {
         emsRegisterInfo.setResourceAddr(resourceAddr);
         emsRegisterInfo.setPerformanceAddr(performanceAddr);
         emsRegisterInfo.setEmsId("123456");
+        String emsDetailStr = "{\"ems-id\":\"123456\",\"esr-system-info-list\":{\"esr-system-info\":"
+                + "[{\"esr-system-info-id\":\"234567\",\"system-name\":\"EMS_TEST\",\"type\":\"sftp\","
+                + "\"vendor\":\"ZTE\",\"version\":\"V1\",\"user-name\":\"nancy\",\"password\":\"asdf\","
+                + "\"system-type\":\"EMS_RESOUCE\",\"ip-address\":\"ip\",\"port\":\"5000\","
+                + "\"passive\":true,\"remote-path\":\"/home/per\"},{\"esr-system-info-id\":\"345678\","
+                + "\"system-name\":\"EMS_TEST\",\"type\":\"sftp\",\"vendor\":\"ZTE\",\"version\":\"V1\","
+                + "\"user-name\":\"nancy\",\"password\":\"asdf\",\"system-type\":\"EMS_PERFORMANCE\","
+                + "\"ip-address\":\"ip\",\"port\":\"5000\",\"passive\":true,"
+                + "\"remote-path\":\"/home/per\"},{\"esr-system-info-id\":\"456789\","
+                + "\"system-name\":\"EMS_TEST\",\"vendor\":\"ZTE\",\"version\":\"V1\","
+                + "\"user-name\":\"nancy\",\"password\":\"987654\",\"system-type\":\"EMS_ALARM\","
+                + "\"ip-address\":\"ip\",\"port\":\"5000\"}]}}";
+        ExternalSystemProxy mockExternalSystemProxy = Mockito.mock(ExternalSystemProxy.class);
+        Mockito.when(mockExternalSystemProxy.queryEmsDetail(Mockito.anyString())).thenReturn(emsDetailStr);
+        EmsManagerWrapper emsManagerWrapper = new EmsManagerWrapper(mockExternalSystemProxy);
+        
         Response response = emsManagerWrapper.queryEmsById("123456");
         if (response != null) {
             Assert.assertTrue(response.getStatus() == 200);
@@ -130,7 +133,7 @@ public class EmsManagerWrapperTest {
     }
     
     @Test
-    public void test_queryEmsList() {
+    public void test_queryEmsList() throws ExtsysException {
         ExtsysUtil extsysUtil = new ExtsysUtil();
         List<EmsRegisterInfo> emsList = new ArrayList<>();
         EmsRegisterInfo emsRegisterInfo = new EmsRegisterInfo();
@@ -163,6 +166,23 @@ public class EmsManagerWrapperTest {
         emsRegisterInfo.setPerformanceAddr(performanceAddr);
         emsRegisterInfo.setEmsId("123456");
         emsList.add(emsRegisterInfo);
+        String emsDetailStr = "{\"ems-id\":\"123456\",\"esr-system-info-list\":{\"esr-system-info\":"
+                + "[{\"esr-system-info-id\":\"234567\",\"system-name\":\"EMS_TEST\",\"type\":\"sftp\","
+                + "\"vendor\":\"ZTE\",\"version\":\"V1\",\"user-name\":\"nancy\",\"password\":\"asdf\","
+                + "\"system-type\":\"EMS_RESOUCE\",\"ip-address\":\"ip\",\"port\":\"5000\","
+                + "\"passive\":true,\"remote-path\":\"/home/per\"},{\"esr-system-info-id\":\"345678\","
+                + "\"system-name\":\"EMS_TEST\",\"type\":\"sftp\",\"vendor\":\"ZTE\",\"version\":\"V1\","
+                + "\"user-name\":\"nancy\",\"password\":\"asdf\",\"system-type\":\"EMS_PERFORMANCE\","
+                + "\"ip-address\":\"ip\",\"port\":\"5000\",\"passive\":true,"
+                + "\"remote-path\":\"/home/per\"},{\"esr-system-info-id\":\"456789\","
+                + "\"system-name\":\"EMS_TEST\",\"vendor\":\"ZTE\",\"version\":\"V1\","
+                + "\"user-name\":\"nancy\",\"password\":\"987654\",\"system-type\":\"EMS_ALARM\","
+                + "\"ip-address\":\"ip\",\"port\":\"5000\"}]}}";
+        String emsListStr = "{\"esr-ems\": [ {\"ems-id\": \"123456\",\"resource-version\": \"1\"}]}";
+        ExternalSystemProxy mockExternalSystemProxy = Mockito.mock(ExternalSystemProxy.class);
+        Mockito.when(mockExternalSystemProxy.queryEmsDetail(Mockito.anyString())).thenReturn(emsDetailStr);
+        Mockito.when(mockExternalSystemProxy.queryEmsList()).thenReturn(emsListStr);
+        EmsManagerWrapper emsManagerWrapper = new EmsManagerWrapper(mockExternalSystemProxy);
         Response response = emsManagerWrapper.queryEmsList();
         if (response != null) {
             Assert.assertTrue(response.getStatus() == 200);
@@ -171,7 +191,7 @@ public class EmsManagerWrapperTest {
     }
     
     @Test
-    public void test_updateEms() {
+    public void test_updateEms() throws ExtsysException {
         EmsRegisterInfo emsRegisterInfo = new EmsRegisterInfo();
         AlarmAddr alarmAddr = new AlarmAddr();
         FtpAddr resourceAddr = new FtpAddr();
@@ -201,6 +221,22 @@ public class EmsManagerWrapperTest {
         emsRegisterInfo.setResourceAddr(resourceAddr);
         emsRegisterInfo.setPerformanceAddr(performanceAddr);
         emsRegisterInfo.setEmsId("123456");
+        String emsDetailStr = "{\"ems-id\":\"123456\",\"esr-system-info-list\":{\"esr-system-info\":"
+                + "[{\"esr-system-info-id\":\"234567\",\"system-name\":\"EMS_TEST\",\"type\":\"sftp\","
+                + "\"vendor\":\"ZTE\",\"version\":\"V1\",\"user-name\":\"nancy\",\"password\":\"asdf\","
+                + "\"system-type\":\"EMS_RESOUCE\",\"ip-address\":\"ip\",\"port\":\"5000\","
+                + "\"passive\":true,\"remote-path\":\"/home/per\"},{\"esr-system-info-id\":\"345678\","
+                + "\"system-name\":\"EMS_TEST\",\"type\":\"sftp\",\"vendor\":\"ZTE\",\"version\":\"V1\","
+                + "\"user-name\":\"nancy\",\"password\":\"asdf\",\"system-type\":\"EMS_PERFORMANCE\","
+                + "\"ip-address\":\"ip\",\"port\":\"5000\",\"passive\":true,"
+                + "\"remote-path\":\"/home/per\"},{\"esr-system-info-id\":\"456789\","
+                + "\"system-name\":\"EMS_TEST\",\"vendor\":\"ZTE\",\"version\":\"V1\","
+                + "\"user-name\":\"nancy\",\"password\":\"987654\",\"system-type\":\"EMS_ALARM\","
+                + "\"ip-address\":\"ip\",\"port\":\"5000\"}]}}";
+        ExternalSystemProxy mockExternalSystemProxy = Mockito.mock(ExternalSystemProxy.class);
+        Mockito.when(mockExternalSystemProxy.queryEmsDetail(Mockito.anyString())).thenReturn(emsDetailStr);
+        Mockito.doNothing().when(mockExternalSystemProxy).registerEms(Mockito.anyString(), (EsrEmsDetail)Mockito.anyObject());
+        EmsManagerWrapper emsManagerWrapper = new EmsManagerWrapper(mockExternalSystemProxy);
         Response response = emsManagerWrapper.updateEms(emsRegisterInfo, "123456");
         if (response != null) {
             Assert.assertTrue(response.getStatus() == 200);
@@ -208,7 +244,23 @@ public class EmsManagerWrapperTest {
     }
     
     @Test
-    public void test_delEms() {
+    public void test_delEms() throws ExtsysException {
+        String emsDetailStr = "{\"ems-id\":\"123456\",\"esr-system-info-list\":{\"esr-system-info\":"
+                + "[{\"esr-system-info-id\":\"234567\",\"system-name\":\"EMS_TEST\",\"type\":\"sftp\","
+                + "\"vendor\":\"ZTE\",\"version\":\"V1\",\"user-name\":\"nancy\",\"password\":\"asdf\","
+                + "\"system-type\":\"EMS_RESOUCE\",\"ip-address\":\"ip\",\"port\":\"5000\","
+                + "\"passive\":true,\"remote-path\":\"/home/per\"},{\"esr-system-info-id\":\"345678\","
+                + "\"system-name\":\"EMS_TEST\",\"type\":\"sftp\",\"vendor\":\"ZTE\",\"version\":\"V1\","
+                + "\"user-name\":\"nancy\",\"password\":\"asdf\",\"system-type\":\"EMS_PERFORMANCE\","
+                + "\"ip-address\":\"ip\",\"port\":\"5000\",\"passive\":true,"
+                + "\"remote-path\":\"/home/per\"},{\"esr-system-info-id\":\"456789\","
+                + "\"system-name\":\"EMS_TEST\",\"vendor\":\"ZTE\",\"version\":\"V1\","
+                + "\"user-name\":\"nancy\",\"password\":\"987654\",\"system-type\":\"EMS_ALARM\","
+                + "\"ip-address\":\"ip\",\"port\":\"5000\"}]}}";
+        ExternalSystemProxy mockExternalSystemProxy = Mockito.mock(ExternalSystemProxy.class);
+        Mockito.when(mockExternalSystemProxy.queryEmsDetail(Mockito.anyString())).thenReturn(emsDetailStr);
+        Mockito.doNothing().when(mockExternalSystemProxy).deleteEms(Mockito.anyString(), Mockito.anyString());
+        EmsManagerWrapper emsManagerWrapper = new EmsManagerWrapper(mockExternalSystemProxy);
         Response response = emsManagerWrapper.delEms("123456");
         if (response != null) {
             Assert.assertTrue(response.getStatus() == 204);

@@ -39,28 +39,17 @@ public class ExternalSystemProxy {
     public static IsTest test = new IsTest(false);
 
     public void registerVnfm(String vnfmId, EsrVnfmDetail esrVnfmDetail) throws ExtsysException {
-        if (!test.getIsTest()){
-            ClientConfig config = new ClientConfig(new VnfmRegisterProvider());
-            IExternalSystem registerVnfmServiceproxy =
-                    ConsumerFactory.createConsumer(MsbConfig.getExternalSystemAddr(), config, IExternalSystem.class);
-            try {
-                registerVnfmServiceproxy.registerVNFM(transactionId, fromAppId, authorization, vnfmId, esrVnfmDetail);
-            } catch (Exception e) {
-                throw new ExtsysException("PUT VNFM to A&AI failed.", e);
-            }
+        ClientConfig config = new ClientConfig(new VnfmRegisterProvider());
+        IExternalSystem registerVnfmServiceproxy =
+                ConsumerFactory.createConsumer(MsbConfig.getExternalSystemAddr(), config, IExternalSystem.class);
+        try {
+            registerVnfmServiceproxy.registerVNFM(transactionId, fromAppId, authorization, vnfmId, esrVnfmDetail);
+        } catch (Exception e) {
+            throw new ExtsysException("PUT VNFM to A&AI failed.", e);
         }
     }
 
     public String queryVnfmDetail(String vnfmId) throws ExtsysException {
-        if (test.getIsTest()) {
-            String esrVnfmDetailStr = "{\"vnfm-id\":\"123456\",\"vim-id\":\"987654\","
-                    + "\"certificate-url\":\"http://ip:5000/v3\",\"esr-system-info-list\":{"
-                    + "\"esr-system-info\":[{\"esr-system-info-id\":\"qwerty\",\"system-name\":\"ONAP VNFM\","
-                    + "\"type\":\"vnfm\",\"vendor\":\"zte\",\"version\":\"v1\","
-                    + "\"service-url\":\"http://ip:8000\",\"user-name\":\"onap\","
-                    + "\"password\":\"987654\",\"system-type\":\"VNFM\"}]}}";
-            return esrVnfmDetailStr;
-        }
         try {
             return externalSystemproxy.queryVNFMDetail(transactionId, fromAppId, authorization, vnfmId);
         } catch (Exception e) {
@@ -69,11 +58,6 @@ public class ExternalSystemProxy {
     }
 
     public String queryVnfmList() throws ExtsysException {
-        if (test.getIsTest()) {
-            String vnfmListStr = "{\"esr-vnfm\": [{\"vnfm-id\": \"123456\",\"vim-id\": \"987654\","
-                    + "\"certificate-url\": \"http://ip:5000/v3\",\"resource-version\": \"1\"}]}";
-            return vnfmListStr;
-        }
         try {
             return externalSystemproxy.queryVNFMList(transactionId, fromAppId, authorization);
         } catch (Exception e) {
@@ -82,12 +66,10 @@ public class ExternalSystemProxy {
     }
 
     public void deleteVnfm(String vnfmId, String resourceVersion) throws ExtsysException {
-        if (!test.getIsTest()) {
-            try {
-                externalSystemproxy.deleteVNFM(transactionId, fromAppId, authorization, vnfmId, resourceVersion);
-            } catch (Exception e) {
-                throw new ExtsysException("Delete VNFM from A&AI failed.", e);
-            }
+        try {
+            externalSystemproxy.deleteVNFM(transactionId, fromAppId, authorization, vnfmId, resourceVersion);
+        } catch (Exception e) {
+            throw new ExtsysException("Delete VNFM from A&AI failed.", e);
         }
     }
 
@@ -150,34 +132,17 @@ public class ExternalSystemProxy {
     }
 
     public void registerEms(String emsId, EsrEmsDetail emsDetail) throws ExtsysException {
-        if (!test.getIsTest()) {
-            ClientConfig config = new ClientConfig(new EmsRegisterProvider());
-            IExternalSystem registerEmsServiceproxy =
-                    ConsumerFactory.createConsumer(MsbConfig.getExternalSystemAddr(), config, IExternalSystem.class);
-            try {
-                registerEmsServiceproxy.registerEMS(transactionId, fromAppId, authorization, emsId, emsDetail);
-            } catch (Exception e) {
-                throw new ExtsysException("PUT EMS to A&AI failed.", e);
-            }
+        ClientConfig config = new ClientConfig(new EmsRegisterProvider());
+        IExternalSystem registerEmsServiceproxy =
+                ConsumerFactory.createConsumer(MsbConfig.getExternalSystemAddr(), config, IExternalSystem.class);
+        try {
+            registerEmsServiceproxy.registerEMS(transactionId, fromAppId, authorization, emsId, emsDetail);
+        } catch (Exception e) {
+            throw new ExtsysException("PUT EMS to A&AI failed.", e);
         }
     }
 
     public String queryEmsDetail(String emsId) throws ExtsysException {
-        if (test.getIsTest()) {
-            String emsDetailStr = "{\"ems-id\":\"123456\",\"esr-system-info-list\":{\"esr-system-info\":"
-                    + "[{\"esr-system-info-id\":\"234567\",\"system-name\":\"EMS_TEST\",\"type\":\"sftp\","
-                    + "\"vendor\":\"ZTE\",\"version\":\"V1\",\"user-name\":\"nancy\",\"password\":\"asdf\","
-                    + "\"system-type\":\"EMS_RESOUCE\",\"ip-address\":\"ip\",\"port\":\"5000\","
-                    + "\"passive\":true,\"remote-path\":\"/home/per\"},{\"esr-system-info-id\":\"345678\","
-                    + "\"system-name\":\"EMS_TEST\",\"type\":\"sftp\",\"vendor\":\"ZTE\",\"version\":\"V1\","
-                    + "\"user-name\":\"nancy\",\"password\":\"asdf\",\"system-type\":\"EMS_PERFORMANCE\","
-                    + "\"ip-address\":\"ip\",\"port\":\"5000\",\"passive\":true,"
-                    + "\"remote-path\":\"/home/per\"},{\"esr-system-info-id\":\"456789\","
-                    + "\"system-name\":\"EMS_TEST\",\"vendor\":\"ZTE\",\"version\":\"V1\","
-                    + "\"user-name\":\"nancy\",\"password\":\"987654\",\"system-type\":\"EMS_ALARM\","
-                    + "\"ip-address\":\"ip\",\"port\":\"5000\"}]}}";
-            return emsDetailStr;
-        }
         try {
             return externalSystemproxy.queryEMSDetail(transactionId, fromAppId, authorization, emsId);
         } catch (Exception e) {
@@ -186,9 +151,6 @@ public class ExternalSystemProxy {
     }
 
     public String queryEmsList() throws ExtsysException {
-        if (test.getIsTest()) {
-            return "{\"esr-ems\": [ {\"ems-id\": \"123456\",\"resource-version\": \"1\"}]}";
-        }
         try {
             return externalSystemproxy.queryEMSList(transactionId, fromAppId, authorization);
         } catch (Exception e) {
@@ -197,12 +159,10 @@ public class ExternalSystemProxy {
     }
 
     public void deleteEms(String emsId, String resourceVersion) throws ExtsysException {
-        if (!test.getIsTest()) {
-            try {
-                externalSystemproxy.deleteEMS(transactionId, fromAppId, authorization, emsId, resourceVersion);
-            } catch (Exception e) {
-                throw new ExtsysException("Delete EMS from A&AI failed.", e);
-            }
+        try {
+            externalSystemproxy.deleteEMS(transactionId, fromAppId, authorization, emsId, resourceVersion);
+        } catch (Exception e) {
+            throw new ExtsysException("Delete EMS from A&AI failed.", e);
         }
     }
 }
