@@ -20,6 +20,10 @@ import org.onap.aai.esr.ExtsysAppConfiguration;
 
 
 public class Config {
+
+    private Config() {
+    }
+
     private static ExtsysAppConfiguration configration;
 
     public static ExtsysAppConfiguration getConfigration() {
