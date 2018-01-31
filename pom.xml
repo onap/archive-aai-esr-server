@@ -42,7 +42,7 @@
         <jaxrs.consumer.version>5.0</jaxrs.consumer.version>
         <gson.version>2.2.4</gson.version>
         <junit.version>4.10</junit.version>
-        <org.apache.ant.version>1.8.2</org.apache.ant.version>
+        <org.apache.ant.version>1.9.4</org.apache.ant.version>
     </properties>
 
     <dependencyManagement>
@@ -67,7 +67,11 @@
                 <artifactId>swagger-jersey2-jaxrs</artifactId>
                 <version>${swagger.version}</version>
             </dependency>
-			
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-validator</artifactId>
+				<version>5.4.2.Final</version>
+			</dependency>
 			<!--<dependency>
 				<groupId>com.fasterxml.jackson.core</groupId>
 				<artifactId>jackson-databind</artifactId>
