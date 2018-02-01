@@ -17,6 +17,9 @@ package org.onap.aai.esr.common;
 
 
 public class MsbConfig {
+	
+	private MsbConfig(){
+	}
 
     protected static String msbServerAddr;
 
