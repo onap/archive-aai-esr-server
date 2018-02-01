@@ -16,7 +16,11 @@
 package org.onap.aai.esr.externalservice.aai;
 
 public class AaiCommon {
-
+	
+	private AaiCommon() {
+		
+	}
+	
     private static String AAI_AUTHENTICATION_USER = "AAI";
     private static String AAI_AUTHENTICATION_PAASWORD = "AAI";
 
