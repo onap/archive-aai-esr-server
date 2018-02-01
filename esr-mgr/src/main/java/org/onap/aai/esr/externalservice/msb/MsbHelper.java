@@ -16,16 +16,23 @@
 package org.onap.aai.esr.externalservice.msb;
 
 import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.HashSet;
 import java.util.Set;
+import org.onap.aai.esr.exception.ExceptionUtil;
+import org.onap.msb.sdk.discovery.common.RouteException;
 import org.onap.msb.sdk.discovery.entity.MicroServiceInfo;
 import org.onap.msb.sdk.httpclient.msb.MSBServiceClient;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.onap.msb.sdk.discovery.entity.Node;
 
 public class MsbHelper {
 
     private MSBServiceClient msbClient;
 
+    private static final Logger LOG = LoggerFactory.getLogger(MsbHelper.class);
+    
     public MsbHelper(MSBServiceClient msbClient) {
         super();
         this.msbClient = msbClient;
@@ -33,7 +40,7 @@ public class MsbHelper {
 
 
 
-    public void registerMsb() throws Exception {
+    public void registerMsb() throws RouteException {
 
 
         MicroServiceInfo msinfo = new MicroServiceInfo();
@@ -46,7 +53,12 @@ public class MsbHelper {
 
         Set<Node> nodes = new HashSet<>();
         Node node1 = new Node();
-        node1.setIp(InetAddress.getLocalHost().getHostAddress());
+        try {
+            node1.setIp(InetAddress.getLocalHost().getHostAddress());
+        } catch (UnknownHostException e) {
+            LOG.error("Got localhost failed when register service to MSB!", e);
+            throw ExceptionUtil.buildExceptionResponse(e.getMessage());
+        }
         node1.setPort("9518");
         nodes.add(node1);
         msinfo.setNodes(nodes);
