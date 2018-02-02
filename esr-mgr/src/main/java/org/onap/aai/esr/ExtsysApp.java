@@ -54,9 +54,9 @@ public class ExtsysApp extends Application<ExtsysAppConfiguration> {
         environment.jersey().register(new VnfmManager());
         environment.jersey().register(new ServiceTest());
         if ("true".equals(configuration.getRegistByHand())) {
-            String MSB_IP = configuration.getMsbDiscoveryIp();
+            String msb_ip = configuration.getMsbDiscoveryIp();
             Integer MSB_Port = Integer.valueOf(configuration.getMsbDiscoveryPort());
-            MSBServiceClient msbClient = new MSBServiceClient(MSB_IP, MSB_Port);
+            MSBServiceClient msbClient = new MSBServiceClient(msb_ip, MSB_Port);
             MsbHelper helper = new MsbHelper(msbClient);
             try {
                 helper.registerMsb();
