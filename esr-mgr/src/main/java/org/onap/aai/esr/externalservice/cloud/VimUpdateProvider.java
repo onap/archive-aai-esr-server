@@ -19,7 +19,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
-import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.ext.MessageBodyWriter;
@@ -44,7 +43,7 @@ public class VimUpdateProvider implements MessageBodyWriter<Tenant> {
     @Override
     public void writeTo(Tenant t, Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType,
             MultivaluedMap<String, Object> httpHeaders, OutputStream entityStream)
-            throws IOException, WebApplicationException {
+            throws IOException {
         String json = new Gson().toJson(t, Tenant.class);
         logger.info("the param to update VIM input is:" + json);
         entityStream.write(json.getBytes("UTF-8"));

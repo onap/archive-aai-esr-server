@@ -22,12 +22,6 @@ public class ExtsysExceptionTest {
 
     @Test
     public void testAllMethods() {
-        ExtsysException esExp = new ExtsysException();
-        esExp.setErrorCode("498");
-        Assert.assertEquals(esExp.getErrorCode(), "498");
-
-        esExp.setErrorMsg("Exception from JUnit");
-        Assert.assertEquals(esExp.getErrorMsg(), "Exception from JUnit");
 
         ExtsysException oneArgExp = new ExtsysException("Exception from JUnit");
         Assert.assertEquals(oneArgExp.getMessage(), "Exception from JUnit");
