@@ -21,7 +21,6 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import io.swagger.annotations.SwaggerDefinition;
 import org.eclipse.jetty.http.HttpStatus;
 import org.onap.aai.esr.entity.rest.ThirdpartySdncRegisterInfo;
 import org.onap.aai.esr.util.ExtsysUtil;
@@ -39,9 +38,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-@SwaggerDefinition
+
 @Path("/sdncontrollers")
-@Api(tags = {"ThirdParty sdnc Management     "})
+@Api(tags = {"ThirdParty sdnc Management "})
 public class ThirdpartySdncManager {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ThirdpartySdncManager.class);

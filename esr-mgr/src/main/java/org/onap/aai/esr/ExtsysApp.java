@@ -27,7 +27,12 @@ import org.onap.msb.sdk.httpclient.msb.MSBServiceClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import io.dropwizard.Application;
+import io.dropwizard.server.SimpleServerFactory;
 import io.dropwizard.setup.Environment;
+import io.swagger.jaxrs.config.BeanConfig;
+import io.swagger.jaxrs.listing.ApiListingResource;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 public class ExtsysApp extends Application<ExtsysAppConfiguration> {
 
@@ -53,6 +58,7 @@ public class ExtsysApp extends Application<ExtsysAppConfiguration> {
         environment.jersey().register(new VimManager());
         environment.jersey().register(new VnfmManager());
         environment.jersey().register(new ServiceTest());
+        initSwaggerConfig(environment, configuration);
         if ("true".equals(configuration.getRegistByHand())) {
             String MSB_IP = configuration.getMsbDiscoveryIp();
             Integer MSB_Port = Integer.valueOf(configuration.getMsbDiscoveryPort());
@@ -67,5 +73,33 @@ public class ExtsysApp extends Application<ExtsysAppConfiguration> {
         }
         LOGGER.info("Initialize extsys finished.");
     }
+    
+    /**
+     * initialize swagger configuration.
+     * 
+     * @param environment environment information
+     * @param configuration catalogue configuration
+     */
+    private void initSwaggerConfig(Environment environment, ExtsysAppConfiguration configuration) {
+        environment.jersey().register(new ApiListingResource());
+        environment.getObjectMapper().setSerializationInclusion(JsonInclude.Include.NON_NULL);
 
+        BeanConfig config = new BeanConfig();
+        config.setTitle("ONAP ESR Service rest API");
+        config.setVersion("1.0.0");
+        config.setResourcePackage("org.onap.aai.esr.resource");
+        // set rest api basepath in swagger
+        SimpleServerFactory simpleServerFactory =
+                (SimpleServerFactory) configuration.getServerFactory();
+        String basePath = simpleServerFactory.getApplicationContextPath();
+        String rootPath = simpleServerFactory.getJerseyRootPath().get();
+        rootPath = rootPath.substring(0, rootPath.indexOf("/*"));
+        basePath =
+                basePath.equals("/") ? rootPath : (new StringBuilder()).append(basePath)
+                        .append(rootPath).toString();
+        LOGGER.info("getApplicationContextPath: " + basePath);
+        config.setBasePath(basePath);
+        config.setScan(true);
+    }
+    
 }
