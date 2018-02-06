@@ -94,16 +94,13 @@ public class EmsManagerUtil {
         for (int i = 0; i < esrSystemInfo.size(); i++) {
             authInfo = esrSystemInfo.get(i);
             if (authInfo.getSystemType().equals(SystemType.EMS_RESOUCE.toString())) {
-                FtpAddr resourceAddr = new FtpAddr();
-                resourceAddr = getFtpAddrFromAuthInfo(authInfo);
+                FtpAddr resourceAddr = getFtpAddrFromAuthInfo(authInfo);
                 emsRegisterInfo.setResourceAddr(resourceAddr);
             } else if (authInfo.getSystemType().equals(SystemType.EMS_PERFORMANCE.toString())) {
-                FtpAddr performanceAddr = new FtpAddr();
-                performanceAddr = getFtpAddrFromAuthInfo(authInfo);
+                FtpAddr performanceAddr = getFtpAddrFromAuthInfo(authInfo);
                 emsRegisterInfo.setPerformanceAddr(performanceAddr);
             } else if (authInfo.getSystemType().equals(SystemType.EMS_ALARM.toString())) {
-                AlarmAddr alarmAddr = new AlarmAddr();
-                alarmAddr = getAlarmAddrFromAuthInfo(authInfo);
+                AlarmAddr alarmAddr = getAlarmAddrFromAuthInfo(authInfo);
                 emsRegisterInfo.setAlarmAddr(alarmAddr);
             }
         }
