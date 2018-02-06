@@ -21,6 +21,10 @@ import org.onap.aai.esr.exception.ExtsysException;
 import com.eclipsesource.jaxrs.consumer.ConsumerFactory;
 
 public class VimManagerProxy {
+    
+    private VimManagerProxy() {
+	
+    }
 
     public static void updateVim(String cloudOwner, String cloudRegionId, Tenant tenant) throws ExtsysException {
         ClientConfig config = new ClientConfig(new VimUpdateProvider());
