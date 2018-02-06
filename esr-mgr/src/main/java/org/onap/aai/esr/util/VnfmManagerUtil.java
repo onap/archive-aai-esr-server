@@ -26,13 +26,11 @@ public class VnfmManagerUtil {
 
     public EsrVnfmDetail vnfmRegisterInfo2EsrVnfm(VnfmRegisterInfo vnfmRegisterInfo) {
         EsrVnfmDetail esrVnfm = new EsrVnfmDetail();
-        EsrSystemInfoList esrSystemInfo = new EsrSystemInfoList();
-        EsrSystemInfo authInfo = new EsrSystemInfo();
         esrVnfm.setCertificateUrl(vnfmRegisterInfo.getCertificateUrl());
         esrVnfm.setVimId(vnfmRegisterInfo.getVimId());
         esrVnfm.setVnfmId(extsysUtil.generateId());
-        authInfo = getAuthInfoFromVnfmRegisterInfo(vnfmRegisterInfo);
-        esrSystemInfo = extsysUtil.getEsrSystemInfoListFromAuthInfo(authInfo);
+        EsrSystemInfo authInfo = getAuthInfoFromVnfmRegisterInfo(vnfmRegisterInfo);
+        EsrSystemInfoList esrSystemInfo = extsysUtil.getEsrSystemInfoListFromAuthInfo(authInfo);
         esrVnfm.setEsrSystemInfoList(esrSystemInfo);
         return esrVnfm;
     }
@@ -57,11 +55,10 @@ public class VnfmManagerUtil {
 
     public VnfmRegisterInfo esrVnfm2VnfmRegisterInfo(EsrVnfmDetail esrVnfm) {
         VnfmRegisterInfo vnfmRegisterInfo = new VnfmRegisterInfo();
-        EsrSystemInfo authInfo = new EsrSystemInfo();
         vnfmRegisterInfo.setVnfmId(esrVnfm.getVnfmId());
         vnfmRegisterInfo.setCertificateUrl(esrVnfm.getCertificateUrl());
         vnfmRegisterInfo.setVimId(esrVnfm.getVimId());
-        authInfo = esrVnfm.getEsrSystemInfoList().getEsrSystemInfo().get(0);
+        EsrSystemInfo authInfo = esrVnfm.getEsrSystemInfoList().getEsrSystemInfo().get(0);
         vnfmRegisterInfo.setName(authInfo.getSystemName());
         vnfmRegisterInfo.setPassword(authInfo.getPassword());
         vnfmRegisterInfo.setType(authInfo.getType());
