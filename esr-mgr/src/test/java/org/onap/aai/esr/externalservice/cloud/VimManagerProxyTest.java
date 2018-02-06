@@ -23,12 +23,9 @@ import org.onap.aai.esr.exception.ExtsysException;
 
 public class VimManagerProxyTest {
 
-    VimManagerProxy proxy;
-
     @Before
     public void init() {
         MsbConfig.setMsbServerAddr("http://msb-server");
-        proxy = new VimManagerProxy();
     }
 
     @Test(expected = ExtsysException.class)
