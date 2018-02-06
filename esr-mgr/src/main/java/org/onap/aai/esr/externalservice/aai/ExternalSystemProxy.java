@@ -25,13 +25,13 @@ import com.eclipsesource.jaxrs.consumer.ConsumerFactory;
 
 public class ExternalSystemProxy {
 
-    private static IExternalSystem externalSystemproxy;
+    private static IExternalSystem externalSystem;
     private static String transactionId = "9999";
     private static String fromAppId = "esr-server";
     private static String authorization = AaiCommon.getAuthenticationCredentials();
     static {
         ClientConfig config = new ClientConfig();
-        externalSystemproxy =
+        externalSystem =
                 ConsumerFactory.createConsumer(MsbConfig.getExternalSystemAddr(), config, IExternalSystem.class);
     }
     
@@ -48,7 +48,7 @@ public class ExternalSystemProxy {
 
     public String queryVnfmDetail(String vnfmId) throws ExtsysException {
         try {
-            return externalSystemproxy.queryVNFMDetail(transactionId, fromAppId, authorization, vnfmId);
+            return externalSystem.queryVNFMDetail(transactionId, fromAppId, authorization, vnfmId);
         } catch (Exception e) {
             throw new ExtsysException("Query VNFM detail from A&AI failed.", e);
         }
@@ -56,7 +56,7 @@ public class ExternalSystemProxy {
 
     public String queryVnfmList() throws ExtsysException {
         try {
-            return externalSystemproxy.queryVNFMList(transactionId, fromAppId, authorization);
+            return externalSystem.queryVNFMList(transactionId, fromAppId, authorization);
         } catch (Exception e) {
             throw new ExtsysException("Query VNFM list from A&AI failed.", e);
         }
@@ -64,7 +64,7 @@ public class ExternalSystemProxy {
 
     public void deleteVnfm(String vnfmId, String resourceVersion) throws ExtsysException {
         try {
-            externalSystemproxy.deleteVNFM(transactionId, fromAppId, authorization, vnfmId, resourceVersion);
+            externalSystem.deleteVNFM(transactionId, fromAppId, authorization, vnfmId, resourceVersion);
         } catch (Exception e) {
             throw new ExtsysException("Delete VNFM from A&AI failed.", e);
         }
@@ -84,7 +84,7 @@ public class ExternalSystemProxy {
 
     public String queryThirdpartySdncDetail(String thirdpartySdncId) throws ExtsysException {
         try {
-            return externalSystemproxy.queryThirdpartySdncDetail(transactionId, fromAppId, authorization,
+            return externalSystem.queryThirdpartySdncDetail(transactionId, fromAppId, authorization,
                     thirdpartySdncId);
         } catch (Exception e) {
             throw new ExtsysException("Query thirdparty SDNC detail from A&AI failed.", e);
@@ -93,7 +93,7 @@ public class ExternalSystemProxy {
 
     public String querySdncList() throws ExtsysException {
         try {
-            return externalSystemproxy.queryThirdpartySdncList(transactionId, fromAppId, authorization);
+            return externalSystem.queryThirdpartySdncList(transactionId, fromAppId, authorization);
         } catch (Exception e) {
             throw new ExtsysException("Query thirdparty SDNC list from A&AI failed.", e);
         }
@@ -101,7 +101,7 @@ public class ExternalSystemProxy {
 
     public void deleteThirdpartySdnc(String sdncId, String resourceVersion) throws ExtsysException {
         try {
-            externalSystemproxy.deleteThirdpartySdnc(transactionId, fromAppId, authorization, sdncId, resourceVersion);
+            externalSystem.deleteThirdpartySdnc(transactionId, fromAppId, authorization, sdncId, resourceVersion);
         } catch (Exception e) {
             throw new ExtsysException("Delete thirdparty SDNC from A&AI failed.", e);
         }
@@ -120,7 +120,7 @@ public class ExternalSystemProxy {
 
     public String queryEmsDetail(String emsId) throws ExtsysException {
         try {
-            return externalSystemproxy.queryEMSDetail(transactionId, fromAppId, authorization, emsId);
+            return externalSystem.queryEMSDetail(transactionId, fromAppId, authorization, emsId);
         } catch (Exception e) {
             throw new ExtsysException("Query EMS detail from A&AI failed.", e);
         }
@@ -128,7 +128,7 @@ public class ExternalSystemProxy {
 
     public String queryEmsList() throws ExtsysException {
         try {
-            return externalSystemproxy.queryEMSList(transactionId, fromAppId, authorization);
+            return externalSystem.queryEMSList(transactionId, fromAppId, authorization);
         } catch (Exception e) {
             throw new ExtsysException("Query EMS list from A&AI failed.", e);
         }
@@ -136,7 +136,7 @@ public class ExternalSystemProxy {
 
     public void deleteEms(String emsId, String resourceVersion) throws ExtsysException {
         try {
-            externalSystemproxy.deleteEMS(transactionId, fromAppId, authorization, emsId, resourceVersion);
+            externalSystem.deleteEMS(transactionId, fromAppId, authorization, emsId, resourceVersion);
         } catch (Exception e) {
             throw new ExtsysException("Delete EMS from A&AI failed.", e);
         }
