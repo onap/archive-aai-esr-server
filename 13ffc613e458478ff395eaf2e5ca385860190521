@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a93c517_94eb6877",
+        "filename": "INFO.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 313
+      },
+      "writtenOn": "2018-02-28T02:44:58Z",
+      "side": 1,
+      "message": "Would you add a subproject leader information bellow this. Since the ESR is totally contributed by ZTE.",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 31
+      },
+      "revId": "13ffc613e458478ff395eaf2e5ca385860190521",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a93c517_b4f0e467",
+        "filename": "INFO.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 313
+      },
+      "writtenOn": "2018-02-28T02:44:58Z",
+      "side": 1,
+      "message": "these guys are not the committers of ESR. The committers for ESR should be Zi Li and Qi Sun",
+      "range": {
+        "startLine": 25,
+        "startChar": 3,
+        "endLine": 45,
+        "endChar": 36
+      },
+      "revId": "13ffc613e458478ff395eaf2e5ca385860190521",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
