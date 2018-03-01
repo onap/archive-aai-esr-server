@@ -45,6 +45,7 @@ public class VimManagerWrapperTest {
         vimRegisterInfo.setCloudType("openstack");
         vimRegisterInfo.setCloudZone("default");
         vimRegisterInfo.setComplexName("complex");
+        vimRegisterInfo.setPhysicalLocationId("complex");
         vimRegisterInfo.setOwnerDefinedType("test");
         vimRegisterInfo.setStatus("normal");
         VimAuthInfo vimAuthInfo = new VimAuthInfo();
@@ -132,6 +133,7 @@ public class VimManagerWrapperTest {
         vimRegisterInfo.setCloudType("openstack");
         vimRegisterInfo.setCloudZone("default");
         vimRegisterInfo.setComplexName("complex");
+        vimRegisterInfo.setPhysicalLocationId("complex");
         vimRegisterInfo.setOwnerDefinedType("test");
         vimRegisterInfo.setStatus("normal");
         vimAuthInfos.add(vimAuthInfo);

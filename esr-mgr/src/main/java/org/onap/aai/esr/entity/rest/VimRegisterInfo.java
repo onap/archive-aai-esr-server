@@ -1,5 +1,5 @@
 /**
- * Copyright 2016-2017 ZTE Corporation.
+ * Copyright 2016-2018 ZTE Corporation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,8 +31,10 @@ public class VimRegisterInfo {
     private String ownerDefinedType;
 
     private String cloudZone;
-
+    
     private String complexName;
+
+    private String physicalLocationId;
 
     private String cloudExtraInfo;
 
@@ -88,14 +90,6 @@ public class VimRegisterInfo {
         this.cloudZone = cloudZone;
     }
 
-    public String getComplexName() {
-        return complexName;
-    }
-
-    public void setComplexName(String complexName) {
-        this.complexName = complexName;
-    }
-
     public String getCloudExtraInfo() {
         return cloudExtraInfo;
     }
@@ -118,6 +112,22 @@ public class VimRegisterInfo {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getPhysicalLocationId() {
+        return physicalLocationId;
+    }
+
+    public void setPhysicalLocationId(String physicalLocationId) {
+        this.physicalLocationId = physicalLocationId;
+    }
+
+    public String getComplexName() {
+        return complexName;
+    }
+
+    public void setComplexName(String complexName) {
+        this.complexName = complexName;
     }
 
 }

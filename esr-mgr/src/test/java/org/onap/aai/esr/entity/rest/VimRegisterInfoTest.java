@@ -1,5 +1,5 @@
 /**
- * Copyright 2017 ZTE Corporation.
+ * Copyright 2017-2018 ZTE Corporation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -69,6 +69,14 @@ public class VimRegisterInfoTest {
         assertEquals(vimRegisterInfo.getCloudZone(), cloudZone);
     }
 
+    @Test
+    public void getterAndSetter4physicalLocationId() {
+        final String physicalLocationId = "test";
+        VimRegisterInfo vimRegisterInfo = new VimRegisterInfo();
+        vimRegisterInfo.setPhysicalLocationId(physicalLocationId);
+        assertEquals(vimRegisterInfo.getPhysicalLocationId(), physicalLocationId);
+    }
+    
     @Test
     public void getterAndSetter4complexName() {
         final String complexName = "test";
