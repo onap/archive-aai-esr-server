@@ -1,5 +1,5 @@
 /**
- * Copyright 2017 ZTE Corporation.
+ * Copyright 2017-2018 ZTE Corporation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,6 +18,7 @@ package org.onap.aai.esr.externalservice.aai;
 import org.glassfish.jersey.client.ClientConfig;
 import org.onap.aai.esr.common.MsbConfig;
 import org.onap.aai.esr.entity.aai.CloudRegionDetail;
+import org.onap.aai.esr.entity.aai.Relationship;
 import org.onap.aai.esr.exception.ExtsysException;
 import com.eclipsesource.jaxrs.consumer.ConsumerFactory;
 
@@ -78,6 +79,18 @@ public class CloudRegionProxy {
             return adapterServiceproxy.queryComplexList(transactionId, fromAppId, authorization);
         } catch (Exception e) {
             throw new ExtsysException("Query complexes from A&AI failed.", e);
+        }
+    }
+    
+    public void createCloudRegionRelationShip(String cloudOwner, String cloudRegionId, Relationship relationship) throws ExtsysException {
+        ClientConfig config = new ClientConfig(new RelationshipProvider());
+        ICloudRegion createRelationshipProxy =
+                ConsumerFactory.createConsumer(MsbConfig.getCloudInfrastructureAddr(), config, ICloudRegion.class);
+        try {
+            createRelationshipProxy.createCloudRegionRelationship(transactionId, fromAppId, authorization, cloudOwner,
+                    cloudRegionId, relationship);
+        } catch (Exception e) {
+            throw new ExtsysException("PUT cloud region to A&AI failed.", e);
         }
     }
 }

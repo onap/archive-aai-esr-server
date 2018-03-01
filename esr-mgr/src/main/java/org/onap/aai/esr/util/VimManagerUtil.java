@@ -1,5 +1,5 @@
 /**
- * Copyright 2017 ZTE Corporation.
+ * Copyright 2017-2018 ZTE Corporation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,7 +36,7 @@ public class VimManagerUtil {
         cloudRegion.setCloudType(vimRegisterInfo.getCloudType());
         cloudRegion.setCloudRegionVersion(vimRegisterInfo.getCloudRegionVersion());
         cloudRegion.setCloudZone(vimRegisterInfo.getCloudZone());
-        cloudRegion.setComplexName(vimRegisterInfo.getComplexName());
+//        cloudRegion.setComplexName(vimRegisterInfo.getComplexName());
         cloudRegion.setOwnerDefinedType(vimRegisterInfo.getOwnerDefinedType());
         cloudRegion.setCloudExtraInfo(vimRegisterInfo.getCloudExtraInfo());
 
@@ -90,7 +90,7 @@ public class VimManagerUtil {
         vimRegisterInfo.setCloudRegionId(cloudRegion.getCloudRegionId());
         vimRegisterInfo.setCloudType(cloudRegion.getCloudType());
         vimRegisterInfo.setCloudZone(cloudRegion.getCloudZone());
-        vimRegisterInfo.setComplexName(cloudRegion.getComplexName());
+//        vimRegisterInfo.setComplexName(cloudRegion.getComplexName());
         vimRegisterInfo.setCloudRegionVersion(cloudRegion.getCloudRegionVersion());
         vimRegisterInfo.setOwnerDefinedType(cloudRegion.getOwnerDefinedType());
         return vimRegisterInfo;

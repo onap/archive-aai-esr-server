@@ -1,5 +1,5 @@
 /**
- * Copyright 2017 ZTE Corporation.
+ * Copyright 2017-2018 ZTE Corporation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -70,11 +70,11 @@ public class VimRegisterInfoTest {
     }
 
     @Test
-    public void getterAndSetter4complexName() {
-        final String complexName = "test";
+    public void getterAndSetter4physicalLocationId() {
+        final String physicalLocationId = "test";
         VimRegisterInfo vimRegisterInfo = new VimRegisterInfo();
-        vimRegisterInfo.setComplexName(complexName);
-        assertEquals(vimRegisterInfo.getComplexName(), complexName);
+        vimRegisterInfo.setPhysicalLocationId(physicalLocationId);
+        assertEquals(vimRegisterInfo.getPhysicalLocationId(), physicalLocationId);
     }
 
     @Test

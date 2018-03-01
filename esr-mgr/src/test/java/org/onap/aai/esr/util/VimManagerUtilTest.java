@@ -1,5 +1,5 @@
 /**
- * Copyright 2017 ZTE Corporation.
+ * Copyright 2017-2018 ZTE Corporation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -46,7 +46,7 @@ public class VimManagerUtilTest {
         vimRegisterInfo.setCloudRegionVersion("mitaca");
         vimRegisterInfo.setCloudType("openstack");
         vimRegisterInfo.setCloudZone("default");
-        vimRegisterInfo.setComplexName("complex");
+        vimRegisterInfo.setPhysicalLocationId("complex");
         vimRegisterInfo.setOwnerDefinedType("test");
         vimRegisterInfo.setStatus("normal");
         vimAuthInfos.add(vimAuthInfo);
@@ -56,7 +56,7 @@ public class VimManagerUtilTest {
         String cloudRegionDetailStr = new ExtsysUtil().objectToString(cloudRegionDetail);
         String expectResult = "{\"cloud-owner\":\"zte\"," + "\"cloud-region-id\":\"RegionOne\","
                 + "\"cloud-type\":\"openstack\"," + "\"cloud-region-version\":\"mitaca\","
-                + "\"owner-defined-type\":\"test\"," + "\"cloud-zone\":\"default\"," + "\"complex-name\":\"complex\","
+                + "\"owner-defined-type\":\"test\"," + "\"cloud-zone\":\"default\","
                 + "\"cloud-extra-info\":\"{}\"," + "\"esr-system-info-list\":{" + "\"esr-system-info\":[{"
                 + "\"esr-system-info-id\":\"123456\"," + "\"service-url\":\"http://10.11.22.33:5000/v3\","
                 + "\"user-name\":\"onap\"," + "\"password\":\"123456\"," + "\"system-type\":\"VIM\","
@@ -72,7 +72,7 @@ public class VimManagerUtilTest {
         VimRegisterInfo vimRegisterInfo = new VimRegisterInfo();
         String cloudRegionDetailStr = "{\"cloud-owner\":\"zte\"," + "\"cloud-region-id\":\"RegionOne\","
                 + "\"cloud-type\":\"openstack\"," + "\"cloud-region-version\":\"mitaca\","
-                + "\"owner-defined-type\":\"test\"," + "\"cloud-zone\":\"default\"," + "\"complex-name\":\"complex\","
+                + "\"owner-defined-type\":\"test\"," + "\"cloud-zone\":\"default\","
                 + "\"cloud-extra-info\":\"{}\"," + "\"esr-system-info-list\":{" + "\"esr-system-info\":[{"
                 + "\"esr-system-info-id\":\"123456\"," + "\"service-url\":\"http://10.11.22.33:5000/v3\","
                 + "\"user-name\":\"onap\"," + "\"password\":\"123456\"," + "\"default-tenant\":\"admin\","
@@ -83,7 +83,7 @@ public class VimManagerUtilTest {
         String vimRegisterInfoStr = new ExtsysUtil().objectToString(vimRegisterInfo);
         String expectResult = "{\"cloudOwner\":\"zte\"," + "\"cloudRegionId\":\"RegionOne\","
                 + "\"cloudType\":\"openstack\"," + "\"cloudRegionVersion\":\"mitaca\","
-                + "\"ownerDefinedType\":\"test\"," + "\"cloudZone\":\"default\"," + "\"complexName\":\"complex\","
+                + "\"ownerDefinedType\":\"test\"," + "\"cloudZone\":\"default\","
                 + "\"cloudExtraInfo\":\"{}\"," + "\"status\":\"normal\"," + "\"vimAuthInfos\":[{"
                 + "\"cloudDomain\":\"default\"," + "\"userName\":\"onap\"," + "\"password\":\"123456\","
                 + "\"authUrl\":\"http://10.11.22.33:5000/v3\"," + "\"defaultTenant\":\"admin\","

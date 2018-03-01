@@ -71,7 +71,7 @@ public interface ICloudRegion {
     @Path("/cloud-regions/cloud-region/{cloud_owner}/{cloud_region_id}/relationship-list/relationship")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public void putRelationship(@HeaderParam("X-TransactionId") String transactionId,
+    public void createCloudRegionRelationship(@HeaderParam("X-TransactionId") String transactionId,
             @HeaderParam("X-FromAppId") String fromApp, @HeaderParam("Authorization") String authorization,
             @PathParam("cloud_owner") String cloud_owner, @PathParam("cloud_region_id") String cloud_region_id,
             Relationship relationship) throws ExtsysException;

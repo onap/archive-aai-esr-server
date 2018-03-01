@@ -22,6 +22,8 @@ import org.onap.aai.esr.entity.aai.CloudRegionDetail;
 import org.onap.aai.esr.entity.aai.CloudRegionList;
 import org.onap.aai.esr.entity.aai.ComplexList;
 import org.onap.aai.esr.entity.aai.EsrSystemInfo;
+import org.onap.aai.esr.entity.aai.Relationship;
+import org.onap.aai.esr.entity.aai.RelationshipData;
 import org.onap.aai.esr.entity.rest.VimRegisterInfo;
 import org.onap.aai.esr.entity.rest.VimRegisterResponse;
 import org.onap.aai.esr.exception.ExceptionUtil;
@@ -68,21 +70,45 @@ public class VimManagerWrapper {
         CloudRegionDetail cloudRegion = vimManagerUtil.vimRegisterInfo2CloudRegion(vimRegisterInfo);
         String cloudOwner = vimRegisterInfo.getCloudOwner();
         String cloudRegionId = vimRegisterInfo.getCloudRegionId();
+        String physicalLocationId = vimRegisterInfo.getPhysicalLocationId();
         try {
             cloudRegionProxy.registerVim(cloudOwner, cloudRegionId, cloudRegion);
             result.setCloudOwner(cloudOwner);
             result.setCloudRegionId(cloudRegionId);
-            Tenant tenant = new Tenant();
-            tenant.setDefaultTenant(cloudRegion.getEsrSystemInfoList().getEsrSystemInfo().get(0).getDefaultTenant());
-            try {
-                VimManagerProxy.updateVim(cloudOwner, cloudRegionId, tenant);
-            } catch (ExtsysException e) {
-                LOG.error("Update VIM by Multi-cloud failed !", e);
-            }
+            createRelationship(cloudOwner, cloudRegionId, physicalLocationId);
+            updateVimWithMultiCloud(cloudRegion, cloudOwner, cloudRegionId);
             return Response.ok(result).build();
         } catch (ExtsysException error) {
             LOG.error("Register VIM failed !", error);
             throw ExceptionUtil.buildExceptionResponse(error.getMessage());
+        }
+    }
+
+    private void updateVimWithMultiCloud(CloudRegionDetail cloudRegion, String cloudOwner, String cloudRegionId) {
+        Tenant tenant = new Tenant();
+        tenant.setDefaultTenant(cloudRegion.getEsrSystemInfoList().getEsrSystemInfo().get(0).getDefaultTenant());
+        try {
+            VimManagerProxy.updateVim(cloudOwner, cloudRegionId, tenant);
+        } catch (ExtsysException e) {
+            LOG.error("Update VIM by Multi-cloud failed !", e);
+        }
+    }
+    
+    private void createRelationship(String cloudOwner, String cloudRegionId, String physicalLocationId) {
+        Relationship relationship = new Relationship();
+        RelationshipData relationshipData = new RelationshipData();
+        List<RelationshipData> relationshipDatas = new ArrayList<>();
+        String relatedLink = "/aai/v11/cloud-infrastructure/complexes/complex/" + physicalLocationId;
+        relationship.setRelatedTo("complex");
+        relationship.setRelatedLink(relatedLink);
+        relationshipData.setRelationshipKey("complex.physical-location-id");
+        relationshipData.setRelationshipValue(physicalLocationId);
+        relationshipDatas.add(relationshipData);
+        relationship.setRelationshipData(relationshipDatas);
+        try {
+            cloudRegionProxy.createCloudRegionRelationShip(cloudOwner, cloudRegionId, relationship);
+        } catch (ExtsysException e) {
+            LOG.error("Create relationship between cloudRegion and complex failed !", e);
         }
     }
 
@@ -218,17 +244,17 @@ public class VimManagerWrapper {
 
     public Response queryComplexes() {
         ComplexList complexList = new ComplexList();
-        List<String> complexId = new ArrayList<>();
+        List<String> physicalLocationIdList = new ArrayList<>();
         try {
             String complexesString = cloudRegionProxy.qureyComplexes();
             LOG.info("The complex query result is: " + complexesString);
             complexList = new Gson().fromJson(complexesString, ComplexList.class);
             for (int i=0; i<complexList.getComplex().size(); i++) {
-                complexId.add(complexList.getComplex().get(i).getPhysicalLocationId());
+                physicalLocationIdList.add(complexList.getComplex().get(i).getPhysicalLocationId());
             }
         } catch (ExtsysException e) {
             LOG.error("Query vim details by ID failed !", e);
         }
-        return Response.ok(complexId).build();
+        return Response.ok(physicalLocationIdList).build();
     }
 }
