@@ -1,5 +1,5 @@
 /**
- * Copyright 2016-2017 ZTE Corporation.
+ * Copyright 2016-2018 ZTE Corporation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,10 +19,8 @@ package org.onap.aai.esr;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.dropwizard.Configuration;
 import org.hibernate.validator.constraints.NotEmpty;
-import org.jvnet.hk2.annotations.Service;
 import javax.validation.Valid;
 
-@Service
 public class ExtsysAppConfiguration extends Configuration {
     @NotEmpty
     private String template;
