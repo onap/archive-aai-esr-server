@@ -1,5 +1,5 @@
 /**
- * Copyright 2016-2017 ZTE Corporation.
+ * Copyright 2016-2018 ZTE Corporation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -139,5 +139,20 @@ public class VimManager {
     public Response registerVims(VimRegisterInfo vim) {
         LOGGER.info("start add vim" + " info:" + extsysUtil.objectToString(vim));
         return VimManagerWrapper.getInstance().registerVim(vim);
+    }
+    
+    @GET
+    @Path("/complexes")
+    @ApiOperation(value = "get  all complexes ")
+    @Produces(MediaType.APPLICATION_JSON)
+    @ApiResponses(value = {
+            @ApiResponse(code = HttpStatus.NOT_FOUND_404, message = "microservice not found", response = String.class),
+            @ApiResponse(code = HttpStatus.UNSUPPORTED_MEDIA_TYPE_415,
+                    message = "Unprocessable MicroServiceInfo Entity ", response = String.class),
+            @ApiResponse(code = HttpStatus.INTERNAL_SERVER_ERROR_500, message = "internal server error",
+                    response = String.class)})
+    @Timed
+    public Response queryComplexList() {
+        return VimManagerWrapper.getInstance().queryComplexes();
     }
 }
