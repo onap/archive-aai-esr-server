@@ -1,5 +1,5 @@
 /**
- * Copyright 2017 ZTE Corporation.
+ * Copyright 2017-2018 ZTE Corporation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,6 +20,7 @@ import java.util.List;
 import javax.ws.rs.core.Response;
 import org.onap.aai.esr.entity.aai.CloudRegionDetail;
 import org.onap.aai.esr.entity.aai.CloudRegionList;
+import org.onap.aai.esr.entity.aai.ComplexList;
 import org.onap.aai.esr.entity.aai.EsrSystemInfo;
 import org.onap.aai.esr.entity.rest.VimRegisterInfo;
 import org.onap.aai.esr.entity.rest.VimRegisterResponse;
@@ -213,5 +214,21 @@ public class VimManagerWrapper {
             throw ExceptionUtil.buildExceptionResponse(e.getMessage());
         }
         return cloudRegionDetail;
+    }
+
+    public Response queryComplexes() {
+        ComplexList complexList = new ComplexList();
+        List<String> complexId = new ArrayList<>();
+        try {
+            String complexesString = cloudRegionProxy.qureyComplexes();
+            LOG.info("The complex query result is: " + complexesString);
+            complexList = new Gson().fromJson(complexesString, ComplexList.class);
+            for (int i=0; i<complexList.getComplex().size(); i++) {
+                complexId.add(complexList.getComplex().get(i).getPhysicalLocationId());
+            }
+        } catch (ExtsysException e) {
+            LOG.error("Query vim details by ID failed !", e);
+        }
+        return Response.ok(complexId).build();
     }
 }

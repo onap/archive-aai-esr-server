@@ -72,4 +72,12 @@ public class CloudRegionProxy {
             throw new ExtsysException("Delete cloud region from A&AI failed.", e);
         }
     }
+    
+    public String qureyComplexes() throws ExtsysException {
+        try {
+            return adapterServiceproxy.queryComplexList(transactionId, fromAppId, authorization);
+        } catch (Exception e) {
+            throw new ExtsysException("Query complexes from A&AI failed.", e);
+        }
+    }
 }
