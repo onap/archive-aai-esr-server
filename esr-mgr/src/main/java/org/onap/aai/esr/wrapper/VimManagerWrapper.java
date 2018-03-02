@@ -46,6 +46,8 @@ public class VimManagerWrapper {
     private static VimManagerUtil vimManagerUtil = new VimManagerUtil();
 
     private static CloudRegionProxy cloudRegionProxy = new CloudRegionProxy();
+    
+    private static VimManagerProxy vimManagerProxy = new VimManagerProxy();
 
     private static ExtsysUtil extsysUtil = new ExtsysUtil();
 
@@ -56,13 +58,14 @@ public class VimManagerWrapper {
      */
     public static VimManagerWrapper getInstance() {
         if (vimManagerWrapper == null) {
-            vimManagerWrapper = new VimManagerWrapper(cloudRegionProxy);
+            vimManagerWrapper = new VimManagerWrapper(cloudRegionProxy, vimManagerProxy);
         }
         return vimManagerWrapper;
     }
     
-    public VimManagerWrapper(CloudRegionProxy cloudRegionProxy) {
+    public VimManagerWrapper(CloudRegionProxy cloudRegionProxy, VimManagerProxy vimManagerProxy) {
         VimManagerWrapper.cloudRegionProxy = cloudRegionProxy;
+        VimManagerWrapper.vimManagerProxy = vimManagerProxy;
     }
 
     public Response registerVim(VimRegisterInfo vimRegisterInfo) {
@@ -91,7 +94,7 @@ public class VimManagerWrapper {
         Tenant tenant = new Tenant();
         tenant.setDefaultTenant(cloudRegion.getEsrSystemInfoList().getEsrSystemInfo().get(0).getDefaultTenant());
         try {
-            VimManagerProxy.updateVim(cloudOwner, cloudRegionId, tenant);
+            vimManagerProxy.updateVim(cloudOwner, cloudRegionId, tenant);
         } catch (ExtsysException e) {
             LOG.error("Update VIM by Multi-cloud failed !", e);
         }

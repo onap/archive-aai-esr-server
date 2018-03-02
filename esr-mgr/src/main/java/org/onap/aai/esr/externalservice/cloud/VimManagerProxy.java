@@ -1,5 +1,5 @@
 /**
- * Copyright 2017 ZTE Corporation.
+ * Copyright 2017-2018 ZTE Corporation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,11 +22,11 @@ import com.eclipsesource.jaxrs.consumer.ConsumerFactory;
 
 public class VimManagerProxy {
     
-    private VimManagerProxy() {
-	
-    }
+//    private VimManagerProxy() {
+//	
+//    }
 
-    public static void updateVim(String cloudOwner, String cloudRegionId, Tenant tenant) throws ExtsysException {
+    public void updateVim(String cloudOwner, String cloudRegionId, Tenant tenant) throws ExtsysException {
         ClientConfig config = new ClientConfig(new VimUpdateProvider());
         IVimManage updateVimServiceproxy =
                 ConsumerFactory.createConsumer(MsbConfig.getMultiCloudAddr(), config, IVimManage.class);
