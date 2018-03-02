@@ -81,8 +81,17 @@ public class CloudRegionProxy {
             throw new ExtsysException("Query complexes from A&AI failed.", e);
         }
     }
-    
-    public void createCloudRegionRelationShip(String cloudOwner, String cloudRegionId, Relationship relationship) throws ExtsysException {
+
+    public String queryComplex(String physicalLocationId) throws ExtsysException {
+        try {
+            return adapterServiceproxy.queryComplex(transactionId, fromAppId, authorization, physicalLocationId);
+        } catch (Exception e) {
+            throw new ExtsysException("Query complexes from A&AI failed.", e);
+        }
+    }
+
+    public void createCloudRegionRelationShip(String cloudOwner, String cloudRegionId, Relationship relationship)
+            throws ExtsysException {
         ClientConfig config = new ClientConfig(new RelationshipProvider());
         ICloudRegion createRelationshipProxy =
                 ConsumerFactory.createConsumer(MsbConfig.getCloudInfrastructureAddr(), config, ICloudRegion.class);

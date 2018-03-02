@@ -20,6 +20,7 @@ import java.util.List;
 import javax.ws.rs.core.Response;
 import org.onap.aai.esr.entity.aai.CloudRegionDetail;
 import org.onap.aai.esr.entity.aai.CloudRegionList;
+import org.onap.aai.esr.entity.aai.Complex;
 import org.onap.aai.esr.entity.aai.ComplexList;
 import org.onap.aai.esr.entity.aai.EsrSystemInfo;
 import org.onap.aai.esr.entity.aai.Relationship;
@@ -71,7 +72,8 @@ public class VimManagerWrapper {
         String cloudOwner = vimRegisterInfo.getCloudOwner();
         String cloudRegionId = vimRegisterInfo.getCloudRegionId();
         String physicalLocationId = vimRegisterInfo.getPhysicalLocationId();
-        //TODO query complex by complex id to get complex name. and put the name to vimRegisterInfo.complexName
+        String complexName = getComplexName(physicalLocationId);
+        cloudRegion.setComplexName(complexName);
         try {
             cloudRegionProxy.registerVim(cloudOwner, cloudRegionId, cloudRegion);
             result.setCloudOwner(cloudOwner);
@@ -242,19 +244,32 @@ public class VimManagerWrapper {
         }
         return cloudRegionDetail;
     }
+    
+    private String getComplexName(String physicalLocationId) {
+        Complex complex = new Complex();
+        try {
+            String complexStr = cloudRegionProxy.queryComplex(physicalLocationId);
+            LOG.info("The complexes query result is: " + complexStr);
+            complex = new Gson().fromJson(complexStr, Complex.class);
+            return complex.getComplexName();
+        } catch (ExtsysException e) {
+            LOG.error("Query complex by physical location Id failed !", e);
+            return null;
+        }
+    }
 
     public Response queryComplexes() {
         ComplexList complexList = new ComplexList();
         List<String> physicalLocationIdList = new ArrayList<>();
         try {
             String complexesString = cloudRegionProxy.qureyComplexes();
-            LOG.info("The complex query result is: " + complexesString);
+            LOG.info("The complexes query result is: " + complexesString);
             complexList = new Gson().fromJson(complexesString, ComplexList.class);
             for (int i=0; i<complexList.getComplex().size(); i++) {
                 physicalLocationIdList.add(complexList.getComplex().get(i).getPhysicalLocationId());
             }
         } catch (ExtsysException e) {
-            LOG.error("Query vim details by ID failed !", e);
+            LOG.error("Query complexes failed !", e);
         }
         return Response.ok(physicalLocationIdList).build();
     }

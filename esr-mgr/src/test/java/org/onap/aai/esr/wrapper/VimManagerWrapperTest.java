@@ -58,9 +58,11 @@ public class VimManagerWrapperTest {
         vimAuthInfo.setDefaultTenant("admin");
         vimAuthInfos.add(vimAuthInfo);
         vimRegisterInfo.setVimAuthInfos(vimAuthInfos);
+        String complexStr = "{\"physical-location-id\": \"complex\", \"data-center-code\": \"test\", \"complex-name\": \"complex\"}";
         CloudRegionProxy mockCloudRegionProxy = Mockito.mock(CloudRegionProxy.class);
         Mockito.doNothing().when(mockCloudRegionProxy).registerVim(Mockito.anyString(), Mockito.anyString(),
                 (CloudRegionDetail) Mockito.anyObject());
+        Mockito.when(mockCloudRegionProxy.queryComplex(Mockito.anyString())).thenReturn(complexStr);
         VimManagerWrapper vimManagerWrapper = new VimManagerWrapper(mockCloudRegionProxy);
         Response response = vimManagerWrapper.registerVim(vimRegisterInfo);
         if (response != null) {

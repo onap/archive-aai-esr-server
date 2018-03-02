@@ -83,4 +83,12 @@ public interface ICloudRegion {
     public String queryComplexList(@HeaderParam("X-TransactionId") String transactionId,
             @HeaderParam("X-FromAppId") String fromApp, @HeaderParam("Authorization") String authorization)
             throws ExtsysException;
+
+    @GET
+    @Path("/complexes/complex/{physical_location_id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public String queryComplex(@HeaderParam("X-TransactionId") String transactionId,
+            @HeaderParam("X-FromAppId") String fromApp, @HeaderParam("Authorization") String authorization,
+            @PathParam("physical_location_id") String physical_location_id) throws ExtsysException;
 }
