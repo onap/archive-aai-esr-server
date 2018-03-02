@@ -207,16 +207,20 @@ public class VimManagerWrapper {
     private CloudRegionDetail getVimUpdateInfo(VimRegisterInfo vimRegisterInfo) {
         String cloudOwner = vimRegisterInfo.getCloudOwner();
         String cloudRegionId = vimRegisterInfo.getCloudRegionId();
+        String resourceVersion = null;
+        CloudRegionDetail cloudRegionDetail = new CloudRegionDetail();
         CloudRegionDetail originalCloudRegionDetail = getOriginalCloudRegion(cloudOwner, cloudRegionId);
-        String resourceVersion = originalCloudRegionDetail.getResourceVersion();
-        CloudRegionDetail cloudRegionDetail = vimManagerUtil.vimRegisterInfo2CloudRegion(vimRegisterInfo);
-        if (resourceVersion != null) {
-            cloudRegionDetail.setResourceVersion(resourceVersion);
-            EsrSystemInfo originalSystemInfo = originalCloudRegionDetail.getEsrSystemInfoList().getEsrSystemInfo().get(0);
-            cloudRegionDetail.getEsrSystemInfoList().getEsrSystemInfo().get(0)
-                    .setEsrSystemInfoId(originalSystemInfo.getEsrSystemInfoId());
-            cloudRegionDetail.getEsrSystemInfoList().getEsrSystemInfo().get(0)
-                    .setResouceVersion(originalSystemInfo.getResouceVersion());
+        if (originalCloudRegionDetail != null) {
+            resourceVersion = originalCloudRegionDetail.getResourceVersion();
+            cloudRegionDetail = vimManagerUtil.vimRegisterInfo2CloudRegion(vimRegisterInfo);
+            if (resourceVersion != null) {
+                cloudRegionDetail.setResourceVersion(resourceVersion);
+                EsrSystemInfo originalSystemInfo = originalCloudRegionDetail.getEsrSystemInfoList().getEsrSystemInfo().get(0);
+                cloudRegionDetail.getEsrSystemInfoList().getEsrSystemInfo().get(0)
+                .setEsrSystemInfoId(originalSystemInfo.getEsrSystemInfoId());
+                cloudRegionDetail.getEsrSystemInfoList().getEsrSystemInfo().get(0)
+                .setResouceVersion(originalSystemInfo.getResouceVersion());
+            }
         }
         return cloudRegionDetail;
     }
