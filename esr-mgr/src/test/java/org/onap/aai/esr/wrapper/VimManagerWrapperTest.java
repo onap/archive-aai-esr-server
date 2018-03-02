@@ -23,10 +23,13 @@ import org.junit.Test;
 import org.mockito.Mockito;
 import org.onap.aai.esr.common.MsbConfig;
 import org.onap.aai.esr.entity.aai.CloudRegionDetail;
+import org.onap.aai.esr.entity.aai.Relationship;
 import org.onap.aai.esr.entity.rest.VimAuthInfo;
 import org.onap.aai.esr.entity.rest.VimRegisterInfo;
 import org.onap.aai.esr.exception.ExtsysException;
 import org.onap.aai.esr.externalservice.aai.CloudRegionProxy;
+import org.onap.aai.esr.externalservice.cloud.Tenant;
+import org.onap.aai.esr.externalservice.cloud.VimManagerProxy;
 
 public class VimManagerWrapperTest {
 
@@ -60,10 +63,14 @@ public class VimManagerWrapperTest {
         vimRegisterInfo.setVimAuthInfos(vimAuthInfos);
         String complexStr = "{\"physical-location-id\": \"complex\", \"data-center-code\": \"test\", \"complex-name\": \"complex\"}";
         CloudRegionProxy mockCloudRegionProxy = Mockito.mock(CloudRegionProxy.class);
+        VimManagerProxy mockVimManagerProxy = Mockito.mock(VimManagerProxy.class);
         Mockito.doNothing().when(mockCloudRegionProxy).registerVim(Mockito.anyString(), Mockito.anyString(),
                 (CloudRegionDetail) Mockito.anyObject());
+        Mockito.doNothing().when(mockCloudRegionProxy).createCloudRegionRelationShip(Mockito.anyString(), Mockito.anyString(),
+                (Relationship) Mockito.anyObject());
         Mockito.when(mockCloudRegionProxy.queryComplex(Mockito.anyString())).thenReturn(complexStr);
-        VimManagerWrapper vimManagerWrapper = new VimManagerWrapper(mockCloudRegionProxy);
+        Mockito.doNothing().when(mockVimManagerProxy).updateVim(Mockito.anyString(), Mockito.anyString(), (Tenant) Mockito.anyObject());
+        VimManagerWrapper vimManagerWrapper = new VimManagerWrapper(mockCloudRegionProxy, mockVimManagerProxy);
         Response response = vimManagerWrapper.registerVim(vimRegisterInfo);
         if (response != null) {
             Assert.assertTrue(response.getStatus() == 200);
@@ -73,6 +80,7 @@ public class VimManagerWrapperTest {
     @Test
     public void test_queryVimById() throws ExtsysException {
         CloudRegionProxy mockCloudRegionProxy = Mockito.mock(CloudRegionProxy.class);
+        VimManagerProxy mockVimManagerProxy = Mockito.mock(VimManagerProxy.class);
         String vimdetail = "{\"cloud-owner\":\"zte\"," + "\"cloud-region-id\":\"RegionOne\","
                 + "\"cloud-type\":\"openstack\"," + "\"cloud-region-version\":\"mitaca\","
                 + "\"owner-defined-type\":\"test\"," + "\"cloud-zone\":\"default\"," + "\"complex-name\":\"complex\","
@@ -82,7 +90,7 @@ public class VimManagerWrapperTest {
                 + "\"ssl-cassert\":\"test\"," + "\"ssl-insecure\":true," + "\"cloud-domain\":\"default\","
                 + "\"default-tenant\":\"admin\"," + "\"system-status\":\"normal\"}]}}";
         Mockito.when(mockCloudRegionProxy.queryVimDetail(Mockito.anyString(),Mockito.anyString())).thenReturn(vimdetail);
-        VimManagerWrapper vimManagerWrapper = new VimManagerWrapper(mockCloudRegionProxy);
+        VimManagerWrapper vimManagerWrapper = new VimManagerWrapper(mockCloudRegionProxy, mockVimManagerProxy);
         Response response = vimManagerWrapper.queryVimById("zte", "RegionOne");
         if (response != null) {
             Assert.assertTrue(response.getStatus() == 200);
@@ -92,6 +100,7 @@ public class VimManagerWrapperTest {
     @Test
     public void test_queryVimListDetails() throws ExtsysException {
         CloudRegionProxy mockCloudRegionProxy = Mockito.mock(CloudRegionProxy.class);
+        VimManagerProxy mockVimManagerProxy = Mockito.mock(VimManagerProxy.class);
         String vimdetail = "{\"cloud-owner\":\"zte\"," + "\"cloud-region-id\":\"RegionOne\","
                 + "\"cloud-type\":\"openstack\"," + "\"cloud-region-version\":\"mitaca\","
                 + "\"owner-defined-type\":\"test\"," + "\"cloud-zone\":\"default\"," + "\"complex-name\":\"complex\","
@@ -108,8 +117,7 @@ public class VimManagerWrapperTest {
         Mockito.when(mockCloudRegionProxy.queryVimDetail(Mockito.anyString(), Mockito.anyString()))
                 .thenReturn(vimdetail);
         Mockito.when(mockCloudRegionProxy.qureyVimList()).thenReturn(vimListStr);
-
-        VimManagerWrapper vimManagerWrapper = new VimManagerWrapper(mockCloudRegionProxy);
+        VimManagerWrapper vimManagerWrapper = new VimManagerWrapper(mockCloudRegionProxy, mockVimManagerProxy);
         Response response = vimManagerWrapper.queryVimListDetails();
         if (response != null) {
             Assert.assertTrue(response.getStatus() == 200);
@@ -141,6 +149,7 @@ public class VimManagerWrapperTest {
         vimAuthInfos.add(vimAuthInfo);
         vimRegisterInfo.setVimAuthInfos(vimAuthInfos);
         CloudRegionProxy mockCloudRegionProxy = Mockito.mock(CloudRegionProxy.class);
+        VimManagerProxy mockVimManagerProxy = Mockito.mock(VimManagerProxy.class);
         String vimdetail = "{\"cloud-owner\":\"zte\"," + "\"cloud-region-id\":\"RegionOne\","
                 + "\"cloud-type\":\"openstack\"," + "\"cloud-region-version\":\"mitaca\","
                 + "\"owner-defined-type\":\"test\"," + "\"cloud-zone\":\"default\"," + "\"complex-name\":\"complex\","
@@ -153,7 +162,7 @@ public class VimManagerWrapperTest {
         .thenReturn(vimdetail);
         Mockito.doNothing().when(mockCloudRegionProxy).registerVim(Mockito.anyString(), Mockito.anyString(),
                 (CloudRegionDetail) Mockito.anyObject());
-        VimManagerWrapper vimManagerWrapper = new VimManagerWrapper(mockCloudRegionProxy);
+        VimManagerWrapper vimManagerWrapper = new VimManagerWrapper(mockCloudRegionProxy, mockVimManagerProxy);
         Response response = vimManagerWrapper.updateVim("zte", "RegionOne", vimRegisterInfo);
         if (response != null) {
             Assert.assertTrue(response.getStatus() == 200);
@@ -163,6 +172,7 @@ public class VimManagerWrapperTest {
     @Test
     public void test_delVim() throws ExtsysException {
         CloudRegionProxy mockCloudRegionProxy = Mockito.mock(CloudRegionProxy.class);
+        VimManagerProxy mockVimManagerProxy = Mockito.mock(VimManagerProxy.class);
         String vimdetail = "{\"cloud-owner\":\"zte\"," + "\"cloud-region-id\":\"RegionOne\","
                 + "\"cloud-type\":\"openstack\"," + "\"cloud-region-version\":\"mitaca\","
                 + "\"owner-defined-type\":\"test\"," + "\"cloud-zone\":\"default\"," + "\"complex-name\":\"complex\","
@@ -174,10 +184,25 @@ public class VimManagerWrapperTest {
         Mockito.when(mockCloudRegionProxy.queryVimDetail(Mockito.anyString(), Mockito.anyString()))
         .thenReturn(vimdetail);
         Mockito.doNothing().when(mockCloudRegionProxy).deleteVim(Mockito.anyString(), Mockito.anyString(), Mockito.anyString());
-        VimManagerWrapper vimManagerWrapper = new VimManagerWrapper(mockCloudRegionProxy);
+        VimManagerWrapper vimManagerWrapper = new VimManagerWrapper(mockCloudRegionProxy, mockVimManagerProxy);
         Response response = vimManagerWrapper.delVim("zte", "RegionOne");
         if (response != null) {
             Assert.assertTrue(response.getStatus() == 204);
+        }
+    }
+    
+    @Test
+    public void test_queryComplexes() throws ExtsysException {
+        CloudRegionProxy mockCloudRegionProxy = Mockito.mock(CloudRegionProxy.class);
+        VimManagerProxy mockVimManagerProxy = Mockito.mock(VimManagerProxy.class);
+        String complexListStr =
+                "{\"complex\": [{\"physical-location-id\": \"123\",\"complex-name\": \"complex1\"},"
+                + "{\"physical-location-id\": \"test\",\"complex-name\": \"complex\"}]}";
+        Mockito.when(mockCloudRegionProxy.qureyComplexes()).thenReturn(complexListStr);
+        VimManagerWrapper vimManagerWrapper = new VimManagerWrapper(mockCloudRegionProxy, mockVimManagerProxy);
+        Response response = vimManagerWrapper.queryComplexes();
+        if (response != null) {
+            Assert.assertTrue(response.getStatus() == 200);
         }
     }
 }

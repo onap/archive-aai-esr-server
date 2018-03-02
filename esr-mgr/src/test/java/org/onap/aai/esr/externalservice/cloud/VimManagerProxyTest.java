@@ -23,9 +23,12 @@ import org.onap.aai.esr.exception.ExtsysException;
 
 public class VimManagerProxyTest {
 
+    VimManagerProxy proxy;
+    
     @Before
     public void init() {
         MsbConfig.setMsbServerAddr("http://msb-server");
+        proxy = new VimManagerProxy();
     }
 
     @Test(expected = ExtsysException.class)
@@ -33,6 +36,6 @@ public class VimManagerProxyTest {
         Tenant tenant = new Tenant();
         tenant.setDefaultTenant("defaultTenant");
         Assert.assertEquals(tenant.getDefaultTenant(), "defaultTenant");
-        VimManagerProxy.updateVim("owner-1", "region-1", tenant);
+        proxy.updateVim("owner-1", "region-1", tenant);
     }
 }
