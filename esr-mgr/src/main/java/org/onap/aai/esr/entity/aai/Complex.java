@@ -23,6 +23,10 @@ public class Complex implements Serializable {
     
     @SerializedName("physical-location-id")
     private String physicalLocationId;
+    
+    
+    @SerializedName("complex-name")
+    private String complexName;
 
     public String getPhysicalLocationId() {
         return physicalLocationId;
@@ -30,5 +34,13 @@ public class Complex implements Serializable {
 
     public void setPhysicalLocationId(String physicalLocationId) {
         this.physicalLocationId = physicalLocationId;
+    }
+
+    public String getComplexName() {
+        return complexName;
+    }
+
+    public void setComplexName(String complexName) {
+        this.complexName = complexName;
     }
 }
