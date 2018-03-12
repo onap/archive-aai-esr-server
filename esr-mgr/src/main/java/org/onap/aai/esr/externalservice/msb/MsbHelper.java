@@ -50,6 +50,7 @@ public class MsbHelper {
         msinfo.setUrl("/api/aai-esr-server/v1");
         msinfo.setProtocol("REST");
         msinfo.setVisualRange("0|1");
+        msinfo.setEnable_ssl(true);
 
         Set<Node> nodes = new HashSet<>();
         Node node1 = new Node();
