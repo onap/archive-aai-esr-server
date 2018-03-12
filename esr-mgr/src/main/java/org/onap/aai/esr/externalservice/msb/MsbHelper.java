@@ -1,5 +1,5 @@
 /**
- * Copyright 2017 ZTE Corporation.
+ * Copyright 2017-2018 ZTE Corporation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -50,6 +50,7 @@ public class MsbHelper {
         msinfo.setUrl("/api/aai-esr-server/v1");
         msinfo.setProtocol("REST");
         msinfo.setVisualRange("0|1");
+        msinfo.setEnable_ssl(true);
 
         Set<Node> nodes = new HashSet<>();
         Node node1 = new Node();

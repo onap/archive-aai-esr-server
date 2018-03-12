@@ -32,5 +32,12 @@ echo @JAVA_OPTS@ $JAVA_OPTS
 class_path="$main_path/:$main_path/esr-service.jar"
 echo @class_path@ $class_path
 
+KEY_PATH="$main_path/conf/aaiesr.keystore"
+KEY_PASSWORD="aaiesr"
+
+#HTTPS Configurations
+sed -i "s|keyStorePath:.*|keyStorePath: $KEY_PATH|" "$main_path/conf/extsys.yml"
+sed -i "s|keyStorePassword:.*|keyStorePassword: $KEY_PASSWORD|" "$main_path/conf/extsys.yml"
+
 "$JAVA" $JAVA_OPTS -classpath "$class_path" org.onap.aai.esr.ExtsysApp server "$main_path/conf/extsys.yml"
 
