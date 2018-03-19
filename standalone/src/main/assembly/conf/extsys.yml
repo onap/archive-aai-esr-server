@@ -21,7 +21,7 @@ template: Hello, %s!
 serviceIp: 127.0.0.1
 msbDiscoveryIp: 127.0.0.1
 msbDiscoveryPort: 10081
-msbServerAddr: http://127.0.0.1:80
+msbServerAddr: http://127.0.0.1:443
 registByHand: true
 
 # use the simple server factory if you only want to run on a single port
