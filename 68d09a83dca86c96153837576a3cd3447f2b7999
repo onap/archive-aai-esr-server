@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a93c517_39c77666",
+        "filename": "esr-mgr/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 1337
+      },
+      "writtenOn": "2018-03-26T11:55:11Z",
+      "side": 1,
+      "message": "Suggest to remove the space here",
+      "range": {
+        "startLine": 246,
+        "startChar": 0,
+        "endLine": 246,
+        "endChar": 1
+      },
+      "revId": "68d09a83dca86c96153837576a3cd3447f2b7999",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a93c517_99ca4a6d",
+        "filename": "pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1337
+      },
+      "writtenOn": "2018-03-26T11:55:11Z",
+      "side": 1,
+      "message": "suggest to remove the space here",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 1
+      },
+      "revId": "68d09a83dca86c96153837576a3cd3447f2b7999",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
