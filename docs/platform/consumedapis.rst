@@ -56,7 +56,7 @@ More details could be found at `A&AI APIs <https://wiki.onap.org/pages/viewpage.
 Multi-Cloud
 ^^^^^^^^^^^
 
-ESR will call the API from Multi-Cloud to update the cloud-region infomation after put the VIM data to A&AI.
+ESR will call the API from Multi-Cloud to update the cloud-region information after put the VIM data to A&AI.
 
 #. Update VIM Info:
 
