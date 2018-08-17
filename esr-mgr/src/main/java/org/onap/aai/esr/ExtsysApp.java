@@ -19,6 +19,7 @@ package org.onap.aai.esr;
 import org.onap.aai.esr.common.MsbConfig;
 import org.onap.aai.esr.externalservice.msb.MsbHelper;
 import org.onap.aai.esr.resource.EmsManager;
+import org.onap.aai.esr.resource.PnfManager;
 import org.onap.aai.esr.resource.ServiceTest;
 import org.onap.aai.esr.resource.ThirdpartySdncManager;
 import org.onap.aai.esr.resource.VimManager;
@@ -57,6 +58,7 @@ public class ExtsysApp extends Application<ExtsysAppConfiguration> {
         environment.jersey().register(new ThirdpartySdncManager());
         environment.jersey().register(new VimManager());
         environment.jersey().register(new VnfmManager());
+        environment.jersey().register(new PnfManager());
         environment.jersey().register(new ServiceTest());
         initSwaggerConfig(environment, configuration);
         if ("false".equals(configuration.getRegistByHand())) {
