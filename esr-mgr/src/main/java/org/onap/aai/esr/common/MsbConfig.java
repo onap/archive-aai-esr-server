@@ -26,6 +26,8 @@ public class MsbConfig {
     protected static String cloudInfrastructureAddr;
 
     protected static String externalSystemAddr;
+    
+    protected static String networkAddr;
 
     protected static String multiCloudAddr;
 
@@ -49,6 +51,14 @@ public class MsbConfig {
         externalSystemAddr = Addr;
     }
 
+    public static String getNetworkAddr() {
+        return msbServerAddr + "/api/aai-network/v11";
+    }
+    
+    public static void setNetworkAddr(String address) {
+        networkAddr = address;
+    }
+    
     public static void setMultiCloudAddr(String address) {
         multiCloudAddr = address;
     }
