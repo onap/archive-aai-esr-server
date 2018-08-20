@@ -13,24 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.onap.aai.esr.entity.aai;
+package org.onap.aai.esr.externalservice.aai;
 
-import java.io.Serializable;
-import java.util.List;
-import com.google.gson.annotations.SerializedName;
+public class PnfRegisterProvider {
 
-public class EsrPnfList implements Serializable{
-
-    public static final long serialVersionUID = 1L;
-
-    @SerializedName("pnf")
-    private List<EsrPnf> pnf;
-
-    public List<EsrPnf> getPnf() {
-        return pnf;
-    }
-
-    public void setPnf(List<EsrPnf> pnf) {
-        this.pnf = pnf;
-    }
 }

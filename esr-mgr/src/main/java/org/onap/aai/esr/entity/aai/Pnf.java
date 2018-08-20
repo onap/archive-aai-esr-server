@@ -18,7 +18,7 @@ package org.onap.aai.esr.entity.aai;
 import java.io.Serializable;
 import com.google.gson.annotations.SerializedName;
 
-public class EsrPnf implements Serializable{
+public class Pnf implements Serializable{
 
     public static final long serialVersionUID = 1L;
 
