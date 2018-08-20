@@ -24,12 +24,13 @@ import org.onap.aai.esr.externalservice.aai.NetworkProxy;
 import org.onap.aai.esr.util.PnfManagerUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import com.google.gson.Gson;
 
 public class PnfManagerWrapper {
     private static PnfManagerWrapper pnfManagerWrapper;
     private static final Logger LOG = LoggerFactory.getLogger(PnfManagerWrapper.class);
 
-//    private static PnfManagerUtil pnfManagerUtil = new PnfManagerUtil();
+    private static PnfManagerUtil pnfManagerUtil = new PnfManagerUtil();
     private static NetworkProxy networkProxy = new NetworkProxy();
 
     /**
@@ -61,8 +62,22 @@ public class PnfManagerWrapper {
      * @return
      */
     public Response queryPnfById(String pnfId) {
-        // TODO Auto-generated method stub
-        return null;
+        PnfRegisterInfo pnfRegisterInfo = queryPnf(pnfId);
+        return Response.ok(pnfRegisterInfo).build();
+    }
+    
+    private PnfRegisterInfo queryPnf(String pnfId) {
+        Pnf pnf = new Pnf();
+        PnfRegisterInfo pnfRegisterInfo = new PnfRegisterInfo();
+        try {
+            String pnfStr = networkProxy.queryPNF(pnfId);
+            LOG.info("Response from AAI by query PNF: " + pnfStr);
+            pnf = new Gson().fromJson(pnfStr, Pnf.class);
+            pnfRegisterInfo = pnfManagerUtil.pnf2PnfRegisterInfo(pnf);
+        } catch (ExtsysException e) {
+            LOG.error("Query PNF detail failed! PNF ID: " + pnfId, e);
+        }
+        return pnfRegisterInfo;
     }
 
     /**
@@ -89,7 +104,7 @@ public class PnfManagerWrapper {
      * @return
      */
     public Response registerPnf(PnfRegisterInfo pnfRegisterInfo) {
-        Pnf pnf = PnfManagerUtil.pnfRegisterInfo2pnf(pnfRegisterInfo);
+        Pnf pnf = pnfManagerUtil.pnfRegisterInfo2pnf(pnfRegisterInfo);
         String pnfName = pnf.getPnfName();
         try {
             networkProxy.registerPnf(pnfName, pnf);

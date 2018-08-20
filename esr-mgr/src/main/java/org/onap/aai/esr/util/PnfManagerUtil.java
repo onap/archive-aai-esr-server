@@ -24,7 +24,7 @@ public class PnfManagerUtil {
      * @param pnfRegisterInfo
      * @return
      */
-    public static Pnf pnfRegisterInfo2pnf(PnfRegisterInfo pnfRegisterInfo) {
+    public Pnf pnfRegisterInfo2pnf(PnfRegisterInfo pnfRegisterInfo) {
         Pnf pnf = new Pnf();
         pnf.setPnfName(pnfRegisterInfo.getPnfId());
         pnf.setPnfName2(pnfRegisterInfo.getUserLabel());
@@ -37,6 +37,33 @@ public class PnfManagerUtil {
         String frameId = pnfRegisterInfo.getLattitude() + "-" + pnfRegisterInfo.getLongitude();
         pnf.setFrameId(frameId);
         return pnf;
+    }
+
+    /**
+     * @param pnf
+     * @return
+     */
+    public PnfRegisterInfo pnf2PnfRegisterInfo(Pnf pnf) {
+        PnfRegisterInfo pnfRegisterInfo = new PnfRegisterInfo();
+        pnfRegisterInfo.setPnfId(pnf.getPnfName());
+        pnfRegisterInfo.setUserLabel(pnf.getPnfName2());
+        String subnetNeId = pnf.getPnfId();
+        
+        String[] ids = subnetNeId.split("-");
+        pnfRegisterInfo.setSubnetId(ids[0].toString());
+        pnfRegisterInfo.setNeId(ids[1].toString());
+        
+        pnfRegisterInfo.setManagementType(pnf.getEquipType());
+        pnfRegisterInfo.setVendor(pnf.getEquipVendor());
+        pnfRegisterInfo.setPnfdId(pnf.getEquipModel());
+        pnfRegisterInfo.setEmsId(pnf.getManagementOption());
+        
+        String location = pnf.getFrameId();
+        String[] locates = location.split("-");
+        pnfRegisterInfo.setLattitude(locates[0].toString());
+        pnfRegisterInfo.setLongitude(locates[1].toString());
+        
+        return pnfRegisterInfo;
     }
 
 }

@@ -16,11 +16,14 @@
 package org.onap.aai.esr.externalservice.aai;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import org.onap.aai.esr.entity.aai.Pnf;
 import org.onap.aai.esr.exception.ExtsysException;
@@ -34,4 +37,29 @@ public interface INetwork {
     public void registerPnfService(@HeaderParam("X-TransactionId") String transactionId,
             @HeaderParam("X-FromAppId") String fromApp, @HeaderParam("Authorization") String authorization,
             @PathParam("pnfName") String pnfName, Pnf pnf) throws ExtsysException;
+    
+    @GET
+    @Path("/pnfs/pnf/{pnfName}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public String queryPNF(@HeaderParam("X-TransactionId") String transactionId,
+            @HeaderParam("X-FromAppId") String fromApp, @HeaderParam("Authorization") String authorization,
+            @PathParam("pnfName") String pnfName) throws ExtsysException;
+    
+    @GET
+    @Path("/pnfs")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public String queryPNFList(@HeaderParam("X-TransactionId") String transactionId,
+            @HeaderParam("X-FromAppId") String fromApp, @HeaderParam("Authorization") String authorization)
+            throws ExtsysException;
+    
+    @DELETE
+    @Path("/pnfs/pnf/{pnfName}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public void deletePNF(@HeaderParam("X-TransactionId") String transactionId,
+            @HeaderParam("X-FromAppId") String fromApp, @HeaderParam("Authorization") String authorization,
+            @PathParam("pnfName") String pnfName, @QueryParam("resource-version") String resourceVersion)
+            throws ExtsysException;
 }
