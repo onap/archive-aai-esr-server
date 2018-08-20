@@ -17,4 +17,103 @@ package org.onap.aai.esr.entity.rest;
 
 public class PnfRegisterInfo {
 
+    private String pnfId;
+
+    private String userLabel;
+
+    private String subnetId;
+
+    private String neId;
+
+    private String managementType;
+
+    private String vendor;
+
+    private String pnfdId;
+
+    private String emsId;
+
+    private String lattitude;
+
+    private String longitude;
+
+    public String getPnfId() {
+        return pnfId;
+    }
+
+    public void setPnfId(String pnfId) {
+        this.pnfId = pnfId;
+    }
+
+    public String getUserLabel() {
+        return userLabel;
+    }
+
+    public void setUserLabel(String userLabel) {
+        this.userLabel = userLabel;
+    }
+
+    public String getSubnetId() {
+        return subnetId;
+    }
+
+    public void setSubnetId(String subnetId) {
+        this.subnetId = subnetId;
+    }
+
+    public String getNeId() {
+        return neId;
+    }
+
+    public void setNeId(String neId) {
+        this.neId = neId;
+    }
+
+    public String getManagementType() {
+        return managementType;
+    }
+
+    public void setManagementType(String managementType) {
+        this.managementType = managementType;
+    }
+
+    public String getVendor() {
+        return vendor;
+    }
+
+    public void setVendor(String vendor) {
+        this.vendor = vendor;
+    }
+
+    public String getPnfdId() {
+        return pnfdId;
+    }
+
+    public void setPnfdId(String pnfdId) {
+        this.pnfdId = pnfdId;
+    }
+
+    public String getEmsId() {
+        return emsId;
+    }
+
+    public void setEmsId(String emsId) {
+        this.emsId = emsId;
+    }
+
+    public String getLattitude() {
+        return lattitude;
+    }
+
+    public void setLattitude(String lattitude) {
+        this.lattitude = lattitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
 }
