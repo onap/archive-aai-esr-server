@@ -16,17 +16,21 @@
 package org.onap.aai.esr.wrapper;
 
 import javax.ws.rs.core.Response;
+import org.onap.aai.esr.entity.aai.Pnf;
 import org.onap.aai.esr.entity.rest.PnfRegisterInfo;
-import org.onap.aai.esr.externalservice.aai.ExternalSystemProxy;
+import org.onap.aai.esr.exception.ExceptionUtil;
+import org.onap.aai.esr.exception.ExtsysException;
+import org.onap.aai.esr.externalservice.aai.NetworkProxy;
+import org.onap.aai.esr.util.PnfManagerUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class PnfManagerWrapper {
     private static PnfManagerWrapper pnfManagerWrapper;
-    private static final Logger LOG = LoggerFactory.getLogger(PnfManagerWrapper.class);
+    private static final Logger LOG = LoggerFactory.getLogger(PnfManagerWrapperTest.class);
 
 //    private static PnfManagerUtil pnfManagerUtil = new PnfManagerUtil();
-    private static ExternalSystemProxy externalSystemProxy = new ExternalSystemProxy();
+    private static NetworkProxy networkProxy = new NetworkProxy();
 
     /**
      * get PnfManagerWrapper instance.
@@ -35,13 +39,13 @@ public class PnfManagerWrapper {
      */
     public static PnfManagerWrapper getInstance() {
         if (pnfManagerWrapper == null) {
-            pnfManagerWrapper = new PnfManagerWrapper(externalSystemProxy);
+            pnfManagerWrapper = new PnfManagerWrapper(networkProxy);
         }
         return pnfManagerWrapper;
     }
     
-    public PnfManagerWrapper(ExternalSystemProxy externalSystemProxy){
-        PnfManagerWrapper.externalSystemProxy = externalSystemProxy;
+    public PnfManagerWrapper(NetworkProxy networkProxy){
+        PnfManagerWrapper.networkProxy = networkProxy;
     }
 
     /**
@@ -84,8 +88,15 @@ public class PnfManagerWrapper {
      * @param pnf
      * @return
      */
-    public Response registerPnf(PnfRegisterInfo pnf) {
-        // TODO Auto-generated method stub
-        return null;
+    public Response registerPnf(PnfRegisterInfo pnfRegisterInfo) {
+        Pnf pnf = PnfManagerUtil.pnfRegisterInfo2pnf(pnfRegisterInfo);
+        String pnfName = pnf.getPnfName();
+        try {
+            networkProxy.registerPnf(pnfName, pnf);
+            return Response.ok().build();
+        } catch (ExtsysException e) {
+            LOG.error("Register PNF failed !", e);
+            throw ExceptionUtil.buildExceptionResponse(e.getMessage());
+        }
     }
 }

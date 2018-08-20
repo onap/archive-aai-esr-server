@@ -28,7 +28,7 @@ import javax.ws.rs.core.Response;
 import org.eclipse.jetty.http.HttpStatus;
 import org.onap.aai.esr.entity.rest.PnfRegisterInfo;
 import org.onap.aai.esr.util.ExtsysUtil;
-import org.onap.aai.esr.wrapper.PnfManagerWrapper;
+import org.onap.aai.esr.wrapper.PnfManagerWrapperTest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.codahale.metrics.annotation.Timed;
@@ -61,7 +61,7 @@ public class PnfManager {
     @Timed
     public Response queryPnfList() {
         LOGGER.info("start query all pnf!");
-        return PnfManagerWrapper.getInstance().queryPnfList();
+        return PnfManagerWrapperTest.getInstance().queryPnfList();
     }
     
     /**
@@ -80,7 +80,7 @@ public class PnfManager {
     @Timed
     public Response queryPnfById(@ApiParam(value = "pnf id") @PathParam("pnfId") String pnfId) {
         LOGGER.info("start query  pnf by id." + pnfId);
-        return PnfManagerWrapper.getInstance().queryPnfById(pnfId);
+        return PnfManagerWrapperTest.getInstance().queryPnfById(pnfId);
     }
     
     /**
@@ -98,7 +98,7 @@ public class PnfManager {
     @Timed
     public Response delPnf(@ApiParam(value = "pnf id") @PathParam("pnfId") String pnfId) {
         LOGGER.info("start delete pnf .id:" + pnfId);
-        return PnfManagerWrapper.getInstance().delPnf(pnfId);
+        return PnfManagerWrapperTest.getInstance().delPnf(pnfId);
     }
     
     /**
@@ -119,7 +119,7 @@ public class PnfManager {
     public Response updatePnf(@ApiParam(value = "pnf", required = true) PnfRegisterInfo pnf,
             @ApiParam(value = "pnf id", required = true) @PathParam("pnfId") String pnfId) {
         LOGGER.info("start update pnf .id:" + pnfId + " info:" + extsysUtil.objectToString(pnf));
-        return PnfManagerWrapper.getInstance().updatePnf(pnf, pnfId);
+        return PnfManagerWrapperTest.getInstance().updatePnf(pnf, pnfId);
     }
     
     /**
@@ -137,6 +137,6 @@ public class PnfManager {
                     response = String.class)})
     @Timed
     public Response registerPnf(@ApiParam(value = "pnf", required = true) PnfRegisterInfo pnf) {
-        return PnfManagerWrapper.getInstance().registerPnf(pnf);
+        return PnfManagerWrapperTest.getInstance().registerPnf(pnf);
     }
 }
