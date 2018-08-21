@@ -71,7 +71,7 @@ public class PnfManagerWrapperTest {
         pnfRegisterInfo.setEmsId("emsId1");
         pnfRegisterInfo.setLattitude("121.546");
         pnfRegisterInfo.setLongitude("14.22");
-        String PnfStr = "{\"pnf-name\": \"pnf1\","
+        String pnfStr = "{\"pnf-name\": \"pnf1\","
                 + "\"pnf-name2\": \"PNF test\","
                 + "\"pnf-id\": \"subnetId1-neId1\","
                 + "\"equip-type\": \"Test\","
@@ -81,7 +81,7 @@ public class PnfManagerWrapperTest {
                 + "\"in-maint\": false,"
                 + "\"frame-id\": \"121.546-14.22\"}";
         NetworkProxy mockNetworkProxy = Mockito.mock(NetworkProxy.class);
-        Mockito.when(mockNetworkProxy.queryPNF(Mockito.anyString())).thenReturn(PnfStr);
+        Mockito.when(mockNetworkProxy.queryPNF(Mockito.anyString())).thenReturn(pnfStr);
         PnfManagerWrapper pnfManagerWrapper = new PnfManagerWrapper(mockNetworkProxy);
         Response response = pnfManagerWrapper.queryPnfById("pnf1");
         if (response != null) {
@@ -149,7 +149,7 @@ public class PnfManagerWrapperTest {
         pnfRegisterInfo.setEmsId("emsId1");
         pnfRegisterInfo.setLattitude("121.546");
         pnfRegisterInfo.setLongitude("14.22");
-        String PnfStr = "{\"pnf-name\": \"pnf1\","
+        String pnfStr = "{\"pnf-name\": \"pnf1\","
                 + "\"pnf-name2\": \"PNF test\","
                 + "\"pnf-id\": \"subnetId1-neId1\","
                 + "\"equip-type\": \"Test\","
@@ -160,7 +160,7 @@ public class PnfManagerWrapperTest {
                 + "\"frame-id\": \"121.546-14.22\"}";
         NetworkProxy mockNetworkProxy = Mockito.mock(NetworkProxy.class);
         Mockito.doNothing().when(mockNetworkProxy).registerPnf(Mockito.anyString(), (Pnf)Mockito.anyObject());
-        Mockito.when(mockNetworkProxy.queryPNF(Mockito.anyString())).thenReturn(PnfStr);
+        Mockito.when(mockNetworkProxy.queryPNF(Mockito.anyString())).thenReturn(pnfStr);
         PnfManagerWrapper vnfmManagerWrapper = new PnfManagerWrapper(mockNetworkProxy);
         Response response = vnfmManagerWrapper.updatePnf(pnfRegisterInfo, "pnf1");
         if (response != null) {
