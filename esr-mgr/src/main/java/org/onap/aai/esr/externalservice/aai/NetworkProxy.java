@@ -59,4 +59,12 @@ public class NetworkProxy {
             throw new ExtsysException("Query PNF List from A&AI failed.", e);
         }
     }
+    
+    public void deletePnf(String pnfId, String resourceVersion) throws ExtsysException {
+        try {
+            network.deletePNF(transactionId, fromAppId, authorization, pnfId, resourceVersion);
+        } catch (Exception e) {
+            throw new ExtsysException("Delete PNF from A&AI failed.", e);
+        }
+    }
 }

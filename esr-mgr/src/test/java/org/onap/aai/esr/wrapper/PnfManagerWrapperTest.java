@@ -25,9 +25,7 @@ import org.mockito.Mockito;
 import org.onap.aai.esr.common.MsbConfig;
 import org.onap.aai.esr.entity.aai.Pnf;
 import org.onap.aai.esr.entity.rest.PnfRegisterInfo;
-import org.onap.aai.esr.entity.rest.VnfmRegisterInfo;
 import org.onap.aai.esr.exception.ExtsysException;
-import org.onap.aai.esr.externalservice.aai.ExternalSystemProxy;
 import org.onap.aai.esr.externalservice.aai.NetworkProxy;
 import org.onap.aai.esr.util.ExtsysUtil;
 
@@ -124,6 +122,17 @@ public class PnfManagerWrapperTest {
         if (response != null) {
             Assert.assertTrue(response.getStatus() == 200);
             assertEquals(extsysUtil.objectToString(esrPnfList), extsysUtil.objectToString(response.getEntity()));
+        }
+    }
+    
+    @Test
+    public void test_delPnf() throws ExtsysException {
+        NetworkProxy mockNetworkProxy = Mockito.mock(NetworkProxy.class);
+        Mockito.doNothing().when(mockNetworkProxy).deletePnf(Mockito.anyString(), Mockito.anyString());
+        PnfManagerWrapper pnfManagerWrapper = new PnfManagerWrapper(mockNetworkProxy);
+        Response response = pnfManagerWrapper.delPnf("pnf1");
+        if (response != null) {
+            Assert.assertTrue(response.getStatus() == 204);
         }
     }
 }

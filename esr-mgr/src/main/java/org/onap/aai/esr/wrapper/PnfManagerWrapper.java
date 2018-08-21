@@ -18,11 +18,9 @@ package org.onap.aai.esr.wrapper;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ws.rs.core.Response;
-import org.onap.aai.esr.entity.aai.EsrVnfmList;
 import org.onap.aai.esr.entity.aai.Pnf;
 import org.onap.aai.esr.entity.aai.PnfList;
 import org.onap.aai.esr.entity.rest.PnfRegisterInfo;
-import org.onap.aai.esr.entity.rest.VnfmRegisterInfo;
 import org.onap.aai.esr.exception.ExceptionUtil;
 import org.onap.aai.esr.exception.ExtsysException;
 import org.onap.aai.esr.externalservice.aai.NetworkProxy;
@@ -114,8 +112,32 @@ public class PnfManagerWrapper {
      * @return
      */
     public Response delPnf(String pnfId) {
-        // TODO Auto-generated method stub
-        return null;
+        String resourceVersion = getResourceVersion(pnfId);
+        try {
+            networkProxy.deletePnf(pnfId, resourceVersion);
+            return Response.noContent().build();
+        } catch (ExtsysException e) {
+            LOG.error("Delete PNF from A&AI failed! PNF ID: " + pnfId + "resouce-version:" + resourceVersion, e);
+            throw ExceptionUtil.buildExceptionResponse(e.getMessage());
+        }
+    }
+
+    /**
+     * @param pnfId
+     * @return
+     */
+    private String getResourceVersion(String pnfId) {
+        String resourceVersion = null;
+        try {
+            String pnfStr = networkProxy.queryPNF(pnfId);
+            Pnf pnf = new Gson().fromJson(pnfStr, Pnf.class);
+            if (pnf != null && pnf.getResourceVersion() != null) {
+                resourceVersion = pnf.getResourceVersion();
+            }
+        } catch (ExtsysException e) {
+            LOG.error("Query PNF detail failed! PNF ID: " + pnfId, e);
+        }
+        return resourceVersion;
     }
 
     /**
