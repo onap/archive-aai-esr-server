@@ -15,9 +15,14 @@
  */
 package org.onap.aai.esr.wrapper;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.ws.rs.core.Response;
+import org.onap.aai.esr.entity.aai.EsrVnfmList;
 import org.onap.aai.esr.entity.aai.Pnf;
+import org.onap.aai.esr.entity.aai.PnfList;
 import org.onap.aai.esr.entity.rest.PnfRegisterInfo;
+import org.onap.aai.esr.entity.rest.VnfmRegisterInfo;
 import org.onap.aai.esr.exception.ExceptionUtil;
 import org.onap.aai.esr.exception.ExtsysException;
 import org.onap.aai.esr.externalservice.aai.NetworkProxy;
@@ -53,8 +58,32 @@ public class PnfManagerWrapper {
      * @return
      */
     public Response queryPnfList() {
-        // TODO Auto-generated method stub
-        return null;
+        List<PnfRegisterInfo> esrPnfList = new ArrayList<>();
+        PnfList pnfList = new PnfList();
+        try {
+            String pnflistStr = networkProxy.queryPnfList();
+            pnfList = new Gson().fromJson(pnflistStr, PnfList.class);
+            LOG.info("Response from AAI by query PNF list: " + pnflistStr);
+            esrPnfList = getEsrPnfList(pnfList);
+            return Response.ok(esrPnfList).build();
+        } catch (ExtsysException e) {
+            LOG.error("Query VNFM list failed !", e);
+            return Response.ok(esrPnfList).build();
+        }
+    }
+
+    /**
+     * @param pnfList
+     * @return
+     */
+    private List<PnfRegisterInfo> getEsrPnfList(PnfList pnfList) {
+        List<PnfRegisterInfo> esrPnfList = new ArrayList<>();
+        for (int i = 0; i < pnfList.getPnf().size(); i++) {
+            Pnf pnf = pnfList.getPnf().get(i);
+            PnfRegisterInfo pnfRegisterInfo = pnfManagerUtil.pnf2PnfRegisterInfo(pnf);
+            esrPnfList.add(pnfRegisterInfo);
+        }
+        return esrPnfList;
     }
 
     /**

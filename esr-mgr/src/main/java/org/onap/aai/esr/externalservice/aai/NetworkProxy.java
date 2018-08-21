@@ -51,4 +51,12 @@ public class NetworkProxy {
             throw new ExtsysException("Query PNF from A&AI failed.", e);
         }
     }
+    
+    public String queryPnfList() throws ExtsysException {
+        try {
+            return network.queryPNFList(transactionId, fromAppId, authorization);
+        } catch (Exception e) {
+            throw new ExtsysException("Query PNF List from A&AI failed.", e);
+        }
+    }
 }
