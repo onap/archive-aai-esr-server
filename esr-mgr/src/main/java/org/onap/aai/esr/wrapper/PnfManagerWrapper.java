@@ -145,9 +145,17 @@ public class PnfManagerWrapper {
      * @param pnfId
      * @return
      */
-    public Response updatePnf(PnfRegisterInfo pnf, String pnfId) {
-        // TODO Auto-generated method stub
-        return null;
+    public Response updatePnf(PnfRegisterInfo pnfRegisterInfo, String pnfId) {
+        String resourceVersion = getResourceVersion(pnfId);
+        Pnf pnf = pnfManagerUtil.pnfRegisterInfo2pnf(pnfRegisterInfo);
+        pnf.setResourceVersion(resourceVersion);
+        try {
+            networkProxy.registerPnf(pnfId, pnf);
+            return Response.ok().build();
+        } catch (ExtsysException e) {
+            LOG.error("Update PNF failed !", e);
+            throw ExceptionUtil.buildExceptionResponse(e.getMessage());
+        }
     }
 
     /**

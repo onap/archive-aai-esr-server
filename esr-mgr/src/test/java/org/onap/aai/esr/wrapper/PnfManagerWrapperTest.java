@@ -135,4 +135,36 @@ public class PnfManagerWrapperTest {
             Assert.assertTrue(response.getStatus() == 204);
         }
     }
+    
+    @Test
+    public void test_updatePnf() throws ExtsysException {
+        PnfRegisterInfo pnfRegisterInfo = new PnfRegisterInfo();
+        pnfRegisterInfo.setPnfId("pnf1");
+        pnfRegisterInfo.setUserLabel("PNF test");
+        pnfRegisterInfo.setSubnetId("subnetId1");
+        pnfRegisterInfo.setNeId("neId1");
+        pnfRegisterInfo.setManagementType("Test");
+        pnfRegisterInfo.setVendor("ZTE");
+        pnfRegisterInfo.setPnfdId("pnfdId1");
+        pnfRegisterInfo.setEmsId("emsId1");
+        pnfRegisterInfo.setLattitude("121.546");
+        pnfRegisterInfo.setLongitude("14.22");
+        String PnfStr = "{\"pnf-name\": \"pnf1\","
+                + "\"pnf-name2\": \"PNF test\","
+                + "\"pnf-id\": \"subnetId1-neId1\","
+                + "\"equip-type\": \"Test\","
+                + "\"equip-vendor\": \"ZTE\","
+                + "\"equip-model\": \"pnfdId1\","
+                + "\"management-option\": \"emsId1\","
+                + "\"in-maint\": false,"
+                + "\"frame-id\": \"121.546-14.22\"}";
+        NetworkProxy mockNetworkProxy = Mockito.mock(NetworkProxy.class);
+        Mockito.doNothing().when(mockNetworkProxy).registerPnf(Mockito.anyString(), (Pnf)Mockito.anyObject());
+        Mockito.when(mockNetworkProxy.queryPNF(Mockito.anyString())).thenReturn(PnfStr);
+        PnfManagerWrapper vnfmManagerWrapper = new PnfManagerWrapper(mockNetworkProxy);
+        Response response = vnfmManagerWrapper.updatePnf(pnfRegisterInfo, "pnf1");
+        if (response != null) {
+            Assert.assertTrue(response.getStatus() == 200);
+        }
+    }
 }
