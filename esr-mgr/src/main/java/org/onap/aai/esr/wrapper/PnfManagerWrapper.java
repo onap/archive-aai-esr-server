@@ -24,6 +24,7 @@ import org.onap.aai.esr.entity.rest.PnfRegisterInfo;
 import org.onap.aai.esr.exception.ExceptionUtil;
 import org.onap.aai.esr.exception.ExtsysException;
 import org.onap.aai.esr.externalservice.aai.NetworkProxy;
+import org.onap.aai.esr.util.ExtsysUtil;
 import org.onap.aai.esr.util.PnfManagerUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,6 +37,7 @@ public class PnfManagerWrapper {
     private static PnfManagerUtil pnfManagerUtil = new PnfManagerUtil();
     private static NetworkProxy networkProxy = new NetworkProxy();
 
+    ExtsysUtil extsysUtil = new ExtsysUtil();
     /**
      * get PnfManagerWrapper instance.
      * 
@@ -163,7 +165,9 @@ public class PnfManagerWrapper {
      * @return
      */
     public Response registerPnf(PnfRegisterInfo pnfRegisterInfo) {
+        LOG.info("Register PNF with ESR, register info: " + extsysUtil.objectToString(pnfRegisterInfo));
         Pnf pnf = pnfManagerUtil.pnfRegisterInfo2pnf(pnfRegisterInfo);
+        LOG.info("Register PNF with AAI, register info: " + extsysUtil.objectToString(pnf));
         String pnfName = pnf.getPnfName();
         try {
             networkProxy.registerPnf(pnfName, pnf);

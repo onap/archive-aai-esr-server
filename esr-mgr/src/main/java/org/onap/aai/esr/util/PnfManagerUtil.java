@@ -28,6 +28,7 @@ public class PnfManagerUtil {
         Pnf pnf = new Pnf();
         pnf.setPnfName(pnfRegisterInfo.getPnfId());
         pnf.setPnfName2(pnfRegisterInfo.getUserLabel());
+        pnf.setInMaint(false);
         String pnfId = pnfRegisterInfo.getSubnetId() + "-" +pnfRegisterInfo.getNeId();
         pnf.setPnfId(pnfId);
         pnf.setEquipType(pnfRegisterInfo.getManagementType());
