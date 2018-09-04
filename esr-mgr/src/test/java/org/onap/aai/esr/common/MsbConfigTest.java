@@ -36,7 +36,7 @@ public class MsbConfigTest {
 
         MsbConfig.setMultiCloudAddr("multicloud-address");
         Assert.assertEquals(MsbConfig.multiCloudAddr, "multicloud-address");
-        Assert.assertEquals(MsbConfig.getMultiCloudAddr(), "msb-server/api/multicloud/v0");
+        Assert.assertEquals(MsbConfig.getMultiCloudAddr(), "msb-server/api/multicloud/v1");
 
         MsbConfig.setMsbDiscoveryIp("discovery://1111");
         Assert.assertEquals(MsbConfig.getMsbDiscoveryIp(), "discovery://1111");

@@ -64,7 +64,7 @@ public class MsbConfig {
     }
 
     public static String getMultiCloudAddr() {
-        return msbServerAddr + "/api/multicloud/v0";
+        return msbServerAddr + "/api/multicloud/v1";
     }
 
     public static String getMsbDiscoveryIp() {

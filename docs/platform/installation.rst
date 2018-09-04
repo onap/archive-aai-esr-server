@@ -68,11 +68,22 @@ MultiCloud register to MSB
 
 curl -X POST -H "Content-Type: application/json" -d '{"serviceName": "multicloud", "version": "v0", "url": "/api/multicloud/v0","protocol": "REST",  "nodes": [ {"ip": "'$MultiCloud_IP'","port": "9001"}]}' "http://$MSB_SERVER_IP:10081/api/microservices/v1/services"
 
+curl -X POST -H "Content-Type: application/json" -d '{"serviceName": "multicloud", "version": "v1", "url": "/api/multicloud/v1","protocol": "REST",  "nodes": [ {"ip": "'$MultiCloud_IP'","port": "9001"}]}' "http://$MSB_SERVER_IP:10081/api/microservices/v1/services"
+
 curl -X POST -H "Content-Type: application/json" -d '{"serviceName": "multicloud-vio", "version": "v0", "url": "/api/multicloud-vio/v0","protocol": "REST",  "nodes": [ {"ip": "'$MultiCloud_IP'","port": "9004"}]}' "http://$MSB_SERVER_IP:10081/api/microservices/v1/services"
+
+curl -X POST -H "Content-Type: application/json" -d '{"serviceName": "multicloud-vio", "version": "v1", "url": "/api/multicloud-vio/v1","protocol": "REST",  "nodes": [ {"ip": "'$MultiCloud_IP'","port": "9004"}]}' "http://$MSB_SERVER_IP:10081/api/microservices/v1/services"
 
 curl -X POST -H "Content-Type: application/json" -d '{"serviceName": "multicloud-ocata", "version": "v0", "url": "/api/multicloud-ocata/v0","protocol": "REST",  "nodes": [ {"ip": "'$MultiCloud_IP'","port": "9006"}]}' "http://$MSB_SERVER_IP:10081/api/microservices/v1/services"
 
+curl -X POST -H "Content-Type: application/json" -d '{"serviceName": "multicloud-ocata", "version": "v1", "url": "/api/multicloud-ocata/v1","protocol": "REST",  "nodes": [ {"ip": "'$MultiCloud_IP'","port": "9006"}]}' "http://$MSB_SERVER_IP:10081/api/microservices/v1/services"
+
+[Note: serviceName "multicloud-titanium_cloud" is depreciated from ONAP Casablanca Release]
 curl -X POST -H "Content-Type: application/json" -d '{"serviceName": "multicloud-titanium_cloud", "version": "v0", "url": "/api/multicloud-titanium_cloud/v0","protocol": "REST",  "nodes": [ {"ip": "'$MultiCloud_IP'","port": "9005"}]}' "http://$MSB_SERVER_IP:10081/api/microservices/v1/services"
+
+curl -X POST -H "Content-Type: application/json" -d '{"serviceName": "multicloud-titaniumcloud", "version": "v0", "url": "/api/multicloud-titaniumcloud/v0","protocol": "REST",  "nodes": [ {"ip": "'$MultiCloud_IP'","port": "9005"}]}' "http://$MSB_SERVER_IP:10081/api/microservices/v1/services"
+
+curl -X POST -H "Content-Type: application/json" -d '{"serviceName": "multicloud-titaniumcloud", "version": "v1", "url": "/api/multicloud-titaniumcloud/v1","protocol": "REST",  "nodes": [ {"ip": "'$MultiCloud_IP'","port": "9005"}]}' "http://$MSB_SERVER_IP:10081/api/microservices/v1/services"
 
 ESR register to MSB
 ^^^^^^^^^^^^^^^^^^^^^^^
