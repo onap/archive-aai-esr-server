@@ -60,7 +60,7 @@ ESR will call the API from Multi-Cloud to update the cloud-region information af
 
 #. Update VIM Info:
 
-   ``POST /api/multicloud /v0/{cloud-owner}_{cloud-region}/registry``
+   ``POST /api/multicloud /v1/{cloud-owner}/{cloud-region}/registry``
 
 More details could be found at `Multi-Cloud APIs <https://wiki.onap.org/download/attachments/13599038/MultiVIM-onap-draft-r1-0822.doc?version=1&modificationDate=1503406573000&api=v2>`_.
    
