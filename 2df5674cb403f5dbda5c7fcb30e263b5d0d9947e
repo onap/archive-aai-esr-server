@@ -1,0 +1,10 @@
+Verified+1: ONAP Jobbuilder <onap-jobbuilder@jenkins.onap.org>
+Code-Review+1: HuabingZhao <zhao.huabing@zte.com.cn>
+Code-Review+1: Bo Lv <lv.bo163@zte.com.cn>
+Code-Review+1: Ethan Lynn <ethanlynnl@vmware.com>
+Code-Review+2: James Forsyth <jf2512@att.com>
+Submitted-by: James Forsyth <jf2512@att.com>
+Submitted-at: Wed, 24 Oct 2018 20:37:51 +0000
+Reviewed-on: https://gerrit.onap.org/r/64307
+Project: aai/esr-server
+Branch: refs/heads/master
