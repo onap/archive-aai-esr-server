@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bada0100_c492e29e",
+        "filename": "version.properties",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 33
+      },
+      "writtenOn": "2018-10-29T12:16:50Z",
+      "side": 1,
+      "message": "You don\u0027t need to move the version up until we do a release, unless you want an unreleased 1.2.1?",
+      "revId": "03a57c3f9ab13e7fc9908dcc716db449db74f7cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
