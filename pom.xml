@@ -43,7 +43,7 @@
         <gson.version>2.2.4</gson.version>
         <junit.version>4.10</junit.version>
 		<jetty.version>9.4.11.v20180605</jetty.version>
-        <org.apache.ant.version>1.9.4</org.apache.ant.version>
+        <org.apache.ant.version>1.10.1</org.apache.ant.version>
     </properties>
 
     <dependencyManagement>
