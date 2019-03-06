@@ -52,7 +52,7 @@ public class EsrSystemInfo implements Serializable {
     @SerializedName("protocol")
     private String protocol;
 
-    @SerializedName("ssl-cassert")
+    @SerializedName("ssl-cacert")
     private String sslCassert;
 
     @SerializedName("ssl-insecure")
