@@ -61,7 +61,7 @@ public class VimManagerUtilTest {
                 + "\"cloud-extra-info\":\"{}\"," + "\"esr-system-info-list\":{" + "\"esr-system-info\":[{"
                 + "\"esr-system-info-id\":\"123456\"," + "\"service-url\":\"http://10.11.22.33:5000/v3\","
                 + "\"user-name\":\"onap\"," + "\"password\":\"123456\"," + "\"system-type\":\"VIM\","
-                + "\"ssl-cassert\":\"test\"," + "\"ssl-insecure\":true," + "\"cloud-domain\":\"default\","
+                + "\"ssl-cacert\":\"test\"," + "\"ssl-insecure\":true," + "\"cloud-domain\":\"default\","
                 + "\"default-tenant\":\"admin\"," + "\"system-status\":\"normal\"}]}}";
         assertEquals(expectResult, cloudRegionDetailStr);
     }
@@ -77,7 +77,7 @@ public class VimManagerUtilTest {
                 + "\"cloud-extra-info\":\"{}\"," + "\"esr-system-info-list\":{" + "\"esr-system-info\":[{"
                 + "\"esr-system-info-id\":\"123456\"," + "\"service-url\":\"http://10.11.22.33:5000/v3\","
                 + "\"user-name\":\"onap\"," + "\"password\":\"123456\"," + "\"default-tenant\":\"admin\","
-                + "\"system-type\":\"VIM\"," + "\"ssl-cassert\":\"test\"," + "\"ssl-insecure\":true,"
+                + "\"system-type\":\"VIM\"," + "\"ssl-cacert\":\"test\"," + "\"ssl-insecure\":true,"
                 + "\"cloud-domain\":\"default\"," + "\"system-status\":\"normal\"}]}}";
         cloudRegionDetail = new Gson().fromJson(cloudRegionDetailStr, CloudRegionDetail.class);
         vimRegisterInfo = vimManagerUtil.cloudRegion2VimRegisterInfo(cloudRegionDetail);

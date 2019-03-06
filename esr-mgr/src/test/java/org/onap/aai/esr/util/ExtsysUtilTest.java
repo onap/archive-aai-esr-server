@@ -65,7 +65,7 @@ public class ExtsysUtilTest {
         String listStr = "{\"esr-system-info\":[{" + "\"esr-system-info-id\":\"123456\"," + "\"system-name\":\"vnfm\","
                 + "\"type\":\"test\"," + "\"vendor\":\"zte\"," + "\"version\":\"v1.0\","
                 + "\"service-url\":\"http://127.0.0.1:8080\"," + "\"user-name\":\"root\"," + "\"password\":\"qwelk\","
-                + "\"system-type\":\"VNFM\"," + "\"protocol\":\"http\"," + "\"ssl-cassert\":\"sslCassert\","
+                + "\"system-type\":\"VNFM\"," + "\"protocol\":\"http\"," + "\"ssl-cacert\":\"sslCassert\","
                 + "\"ssl-insecure\":false," + "\"ip-address\":\"127.0.0.1\"," + "\"port\":\"5000\","
                 + "\"cloud-domain\":\"cloudDomain\"," + "\"default-tenant\":\"admin\"," + "\"passive\":true,"
                 + "\"remote-path\":\"/root/test\"," + "\"system-status\":\"normal\"}]}";
@@ -103,7 +103,7 @@ public class ExtsysUtilTest {
         String listStr = "{\"esr-system-info\":[{" + "\"esr-system-info-id\":\"123456\"," + "\"system-name\":\"vnfm\","
                 + "\"type\":\"test\"," + "\"vendor\":\"zte\"," + "\"version\":\"v1.0\","
                 + "\"service-url\":\"http://127.0.0.1:8080\"," + "\"user-name\":\"root\"," + "\"password\":\"qwelk\","
-                + "\"system-type\":\"VNFM\"," + "\"protocol\":\"http\"," + "\"ssl-cassert\":\"sslCassert\","
+                + "\"system-type\":\"VNFM\"," + "\"protocol\":\"http\"," + "\"ssl-cacert\":\"sslCassert\","
                 + "\"ssl-insecure\":false," + "\"ip-address\":\"127.0.0.1\"," + "\"port\":\"5000\","
                 + "\"cloud-domain\":\"cloudDomain\"," + "\"default-tenant\":\"admin\"," + "\"passive\":true,"
                 + "\"remote-path\":\"/root/test\"," + "\"system-status\":\"normal\"}]}";
