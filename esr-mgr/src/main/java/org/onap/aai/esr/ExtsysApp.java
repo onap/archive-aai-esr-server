@@ -24,6 +24,7 @@ import org.onap.aai.esr.resource.ServiceTest;
 import org.onap.aai.esr.resource.ThirdpartySdncManager;
 import org.onap.aai.esr.resource.VimManager;
 import org.onap.aai.esr.resource.VnfmManager;
+import org.onap.aai.esr.resource.NfvoManager;
 import org.onap.msb.sdk.httpclient.msb.MSBServiceClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -58,6 +59,7 @@ public class ExtsysApp extends Application<ExtsysAppConfiguration> {
         environment.jersey().register(new ThirdpartySdncManager());
         environment.jersey().register(new VimManager());
         environment.jersey().register(new VnfmManager());
+        environment.jersey().register(new NfvoManager());
         environment.jersey().register(new PnfManager());
         environment.jersey().register(new ServiceTest());
         initSwaggerConfig(environment, configuration);
