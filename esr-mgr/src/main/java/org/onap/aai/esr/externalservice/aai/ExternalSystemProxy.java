@@ -20,12 +20,13 @@ import org.onap.aai.esr.common.MsbConfig;
 import org.onap.aai.esr.entity.aai.EsrEmsDetail;
 import org.onap.aai.esr.entity.aai.EsrThirdpartySdncDetail;
 import org.onap.aai.esr.entity.aai.EsrVnfmDetail;
+import org.onap.aai.esr.entity.aai.EsrNfvoDetail;
 import org.onap.aai.esr.exception.ExtsysException;
 import com.eclipsesource.jaxrs.consumer.ConsumerFactory;
 
 public class ExternalSystemProxy {
 
-    private static IExternalSystem externalSystem;
+    private static IExternalSystem externalSystem, externalSystemV16;
     private static String transactionId = "9999";
     private static String fromAppId = "esr-server";
     private static String authorization = AaiCommon.getAuthenticationCredentials();
@@ -33,6 +34,8 @@ public class ExternalSystemProxy {
         ClientConfig config = new ClientConfig();
         externalSystem =
                 ConsumerFactory.createConsumer(MsbConfig.getExternalSystemAddr(), config, IExternalSystem.class);
+        externalSystemV16 =
+                ConsumerFactory.createConsumer(MsbConfig.getExternalSystemAddrV16(), config, IExternalSystem.class);
     }
     
     public void registerVnfm(String vnfmId, EsrVnfmDetail esrVnfmDetail) throws ExtsysException {
@@ -69,6 +72,45 @@ public class ExternalSystemProxy {
             throw new ExtsysException("Delete VNFM from A&AI failed.", e);
         }
     }
+
+    public void registerNfvo(String nfvoId, EsrNfvoDetail esrNfvoDetail) throws ExtsysException {
+        ClientConfig config = new ClientConfig(new NfvoRegisterProvider());
+        IExternalSystem registerNfvoServiceproxy =
+                ConsumerFactory.createConsumer(MsbConfig.getExternalSystemAddrV16(), config, IExternalSystem.class);
+        try {
+            registerNfvoServiceproxy.registerNFVO(transactionId, fromAppId, authorization, nfvoId, esrNfvoDetail);
+        } catch (Exception e) {
+            throw new ExtsysException("PUT NFVO to A&AI failed.", e);
+        }
+    }
+
+    public String queryNfvoDetail(String nfvoId) throws ExtsysException {
+        try {
+            return externalSystemV16.queryNFVODetail(transactionId, fromAppId, authorization, nfvoId);
+        } catch (Exception e) {
+            throw new ExtsysException("Query NFVO detail from A&AI failed.", e);
+        }
+    }
+
+    public String queryNfvoList() throws ExtsysException {
+        try {
+            return externalSystemV16.queryNFVOList(transactionId, fromAppId, authorization);
+        } catch (Exception e) {
+            throw new ExtsysException("Query NFVO list from A&AI failed.", e);
+        }
+    }
+
+    public void deleteNfvo(String nfvoId, String resourceVersion) throws ExtsysException {
+        try {
+            externalSystemV16.deleteNFVO(transactionId, fromAppId, authorization, nfvoId, resourceVersion);
+        } catch (Exception e) {
+            throw new ExtsysException("Delete NFVO from A&AI failed.", e);
+        }
+    }
+
+
+
+
 
     public void registerSdnc(String thirdpartySdncId, EsrThirdpartySdncDetail esrSdncDetail) throws ExtsysException {
         ClientConfig config = new ClientConfig(new ThirdpartySdncRegisterProvider());

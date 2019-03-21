@@ -47,6 +47,11 @@ public class MsbConfig {
         return msbServerAddr + "/api/aai-externalSystem/v11";
     }
 
+    public static String getExternalSystemAddrV16() {
+        return msbServerAddr + "/api/aai-externalSystem/v16";
+    }
+
+ 
     public static void setExternalSystemAddr(String Addr) {
         externalSystemAddr = Addr;
     }
