@@ -1,5 +1,5 @@
 /**
- * Copyright 2016-2017 ZTE Corporation.
+ * Copyright 2019  Verizon. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,9 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package org.onap.aai.esr.entity.aai;
 
-package org.onap.aai.esr.common;
+import java.io.Serializable;
+import java.util.List;
+import com.google.gson.annotations.SerializedName;
 
-public enum SystemType {
-    VNFM, EMS_RESOUCE, EMS_PERFORMANCE, EMS_ALARM, thirdparty_SDNC, VIM, NFVO
+public class EsrNfvoList implements Serializable {
+
+    public static final long serialVersionUID = 1L;
+
+    @SerializedName("esr-nfvo")
+    private List<EsrNfvo> esrNfvo;
+
+    public List<EsrNfvo> getEsrNfvo() {
+        return esrNfvo;
+    }
+
+    public void setEsrNfvo(List<EsrNfvo> esrNfvo) {
+        this.esrNfvo = esrNfvo;
+    }
+
 }

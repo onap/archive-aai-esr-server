@@ -28,6 +28,7 @@ import javax.ws.rs.core.MediaType;
 import org.onap.aai.esr.entity.aai.EsrEmsDetail;
 import org.onap.aai.esr.entity.aai.EsrThirdpartySdncDetail;
 import org.onap.aai.esr.entity.aai.EsrVnfmDetail;
+import org.onap.aai.esr.entity.aai.EsrNfvoDetail;
 import org.onap.aai.esr.exception.ExtsysException;
 
 @Path("/")
@@ -66,6 +67,41 @@ public interface IExternalSystem {
             @PathParam("vnfm_id") String vnfmId, @QueryParam("resource-version") String resourceVersion)
             throws ExtsysException;
 
+    @PUT
+    @Path("/esr-nfvo-list/esr-nfvo/{nfvo_id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public void registerNFVO(@HeaderParam("X-TransactionId") String transactionId,
+            @HeaderParam("X-FromAppId") String fromApp, @HeaderParam("Authorization") String authorization,
+            @PathParam("nfvo_id") String nfvoId, EsrNfvoDetail esrNfvoDetail) throws ExtsysException;
+
+    @GET
+    @Path("/esr-nfvo-list/esr-nfvo/{nfvo_id}?depth=all")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public String queryNFVODetail(@HeaderParam("X-TransactionId") String transactionId,
+            @HeaderParam("X-FromAppId") String fromApp, @HeaderParam("Authorization") String authorization,
+            @PathParam("nfvo_id") String nfvoId) throws ExtsysException;
+
+    @GET
+    @Path("/esr-nfvo-list")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public String queryNFVOList(@HeaderParam("X-TransactionId") String transactionId,
+            @HeaderParam("X-FromAppId") String fromApp, @HeaderParam("Authorization") String authorization)
+            throws ExtsysException;
+
+    @DELETE
+    @Path("/esr-nfvo-list/esr-nfvo/{nfvo_id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public void deleteNFVO(@HeaderParam("X-TransactionId") String transactionId,
+            @HeaderParam("X-FromAppId") String fromApp, @HeaderParam("Authorization") String authorization,
+            @PathParam("nfvo_id") String nfvoId, @QueryParam("resource-version") String resourceVersion)
+            throws ExtsysException;
+
+
+ 
     @PUT
     @Path("/esr-ems-list/esr-ems/{ems_id}")
     @Consumes(MediaType.APPLICATION_JSON)

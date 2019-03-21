@@ -21,6 +21,7 @@ import org.onap.aai.esr.common.MsbConfig;
 import org.onap.aai.esr.entity.aai.EsrEmsDetail;
 import org.onap.aai.esr.entity.aai.EsrThirdpartySdncDetail;
 import org.onap.aai.esr.entity.aai.EsrVnfmDetail;
+import org.onap.aai.esr.entity.aai.EsrNfvoDetail;
 import org.onap.aai.esr.exception.ExtsysException;
 
 public class ExternalSystemProxyTest {
@@ -53,6 +54,30 @@ public class ExternalSystemProxyTest {
     public void testDeleteVnfm() throws ExtsysException {
         externalSystemProxy.deleteVnfm("vnfm-1", "version-1");
     }
+
+    @Test(expected = ExtsysException.class)
+    public void testRegisterNfvo() throws ExtsysException {
+        EsrNfvoDetail detail = new EsrNfvoDetail();
+        externalSystemProxy.registerNfvo("nfvo-1", detail);
+    }
+
+    @Test(expected = ExtsysException.class)
+    public void testQueryNfvoDetail() throws ExtsysException {
+        externalSystemProxy.queryNfvoDetail("nfvo-1");
+    }
+
+    @Test(expected = ExtsysException.class)
+    public void testQueryNfvoList() throws ExtsysException {
+        externalSystemProxy.queryNfvoList();
+    }
+
+    @Test(expected = ExtsysException.class)
+    public void testDeleteNfvo() throws ExtsysException {
+        externalSystemProxy.deleteNfvo("nfvo-1", "version-1");
+    }
+
+
+
 
     @Test(expected = ExtsysException.class)
     public void testRegisterSdnc() throws ExtsysException {
