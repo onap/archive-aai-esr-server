@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "08d48ea1_150c1fb0",
+        "filename": "esr-mgr/src/main/java/org/onap/aai/esr/common/MsbConfig.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 4341
+      },
+      "writtenOn": "2019-03-22T01:14:11Z",
+      "side": 1,
+      "message": "Is there a matching change in OOM for MSB configuration of this URL path?",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 61
+      },
+      "revId": "c0fcc4e347af8ec435cf6e33f50c47a865902f5c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
