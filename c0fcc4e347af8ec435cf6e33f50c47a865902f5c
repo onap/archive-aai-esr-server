@@ -22,6 +22,30 @@
       "revId": "c0fcc4e347af8ec435cf6e33f50c47a865902f5c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ec1a2c8_78f80012",
+        "filename": "esr-mgr/src/main/java/org/onap/aai/esr/common/MsbConfig.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 747
+      },
+      "writtenOn": "2019-03-22T03:12:15Z",
+      "side": 1,
+      "message": "No, as of Casablanca. But we need to register v16 to MSB in Dublin. I just registered JIRA ticket for that.https://jira.onap.org/browse/AAI-2278",
+      "parentUuid": "08d48ea1_150c1fb0",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 61
+      },
+      "revId": "c0fcc4e347af8ec435cf6e33f50c47a865902f5c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
