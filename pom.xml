@@ -42,7 +42,7 @@
         <jaxrs.consumer.version>5.0</jaxrs.consumer.version>
         <gson.version>2.2.4</gson.version>
         <junit.version>4.10</junit.version>
-		<jetty.version>9.4.11.v20180605</jetty.version>
+		<jetty.version>9.4.22.v20191022</jetty.version>		
         <org.apache.ant.version>1.10.5</org.apache.ant.version>
     </properties>
 
