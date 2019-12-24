@@ -20,7 +20,7 @@ template: Hello, %s!
 # the micro service ip
 serviceIp: 127.0.0.1
 msbDiscoveryIp: 127.0.0.1
-msbDiscoveryPort: 443
+msbDiscoveryPort: 10081
 msbServerAddr: https://127.0.0.1:443
 registByHand: true
 
