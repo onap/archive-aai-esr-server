@@ -3,7 +3,7 @@
   <parent>
     <artifactId>aai-esr-server</artifactId>
     <groupId>org.onap.aai.esr-server</groupId>
-    <version>1.2.1-SNAPSHOT</version>
+    <version>1.5.0-SNAPSHOT</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <artifactId>esr-mgr</artifactId>
@@ -116,13 +116,6 @@
                 </goals>
               </execution>
             </executions>
-            <dependencies>
-              <dependency>
-                <groupId>io.swagger</groupId>
-                <artifactId>swagger-hibernate-validations</artifactId>
-                <version>1.5.6</version>
-              </dependency>
-            </dependencies>
             <configuration>
               <apiSources>
                 <apiSource>
@@ -174,9 +167,37 @@
       </exclusions>
     </dependency>
     <dependency>
+      <groupId>org.apache.ant</groupId>
+      <artifactId>ant</artifactId>
+      <version>1.10.5</version>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>ant-launcher</artifactId>
+          <groupId>org.apache.ant</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.powermock</groupId>
+      <artifactId>powermock-api-easymock</artifactId>
+      <version>1.6.5</version>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>cglib-nodep</artifactId>
+          <groupId>cglib</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>powermock-api-support</artifactId>
+          <groupId>org.powermock</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
       <groupId>org.powermock</groupId>
       <artifactId>powermock-module-junit4</artifactId>
-      <version>1.4.10</version>
+      <version>1.5.5</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
@@ -188,7 +209,7 @@
     <dependency>
       <groupId>org.powermock</groupId>
       <artifactId>powermock-api-mockito</artifactId>
-      <version>1.4.10</version>
+      <version>1.5.5</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
@@ -202,14 +223,30 @@
       </exclusions>
     </dependency>
     <dependency>
-      <groupId>org.apache.ant</groupId>
-      <artifactId>ant</artifactId>
-      <version>1.8.2</version>
+      <groupId>org.hamcrest</groupId>
+      <artifactId>hamcrest-library</artifactId>
+      <version>1.3</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
-          <artifactId>ant-launcher</artifactId>
-          <groupId>org.apache.ant</groupId>
+          <artifactId>hamcrest-core</artifactId>
+          <groupId>org.hamcrest</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.easymock</groupId>
+      <artifactId>easymock</artifactId>
+      <version>3.0</version>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>objenesis</artifactId>
+          <groupId>org.objenesis</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>cglib-nodep</artifactId>
+          <groupId>cglib</groupId>
         </exclusion>
       </exclusions>
     </dependency>
