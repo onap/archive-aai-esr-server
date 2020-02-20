@@ -28,7 +28,7 @@
     <artifactId>aai-esr-server</artifactId>
     <packaging>pom</packaging>
 
-    <version>1.5.1-SNAPSHOT</version>
+    <version>1.5.1</version>
     <name>aai-esr-server</name>
     <modules>
         <module>esr-mgr</module>
