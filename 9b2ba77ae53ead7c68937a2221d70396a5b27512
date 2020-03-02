@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "53f9d484_33b67d60",
+        "filename": "standalone/src/main/assembly/docker/instance_config.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 2679
+      },
+      "writtenOn": "2020-03-02T13:35:26Z",
+      "side": 1,
+      "message": "Hi,\nthat should be \"https\", as MSB_PORT is 443\nBest regards\nAndreas",
+      "range": {
+        "startLine": 7,
+        "startChar": 41,
+        "endLine": 7,
+        "endChar": 45
+      },
+      "revId": "9b2ba77ae53ead7c68937a2221d70396a5b27512",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
