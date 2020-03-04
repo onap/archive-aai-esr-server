@@ -1,0 +1,5 @@
+---
+distribution_type: maven
+log_dir: aai-esr-server-maven-stage-master/250/
+project: aai-esr-server
+version: 1.5.2
