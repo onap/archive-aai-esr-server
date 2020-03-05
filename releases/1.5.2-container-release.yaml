@@ -1,0 +1,7 @@
+distribution_type: container
+container_release_tag: 1.5.2
+project: esr-server
+ref: 0d3e47e3b439606c8515e7c8eccf1d69a7333a30
+containers:
+    - name: aai/esr-server
+      version: 1.5.2-20200305T075827Z
