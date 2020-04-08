@@ -1,6 +1,7 @@
 ESR server Component Offered APIs
 ==================================
 The esr server module provides the following APIs.
+.. _offeredapis:
 
 * VIM register
 * VIM query
