@@ -22,6 +22,7 @@ RUN addgroup -r esr && adduser -r -g esr esr
 WORKDIR /home/esr
 ADD esr-server-*-linux64.tar.gz /home/esr/
 RUN chmod 755 /home/esr/bin/*.sh
+RUN chown -R esr:esr /home/esr
 
 USER esr
 #ENTRYPOINT /home/esr/bin/run.sh
