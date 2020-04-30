@@ -1,0 +1,5 @@
+---
+distribution_type: maven
+log_dir: aai-esr-server-maven-stage-frankfurt/24/
+project: aai-esr-server
+version: 1.5.3
