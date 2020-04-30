@@ -18,10 +18,12 @@ RUN apt-get install -y openjdk-8-jdk
 
 #add esr related resources to the docker image
 RUN mkdir /home/esr
+RUN addgroup -S esr && adduser -S -G esr esr
 WORKDIR /home/esr
 ADD esr-server-*-linux64.tar.gz /home/esr/
 RUN chmod 755 /home/esr/bin/*.sh
 
+USER esr
 #ENTRYPOINT /home/esr/bin/run.sh
 ENTRYPOINT ["/bin/bash", "/home/esr/docker/docker-entrypoint.sh"]
 
