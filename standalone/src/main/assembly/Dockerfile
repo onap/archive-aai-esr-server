@@ -7,6 +7,7 @@ EXPOSE 9518
 #install openjdk-1.8
 #RUN sed -i 's#http://archive.ubuntu.com#http://mirrors.163.com#g' /etc/apt/sources.list
 RUN apt-get update
+RUN apt-get install curl libcurl3 libcurl3-dev 
 RUN apt-get install -y openjdk-8-jdk
 
 #configure the JDK
