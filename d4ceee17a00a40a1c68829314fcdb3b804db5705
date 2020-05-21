@@ -16,6 +16,24 @@
       "revId": "d4ceee17a00a40a1c68829314fcdb3b804db5705",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0fa132ad_fbf69109",
+        "filename": "standalone/src/main/assembly/docker/docker-entrypoint.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 5667
+      },
+      "writtenOn": "2020-05-21T11:24:42Z",
+      "side": 1,
+      "message": "Yes,i will comment \"exit 1\".As maybe MSB is needed in GuiLin .",
+      "parentUuid": "fea6b6ce_d418322b",
+      "revId": "d4ceee17a00a40a1c68829314fcdb3b804db5705",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
