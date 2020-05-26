@@ -6,15 +6,23 @@ EXPOSE 9518
 
 #install openjdk-1.8
 #RUN sed -i 's#http://archive.ubuntu.com#http://mirrors.163.com#g' /etc/apt/sources.list
-RUN apt-get update
-RUN apt-get install -y openjdk-8-jdk
+#RUN apt-get update
+#RUN apt-get install -y openjdk-8-jdk
+
+#if JAVA doesnt exist then install it:
+RUN if type  java  2>/dev/null; then \
+        echo "skipping java installation"; \
+    else \
+        apt-get update && apt-get install -y software-properties-common; \
+        sudo -E add-apt-repository ppa:openjdk-r/ppa && apt-get update && apt-get install -y openjdk-8-jdk ; \
+    fi;  
 
 #configure the JDK
-#RUN sed -i 's|#networkaddress.cache.ttl=-1|networkaddress.cache.ttl=10|' /usr/lib/jvm/java-8-openjdk-$(dpkg --print-architecture)/jre/lib/security/java.security
-#ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-$(dpkg --print-architecture)
-#ENV PATH $PATH:/usr/lib/jvm/java-8-openjdk-$(dpkg --print-architecture)/jre/bin:/usr/lib/jvm/java-8-openjdk-$(dpkg --print-architecture)/bin
-#ENV CLASSPATH .:${JAVA_HOME}/lib:${JRE_HOME}/lib
-#ENV JRE_HOME ${JAVA_HOME}/jre
+RUN sed -i 's|#networkaddress.cache.ttl=-1|networkaddress.cache.ttl=10|' /usr/lib/jvm/java-8-openjdk-$(dpkg --print-architecture)/jre/lib/security/java.security
+ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-$(dpkg --print-architecture)
+ENV PATH $PATH:/usr/lib/jvm/java-8-openjdk-$(dpkg --print-architecture)/jre/bin:/usr/lib/jvm/java-8-openjdk-$(dpkg --print-architecture)/bin
+ENV CLASSPATH .:${JAVA_HOME}/lib:${JRE_HOME}/lib
+ENV JRE_HOME ${JAVA_HOME}/jre
 
 #add esr related resources to the docker image
 RUN mkdir /home/esr
