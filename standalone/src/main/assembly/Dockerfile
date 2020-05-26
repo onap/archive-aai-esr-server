@@ -10,11 +10,11 @@ RUN apt-get update
 RUN apt-get install -y openjdk-8-jdk
 
 #configure the JDK
-#RUN sed -i 's|#networkaddress.cache.ttl=-1|networkaddress.cache.ttl=10|' /usr/lib/jvm/java-8-openjdk-$(dpkg --print-architecture)/jre/lib/security/java.security
-#ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-$(dpkg --print-architecture)
-#ENV PATH $PATH:/usr/lib/jvm/java-8-openjdk-$(dpkg --print-architecture)/jre/bin:/usr/lib/jvm/java-8-openjdk-$(dpkg --print-architecture)/bin
-#ENV CLASSPATH .:${JAVA_HOME}/lib:${JRE_HOME}/lib
-#ENV JRE_HOME ${JAVA_HOME}/jre
+RUN sed -i 's|#networkaddress.cache.ttl=-1|networkaddress.cache.ttl=10|' /usr/lib/jvm/java-8-openjdk-$(dpkg --print-architecture)/jre/lib/security/java.security
+ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-$(dpkg --print-architecture)
+ENV PATH $PATH:/usr/lib/jvm/java-8-openjdk-$(dpkg --print-architecture)/jre/bin:/usr/lib/jvm/java-8-openjdk-$(dpkg --print-architecture)/bin
+ENV CLASSPATH .:${JAVA_HOME}/lib:${JRE_HOME}/lib
+ENV JRE_HOME ${JAVA_HOME}/jre
 
 #add esr related resources to the docker image
 RUN mkdir /home/esr
