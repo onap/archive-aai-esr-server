@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "684950b9_38bd5d30",
+        "filename": "standalone/src/main/assembly/Dockerfile",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 2319
+      },
+      "writtenOn": "2020-05-26T09:50:06Z",
+      "side": 1,
+      "message": "please use java8 image and not full ubuntu",
+      "revId": "80b990f38383e8e766fcd1b1b55008ff49d10ce6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "69586223_f999f572",
+        "filename": "standalone/src/main/assembly/Dockerfile",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 2319
+      },
+      "writtenOn": "2020-05-26T09:50:06Z",
+      "side": 1,
+      "message": "pretty sure jre only is needed",
+      "revId": "80b990f38383e8e766fcd1b1b55008ff49d10ce6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2910104_aef5ccd8",
+        "filename": "standalone/src/main/assembly/docker/docker-entrypoint.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 2319
+      },
+      "writtenOn": "2020-05-26T09:50:06Z",
+      "side": 1,
+      "message": "why don\u0027t you just remove it?",
+      "revId": "80b990f38383e8e766fcd1b1b55008ff49d10ce6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
