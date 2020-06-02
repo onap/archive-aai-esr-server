@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8b8c0361_9665972e",
+        "filename": "standalone/src/main/assembly/Dockerfile",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5667
+      },
+      "writtenOn": "2020-06-02T03:17:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "684950b9_38bd5d30",
+      "revId": "80b990f38383e8e766fcd1b1b55008ff49d10ce6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "69586223_f999f572",
         "filename": "standalone/src/main/assembly/Dockerfile",
         "patchSetId": 1
