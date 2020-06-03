@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "77e6778c_ad4fee8e",
+        "filename": "standalone/src/main/assembly/Dockerfile",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 2319
+      },
+      "writtenOn": "2020-06-03T08:55:56Z",
+      "side": 1,
+      "message": "trailing whitespace",
+      "revId": "50d600d628e77f8c1bb86055d72fce9d9ec8aecd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
