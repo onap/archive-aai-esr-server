@@ -2,4 +2,3 @@
 #
 6d89f957ec3b2d3faa578babbfd9f0c4e96bd429                                       	saml/onap-gerrit-aai-esr-server-committers
 daebbf523be390041a1a9c0e340a6d833aae5043                                       	GitHub Replication
-ldap:cn=onap-gerrit-aai-esr-server-committers,ou=Groups,dc=freestandards,dc=org	ldap/onap-gerrit-aai-esr-server-committers
